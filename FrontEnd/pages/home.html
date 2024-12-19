@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexTor</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script>
+        function showResults(event) {
+            event.preventDefault();
+
+            // Show the results section
+            const resultsSection = document.querySelector('.results-section');
+            resultsSection.classList.add('active');
+
+            // Optionally scroll to the results section for better user experience
+            resultsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+
+<script>
+    function scrollToSearch() {
+        const searchSection = document.getElementById('search-section');
+        searchSection.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+</head>
+<body>
+    <header>
+        <button class="header-button">כניסה לעסקים</button>
+        <button class="header-button">אזור אישי</button>
+    </header>
+    
+
+    <nav>
+        <a href="#">שפה</a>
+        <a href="#">בית</a>
+        <a href="#">אודות</a>
+        <a href="#">צור קשר</a>
+    </nav>
+
+    <div class="hero">
+        <h1>ברוכים הבאים ל- NexTor</h1>
+        <p>הזמינו תור מראש, חסכו זמן, ותיהנו משירות מקצועי ומהיר.</p>
+        <button onclick="scrollToSearch()">חיפוש הצעות עכשיו</button>
+    </div>
+
+    <div class="hot-appointments">
+    <h2>תורים חמים</h2>
+    <div class="appointments-grid">
+        <div class="appointment-card">
+            <img src="../images/barber.jpg" alt="Man Hair Style">
+            <div class="appointment-info">
+                <h3>עיצוב שיער</h3>
+                <p>מאת: עבדול רזק</p>
+                <p>מגדל העיר, רחוב: 1285, ארה"ב</p>
+                <p><span class="price-discounted">$3500</span> <span class="price-original">$4000</span></p>
+                <button>הזמן עכשיו</button>
+            </div>
+        </div>
+        <div class="appointment-card">
+            <img src="../images/electrician.jpg" alt="Expert Electrician">
+            <div class="appointment-info">
+                <h3>חשמלאי מומחה</h3>
+                <p>מאת: אפיף איסלם</p>
+                <p>מגדל העיר, רחוב: 1285, ארה"ב</p>
+                <p><span class="price-discounted">$4000</span> <span class="price-original">$5000</span></p>
+                <button>הזמן עכשיו</button>
+            </div>
+        </div>
+        <!-- Add more cards as needed -->
+    </div>
+
+    <div class="container">
+        <div class="search-section" id="search-section">
+            <h2>חיפוש הצעות</h2>
+            <form onsubmit="showResults(event)">
+                <input type="text" placeholder="בחר תאריך" required>
+                <input type="text" placeholder="הכנס תחום" required>
+                <select required>
+                    <option value="">כולל תשלום מראש?</option>
+                    <option value="yes">כן</option>
+                    <option value="no">לא</option>
+                </select>
+                <input type="text" placeholder="הכנס שם עסק" required>
+                <button>חיפוש</button>
+            </form>
+        </div>
+
+        <div class="results-section">
+            <h2>תוצאות חיפוש</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>שם העסק</th>
+                        <th>כתובת</th>
+                        <th>שירות</th>
+                        <th>טלפון</th>
+                        <th>תאריכים/שעות</th>
+                        <th>תשלום מראש?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>בית עסק 1</td>
+                        <td><a href="#">כתובת</a></td>
+                        <td>שירות</td>
+                        <td>טלפון</td>
+                        <td>תאריכים/שעות</td>
+                        <td>כן</td>
+                    </tr>
+                    <tr>
+                        <td>בית עסק 2</td>
+                        <td><a href="#">כתובת</a></td>
+                        <td>שירות</td>
+                        <td>טלפון</td>
+                        <td>תאריכים/שעות</td>
+                        <td>לא</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 פלטפורמת קביעת התורים. כל הזכויות שמורות. <a href="#">מדיניות פרטיות</a></p>
+    </footer>
+</body>
+</html>
