@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/myAppointments.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+          <h1 class="logo">NexTor</h1>
+          <nav>
+            <ul class="menu">
+              <li><a href="#">איזור אישי |</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+    
+      <main>
+        <h2 class="title">:תורים שלי</h2>
+        <div class="appointments">
+          <div class="appointment-card">
+            <p><strong>:שם העסק</strong></p>
+            <p><strong>מספר טלפון:</strong></p>
+            <p><strong>כתובת:</strong<</p>
+            <p><strong>תחום השירות:</strong></p>
+            <p><strong>מחיר:</strong> </p>
+            <p><strong>תאריך:</strong></p>
+            <p><strong>שעה:</strong></p>
+            <p><strong>משך זמן:</strong> </p>
+            <p><strong>סטטוס:</strong>
+              <select>
+                <option>מוכן לוותר</option>
+                <option>תור תפוס</option>
+              </select>
+            </p>
+            <button class="btn forward">העבר לחבר</button>
+            <button class="btn cancel">ביטול תור</button>
+          </div>
+        </div>
+
+      </main>
+</body>
+</html>
