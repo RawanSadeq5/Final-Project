@@ -1,0 +1,110 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f1e5d1; /* Light gray background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #4a4a4a;
+}
+
+/* Main Form Container */
+.min-h-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Form Wrapper */
+.bg-white {
+    background-color: #f1e5d1;
+    border: 4px solid #987070;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    border-radius: 8px;
+    padding: 40px;
+    max-width: 400px;
+    width: 100%;
+}
+
+/* Heading */
+.text-center {
+    text-align: center;
+    color: #987070;
+}
+
+.text-2xl {
+    font-size: 24px;
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.mb-6 {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    font-size: 14px;
+    color: #987070;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+    text-align: right; /* Align label text to the right */
+}
+
+/* Input Styles */
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    text-align: right; /* Align text inside input field to the right */
+    direction: rtl; /* Right-to-left text direction for the input field */
+}
+
+input:focus {
+    border-color: #3182ce; /* Focus color */
+    outline: none;
+}
+
+/* Button Styles */
+button {
+    background-color: #987070; /* Blue background */
+    color: white;
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 4px;
+    width: 100%;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #dbb5b5; /* Darker blue on hover */
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 120, 255, 0.5); /* Focus outline */
+}
+
+/* Responsive Design */
+@media screen and (max-width: 480px) {
+    .bg-white {
+        padding: 30px;
+    }
+    
+    .text-2xl {
+        font-size: 20px;
+    }
+}
