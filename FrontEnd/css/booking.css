@@ -3,15 +3,15 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f1e5d1;
-    color: #987070;
+    background-color: #E4E0E1;
+    color: #921A40;
     direction: rtl;
 }
 
 header {
     text-align: center;
     padding: 20px;
-    background-color: #f1e5d1;
+    background-color: #E4E0E1;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -81,7 +81,7 @@ gallery img {
 .services h2 {
     font-size: 20px;
     margin-bottom: 20px;
-    color: #987070;
+    color: #921A40;
 }
 
 .service-list {
@@ -127,7 +127,7 @@ service-list li {
 }
 
 .service-link:hover {
-    background-color: #c39898;
+    background-color: #921A40;
     color: #fff;
 }
 
@@ -137,7 +137,7 @@ service-list li {
 }
 
 button {
-    background-color: #c39898;
+    background-color: #921A40;
     color: #fff;
     border: none;
     padding: 8px 16px;  /* Reduce padding for the button */
@@ -147,7 +147,7 @@ button {
 }
 
 button:hover {
-    background-color: #dbb5b5;
+    background-color: #921a405a;
 }
 
 footer {
@@ -159,6 +159,3 @@ footer {
     font-size: 14px;
     color: #777;
 }
-
-
-
