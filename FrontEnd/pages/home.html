@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NexTor</title>
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/home.css">
     <script>
         function showResults(event) {
             event.preventDefault();
@@ -28,7 +28,8 @@
 <body>
     <header>
         <button class="header-button">כניסה לעסקים</button>
-        <button class="header-button">אזור אישי</button>
+        <button class="header-button">+ הוסף עסק חדש</button>
+        <button class="header-button">התחברות</button>
     </header>
     
 
@@ -42,7 +43,12 @@
     <div class="hero">
         <h1>ברוכים הבאים ל- NexTor</h1>
         <p>הזמינו תור מראש, חסכו זמן, ותיהנו משירות מקצועי ומהיר.</p>
-        <button onclick="scrollToSearch()">חיפוש הצעות עכשיו</button>
+        <form class="mt-10 mx-auto max-w-xl py-2 px-6 rounded-full bg-gray-50 border flex focus-within:border-gray-300">
+            <input type="text" placeholder="חיפוש עסק" class="bg-transparent w-full focus:outline-none pr-4 font-semibold border-0 focus:ring-0 px-0 py-0" name="topic"><button class="flex flex-row items-center justify-center min-w-[130px] px-4 rounded-full font-medium tracking-wide border disabled:cursor-not-allowed disabled:opacity-50 transition ease-in-out duration-150 text-base bg-black text-white font-medium tracking-wide border-transparent py-1.5 h-[38px] -mr-3" >
+               חפש
+            </button>
+        </form>
+       
     </div>
 
     <div class="hot-appointments">
@@ -70,58 +76,6 @@
         </div>
         <!-- Add more cards as needed -->
     </div>
-
-    <div class="container">
-        <div class="search-section" id="search-section">
-            <h2>חיפוש הצעות</h2>
-            <form onsubmit="showResults(event)">
-                <input type="text" placeholder="בחר תאריך" required>
-                <input type="text" placeholder="הכנס תחום" required>
-                <select required>
-                    <option value="">כולל תשלום מראש?</option>
-                    <option value="yes">כן</option>
-                    <option value="no">לא</option>
-                </select>
-                <input type="text" placeholder="הכנס שם עסק" required>
-                <button>חיפוש</button>
-            </form>
-        </div>
-
-        <div class="results-section">
-            <h2>תוצאות חיפוש</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>שם העסק</th>
-                        <th>כתובת</th>
-                        <th>שירות</th>
-                        <th>טלפון</th>
-                        <th>תאריכים/שעות</th>
-                        <th>תשלום מראש?</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>בית עסק 1</td>
-                        <td><a href="#">כתובת</a></td>
-                        <td>שירות</td>
-                        <td>טלפון</td>
-                        <td>תאריכים/שעות</td>
-                        <td>כן</td>
-                    </tr>
-                    <tr>
-                        <td>בית עסק 2</td>
-                        <td><a href="#">כתובת</a></td>
-                        <td>שירות</td>
-                        <td>טלפון</td>
-                        <td>תאריכים/שעות</td>
-                        <td>לא</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
     <footer class="footer">
         <p>&copy; 2024 פלטפורמת קביעת התורים. כל הזכויות שמורות. <a href="#">מדיניות פרטיות</a></p>
     </footer>

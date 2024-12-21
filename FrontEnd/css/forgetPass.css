@@ -81,7 +81,7 @@ button {
 }
 
 button:hover {
-    background-color: #dbb5b5; /* Darker blue on hover */
+    background-color: #921a405a; /* Darker blue on hover */
 }
 
 button:focus {
