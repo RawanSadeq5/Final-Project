@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>רישום רב-שלבי</title>
+  <link rel="stylesheet" href="../css/addBusiness.css">
+</head>
+<body>
+  <!-- Container -->
+  <div class="container">
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+      <div class="step completed">
+        <div class="circle">1</div>
+        <span class="label">מידע אישי</span>
+      </div>
+      <div class="step">
+        <div class="circle">2</div>
+        <span class="label">פרטי עסק</span>
+      </div>
+      <div class="step">
+        <div class="circle">3</div>
+        <span class="label">אישור</span>
+      </div>
+    </div>
+
+    <!-- Form Steps -->
+    <form id="multi-step-form">
+      <!-- Step 1: Personal Info -->
+      <div class="form-step active">
+        <h2>מידע אישי</h2>
+        <label for="full-name">שם העסק</label>
+        <input type="text" id="full-name" placeholder="הכנס שם העסק">
+        <label for="full-name">שם מלא</label>
+        <input type="text" id="full-name" placeholder="הכנס שם מלא">
+        <label for="email">אימייל</label>
+        <input type="email" id="email" placeholder="הכנס כתובת אימייל">
+        <label for="email">סיסמה</label>
+        <input type="password" id="password" placeholder="הכנס סיסמה ">
+        <label for="email">מספר נייד</label>
+        <input type="number" id="number" placeholder="הכנס  מספר נייד">
+      </div>
+
+      <!-- Step 2: Account Details -->
+      <div class="form-step">
+        <div class="container">
+            <h1 class="title">סוגי שירותים</h1>
+            <p class="description">הוסף את סוגי השירותים הקיימים בעסק, לדוגמה: ביקור, בדיקה, תספורת וכד'.</p>
+            
+            <form class="service-form">
+              <div class="form-group">
+                <label for="service-type" class="form-label">סוג שירות:</label>
+                <input type="text" id="service-type" class="form-input" placeholder="">
+              </div>
+        
+              <div class="form-group duration-group">
+                <label class="form-label">משך:</label>
+                <div class="duration-inputs">
+                  <select class="duration-select">
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                  </select>
+                  <span>שעות ו-</span>
+                  <select class="duration-select">
+                    <option>0</option>
+                    <option>15</option>
+                    <option>30</option>
+                    <option>45</option>
+                  </select>
+                  <span>דקות</span>
+                </div>
+              </div>
+        
+              <button type="button" class="add-service-btn">הוסף סוג שירות</button>
+              <button type="submit" class="continue-btn">המשך</button>
+            </form>
+          </div>
+      </div>
+      
+      
+      
+      <!-- Step 2: Account Details -->
+      <div class="form-step">
+        <h2>פרטי חשבון</h2>
+        <label for="username">שם משתמש</label>
+        <input type="text" id="username" placeholder="הכנס שם משתמש">
+        <label for="password">סיסמה</label>
+        <input type="password" id="password" placeholder="הכנס סיסמה">
+        <label for="password">סיסמה</label>
+        <input type="password" id="password" placeholder="הכנס סיסמה">
+      </div>
+
+      
+
+      <!-- Step 3: Confirmation -->
+      <div class="form-step">
+        <h2>אישור</h2>
+        <p>אנא בדוק את הפרטים שלך ולחץ על "שלח" להשלמת ההרשמה.</p>
+      </div>
+
+      <!-- Navigation Buttons -->
+      <div class="nav-buttons">
+        <button type="button" id="prev-btn" class="previous" disabled>הקודם</button>
+        <button type="button" id="next-btn" class="next">הבא</button>
+      </div>
+    </form>
+  </div>
+  <script src="../javascript/addBusiness.js"></script>
+</body>
+</html>
