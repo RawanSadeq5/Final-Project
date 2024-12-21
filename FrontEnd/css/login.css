@@ -93,6 +93,7 @@ input[type="password"] {
     border: 1px solid #921A40;
     box-sizing: border-box;
     font-size: 1rem;
+    text-align: right; 
 }
 
 input:focus {
@@ -117,6 +118,7 @@ input[type="checkbox"] {
     height: 1rem;
     border-radius: 0.5rem;
     border: 1px solid #e2e8f0;
+    
     
 }
 

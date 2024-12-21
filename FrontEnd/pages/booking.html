@@ -72,12 +72,34 @@
             </li>
         </ul>
         <div class="button-container">
-            <button type="button">המשך</button>
+            <button type="button" id="continue-button">המשך</button>
+        </div>
+    </div>
+
+    <div class="date-picker-container" id="date-picker-container">
+        <label class="text-lg font-semibold">בחר תאריך</label> <br>
+        <input id="datepicker" class="border-2 border-gray-300 rounded px-3 py-2 w-56" type="text" placeholder="Select a date">
+        <div class="button-container">
+            <button type="button" id="continue-button">המשך</button>
         </div>
     </div>
 
     <footer>
         <p>&copy; 2024 כל הזכויות שמורות.</p>
     </footer>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        document.getElementById('continue-button').addEventListener('click', function () {
+            const datePickerContainer = document.getElementById('date-picker-container');
+            datePickerContainer.style.display = 'block';
+        });
+
+        flatpickr("#datepicker", {
+            // Configuration options for Flatpickr
+        });
+    </script>
+    <script src="../javascript/booking.js"></script>
 </body>
 </html>

@@ -150,6 +150,29 @@ button:hover {
     background-color: #921a405a;
 }
 
+/* Add these styles for the date picker container */
+.date-picker-container {
+    display: none; /* Initially hidden */
+    text-align: center;
+    margin-top: 30px;
+    padding: 30px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    background-color: #921A40;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;  /* Reduce padding for the button */
+    border-radius: 5px;
+    font-size: 14px;  /* Reduce font size */
+    cursor: pointer;
+}
+
+
 footer {
     text-align: center;
     padding: 20px;
