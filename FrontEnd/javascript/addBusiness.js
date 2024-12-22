@@ -40,3 +40,17 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initially show the first step
   showStep(currentStep);
 });
+<<<<<<< HEAD
+=======
+
+// Handle Previous button click
+prevBtn.addEventListener("click", () => {
+  if (currentStep > 0) {
+    currentStep--;
+    updateSteps();
+  }
+});
+
+ // Initial setup
+updateSteps();
+>>>>>>> 10e073a816f451cb7e4a43b2677dca0cdcdbd646
