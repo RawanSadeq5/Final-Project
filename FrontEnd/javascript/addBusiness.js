@@ -47,5 +47,5 @@ prevBtn.addEventListener("click", () => {
   }
 });
 
-// Initial setup
+ // Initial setup
 updateSteps();

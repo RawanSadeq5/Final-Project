@@ -1,126 +1,290 @@
 /* General Styling */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    direction: rtl; /* Right-to-left support */
-  }
-  
-  /* Container Styling */
-  .container {
-    max-width: 600px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-  }
-  
-  /* Progress Bar */
-  .progress-bar {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  
-  .step {
-    display: flex;
-    align-items: center;
-  }
-  
-  .circle {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #e9ecef;
-    color: #adb5bd;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-  }
-  
-  .step.completed .circle {
-    background-color: #921A40;
-    color: white;
-  }
-  
-  .label {
-    margin-left: 10px; /* Adjusted for RTL */
-    font-size: 14px;
-  }
-  
-  /* Form Step Styling */
-  .form-step {
-    display: none;
-  }
-  
-  .form-step.active {
-    display: block;
-  }
-  
-  label {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
-  }
-  
-  input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    font-size: 16px;
-    outline: none;
-    box-sizing: border-box;
-  }
-  
-  input:focus {
-    border-color: #921A40;
-    box-shadow: 0 0 4px rgba(16, 108, 79, 0.5);
-  }
-  
-  /* Navigation Buttons */
-  .nav-buttons {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  .previous {
-    background-color: #f1f3f5;
-    color: #495057;
-  }
-  
-  .previous:hover {
-    background-color: #e9ecef;
-  }
-  
-  .next {
-    background-color: #921A40;
-    color: white;
-  }
-  
-  .next:hover {
-    background-color: #921a405a;
-  }
-  
-  button:disabled {
-    background-color: #e9ecef;
-    color: #adb5bd;
-    cursor: not-allowed;
-  }
-  
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  direction: rtl; /* Right-to-left support */
+}
+
+/* Container Styling */
+.container {
+  max-width:100%;
+  width: 90%;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  flex-direction: column;
+}
+
+/* Progress Bar */
+.progress-bar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+}
+
+.circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #e9ecef;
+  color: #adb5bd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.step.completed .circle {
+  background-color: #921A40;
+  color: white;
+}
+
+.label {
+  margin-left: 10px; /* Adjusted for RTL */
+  font-size: 14px;
+}
+
+/* Form Step Styling */
+.form-step {
+  display: none;
+}
+
+.form-step.active {
+  display: block;
+}
+
+label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+input {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+input:focus {
+  border-color: #921A40;
+  box-shadow: 0 0 4px rgba(16, 108, 79, 0.5);
+}
+
+/* Navigation Buttons */
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.previous {
+  background-color: #f1f3f5;
+  color: #495057;
+}
+
+.previous:hover {
+  background-color: #e9ecef;
+}
+
+.next {
+  background-color: #921A40;
+  color: white;
+}
+
+.next:hover {
+  background-color: #921a405a;
+}
+
+button:disabled {
+  background-color: #e9ecef;
+  color: #adb5bd;
+  cursor: not-allowed;
+}
+
+/* Container for the button and tooltip */
+.button-container {
+  position: relative;
+  display: inline-flex; /* Ensures the tooltip can align beside */
+  align-items: center; /* Aligns tooltip vertically with button */
+}
+.circle-button {
+  color: white;
+  font-size: 30px;
+  width: 50px; /* Width of the circle */
+  height: 50px; /* Height of the circle */
+  border-radius: 50%; /* Makes it a circle */
+  border: none; /* Removes default button border */
+  background-color: #921a40; /* Button background color */
+  display: flex; /* Centers the SVG */
+  justify-content: center; /* Horizontally center the SVG */
+  align-items: center; /* Vertically center the SVG */
+  cursor: pointer; /* Changes the cursor to pointer on hover */
+  transition: background-color 0.3s; /* Smooth background color change */
+  margin-bottom: 20px;
+}
+
+.circle-button:hover {
+  background-color: #921a405a; /* Lighter green on hover */
+}
+
+.circle-button:active {
+  background-color: #921a40; /* Darker green on click */
+}
+
+/* Tooltip styling */
+.tooltip {
+  visibility: hidden; /* Hidden by default */
+  background-color: #333; /* Dark background for the tooltip */
+  color: #fff; /* White text */
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  bottom: -40px; /* Position above the button */
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap; /* Prevent text wrapping */
+  z-index: 1; /* Ensure it appears above other elements */
+  opacity: 0; /* Fully transparent by default */
+  transition: opacity 0.3s ease; /* Smooth transition for showing/hiding */
+  font-size: 14px; /* Tooltip font size */
+}
+/* Show the tooltip when hovering over the button */
+.button-container:hover .tooltip {
+  visibility: visible;
+  opacity: 1; /* Fully opaque */
+}
+
+/* Working Days Styling */
+#working-days {
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+}
+
+.day {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.day label {
+  font-size: 16px;
+  color: #333;
+  margin: 0;
+  flex: 0 0 auto;
+}
+
+.day input[type="time"] {
+  width: 125px;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  font-size: 14px;
+  text-align: center;
+  align-items: center;
+  margin-bottom: 5px;
+ 
+ 
+}
+
+.day input[type="checkbox"] {
+  margin-right: 10px;
+  transform: scale(1.2);
+  flex: 0 0 auto;
+}
+
+/*radio*/
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  direction: rtl; /* Right-to-left support */
+}
+
+.radio-group {
+  display: flex; /* Place items side by side */
+  align-items: center; /* Align vertically */
+  gap: 20px; /* Space between options */
+  margin-bottom: 10px; /* Space below the group */
+  direction: rtl; /* Right-to-left support */
+}
+
+.price-input {
+  display: none; /* Hidden by default */
+  margin-top: 10px;
+}
+
+label {
+  font-size: 16px;
+  margin-right: 5px;
+}
+
+input[type="radio"] {
+  transform: scale(1.2);
+  margin-right: 5px;
+}
+
+input[type="number"] {
+  padding: 8px;
+  font-size: 14px;
+  width: 100px;
+  margin-top: 5px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+.radio-group {
+  display: flex; /* Place items side by side */
+  align-items: center; /* Align vertically */
+  gap: 20px; /* Space between options */
+  margin-bottom: 10px; /* Space below the group */
+}
+
+.price-input {
+  display: none; /* Hidden by default */
+  margin-top: 10px;
+}
+
+label {
+  font-size: 16px;
+  margin-right: 5px;
+}
+
+input[type="radio"] {
+  transform: scale(1.2);
+  margin-right: 5px;
+}
+
+input[type="number"] {
+  padding: 8px;
+  font-size: 14px;
+  width: 100px;
+  margin-top: 5px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
