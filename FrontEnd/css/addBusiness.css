@@ -1,133 +1,5 @@
 /* General Styling */
 body {
-<<<<<<< HEAD
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    direction: rtl; /* Right-to-left support */
-  }
-  
-  /* Container Styling */
-  .container {
-    max-width: 600px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-  }
-  
-  /* Progress Bar */
-  .progress-bar {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  
-  .step {
-    display: flex;
-    align-items: center;
-  }
-  
-  .circle {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #e9ecef;
-    color: #adb5bd;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-  }
-  
-  .step.completed .circle {
-    background-color: #921A40;
-    color: white;
-  }
-  
-  .label {
-    margin-left: 10px; /* Adjusted for RTL */
-    font-size: 14px;
-  }
-  
-  /* Form Step Styling */
-  .form-step {
-    display: none;
-  }
-  
-  .form-step.active {
-    display: block;
-  }
-  
-  label {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
-  }
-  
-  input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    font-size: 16px;
-    outline: none;
-    box-sizing: border-box;
-  }
-  
-  input:focus {
-    border-color: #921A40;
-    box-shadow: 0 0 4px rgba(16, 108, 79, 0.5);
-  }
-  
-  /* Navigation Buttons */
-  .nav-buttons {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  .previous {
-    background-color: #f1f3f5;
-    color: #495057;
-  }
-  
-  .previous:hover {
-    background-color: #e9ecef;
-  }
-  
-  .next {
-    background-color: #921A40;
-    color: white;
-  }
-  
-  .next:hover {
-    background-color: #921a405a;
-  }
-  
-  button:disabled {
-    background-color: #e9ecef;
-    color: #adb5bd;
-    cursor: not-allowed;
-  }
-
-  
-  
-=======
   font-family: Arial, sans-serif;
   background-color: #f8f9fa;
   margin: 0;
@@ -338,8 +210,6 @@ button:disabled {
   text-align: center;
   align-items: center;
   margin-bottom: 5px;
- 
- 
 }
 
 .day input[type="checkbox"] {
@@ -416,4 +286,97 @@ input[type="number"] {
   border: 1px solid #ced4da;
   border-radius: 5px;
 }
->>>>>>> 10e073a816f451cb7e4a43b2677dca0cdcdbd646
+
+.upload-container {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: right;
+  border: 2px dashed #921A40;
+  padding: 10px;
+  border-radius: 12px;
+  background: linear-gradient(to bottom, #ffffff, #e9ecef);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.upload-container:hover {
+  border-color: #921a405a;
+  background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+}
+
+.upload-container h2 {
+  font-size: 1.5rem;
+  color: #921A40;
+}
+
+.upload-container input[type="file"] {
+  margin: 15px 0;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  width: 80%;
+  font-size: 0.95rem;
+  color: #495057;
+}
+
+/* Image Preview */
+.image-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
+  justify-content: center;
+  position: relative;
+}
+
+.image-preview img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  position: relative;
+}
+
+.image-preview .remove-btn {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: #921A40;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 15px;
+  height: 25px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.image-preview .remove-btn:hover {
+  background-color: #921a405a;
+}
+
+.error-message {
+  color: #921A40;
+  font-size: 0.9em;
+  margin-top: 10px;
+}
+
+#services-container {
+  display: flex;
+  flex-direction: column; /* Stack rows vertically */
+  gap: 15px; /* Add space between rows */
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: flex-start; /* Align content to the start (RTL support) */
+}
+
+
