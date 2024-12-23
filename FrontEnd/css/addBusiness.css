@@ -210,8 +210,6 @@ button:disabled {
   text-align: center;
   align-items: center;
   margin-bottom: 5px;
- 
- 
 }
 
 .day input[type="checkbox"] {
@@ -288,3 +286,97 @@ input[type="number"] {
   border: 1px solid #ced4da;
   border-radius: 5px;
 }
+
+.upload-container {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: right;
+  border: 2px dashed #921A40;
+  padding: 10px;
+  border-radius: 12px;
+  background: linear-gradient(to bottom, #ffffff, #e9ecef);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.upload-container:hover {
+  border-color: #921a405a;
+  background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+}
+
+.upload-container h2 {
+  font-size: 1.5rem;
+  color: #921A40;
+}
+
+.upload-container input[type="file"] {
+  margin: 15px 0;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  width: 80%;
+  font-size: 0.95rem;
+  color: #495057;
+}
+
+/* Image Preview */
+.image-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
+  justify-content: center;
+  position: relative;
+}
+
+.image-preview img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  position: relative;
+}
+
+.image-preview .remove-btn {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: #921A40;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 15px;
+  height: 25px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.image-preview .remove-btn:hover {
+  background-color: #921a405a;
+}
+
+.error-message {
+  color: #921A40;
+  font-size: 0.9em;
+  margin-top: 10px;
+}
+
+#services-container {
+  display: flex;
+  flex-direction: column; /* Stack rows vertically */
+  gap: 15px; /* Add space between rows */
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: flex-start; /* Align content to the start (RTL support) */
+}
+
+

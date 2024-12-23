@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NeXtor/addBusiness</title>
+  <title>הוספת עסק חדש</title>
   <link rel="stylesheet" href="../css/addBusiness.css">
+
 </head>
 <body>
   <!-- Container -->
@@ -22,6 +23,10 @@
       <div class="step">
         <div class="circle">3</div>
         <span class="label" style="font-size: 20px;">הסכמות</span>
+      </div>
+      <div class="step">
+        <div class="circle">&#10003;</div>
+        <span class="label" style="font-size: 20px;">אישור</span>
       </div>
     </div>
 
@@ -45,11 +50,18 @@
 
       <!-- Step 2: General Info -->
       <div class="form-step">
+        <div class="upload-container">
+          <h2>העלה תמונות לעסק שלך</h2>
+          <p>ניתן להעלות עד 6 תמונות.</p>
+          <input type="file" id="imageUpload" accept="image/*" multiple>
+          <div class="error-message" id="errorMessage"></div>
+          <div class="image-preview" id="imagePreview"></div>
+        </div>
         <label for="working-days" style="font-size:20px">ימי עבודה</label>
         <div id="working-days">
           <div class="day">
             <label><input type="checkbox"> יום ראשון</label>
-            <input type="time" placeholder="שעת פתיחה" style="">
+            <input type="time" placeholder="שעת פתיחה">
             <input type="time" placeholder="שעת סגירה">
           </div>
           <div class="day">
@@ -84,71 +96,101 @@
           </div>
         </div>
         <label for="name" style="font-size:20px">הוסף סוגי שירותים</label>
+        <br/>
         <form class="service-form">
-          <div class="form-group">
-            <label for="full-name" style="font-size:17px">סוג שירות:</label>
-            <input type="text" id="service-type"  placeholder="הכנס סוג שירות" class="form-input" >
-          </div>
-        
-          <div class="form-group duration-group">
-            <label for="full-name" style="font-size:17px">משך:</label>
-            <div class="duration-inputs">
-            <input type="number" style="font-size: 12px; padding: 10px; width: 100px;">
-            <span>שעות</span>
-            <input type="number" style="font-size: 12px; padding: 10px; width: 100px;">
-            <span>דקות</span>
-            <label for="price" style="font-size:17px">מחיר:</label>
-            <div style="display: flex; align-items: center;">
-              <span>₪</span>
-              <input type="number" id="price" name="price" placeholder="0.00" step="0.01" min="0">
-          </div>
+          <div id="services-container">
+            <!-- First Service Line -->
+            <div class="form-group" style="display: flex; align-items: center; gap: 20px; justify-content: flex-start;">
+              <label style="font-size:17px;">
+                סוג שירות:
+                <input type="text" placeholder="הכנס סוג שירות" class="form-input" style="font-size: 17px; padding: 10px; width: 150px;">
+              </label>
+              <label style="font-size:17px;">
+                משך:
+                <input type="number" placeholder="0" style="font-size: 17px; padding: 10px; width: 60px;">
+                <span>שעות</span>
+                <input type="number" placeholder="0" style="font-size: 17px; padding: 10px; width: 60px;">
+                <span>דקות</span>
+              </label>
+              <label style="font-size:17px;">
+                מחיר:
+                <input type="number" placeholder="0.00" step="0.01" min="0" style="font-size: 17px; padding: 10px; width: 100px;">
+                <span>₪</span>
+              </label>
             </div>
-         </div>
+          </div>
+          
+        </form>
 
-         <div class="button-container">
-          <button class="circle-button" >+</button>
-          <span class="tooltip" >הוסף עוד שירות</span>
-         </div>
+
+          <div class="button-container">
+            <button class="circle-button" id="plus-button">+</button>
+           <span class="tooltip" >הוסף עוד שירות</span>
+          </div>
+
+          <div class="button-container">
+            <button class="circle-button" id="mi-button">-</button>
+           <span class="tooltip" >הוסף עוד שירות</span>
+          </div>
         </form>
       </div>  
 
       <!-- Step 3: Agreements -->
       <div class="form-step">
-        <label for="username" style="font-size: 20px;">תשלום מקדמה מראש? </label>
-        <form>
-          <div class="radio-group">
-            <div class="radio-item">
-              <label for="yes">
-                <input type="radio" id="yes" name="choice" value="yes">
-             כן</label>
+        <label for="username" style="font-size: 20px;">תשלום מקדמה מראש?
+          <form>
+            <div class="radio-group">
+              <div class="radio-item">
+                <label for="yes">
+                  <input type="radio" id="yes" name="choice" value="yes" style= "font-size: 20px">
+              כן</label>
+              </div>
+              <div class="radio-item">
+                <label for="no">
+                  <input type="radio" id="no" name="choice" value="no" style= "font-size: 20px">
+                לא</label>
+              </div>
             </div>
-            <div class="radio-item">
-              <label for="no">
-                <input type="radio" id="no" name="choice" value="no">
-              לא</label>
+          </form>
+        </label>
+            <div id="price-container" class="price-input">
+              <label for="price">הכנס מחיר:</label>
+              <input type="number" id="price" name="price" placeholder="0.00" min="0" step="0.01">
             </div>
-            
-          </div>
-          <div id="price-container" class="price-input">
-            <label for="price">הכנס מחיר:</label>
-            <input type="number" id="price" name="price" placeholder="0.00" min="0" step="0.01">
-         </div>
-        </form>
-
-        
-       
-
-
-        <label for="password">סיסמה</label>
-        <input type="password" id="password" placeholder="הכנס סיסמה">
-        <label for="password">סיסמה</label>
-        <input type="password" id="password" placeholder="הכנס סיסמה">
+            <br/> 
+        <label for="payments" style= "font-size: 20px;">לכמה תשלומים אפשר לחלק את המקדמה?
+        <select id="number-select" name="number" style="padding: 10px;">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select></label>
+        <br/>
+        <label for="days" style= "font-size: 20px;"> כמה ימים לפני מועד התור אי אפשר לבטל אותו ולקחת את המקדמה בחזרה?
+        <select id="number-select" name="number" style="padding: 10px;">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+        </select></label>
+        <br/>
+        <label for="reward" style= "font-size: 20px;">מה הוא הפרס שהלקוח מקבל אם הביא חבר?
+          <input type="text" style="font-size: 12px; padding: 10px; width: 300px;">
+        </label>
       </div>
 
       <!-- Confirmation -->
       <div class="form-step">
         <h2>אישור</h2>
-        <p>אנא בדוק את הפרטים שלך ולחץ על "שלח" להשלמת ההרשמה.</p>
+        <p style= "font-size: 20px;">הפרטים שאתה מספק יסייעו לנו להעניק לך שירות מדויק ומהיר.</p>
+        <br/>
+        <p style= "font-size: 20px;">חשוב שתוודא שהפרטים שהזנת נכונים. המידע שלך מוגן ומטופל בהתאם לתקני האבטחה המחמירים ביותר.</p>
+        <br/>
+        <p style= "font-size: 20px;">אם הפרטים נראים תקינים, לחץ על "הרשם כעת" להשלמת התהליך.</p>
       </div>
 
       <!-- Navigation Buttons -->
