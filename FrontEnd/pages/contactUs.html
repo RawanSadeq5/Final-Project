@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>צור קשר</title>
+  <link rel="stylesheet" href="../css/contactUs.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a id="language-link" href="#">שפה</a>
+      <a id="home-link" href="#">בית</a>
+      <a id="about-link" href="#" class="about">אודות</a>
+      <a id="contact-link" href="#" class="contact-us">צור קשר</a>
+    </nav>
+  </header>
+  <main>
+    <div class="container" id="contact-us">
+      <h1>צור קשר</h1>
+      <p>אנחנו כאן כדי לעזור לך. אנא מלא את הטופס הבא ונחזור אליך בהקדם האפשרי.</p>
+
+      <form id="contact-form">
+        <label for="full-name">שם מלא:</label>
+        <input type="text" id="full-name" name="full-name"  placeholder="הכנס את שמך המלא" required>
+
+        <label for="email">כתובת אימייל:</label>
+        <input type="email" id="email" name="email" placeholder="הכנס את כתובת האימייל שלך" required>
+
+        <label for="phone">מספר טלפון:</label>
+        <input type="number" id="phone" name="phone" placeholder="הכנס את מספר הטלפון שלך" required>
+
+        <label for="message">הודעה:</label>
+        <textarea id="message" name="message" rows="5" placeholder="כתוב את ההודעה שלך כאן" required></textarea>
+
+        <button type="submit">שלח</button>
+      </form>
+    </div>
+    <footer>
+      <p>&copy; 2024 NexTor. כל הזכויות שמורות.</p>
+    </footer>
+  </main>
+  <script src="../javascript/contactUs.js" defer></script>
+</body>
+</html>

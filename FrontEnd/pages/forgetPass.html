@@ -1,36 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>שכחת סיסמה</title>
+    <title>איפוס סיסמה</title>
     <link rel="stylesheet" href="../css/forgetPass.css">
 </head>
 <body>
-    <div class="min-h-screen bg-gray-100 flex items-center justify-center">
-        <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-md w-full">
-            <h1 class="text-center text-2xl font-bold mb-6">איפוס סיסמה</h1>
-            <form>
-                <div class="mb-4">
-                    <label class="block text-gray-700 font-bold mb-2" for="email">
-                        :כתובת אימייל
-                    </label>
-    
-                    <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="הכנס כתובת אימייל" />
-                    <label class="block text-gray-700 font-bold mb-2" for="email">
-                    :סיסמה חדשה
-                    </label>
-                    <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="*******" />
-                    <label class="block text-gray-700 font-bold mb-2" for="email">
-                    :אימות סיסמה חדשה
-                    </label>
-                    <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="********" />
-                </div>
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full" type="submit">
-                  אפס סיסמה
-                </button>
-            </form>
+    <header>
+        <nav>
+          <a id="language-link" href="#">שפה</a>
+          <a id="home-link" href="#">בית</a>
+          <a id="about-link" href="#" class="about">אודות</a>
+          <a id="contact-link" href="#" class="contact-us">צור קשר</a>
+        </nav>
+    </header>
+    <main>
+        <div class="min-h-screen bg-gray-100 flex items-center justify-center">
+            <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-md w-full">
+                <h1 class="text-center text-2xl font-bold mb-6">איפוס סיסמה</h1>
+                <form>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-bold mb-2" for="email">כתובת אימייל:</label>
+                        <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="הכנס כתובת אימייל" />
+                        <label class="block text-gray-700 font-bold mb-2" for="email">סיסמה חדשה:</label>
+                        <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="*******" />
+                        <label class="block text-gray-700 font-bold mb-2" for="email">אימות סיסמה חדשה: </label>
+                        <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="********" />
+                    </div>
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full" type="submit">
+                      אפס סיסמה
+                    </button>
+                </form>
+            </div>
         </div>
-    </div>
+        <footer>
+            <p>&copy; 2024 NexTor. כל הזכויות שמורות.</p>
+        </footer>
+    </main>
+
+    
 </body>
 </html>

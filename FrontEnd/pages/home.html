@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NexTor</title>
-    <link rel="stylesheet" href="../css/home.css">
-    <script>
+    <link rel="stylesheet" href="../css/home.css"> 
+ <script>
         function showResults(event) {
             event.preventDefault();
 
@@ -27,57 +27,66 @@
 </head>
 <body>
     <header>
-        <button class="header-button">כניסה לעסקים</button>
-        <button class="header-button">+ הוסף עסק חדש</button>
-        <button class="header-button">התחברות</button>
+        <!-- Navigation Bar -->
+        <nav>
+            <div class="nav-links">
+                <a id="language-link" href="#">שפה</a>
+                <a id="home-link"  class="home" href="#">בית</a>
+                <a id="about-link" href="#">אודות</a>
+                <a id="contact-link" href="#">צור קשר</a>
+            </div>
+        </nav>
+
+        <!-- Header Buttons -->
+        <div class="header-buttons">
+            <button class="header-button">כניסה לעסקים</button>
+            <button class="header-button">+ הוסף עסק חדש</button>
+            <button class="header-button">התחברות</button>
+        </div>
     </header>
     
 
-    <nav>
-        <a href="#">שפה</a>
-        <a href="#">בית</a>
-        <a href="#">אודות</a>
-        <a href="#">צור קשר</a>
-    </nav>
-
+    <!-- Hero Section -->
     <div class="hero">
         <h1>ברוכים הבאים ל- NexTor</h1>
         <p>הזמינו תור מראש, חסכו זמן, ותיהנו משירות מקצועי ומהיר.</p>
-        <form class="mt-10 mx-auto max-w-xl py-2 px-6 rounded-full bg-gray-50 border flex focus-within:border-gray-300">
-            <input type="text" placeholder="חיפוש עסק" class="bg-transparent w-full focus:outline-none pr-4 font-semibold border-0 focus:ring-0 px-0 py-0" name="topic"><button class="flex flex-row items-center justify-center min-w-[130px] px-4 rounded-full font-medium tracking-wide border disabled:cursor-not-allowed disabled:opacity-50 transition ease-in-out duration-150 text-base bg-black text-white font-medium tracking-wide border-transparent py-1.5 h-[38px] -mr-3" >
-               חפש
-            </button>
+        <form class="search-form">
+            <input type="text" placeholder="חיפוש עסק" name="topic">
+            <button>חפש</button>
         </form>
-       
     </div>
 
+    <!-- Hot Appointments Section -->
     <div class="hot-appointments">
-    <h2>תורים חמים</h2>
-    <div class="appointments-grid">
-        <div class="appointment-card">
-            <img src="../images/barber.jpg" alt="Man Hair Style">
-            <div class="appointment-info">
-                <h3>עיצוב שיער</h3>
-                <p>מאת: עבדול רזק</p>
-                <p>מגדל העיר, רחוב: 1285, ארה"ב</p>
-                <p><span class="price-discounted">$3500</span> <span class="price-original">$4000</span></p>
-                <button>הזמן עכשיו</button>
+        <h2>תורים חמים</h2>
+        <div class="appointments-grid">
+            <div class="appointment-card">
+                <img src="barber.jpg" alt="Man Hair Style">
+                <div class="appointment-info">
+                    <h3>עיצוב שיער</h3>
+                    <p>מאת: עבדול רזק</p>
+                    <p>מגדל העיר, רחוב: 1285, ארה"ב</p>
+                    <p><span class="price-discounted">$3500</span> <span class="price-original">$4000</span></p>
+                    <button>הזמן עכשיו</button>
+                </div>
+            </div>
+            <div class="appointment-card">
+                <img src="electrician.jpg" alt="Expert Electrician">
+                <div class="appointment-info">
+                    <h3>חשמלאי מומחה</h3>
+                    <p>מאת: אפיף איסלם</p>
+                    <p>מגדל העיר, רחוב: 1285, ארה"ב</p>
+                    <p><span class="price-discounted">$4000</span> <span class="price-original">$5000</span></p>
+                    <button>הזמן עכשיו</button>
+                </div>
             </div>
         </div>
-        <div class="appointment-card">
-            <img src="../images/electrician.jpg" alt="Expert Electrician">
-            <div class="appointment-info">
-                <h3>חשמלאי מומחה</h3>
-                <p>מאת: אפיף איסלם</p>
-                <p>מגדל העיר, רחוב: 1285, ארה"ב</p>
-                <p><span class="price-discounted">$4000</span> <span class="price-original">$5000</span></p>
-                <button>הזמן עכשיו</button>
-            </div>
-        </div>
-        <!-- Add more cards as needed -->
     </div>
+
+    <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2024 פלטפורמת קביעת התורים. כל הזכויות שמורות. <a href="#">מדיניות פרטיות</a></p>
+        <p>&copy; 2024 פלטפורמת קביעת התורים. כל הזכויות שמורות.</p>
     </footer>
+    <script src="../javascript/home.js" defer></script>
 </body>
 </html>

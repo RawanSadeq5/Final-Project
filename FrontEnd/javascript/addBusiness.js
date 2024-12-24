@@ -121,13 +121,12 @@ updateSteps();
 
 // Add Service Lines Dynamically
 const addServiceButton = document.getElementById("plus-button");
+const removeServiceButton = document.getElementById("mi-button");
+const servicesContainer = document.getElementById("services-container");
 
 function addServiceLine(event) {
   // Prevent default button behavior
   event.preventDefault();
-
-  // Select the container where the new lines will be added
-  const servicesContainer = document.getElementById("services-container");
 
   // Create a new div for the service line
   const serviceLine = document.createElement("div");
@@ -159,8 +158,56 @@ function addServiceLine(event) {
 
   // Append the new service line to the container
   servicesContainer.appendChild(serviceLine);
+
+  // Show the "-" button if there's more than one service line
+  if (servicesContainer.childElementCount > 0) {
+    removeServiceButton.style.display = "inline-block";
+  }
 }
 
 
 // Add an event listener to the button
 addServiceButton.addEventListener("click", addServiceLine);
+
+// Remove the last added service line
+function removeServiceLine(event) {
+  event.preventDefault();
+
+  // Only remove if there are more than one service line
+  if (servicesContainer.childElementCount > 1) {
+    servicesContainer.removeChild(servicesContainer.lastElementChild);
+  }
+
+  // Hide the "-" button if there's only one service line left
+  if (servicesContainer.childElementCount === 1) {
+    removeServiceButton.style.display = "none";
+  }
+}
+
+// Add event listeners for "+" and "-" buttons
+addServiceButton.addEventListener("click", addServiceLine);
+removeServiceButton.addEventListener("click", removeServiceLine);
+
+// Initial setup: Hide the "-" button
+removeServiceButton.style.display = "none";
+
+// Select DOM elements for the radio buttons and price container
+const yesRadioButton = document.getElementById("yes");
+const noRadioButton = document.getElementById("no");
+const priceContainer = document.getElementById("price-container");
+
+// Show or hide the price input field based on the selected radio button
+function handleRadioChange() {
+  if (yesRadioButton.checked) {
+    priceContainer.style.display = "block"; // Show the price input field
+  } else {
+    priceContainer.style.display = "none"; // Hide the price input field
+  }
+}
+
+// Add event listeners to the radio buttons
+yesRadioButton.addEventListener("change", handleRadioChange);
+noRadioButton.addEventListener("change", handleRadioChange);
+
+// Initial setup: Ensure the price container is hidden by default
+priceContainer.style.display = "none";

@@ -1,205 +1,216 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>הוספת עסק חדש</title>
-  <link rel="stylesheet" href="../css/addBusiness.css">
-
-</head>
-<body>
-  <!-- Container -->
-  <div class="container">
-    <!-- Progress Bar -->
-    <div class="progress-bar">
-      <div class="step completed">
-        <div class="circle">1</div>
-        <span class="label" style="font-size: 20px;">פרטי העסק</span>
-      </div>
-      <div class="step">
-        <div class="circle">2</div>
-        <span class="label" style="font-size: 20px;">פרטים כלליים</span>
-      </div>
-      <div class="step">
-        <div class="circle">3</div>
-        <span class="label" style="font-size: 20px;">הסכמות</span>
-      </div>
-      <div class="step">
-        <div class="circle">&#10003;</div>
-        <span class="label" style="font-size: 20px;">אישור</span>
-      </div>
-    </div>
-
-    <!-- Form Steps -->
-    <form id="multi-step-form">
-      <!-- Step 1: Business Info -->
-      <div class="form-step active">
-        <label for="full-name" style="font-size:20px">שם בעל העסק</label>
-        <input type="text" id="full-name" placeholder="הכנס שם מלא" style="width:400px">
-        <label for="name" style="font-size:20px">שם העסק</label>
-        <input type="text" id="name" placeholder="הכנס שם העסק" style="width:400px">  
-        <label for="email" style="font-size:20px">אימייל</label>
-        <input type="email" id="email" placeholder="הכנס כתובת אימייל" style="width:400px">
-        <label for="password" style="font-size:20px">סיסמה</label>
-        <input type="password" id="password" placeholder="הכנס סיסמה " style="width:400px">
-        <label for="phone"  style="font-size:20px">מספר נייד</label>
-        <input type="tel" id="phone" placeholder="הכנס  מספר נייד" style="text-align: right; width:400px">
-        <label for="location"  style="font-size:20px">כתובת</label>
-        <input type="text" id="location" name="location" placeholder="עיר, רחוב" style="width: 400px">
-      </div>
-
-      <!-- Step 2: General Info -->
-      <div class="form-step">
-        <div class="upload-container">
-          <h2>העלה תמונות לעסק שלך</h2>
-          <p>ניתן להעלות עד 6 תמונות.</p>
-          <input type="file" id="imageUpload" accept="image/*" multiple>
-          <div class="error-message" id="errorMessage"></div>
-          <div class="image-preview" id="imagePreview"></div>
-        </div>
-        <label for="working-days" style="font-size:20px">ימי עבודה</label>
-        <div id="working-days">
-          <div class="day">
-            <label><input type="checkbox"> יום ראשון</label>
-            <input type="time" placeholder="שעת פתיחה">
-            <input type="time" placeholder="שעת סגירה">
-          </div>
-          <div class="day">
-            <label><input type="checkbox"> יום שני</label>
-            <input type="time" placeholder="שעת פתיחה">
-            <input type="time" placeholder="שעת סגירה">
-          </div>
-          <div class="day">
-            <label><input type="checkbox"> יום שלישי</label>
-            <input type="time" placeholder="שעת פתיחה">
-            <input type="time" placeholder="שעת סגירה">
-          </div>
-          <div class="day">
-            <label><input type="checkbox"> יום רביעי</label>
-            <input type="time" placeholder="שעת פתיחה">
-            <input type="time" placeholder="שעת סגירה">
-          </div>
-          <div class="day">
-            <label><input type="checkbox"> יום חמישי</label>
-            <input type="time" placeholder="שעת פתיחה">
-            <input type="time" placeholder="שעת סגירה">
-          </div>
-          <div class="day">
-            <label><input type="checkbox"> יום שישי</label>
-            <input type="time" placeholder="שעת פתיחה">
-            <input type="time" placeholder="שעת סגירה">
-          </div>
-          <div class="day">
-            <label><input type="checkbox"> יום שבת</label>
-            <input type="time" placeholder="שעת פתיחה">
-            <input type="time" placeholder="שעת סגירה">
-          </div>
-        </div>
-        <label for="name" style="font-size:20px">הוסף סוגי שירותים</label>
-        <br/>
-        <form class="service-form">
-          <div id="services-container">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>הוספת עסק חדש</title>
+      <link rel="stylesheet" href="../css/addBusiness.css">
+   </head>
+   <body>
+      <header>
+         <nav>
+            <a id="language-link" href="#">שפה</a>
+            <a id="home-link" href="#">בית</a>
+            <a id="about-link" href="#" class="about">אודות</a>
+            <a id="contact-link" href="#" class="contact-us">צור קשר</a>
+         </nav>
+      </header>
+      <main>
+         <!-- Container -->
+         <div class="container">
+            <!-- Progress Bar -->
+            <div class="progress-bar">
+               <div class="step completed">
+                  <div class="circle">1</div>
+                  <span class="label" style="font-size: 20px;">פרטי העסק</span>
+               </div>
+               <div class="step">
+                  <div class="circle">2</div>
+                  <span class="label" style="font-size: 20px;">פרטים כלליים</span>
+               </div>
+               <div class="step">
+                  <div class="circle">3</div>
+                  <span class="label" style="font-size: 20px;">הסכמות</span>
+               </div>
+               <div class="step">
+                  <div class="circle">&#10003;</div>
+                  <span class="label" style="font-size: 20px;">אישור</span>
+               </div>
+            </div>
+            <!-- Form Steps -->
+            <form id="multi-step-form">
+               <!-- Step 1: Business Info -->
+               <div class="form-step active">
+                  <label for="full-name" style="font-size:20px">שם בעל העסק</label>
+                  <input type="text" id="full-name" placeholder="הכנס שם מלא" style="width:400px">
+                  <label for="name" style="font-size:20px">שם העסק</label>
+                  <input type="text" id="name" placeholder="הכנס שם העסק" style="width:400px">  
+                  <label for="email" style="font-size:20px">אימייל</label>
+                  <input type="email" id="email" placeholder="הכנס כתובת אימייל" style="width:400px">
+                  <label for="password" style="font-size:20px">סיסמה</label>
+                  <input type="password" id="password" placeholder="הכנס סיסמה " style="width:400px">
+                  <label for="phone"  style="font-size:20px">מספר נייד</label>
+                  <input type="tel" id="phone" placeholder="הכנס  מספר נייד" style="text-align: right; width:400px">
+                  <label for="location"  style="font-size:20px">כתובת</label>
+                  <input type="text" id="location" name="location" placeholder="עיר, רחוב" style="width: 400px">
+               </div>
+               <!-- Step 2: General Info -->
+               <div class="form-step">
+                  <div class="upload-container">
+                     <h2>העלה תמונות לעסק שלך</h2>
+                     <p>ניתן להעלות עד 6 תמונות.</p>
+                     <input type="file" id="imageUpload" accept="image/*" multiple>
+                     <div class="error-message" id="errorMessage"></div>
+                     <div class="image-preview" id="imagePreview"></div>
+                  </div>
+                  <label for="working-days" style="font-size:20px">ימי עבודה</label>
+                  <div id="working-days">
+                     <div class="day">
+                        <label><input type="checkbox"> יום ראשון</label>
+                        <input type="time" placeholder="שעת פתיחה">
+                        <input type="time" placeholder="שעת סגירה">
+                     </div>
+                     <div class="day">
+                        <label><input type="checkbox"> יום שני</label>
+                        <input type="time" placeholder="שעת פתיחה">
+                        <input type="time" placeholder="שעת סגירה">
+                     </div>
+                     <div class="day">
+                        <label><input type="checkbox"> יום שלישי</label>
+                        <input type="time" placeholder="שעת פתיחה">
+                        <input type="time" placeholder="שעת סגירה">
+                     </div>
+                     <div class="day">
+                        <label><input type="checkbox"> יום רביעי</label>
+                        <input type="time" placeholder="שעת פתיחה">
+                        <input type="time" placeholder="שעת סגירה">
+                     </div>
+                     <div class="day">
+                        <label><input type="checkbox"> יום חמישי</label>
+                        <input type="time" placeholder="שעת פתיחה">
+                        <input type="time" placeholder="שעת סגירה">
+                     </div>
+                     <div class="day">
+                        <label><input type="checkbox"> יום שישי</label>
+                        <input type="time" placeholder="שעת פתיחה">
+                        <input type="time" placeholder="שעת סגירה">
+                     </div>
+                     <div class="day">
+                        <label><input type="checkbox"> יום שבת</label>
+                        <input type="time" placeholder="שעת פתיחה">
+                        <input type="time" placeholder="שעת סגירה">
+                     </div>
+                  </div>
+                  <label for="name" style="font-size:20px">הוסף סוגי שירותים</label>
+                  <br/>
+            <form class="service-form">
+            <div id="services-container">
             <!-- First Service Line -->
             <div class="form-group" style="display: flex; align-items: center; gap: 20px; justify-content: flex-start;">
-              <label style="font-size:17px;">
-                סוג שירות:
-                <input type="text" placeholder="הכנס סוג שירות" class="form-input" style="font-size: 17px; padding: 10px; width: 150px;">
-              </label>
-              <label style="font-size:17px;">
-                משך:
-                <input type="number" placeholder="0" style="font-size: 17px; padding: 10px; width: 60px;">
-                <span>שעות</span>
-                <input type="number" placeholder="0" style="font-size: 17px; padding: 10px; width: 60px;">
-                <span>דקות</span>
-              </label>
-              <label style="font-size:17px;">
-                מחיר:
-                <input type="number" placeholder="0.00" step="0.01" min="0" style="font-size: 17px; padding: 10px; width: 100px;">
-                <span>₪</span>
-              </label>
+            <label style="font-size:17px;">
+            סוג שירות:
+            <input type="text" placeholder="הכנס סוג שירות" class="form-input" style="font-size: 17px; padding: 10px; width: 150px;">
+            </label>
+            <label style="font-size:17px;">
+            משך:
+            <input type="number" placeholder="0" style="font-size: 17px; padding: 10px; width: 60px;">
+            <span>שעות</span>
+            <input type="number" placeholder="0" style="font-size: 17px; padding: 10px; width: 60px;">
+            <span>דקות</span>
+            </label>
+            <label style="font-size:17px;">
+            מחיר:
+            <input type="number" placeholder="0.00" step="0.01" min="0" style="font-size: 17px; padding: 10px; width: 100px;">
+            <span>₪</span>
+            </label>
             </div>
-          </div>
-          
-        </form>
-
-
-          <div class="button-container">
+            </div>
+            </form>
+            <div class="button-container">
             <button class="circle-button" id="plus-button">+</button>
-           <span class="tooltip" >הוסף עוד שירות</span>
-          </div>
-
-          <div class="button-container">
+            <span class="tooltip" >הוסף עוד שירות</span>
+            </div>
+            <div class="button-container">
             <button class="circle-button" id="mi-button">-</button>
-           <span class="tooltip" >הוסף עוד שירות</span>
-          </div>
-        </form>
-      </div>  
-
-      <!-- Step 3: Agreements -->
-      <div class="form-step">
-        <label for="username" style="font-size: 20px;">תשלום מקדמה מראש?
-          <form>
-            <div class="radio-group">
-              <div class="radio-item">
-                <label for="yes">
-                  <input type="radio" id="yes" name="choice" value="yes" style= "font-size: 20px">
-              כן</label>
-              </div>
-              <div class="radio-item">
-                <label for="no">
-                  <input type="radio" id="no" name="choice" value="no" style= "font-size: 20px">
-                לא</label>
-              </div>
+            <span class="tooltip" >הסר שירות</span>
             </div>
-          </form>
-        </label>
-            <div id="price-container" class="price-input">
-              <label for="price">הכנס מחיר:</label>
-              <input type="number" id="price" name="price" placeholder="0.00" min="0" step="0.01">
+            </form>
+            </div>  
+            <!-- Step 3: Agreements -->
+            <div class="form-step">
+               <label for="username" style="font-size: 20px;">
+                  תשלום מקדמה מראש?
+                  <form>
+                     <div class="radio-group">
+                        <div class="radio-item">
+               <label for="yes">
+               <input type="radio" id="yes" name="choice" value="yes" style= "font-size: 20px">
+               כן</label>
+               </div>
+               <div class="radio-item">
+               <label for="no">
+               <input type="radio" id="no" name="choice" value="no" style= "font-size: 20px">
+               לא</label>
+               </div>
+               </div>
+               </form>
+               </label>
+               <div id="price-container" class="price-input">
+                  <label for="price" id="advance">הכנס את מחיר המקדמה:
+                  <input type="number" id="price" name="price" placeholder="0.00" min="0" step="0.01">
+                  <span>₪</span>
+                  </label>
+               </div>
+               <br/> 
+               <label for="payments" style= "font-size: 20px;">
+                  לכמה תשלומים אפשר לחלק את המקדמה?
+                  <select id="number-select" name="number" style="padding: 10px;">
+                     <option value="0">0</option>
+                     <option value="1">1</option>
+                     <option value="2">2</option>
+                     <option value="3">3</option>
+                  </select>
+               </label>
+               <br/>
+               <label for="days" style= "font-size: 20px;">
+                  כמה ימים לפני מועד התור אי אפשר לבטל אותו ולקחת את המקדמה בחזרה?
+                  <select id="number-select" name="number" style="padding: 10px;">
+                     <option value="0">0</option>
+                     <option value="1">1</option>
+                     <option value="2">2</option>
+                     <option value="3">3</option>
+                     <option value="4">4</option>
+                     <option value="5">5</option>
+                     <option value="6">6</option>
+                     <option value="7">7</option>
+                  </select>
+               </label>
+               <br/>
+               <label for="reward" style= "font-size: 20px;">מה הוא הפרס שהלקוח מקבל אם הביא חבר?
+               <input type="text" style="font-size: 12px; padding: 10px; width: 300px;">
+               </label>
             </div>
-            <br/> 
-        <label for="payments" style= "font-size: 20px;">לכמה תשלומים אפשר לחלק את המקדמה?
-        <select id="number-select" name="number" style="padding: 10px;">
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-        </select></label>
-        <br/>
-        <label for="days" style= "font-size: 20px;"> כמה ימים לפני מועד התור אי אפשר לבטל אותו ולקחת את המקדמה בחזרה?
-        <select id="number-select" name="number" style="padding: 10px;">
-          <option value="0">0</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-        </select></label>
-        <br/>
-        <label for="reward" style= "font-size: 20px;">מה הוא הפרס שהלקוח מקבל אם הביא חבר?
-          <input type="text" style="font-size: 12px; padding: 10px; width: 300px;">
-        </label>
-      </div>
+            <!-- Confirmation -->
+            <div class="form-step">
+               <h2>אישור</h2>
+               <p style= "font-size: 20px;">הפרטים שאתה מספק יסייעו לנו להעניק לך שירות מדויק ומהיר.</p>
+               <br/>
+               <p style= "font-size: 20px;">חשוב שתוודא שהפרטים שהזנת נכונים. המידע שלך מוגן ומטופל בהתאם לתקני האבטחה המחמירים ביותר.</p>
+               <br/>
+               <p style= "font-size: 20px;">אם הפרטים נראים תקינים, לחץ על "הרשם כעת" להשלמת התהליך.</p>
+            </div>
+            <!-- Navigation Buttons -->
+            <div class="nav-buttons">
+               <button type="button" id="prev-btn" class="previous" disabled>הקודם</button>
+               <button type="button" id="next-btn" class="next">הבא</button>
+            </div>
+            </form>
+         </div>
+      </main>
 
-      <!-- Confirmation -->
-      <div class="form-step">
-        <h2>אישור</h2>
-        <p style= "font-size: 20px;">הפרטים שאתה מספק יסייעו לנו להעניק לך שירות מדויק ומהיר.</p>
-        <br/>
-        <p style= "font-size: 20px;">חשוב שתוודא שהפרטים שהזנת נכונים. המידע שלך מוגן ומטופל בהתאם לתקני האבטחה המחמירים ביותר.</p>
-        <br/>
-        <p style= "font-size: 20px;">אם הפרטים נראים תקינים, לחץ על "הרשם כעת" להשלמת התהליך.</p>
-      </div>
-
-      <!-- Navigation Buttons -->
-      <div class="nav-buttons">
-        <button type="button" id="prev-btn" class="previous" disabled>הקודם</button>
-        <button type="button" id="next-btn" class="next">הבא</button>
-      </div>
-    </form>
-  </div>
- <script src="../javascript/addBusiness.js"></script>
-</body>
+      <!--<footer>
+        <p>&copy; 2024 NexTor. כל הזכויות שמורות.</p>
+      </footer>-->
+      <script src="../javascript/addBusiness.js"></script>
+   </body>
 </html>
