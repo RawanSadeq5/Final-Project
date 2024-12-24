@@ -4,7 +4,10 @@ body {
     margin: 0;
     padding: 0;
     color:#921A40;
-    background-color: #E4E0E1;
+    background: linear-gradient(135deg, #921a40, #f8f9fa); /* Gradient background */
+    background-attachment: fixed; /* Keeps gradient fixed while scrolling */
+  
+
 }
 
 /* Dark Mode Styles */
@@ -19,6 +22,9 @@ body {
     display:flex;
     justify-content: center;
     align-items: center;
+    max-width:400%;
+    width:1200px;
+    margin: 0 auto; /* Center the container horizontally */
 }
 
 /* Container for the form */
@@ -51,7 +57,8 @@ body {
 }
 
 .max-w-md {
-    max-width: 500rem;
+    max-width: 100%;
+    width: 500px;
 }
 
 /* Heading */

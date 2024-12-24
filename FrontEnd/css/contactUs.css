@@ -1,0 +1,140 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    direction: rtl; /* Right-to-left support */
+    background: linear-gradient(135deg, #921a40, #f8f9fa); /* Gradient background */
+    background-attachment: fixed; /* Keeps gradient fixed while scrolling */
+}
+  
+/* Header */
+header {
+  position: fixed; /* Fixes the header at the top of the viewport */
+  top: 0;
+  left: 0;
+  width: 100%; /* Ensures the header spans the full width */
+  background-color: #921a40;
+  color: #fff;
+  z-index: 1000; /* Ensures the header is always on top */
+  padding: 20px 0; /* Adds vertical padding */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds shadow for better visibility */
+}
+
+nav {
+  display: flex;
+  justify-content: right;
+  padding: 0 20px; /* Adds horizontal padding */
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 25px;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: black;
+}
+
+/* Adjust the main container to sit below the header */
+main {
+  margin-top: 70px; /* Adjust this value to match the header's height */
+  padding: 20px;
+}
+
+/* General container styling */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+  .contact-us{
+    color:black;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    color: #921A40;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    font-size: 1rem;
+    color: #495057;
+    margin-bottom: 20px;
+  }
+  
+  /* Form Styling */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  label {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 1px;
+    text-align: right;
+  }
+  
+  input, textarea, button {
+    font-size: 17px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #921A40;
+    outline: none;
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  
+  input:focus, textarea:focus {
+    border-color: #921A40;
+    box-shadow: 0 0 5px rgba(146, 26, 64, 0.5);
+  }
+  
+  textarea {
+    resize: none;
+  }
+  
+  /* Submit Button Styling */
+  button {
+    background-color: #921A40;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #921a405a;
+  }
+
+  /* Footer */
+  footer {
+    background-color: #e4e0e1;
+    text-align: center;
+    padding: 10px 0;
+    color: #333;
+  }
+  
+  footer p {
+    font-size: 0.9rem;
+    margin: 0;
+  }
+  
+  
