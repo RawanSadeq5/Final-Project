@@ -258,33 +258,3 @@ input[type="number"] {
   border: 1px solid #ced4da;
   border-radius: 5px;
 }
-.radio-group {
-  display: flex; /* Place items side by side */
-  align-items: center; /* Align vertically */
-  gap: 20px; /* Space between options */
-  margin-bottom: 10px; /* Space below the group */
-}
-
-.price-input {
-  display: none; /* Hidden by default */
-  margin-top: 10px;
-}
-
-label {
-  font-size: 16px;
-  margin-right: 5px;
-}
-
-input[type="radio"] {
-  transform: scale(1.2);
-  margin-right: 5px;
-}
-
-input[type="number"] {
-  padding: 8px;
-  font-size: 14px;
-  width: 100px;
-  margin-top: 5px;
-  border: 1px solid #ced4da;
-  border-radius: 5px;
-}
