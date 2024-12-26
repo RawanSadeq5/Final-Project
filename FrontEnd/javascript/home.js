@@ -21,6 +21,20 @@ document.addEventListener("DOMContentLoaded", () => {
     changeLanguageToEnglish();
   });
 
+  // add business page navigation
+  const addBusinessLink = document.getElementById("addBusiness-link");
+  addBusinessLink.addEventListener("click", (event) => {
+    event.preventDefault();
+    window.location.href = "addBusiness.html"; 
+  });
+
+   // add business page navigation
+   const loginLink = document.getElementById("logIn-link");
+   loginLink.addEventListener("click", (event) => {
+     event.preventDefault();
+     window.location.href = "login.html"; 
+   });
+
   // Function to change page text to English
   function changeLanguageToEnglish() {
     // Update navigation bar links

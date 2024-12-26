@@ -36,22 +36,24 @@ document.addEventListener("DOMContentLoaded", () => {
         return emailPattern.test(email);
     }
 
-    // Toggle dark mode functionality
-    const darkModeToggle = document.createElement("button");
-    darkModeToggle.textContent = "Toggle Dark Mode";
-    darkModeToggle.style.position = "fixed";
-    darkModeToggle.style.bottom = "10px";
-    darkModeToggle.style.right = "10px";
-    darkModeToggle.style.padding = "0.5rem 1rem";
-    darkModeToggle.style.backgroundColor = "#921A40";
-    darkModeToggle.style.color = "#fff";
-    darkModeToggle.style.border = "none";
-    darkModeToggle.style.borderRadius = "0.375rem";
-    darkModeToggle.style.cursor = "pointer";
+    // About page navigation
+  const aboutLink = document.getElementById("about-link");
+  aboutLink.addEventListener("click", (event) => {
+    event.preventDefault();
+    window.location.href = "about.html"; 
+  });
 
-    document.body.appendChild(darkModeToggle);
+  // Contact us page navigation
+  const contactLink = document.getElementById("contact-link");
+  contactLink.addEventListener("click", (event) => {
+    event.preventDefault();
+    window.location.href = "contactUs.html"; 
+  });
 
-    darkModeToggle.addEventListener("click", () => {
-        document.body.classList.toggle("dark");
-    });
+  // Contact us page navigation
+  const homeLink = document.getElementById("home-link");
+  homeLink.addEventListener("click", (event) => {
+    event.preventDefault();
+    window.location.href = "home.html"; 
+  });
 });

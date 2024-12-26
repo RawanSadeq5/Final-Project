@@ -1,37 +1,46 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // Show the date picker container when the continue button is clicked
-    const continueButton = document.getElementById('continue-button');
-    const datePickerContainer = document.getElementById('date-picker-container');
-    
-    if (continueButton && datePickerContainer) {
-        continueButton.addEventListener('click', () => {
-            datePickerContainer.style.display = 'block'; // Show the date picker container
-            continueButton.style.display = 'none'; // Hide the continue button
-        });
-    }
+document.addEventListener("DOMContentLoaded", function () {
+    const serviceLinks = document.querySelectorAll(".service-link");
+    const continueButton = document.querySelector("#continue-button");
+    const calendarContainer = document.querySelector("#calendar-container");
+    const confirmDateButton = document.querySelector("#confirm-date-button");
 
-    // Initialize Flatpickr for the date picker
-    flatpickr("#datepicker", {
-        altInput: true,
-        altFormat: "F j, Y",
-        dateFormat: "Y-m-d",
-        minDate: "today", // Disable past dates
-        locale: "he", // Set locale to Hebrew
-        onChange: function(selectedDates, dateStr, instance) {
-            console.log(`Selected date: ${dateStr}`); // Debug log for selected date
-        }
+    // Initially hide the "המשך" button and the calendar container
+    continueButton.style.display = "none";
+    calendarContainer.style.display = "none";
+
+    // Add click event listener to service links
+    serviceLinks.forEach((link) => {
+        link.addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent default link behavior
+
+            // Remove the "selected" class from all services
+            serviceLinks.forEach((l) => l.classList.remove("selected"));
+
+            // Add the "selected" class to the clicked service
+            link.classList.add("selected");
+
+            // Show the "המשך" button
+            continueButton.style.display = "block";
+        });
     });
 
-    // Functionality to handle form submission
-    const formSubmitButton = document.getElementById('submit-button');
-    if (formSubmitButton) {
-        formSubmitButton.addEventListener('click', () => {
-            const selectedDate = document.getElementById('datepicker').value;
-            if (selectedDate) {
-                alert(`תאריך שנבחר: ${selectedDate}`);
-            } else {
-                alert("אנא בחר תאריך לפני המשך");
-            }
-        });
-    }
+    // Add click event listener to the "המשך" button
+    continueButton.addEventListener("click", function () {
+        // Show the calendar container
+        calendarContainer.style.display = "block";
+
+        // Smooth scroll to the calendar container
+        calendarContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    // Add click event listener to the "אישור" button (confirm date)
+    confirmDateButton.addEventListener("click", function () {
+        const selectedDate = document.querySelector("#date-picker").value;
+
+        if (selectedDate) {
+            alert(`תאריך שנבחר: ${selectedDate}`);
+        } else {
+            alert("נא לבחור תאריך.");
+        }
+    });
 });
