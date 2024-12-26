@@ -6,14 +6,31 @@ body {
     color:#921A40;
     background: linear-gradient(135deg, #921a40, #f8f9fa); /* Gradient background */
     background-attachment: fixed; /* Keeps gradient fixed while scrolling */
-  
-
 }
 
-/* Dark Mode Styles */
-.dark {
-    background-color: #2d2d2d;
+/* Navigation Bar */
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #921A40;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
     color: #fff;
+    text-decoration: none;
+    font-size: 25px;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: black;
 }
 
 /* Center the content vertically and horizontally */
@@ -29,8 +46,8 @@ body {
 
 /* Container for the form */
 .bg-white {
-    background-color: #E4E0E1;
-    border: 4px solid #921A40;
+    background-color: white;
+    border: 2px solid #921A40;
 
 }
 
@@ -109,14 +126,20 @@ input:focus {
     box-shadow: 0 0 0 2px rgba(75, 85, 99, 0.1);
 }
 
-/* Password recovery link */
+/* Password and sign up recovery link */
 a {
     text-decoration: none;
-    color: #6b7280;
+    color: black;
+    font-size: 20px;
 }
 
-a:hover {
+.text-indigo-500 {
     color: black;
+}
+
+
+a:hover {
+    color: #6b7280;
 }
 
 /* Checkbox and label */
@@ -127,11 +150,6 @@ input[type="checkbox"] {
     border: 1px solid #e2e8f0;
     
     
-}
-
-input[type="checkbox"]:focus {
-    outline: none;
-    border-color: #c39898;
 }
 
 .ml-2 {
@@ -187,11 +205,3 @@ button:active {
     background-color: #921A40;
 }
 
-/* Links for Create Account and others */
-.text-xs {
-    font-size: 0.75rem;
-}
-
-.text-indigo-500 {
-    color: #6b7280;
-}

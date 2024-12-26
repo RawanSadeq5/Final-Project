@@ -1,184 +1,331 @@
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #E4E0E1;
-    color: #921A40;
-    direction: rtl;
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #E4E0E1;
+	color: #921A40;
+	direction: rtl;
+	background: linear-gradient(135deg, #921a40, #f8f9fa);
+	/* Gradient background */
+	background-attachment: fixed;
+	/* Keeps gradient fixed while scrolling */
 }
 
+/* Header */
 header {
-    text-align: center;
-    padding: 20px;
-    background-color: #E4E0E1;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	position: fixed;
+	/* Fixes the header at the top of the viewport */
+	top: 0;
+	left: 0;
+	width: 100%;
+	/* Ensures the header spans the full width */
+	background-color: #921a40;
+	color: #fff;
+	z-index: 1000;
+	/* Ensures the header is always on top */
+	padding: 20px 0;
+	/* Adds vertical padding */
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	/* Optional: Adds shadow for better visibility */
 }
 
-header img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-bottom: 10px;
+
+nav {
+	display: flex;
+	justify-content: right;
+	padding: 0 20px;
+	/* Adds horizontal padding */
+}
+
+nav a {
+	color: #fff;
+	text-decoration: none;
+	margin: 0 15px;
+	font-size: 25px;
+	transition: color 0.3s;
+}
+
+nav a:hover {
+	color: black;
+}
+
+/* Adjust the main container to sit below the header */
+main {
+	margin-top: 70px;
+	/* Adjust this value to match the header's height */
+	padding: 20px;
+}
+
+
+.profile {
+	text-align: center;
+	padding: 20px;
+	background-color: linear-gradient(135deg, #921a40, #f8f9fa);
+	/* Gradient background */
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	background-attachment: fixed;
+	/* Keeps gradient fixed while scrolling */
+	padding: 15px;
+	/* Reduce the padding inside the services container */
+	background-color: #fff;
+	margin: 10px auto;
+	/* Reduce the margin to make the container smaller and centered */
+	border-radius: 10px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	width: 80%;
+	/* Adjust width to make the rectangular smaller (can change percentage) */
+	max-width: 600px;
+	/* Set a maximum width to avoid too large a container on wide screens */
+}
+
+
+.profile img {
+	width: 150px;
+	height: 150px;
+	border-radius: 8%;
+	margin-bottom: 10px;
+	object-fit: cover;
+	/* Ensures the image fits within the circular frame */
 }
 
 header h1 {
-    margin: 10px 0 5px;
-    font-size: 24px;
+	margin: 10px 0 5px;
+	font-size: 24px;
 }
 
 header p {
-    font-size: 14px;
-    color: black;
+	font-size: 14px;
+	color: black;
 }
 
 .icons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 10px;
+	display: flex;
+	justify-content: center;
+	gap: 15px;
+	margin-top: 10px;
 }
 
 .icon {
-    display: inline-block;
-    width: 25px;  /* Set the size of the icon */
-    height: 25px; /* Set the size of the icon */
-    border-radius: 0;  /* Ensure there's no rounded corners */
+	display: inline-block;
+	width: 25px;
+	/* Set the size of the icon */
+	height: 25px;
+	/* Set the size of the icon */
+	border-radius: 0;
+	/* Ensure there's no rounded corners */
 }
 
 .icon img {
-    width: 200%;  /* Make the image fit within the container */
-    height: 100%; /* Make the image fit within the container */
-    object-fit: contain;  /* Maintain aspect ratio of the image */
+	width: 200%;
+	/* Make the image fit within the container */
+	height: 100%;
+	/* Make the image fit within the container */
+	object-fit: contain;
+	/* Maintain aspect ratio of the image */
 }
 
 .gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    padding: 20px;
-    background-color: #fff;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	justify-content: center;
+	padding: 20px;
+	background-color: #fff;
 }
 
-gallery img {
-    width: 100px;
-    height: 100px;
-    border-radius: 10px;
-    object-fit: cover;
+.gallery img {
+	width: 100px;
+	height: 100px;
+	border-radius: 10px;
+	object-fit: cover;
 }
 
 .services {
-    padding: 15px;  /* Reduce the padding inside the services container */
-    background-color: #fff;
-    margin: 10px auto;  /* Reduce the margin to make the container smaller and centered */
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 80%;  /* Adjust width to make the rectangular smaller (can change percentage) */
-    max-width: 600px;  /* Set a maximum width to avoid too large a container on wide screens */
+	padding: 15px;
+	/* Reduce the padding inside the services container */
+	background-color: #fff;
+	margin: 10px auto;
+	/* Reduce the margin to make the container smaller and centered */
+	border-radius: 10px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	width: 80%;
+	/* Adjust width to make the rectangular smaller (can change percentage) */
+	max-width: 600px;
+	/* Set a maximum width to avoid too large a container on wide screens */
 }
 
 .services h2 {
-    font-size: 20px;
-    margin-bottom: 20px;
-    color: #921A40;
+	font-size: 20px;
+	margin-bottom: 20px;
+	color: #921A40;
 }
 
 .service-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+	list-style: none;
+	padding: 0;
+	margin: 0;
 }
 
 service-list li {
-    padding: 5px;  /* Reduce padding inside the list item */
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin-bottom: 5px;
-    background-color: #fff;
+	padding: 5px;
+	/* Reduce padding inside the list item */
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	margin-bottom: 5px;
+	background-color: #fff;
 }
 
 .service-link {
-    font-size: 14px;  /* Reduce the font size to fit the smaller container */
-    text-decoration: none;
-    color: black;
-    display: block;
-    padding: 8px;  /* Reduce the padding inside the service link */
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    position: relative;
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
-    margin: 5px 0;
+	font-size: 14px;
+	/* Reduce the font size to fit the smaller container */
+	text-decoration: none;
+	color: black;
+	display: block;
+	padding: 8px;
+	/* Reduce the padding inside the service link */
+	background-color: #f9f9f9;
+	border: 1px solid #ddd;
+	position: relative;
+	border-radius: 5px;
+	transition: background-color 0.3s, color 0.3s;
+	margin: 5px 0;
 }
 
+.service-link.selected {
+    background-color: #921A40; /* Highlighted background color */
+    color: #fff; /* Text color for contrast */
+    border-color: #921A40; /* Optional: border to match the background */
+    font-weight: bold; /* Optional: make the text bold */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+}
+
+
 .price {
-    position: absolute;
-    top: 50%;
-    left: 15px;  /* Move price to the left side */
-    transform: translateY(-50%);
-    font-size: 14px;  /* Reduced size */
-    color: #333;
-    font-weight: bold;
-    background-color: #f7f7f7;
-    padding: 5px 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	position: absolute;
+	top: 50%;
+	left: 15px;
+	/* Move price to the left side */
+	transform: translateY(-50%);
+	font-size: 14px;
+	/* Reduced size */
+	color: #333;
+	font-weight: bold;
+	background-color: #f7f7f7;
+	padding: 5px 10px;
+	border-radius: 5px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .service-link:hover {
-    background-color: #921A40;
-    color: #fff;
+	background-color: #921A40;
+	color: #fff;
 }
 
 .button-container {
-    text-align: center;
-    margin-top: 10px;  /* Reduce the margin for better alignment */
+	text-align: center;
+    margin-top: 10px; /* Adjust as needed for spacing */
 }
 
 button {
-    background-color: #921A40;
-    color: #fff;
-    border: none;
-    padding: 8px 16px;  /* Reduce padding for the button */
-    border-radius: 5px;
-    font-size: 14px;  /* Reduce font size */
-    cursor: pointer;
+	background-color: #921A40;
+	color: #fff;
+	border: none;
+	padding: 8px 16px;
+	/* Reduce padding for the button */
+	border-radius: 5px;
+	font-size: 14px;
+	/* Reduce font size */
+	cursor: pointer;
 }
 
 button:hover {
-    background-color: #921a405a;
+	background-color: #921a405a;
 }
 
 /* Add these styles for the date picker container */
 .date-picker-container {
-    display: none; /* Initially hidden */
-    text-align: center;
-    margin-top: 30px;
-    padding: 30px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 50px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	display: none;
+	/* Initially hidden */
+	text-align: center;
+	margin-top: 30px;
+	padding: 30px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 50px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 button {
+	background-color: #921A40;
+	color: #fff;
+	border: none;
+	padding: 8px 16px;
+	/* Reduce padding for the button */
+	border-radius: 5px;
+	font-size: 14px;
+	/* Reduce font size */
+	cursor: pointer;
+}
+
+#continue-button {
+    margin: 0 auto;
+    display: inline-block;
+    text-align: center;
+}
+
+.calendar-container {
+    display: none; /* Initially hidden */
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.calendar-container h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #921A40;
+}
+
+.date-input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 60%;
+    max-width: 300px;
+    margin: 10px 0;
+}
+
+#confirm-date-button {
     background-color: #921A40;
     color: #fff;
     border: none;
-    padding: 8px 16px;  /* Reduce padding for the button */
+    padding: 10px 20px;
     border-radius: 5px;
-    font-size: 14px;  /* Reduce font size */
+    font-size: 16px;
     cursor: pointer;
 }
 
+#confirm-date-button:hover {
+    background-color: #921a405a;
+}
+
+
 
 footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #fff;
-    border-top: 1px solid #ddd;
-    margin-top: 20px;
-    font-size: 14px;
-    color: #777;
+	text-align: center;
+	padding: 10px;
+	background-color: #e4e0e1;
+	border-top: 1px solid #ddd;
+	margin-top: 20px;
+	font-size: 14px;
+	color: #777;
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,19 @@
     <link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
-    <div class="min-h-screen flex items-center justify-center w-full dark:bg-gray-950">
+    <header>
+        <!-- Navigation Bar -->
+        <nav>
+            <div class="nav-links">
+                <a id="language-link" href="#">שפה</a>
+                <a id="home-link"  class="home" href="#">בית</a>
+                <a id="about-link" href="#">אודות</a>
+                <a id="contact-link" href="#">צור קשר</a>
+            </div>
+        </nav>
+    </header>
+
+    <div  id="logIn-link" class="min-h-screen flex items-center justify-center w-full dark:bg-gray-950">
         <div class="bg-white dark:bg-gray-900 shadow-md rounded-lg px-8 py-6 max-w-md">
             <h1 class="text-2xl font-bold text-center mb-4 dark:text-gray-200">כניסה למערכת</h1>
             <form action="#">
@@ -19,7 +31,7 @@
                     <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">סיסמה</label>
                     <input type="password" id="password" class="shadow-sm rounded-md w-full px-3 py-2 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" placeholder="הכנס סיסמה" required>
                     <a href="#"
-                        class="text-xs text-gray-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">שכחת סיסמה?</a>
+                        class="text-xs text-gray-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" style="font-size: 15px;">שכחת סיסמה?</a>
                 </div>
                 <div class="flex items-center justify-between mb-4">
                     <div class="flex items-center">
@@ -27,7 +39,7 @@
                         <label for="remember" class="ml-2 block text-sm text-gray-700 dark:text-gray-300">זכור אותי</label>
                     </div>
                     <a href="#"
-                        class="text-xs text-indigo-500 hover:text-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">לא רשום עדוון? הרשם עכשיו</a>
+                        class="text-xs text-indigo-500 hover:text-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" style="font-size: 15px;">לא רשום עדוון? הרשם עכשיו</a>
                 </div>
                 <button onclick="alert('hello')"  type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">המשך</button>
             </form>
