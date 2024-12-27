@@ -1,46 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>התורים שלי</title>
-    <link rel="stylesheet" href="../css/myAppointments.css">
-</head>
-<body>
-    <header>
-        <div class="navbar">
-          <h1 class="logo">NexTor</h1>
-          <nav>
-            <ul class="menu">
-              <li><a href="#">איזור אישי |</a></li>
-            </ul>
-          </nav>
-        </div>
+<html lang="he" dir="rtl">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>התורים שלי</title>
+      <link rel="stylesheet" href="../css/myAppointments.css">
+   </head>
+   <body>
+      <header>
+         <nav>
+            <a id="language-link" href="#">שפה</a>
+            <a id="home-link" href="#">בית</a>
+            <a id="about-link" href="#" class="about">אודות</a>
+            <a id="contact-link" href="#" class="contact-us">צור קשר</a>
+         </nav>
       </header>
-    
-      <main>
-        <h2 class="title">:תורים שלי</h2>
-        <div class="appointments">
-          <div class="appointment-card">
-            <p><strong>:שם העסק</strong></p>
-            <p><strong>מספר טלפון:</strong></p>
-            <p><strong>כתובת:</strong<</p>
-            <p><strong>תחום השירות:</strong></p>
-            <p><strong>מחיר:</strong> </p>
-            <p><strong>תאריך:</strong></p>
-            <p><strong>שעה:</strong></p>
-            <p><strong>משך זמן:</strong> </p>
-            <p><strong>סטטוס:</strong>
-              <select>
-                <option>מוכן לוותר</option>
-                <option>תור תפוס</option>
-              </select>
-            </p>
-            <button class="btn forward">העבר לחבר</button>
-            <button class="btn cancel">ביטול תור</button>
-          </div>
-        </div>
-
+      <main class="appointments-page">
+         <br/>
+         <br/>
+         <br/>
+         <br/>
+         <div class="appointment-navigator">
+            <div class="container" id="appointment-container">
+               <h1>התורים שלי</h1>
+               <div class="appointment-card">
+                  <h2>שם העסק: סלון יופי</h2>
+                  <br/>
+                  <label><strong>כתובת:</strong> רחוב היופי 12, תל אביב</label>
+                  <br/>
+                  <br/>
+                  <label><strong>סוג שירות:</strong> לק ג'ל</label>
+                  <br/>
+                  <br/>
+                  <label><strong>מחיר:</strong> ₪150</label>
+                  <br/>
+                  <br/>
+                  <label><strong>תאריך:</strong> 12/01/2024</label>
+                  <br/>
+                  <br/>
+                  <label><strong>שעה:</strong> 10:00</label>
+                  <br/>
+                  <br/>
+                  <label><strong>משך זמן:</strong> 60 דקות</label>
+                  <br/>
+                  <br/>
+                  <label>
+                     <strong>סטטוס:</strong>
+                     <select class="status-selector">
+                        <option value="ready-to-give-up">מוכן לוותר</option>
+                        <option value="appointment-taken">התור תפוס</option>
+                     </select>
+                  </label>
+                  <br/>
+                  <br/>
+                  <div class="appointment-actions">
+                     <button class="action-button transfer">העבר לחבר</button>
+                     <button class="action-button cancel">ביטול תור</button>
+                  </div>
+               </div>
+               <!-- Add more appointment cards here -->
+            </div>
+         </div>
+         <br/>
+         <div class="container">
+            <h1>רשימת המתנה</h1>
+            <div class="waiting-list" id="waiting-list">
+               <!-- Add waiting list appointments here -->
+               <div class="appointment-card">
+                  <h2>שם העסק: מסעדת גורמה</h2>
+                  <br/>
+                  <label><strong>כתובת:</strong> רחוב הגורמה 5, חיפה</label>
+                  <br/>
+                  <br/>
+                  <label><strong>סוג שירות:</strong> הזמנה לשולחן</label>
+                  <br/>
+                  <br/>
+                  <label><strong>תאריך:</strong> 15/01/2024</label>
+                  <br/>
+                  <br/>
+                  <label><strong>שעה:</strong> 19:00</label>
+                  <br/>
+                  <br/>
+                  <button class="action-button cancel">מחיקה מרשימת המתנה</button>
+               </div>
+            </div>
+         </div>
       </main>
-</body>
+      <footer>
+         <p>&copy; 2024 כל הזכויות שמורות.</p>
+      </footer>
+      <script src="../javascript/myAppointments.js"></script>
+   </body>
 </html>

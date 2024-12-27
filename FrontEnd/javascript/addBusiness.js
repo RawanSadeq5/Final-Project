@@ -8,6 +8,42 @@ const imageUpload = document.getElementById("imageUpload");
 const imagePreview = document.getElementById("imagePreview");
 const errorMessage = document.getElementById("errorMessage");
 
+const profileImageUpload = document.getElementById("profileImageUpload");
+const profileImagePreview = document.getElementById("profileImagePreview");
+
+profileImageUpload.addEventListener("change", (event) => {
+  const file = event.target.files[0];
+
+  if (file) {
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      // Clear any existing profile image
+      profileImagePreview.innerHTML = "";
+
+      // Create an image element
+      const img = document.createElement("img");
+      img.src = e.target.result;
+      img.alt = "תמונת פרופיל";
+      
+      // Create a remove button
+      const removeBtn = document.createElement("button");
+      removeBtn.className = "remove-btn";
+      removeBtn.textContent = "×";
+      removeBtn.addEventListener("click", () => {
+        profileImagePreview.innerHTML = ""; // Clear the preview
+        profileImageUpload.value = ""; // Reset the file input
+      });
+
+      // Append the image and remove button to the preview
+      profileImagePreview.appendChild(img);
+      profileImagePreview.appendChild(removeBtn);
+    };
+
+    reader.readAsDataURL(file);
+  }
+});
+
 const maxImages = 6;
 let uploadedImages = [];
 

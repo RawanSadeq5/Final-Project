@@ -35,7 +35,7 @@ nav a:hover {
 
 /* Center the content vertically and horizontally */
 .min-h-screen {
-    height: 100vh;
+    height: 90vh;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -48,11 +48,6 @@ nav a:hover {
 .bg-white {
     background-color: white;
     border: 2px solid #921A40;
-
-}
-
-.dark .bg-gray-900 {
-    background-color: #1a202c;
 }
 
 .shadow-md {
@@ -74,8 +69,8 @@ nav a:hover {
 }
 
 .max-w-md {
-    max-width: 100%;
-    width: 500px;
+    width: 600px;
+    height: 400px;
 }
 
 /* Heading */
@@ -104,7 +99,7 @@ label {
     font-weight: bold;
     display: block;
     margin-bottom: 0.5rem;
-    font-size: 0.875rem;
+    font-size: 24px;
     color: #921A40;
     text-align: right;
 }
@@ -142,14 +137,20 @@ a:hover {
     color: #6b7280;
 }
 
+p {
+	margin-top: 1rem;
+	font-size: 17px;
+	color: black;
+	text-align: right;
+	/* Right-align footer */
+}
+
 /* Checkbox and label */
 input[type="checkbox"] {
     width: 1rem;
     height: 1rem;
     border-radius: 0.5rem;
-    border: 1px solid #e2e8f0;
-    
-    
+    border: 1px solid #e2e8f0;   
 }
 
 .ml-2 {
@@ -179,7 +180,7 @@ button {
 /* Button Styles */
 button {
     padding: 0.75rem 1.5rem;
-    font-size: 1.25rem;
+    font-size: 24px;
     background-color: #921A40;
     color: #fff;
     border: none;
@@ -204,4 +205,3 @@ button:focus {
 button:active {
     background-color: #921A40;
 }
-

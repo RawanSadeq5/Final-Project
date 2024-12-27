@@ -1,31 +1,43 @@
-/* General Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
   font-family: Arial, sans-serif;
-  background-color: #f1e5d1;
-  color: #987070;
-  line-height: 1.6;
-  text-align: right;
-  font-size: 20px;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  direction: rtl;
+  background: linear-gradient(135deg, #921a40, #f8f9fa); /* Gradient background */
+  background-attachment: fixed; /* Keeps gradient fixed while scrolling */
 }
 
 
+/* Header */
 header {
-  background-color: #f2f2f2;
-  padding: 10px 20px;
-  border-bottom: 2px solid #ddd;
+  position: fixed; /* Fixes the header at the top of the viewport */
+  top: 0;
+  left: 0;
+  width: 100%; /* Ensures the header spans the full width */
+  background-color: #921a40;
+  color: #fff;
+  z-index: 1000; /* Ensures the header is always on top */
+  padding: 20px 0; /* Adds vertical padding */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds shadow for better visibility */
 }
 
-.logo {
-  display: inline-block;
-  color: #1e90ff;
-  font-size: 1.5rem;
-  font-weight: bold;
+nav {
+  display: flex;
+  justify-content: right;
+  padding: 0 20px; /* Adds horizontal padding */
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 25px;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: black;
 }
 
 .navbar {
@@ -34,85 +46,174 @@ header {
   align-items: center;
 }
 
-.menu {
-  list-style: none;
+h1 {
+  text-align: center;
+  margin-top: 0; /* Remove excess margin */
+  margin-bottom: 20px; /* Add spacing between the title and content */
+  color: #921A40;
+}
+
+.appointment-navigator {
   display: flex;
-  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.menu li a {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
+#appointment-container {
+  display: flex;
+  flex-direction: column; /* Ensure the title stays on top */
+  align-items: center; /* Center the title horizontally */
+  justify-content: flex-start; /* Align content to the top */
+  gap: 20px; /* Add spacing between items */
+  width: 90%;
+  margin: 0 auto;
+  background-color: #fff;
 }
 
-.menu li a:hover {
-  color: #1e90ff;
-}
-
-main {
-  padding: 20px;
-}
-
-.title {
-  font-size: 1.8rem;
-  color: #1e90ff;
+.container {
+  max-width: 1000px;
+  width: 90%;
+  height: 600px;
+  margin: 20px auto;
   margin-bottom: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  justify-content: center;
 }
 
-.appointments {
+.waiting-list {
   display: flex;
-  justify-content: center;
-  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+  color: #921A40;
 }
 
 .appointment-card {
-  background: white;
-  border: 1px solid #ddd;
+  align-self: flex-start; /* Align the card to the right within the container */
+  max-width: 400px; /* Maintain the card's width */
+  height: 400px;
+  background-color: #fff;
+  border: 1px solid #921A40;
   border-radius: 10px;
   padding: 20px;
-  width: 300px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.appointment-card h2 {
+  margin: 0 0 10px;
+  font-size: 24px;
+  color: #921A40;
+}
+
+.appointment-card label {
+  margin: 5px 0;
+  font-size: 20px;
+  color: #333;
+}
+
+.status-selector{
+  font-size: large;
+  border: 2px solid #921A40;
+  border-radius: 8px;
+}
+
+.appointment-actions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.action-button {
+  padding: 10px 15px;
+  font-size: 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.action-button.transfer {
+  background-color: #921A40;
+  color: #fff;
+  font-size: 18px;
+}
+
+.action-button.transfer:hover {
+  background-color: #921A40a5;
+}
+
+.action-button.cancel {
+  background-color: #333;
+  color: #fff;
+  font-size: 18px;
+}
+
+.action-button.cancel:hover {
+  background-color: gray;
+}
+
+/* Modal Styles */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.appointment-card p {
-  margin-bottom: 10px;
-  font-size: 1rem;
+.modal p {
+  margin-bottom: 20px;
+  font-size: 18px;
 }
 
-.appointment-card select {
-  width: 100%;
-  padding: 5px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 1rem;
-}
-
-.btn {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
+.modal-btn {
+  padding: 10px 15px;
+  margin: 5px;
   border: none;
   border-radius: 5px;
-  font-size: 1rem;
+  font-size: 16px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.forward {
-  background-color: #007bff;
-  color: white;
+.modal-btn.confirm {
+  background-color: #921A40;
+  color: #fff;
 }
 
-.forward:hover {
-  background-color: #0056b3;
+.modal-btn.cancel,
+.modal-btn.close {
+  background-color: #333;
+  color: #fff;
 }
 
-.cancel {
-  background-color: #ff4d4d;
-  color: white;
+.modal-btn:hover {
+  opacity: 0.9;
 }
 
-.cancel:hover {
-  background-color: #cc0000;
+
+footer {
+	text-align: center;
+	padding: 10px;
+	background-color: #e4e0e1;
+	border-top: 1px solid #ddd;
+	margin-top: 20px;
+	font-size: 14px;
+	color: #777;
 }
+
