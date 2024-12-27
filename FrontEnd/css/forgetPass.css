@@ -102,7 +102,7 @@ input {
 }
 
 input:focus {
-    border-color: #3182ce; /* Focus color */
+    border-color: #921A40; /* Focus color */
     outline: none;
 }
 
