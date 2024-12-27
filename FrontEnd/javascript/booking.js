@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const continueButton = document.querySelector("#continue-button");
     const calendarContainer = document.querySelector("#calendar-container");
     const confirmDateButton = document.querySelector("#confirm-date-button");
+    const datePicker = document.querySelector("#date-picker");
 
     // Initially hide the "המשך" button and the calendar container
     continueButton.style.display = "none";
@@ -20,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
             link.classList.add("selected");
 
             // Show the "המשך" button
-            continueButton.style.display = "block";
+            continueButton.style.display = "inline-block"; // Make sure the button appears
         });
     });
 
@@ -33,9 +34,9 @@ document.addEventListener("DOMContentLoaded", function () {
         calendarContainer.scrollIntoView({ behavior: "smooth", block: "start" });
     });
 
-    // Add click event listener to the "אישור" button (confirm date)
+    // Add click event listener to the "אישור" button
     confirmDateButton.addEventListener("click", function () {
-        const selectedDate = document.querySelector("#date-picker").value;
+        const selectedDate = datePicker.value;
 
         if (selectedDate) {
             alert(`תאריך שנבחר: ${selectedDate}`);
@@ -43,4 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
             alert("נא לבחור תאריך.");
         }
     });
+
+    
 });

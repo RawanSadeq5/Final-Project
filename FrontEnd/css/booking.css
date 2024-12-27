@@ -284,41 +284,35 @@ button {
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 80%;
-    max-width: 600px;
+    max-width: 500px;
     margin: 0 auto;
 }
 
-.calendar-container h2 {
-    font-size: 20px;
-    margin-bottom: 15px;
-    color: #921A40;
+.calendar-container iframe {
+    margin-top: 20px;
+    border-radius: 10px;
+    border: none;
 }
 
-.date-input {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    width: 60%;
-    max-width: 300px;
-    margin: 10px 0;
-}
-
-#confirm-date-button {
+button {
     background-color: #921A40;
     color: #fff;
     border: none;
-    padding: 10px 20px;
+    padding: 8px 16px;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
 }
 
-#confirm-date-button:hover {
+button:hover {
     background-color: #921a405a;
 }
 
-
+#continue-button {
+    display: none; /* Initially hidden */
+    margin: 10px auto;
+    text-align: center;
+}
 
 footer {
 	text-align: center;
