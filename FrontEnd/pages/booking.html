@@ -49,9 +49,36 @@
                <button type="button" id="continue-button">המשך</button>
             </div>
          </div>
-         <div class="calendar-container" id="calendar-container">
-            <iframe src="https://calendar.google.com/calendar/embed?src=hanan.x11%40gmail.com&ctz=Asia%2FJerusalem" style="border: 0" width="400" height="400" frameborder="0" scrolling="no"></iframe>
-         </div>
+         <div class="wrapper">
+            <div class="calendar-header">
+                <div class="icons">
+                    <span id="prev" class="material-symbols-rounded">&#11166;</span>
+                    <p class="current-date"></p>
+                    <span id="next" class="material-symbols-rounded">&#11164;</span>
+                </div>
+               </div>
+            <div class="calendar">
+                <ul class="weeks">
+                    <li>א</li>
+                    <li>ב</li>
+                    <li>ג</li>
+                    <li>ד</li>
+                    <li>ה</li>
+                    <li>ו</li>
+                    <li>ש</li>
+                </ul>
+                <ul class="days"></ul>
+            </div>
+            <div class="button-container">
+               <button id="proceed-button" style="display: none;">המשך</button>
+           </div>
+           <div class="times-container" style="display: none;">
+               <h3>שעות פנויות לתאריך <span id="selected-date"></span></h3>
+               <ul id="available-times">
+                   <!-- Times will be dynamically added here -->
+               </ul>
+           </div>
+        </div>        
       </main>
       <footer>
          <p>&copy; 2024 כל הזכויות שמורות.</p>

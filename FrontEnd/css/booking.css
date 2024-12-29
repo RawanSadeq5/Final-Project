@@ -132,6 +132,10 @@ header p {
 	justify-content: center;
 	padding: 20px;
 	background-color: #fff;
+	width: 1000px;
+	margin: 0 auto;
+	text-align: center;
+	border-radius: 10px;
 }
 
 .gallery img {
@@ -156,7 +160,7 @@ header p {
 }
 
 .services h2 {
-	font-size: 20px;
+	font-size: 24px;
 	margin-bottom: 20px;
 	color: #921A40;
 }
@@ -169,7 +173,6 @@ header p {
 
 service-list li {
 	padding: 5px;
-	/* Reduce padding inside the list item */
 	border: 1px solid #ddd;
 	border-radius: 8px;
 	margin-bottom: 5px;
@@ -177,13 +180,11 @@ service-list li {
 }
 
 .service-link {
-	font-size: 14px;
-	/* Reduce the font size to fit the smaller container */
+	font-size: 18px;
 	text-decoration: none;
 	color: black;
 	display: block;
 	padding: 8px;
-	/* Reduce the padding inside the service link */
 	background-color: #f9f9f9;
 	border: 1px solid #ddd;
 	position: relative;
@@ -200,15 +201,12 @@ service-list li {
     transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
 }
 
-
 .price {
 	position: absolute;
 	top: 50%;
 	left: 15px;
-	/* Move price to the left side */
 	transform: translateY(-50%);
-	font-size: 14px;
-	/* Reduced size */
+	font-size: 18px;
 	color: #333;
 	font-weight: bold;
 	background-color: #f7f7f7;
@@ -274,33 +272,13 @@ button {
     text-align: center;
 }
 
-.calendar-container {
-    display: none; /* Initially hidden */
-    text-align: center;
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-.calendar-container iframe {
-    margin-top: 20px;
-    border-radius: 10px;
-    border: none;
-}
-
 button {
     background-color: #921A40;
     color: #fff;
     border: none;
     padding: 8px 16px;
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 18px;
     cursor: pointer;
 }
 
@@ -323,3 +301,153 @@ footer {
 	font-size: 14px;
 	color: #777;
 }
+
+*{
+	margin: 0%;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+	align-items: center;
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.wrapper {
+    width: 600px;
+    margin: 0 auto;
+    margin-top: 10px; /* Reduced to minimize gap */
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+.wrapper header{
+  display: flex;
+  align-items: center;
+  padding: 25px 30px 10px;
+  justify-content: space-between;
+}
+header .icons{
+  display: flex;
+  
+}
+header .icons span{
+  height: 38px;
+  width: 38px;
+  margin: 0 1px;
+  cursor: pointer;
+  color: #878787;
+  text-align: center;
+  line-height: 38px;
+  font-size: 1.9rem;
+  user-select: none;
+  border-radius: 50%;
+}
+.icons span:last-child{
+  margin-right: -10px;
+}
+header .icons span:hover{
+  background: #f2f2f2;
+}
+.current-date{
+  font-size: 24px;
+  font-weight: 500;
+  font-weight: bold;
+}
+
+.calendar{
+  padding: 20px;
+}
+.calendar ul{
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  text-align: center;
+}
+.calendar .days{
+  margin-bottom: 20px;
+}
+.calendar li{
+  color: #333;
+  width: calc(100% / 7);
+  font-size: 1.07rem;
+}
+.calendar .weeks li{
+  font-weight: 500;
+  font-size: 20px;
+  cursor: default;
+  font-weight: bold;
+
+}
+.calendar .days li{
+  z-index: 1;
+  cursor: pointer;
+  position: relative;
+  margin-top: 30px;
+}
+.days li.inactive{
+  color: #aaa;
+}
+.days li.active{
+  color: #fff;
+}
+.days li::before{
+  position: absolute;
+  content: "";
+  left: 50%;
+  top: 50%;
+  height: 40px;
+  width: 40px;
+  z-index: -1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.days li.active::before{
+  background: #921A40;
+}
+
+.days li:not(.active):hover::before{
+  background: #f2f2f2;
+}
+
+.times-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.times-container h3 {
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #921A40;
+}
+
+#available-times {
+    list-style: none;
+    padding: 0;
+}
+
+#available-times li {
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#available-times li:hover {
+    background-color: #921A40;
+    color: #fff;
+}
+
