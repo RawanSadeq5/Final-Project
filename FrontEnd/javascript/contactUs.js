@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // About page navigation
-  const contactLink = document.getElementById("about-link");
-  contactLink.addEventListener("click", (event) => {
+  const aboutLink = document.getElementById("about-link");
+  aboutLink.addEventListener("click", (event) => {
       event.preventDefault();
       window.location.href = "about.html"; // Replace with your actual about page URL
   });

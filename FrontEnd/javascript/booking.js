@@ -32,9 +32,9 @@ document.addEventListener("DOMContentLoaded", function () {
         calendarContainer.scrollIntoView({ behavior: "smooth", block: "start" });
     });
 
-    /*******************************************************
+    /*******************
      * Calendar functionality (already provided in your code)
-     *******************************************************/
+     *******************/
     const daysTag = document.querySelector(".days"),
         currentDate = document.querySelector(".current-date"),
         prevNextIcon = document.querySelectorAll(".icons span");
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Previous month's days
         for (let i = firstDayOfMonth; i > 0; i--) {
-            liTag += `<li class="inactive">${lastDateOfLastMonth - i + 1}</li>`;
+            liTag += <li class="inactive">${lastDateOfLastMonth - i + 1}</li>;
         }
 
         // Current month's days
@@ -72,12 +72,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 currYear === new Date().getFullYear()
                     ? "active"
                     : "";
-            liTag += `<li class="${isToday}">${i}</li>`;
+            liTag += <li class="${isToday}">${i}</li>;
         }
 
         // Next month's days
         for (let i = lastDayOfMonth; i < 6; i++) {
-            liTag += `<li class="inactive">${i - lastDayOfMonth + 1}</li>`;
+            liTag += <li class="inactive">${i - lastDayOfMonth + 1}</li>;
         }
 
         currentDate.innerText = `${months[currMonth]} ${currYear}`; // Update the month and year
@@ -133,5 +133,57 @@ daysTag.addEventListener("click", function (event) {
     }
 });
 
+// Select necessary elements
+const continueButton = document.querySelector("#new-proceed-button"); // Your "המשך" button
+const timesContainer = document.querySelector(".times-container");
+const selectedDateSpan = document.querySelector("#selected-date");
+const availableTimesList = document.querySelector("#available-times");
 
+// Add a click event listener to the "המשך" button
+continueButton.addEventListener("click", function () {
+    // Ensure a date is selected
+    const activeDay = document.querySelector(".days li.active");
+    if (!activeDay) {
+        alert("אנא בחר תאריך");
+        return;
+    }
 
+    // Display the times container
+    timesContainer.style.display = "block";
+
+    // Set the selected date
+    const selectedDay = activeDay.textContent;
+    const selectedMonth = currMonth + 1; // Months are 0-indexed
+    const selectedYear = currYear;
+    selectedDateSpan.textContent = `${selectedDay}/${selectedMonth}/${selectedYear}`;
+
+    // Populate the available times dynamically
+    const availableTimes = [
+        "10:00 AM",
+        "11:00 AM",
+        "12:00 PM",
+        "02:00 PM",
+        "03:00 PM",
+        "04:00 PM"
+    ];
+
+    // Clear any existing times
+    availableTimesList.innerHTML = "";
+
+    // Add available times to the list
+    availableTimes.forEach((time) => {
+        const timeItem = document.createElement("li");
+        timeItem.textContent = time;
+
+        // Add click event to highlight the selected time
+        timeItem.addEventListener("click", function () {
+            availableTimesList.querySelectorAll("li").forEach((item) => item.classList.remove("selected"));
+            timeItem.classList.add("selected");
+        });
+
+        availableTimesList.appendChild(timeItem);
+    });
+
+    // Smooth scroll to the times container
+    timesContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+});
