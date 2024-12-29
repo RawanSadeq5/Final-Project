@@ -133,5 +133,63 @@ daysTag.addEventListener("click", function (event) {
     }
 });
 
+// Select necessary elements
+const continueButton = document.querySelector("#new-proceed-button"); // Your "המשך" button
+const timesContainer = document.querySelector(".times-container");
+const selectedDateSpan = document.querySelector("#selected-date");
+const availableTimesList = document.querySelector("#available-times");
+
+// Add a click event listener to the "המשך" button
+continueButton.addEventListener("click", function () {
+    // Ensure a date is selected
+    const activeDay = document.querySelector(".days li.active");
+    if (!activeDay) {
+        alert("אנא בחר תאריך");
+        return;
+    }
+
+    // Display the times container
+    timesContainer.style.display = "block";
+
+    // Set the selected date
+    const selectedDay = activeDay.textContent;
+    const selectedMonth = currMonth + 1; // Months are 0-indexed
+    const selectedYear = currYear;
+    selectedDateSpan.textContent = `${selectedDay}/${selectedMonth}/${selectedYear}`;
+
+    // Populate the available times dynamically
+    const availableTimes = [
+        "10:00 AM",
+        "11:00 AM",
+        "12:00 PM",
+        "02:00 PM",
+        "03:00 PM",
+        "04:00 PM"
+    ];
+
+    // Clear any existing times
+    availableTimesList.innerHTML = "";
+
+    // Add available times to the list
+    availableTimes.forEach((time) => {
+        const timeItem = document.createElement("li");
+        timeItem.textContent = time;
+
+        // Add click event to highlight the selected time
+        timeItem.addEventListener("click", function () {
+            availableTimesList.querySelectorAll("li").forEach((item) => item.classList.remove("selected"));
+            timeItem.classList.add("selected");
+        });
+
+        availableTimesList.appendChild(timeItem);
+    });
+
+    // Smooth scroll to the times container
+    timesContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+
+
+
 
 
