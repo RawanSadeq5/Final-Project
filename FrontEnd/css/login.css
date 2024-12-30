@@ -8,6 +8,18 @@ body {
     background-attachment: fixed; /* Keeps gradient fixed while scrolling */
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 180px;
+    height: 90px;
+    margin-left: 10px;
+}
+
+
 /* Navigation Bar */
 header nav {
     display: flex;
@@ -46,6 +58,7 @@ nav a:hover {
 
 /* Container for the form */
 .bg-white {
+    margin-top: 0px;
     background-color: white;
     border: 2px solid #921A40;
 }

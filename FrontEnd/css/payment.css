@@ -16,12 +16,51 @@
     background-attachment: fixed; /* Keeps gradient fixed while scrolling */
   }
 
+  .logo {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+  }
+
+  .logo img {
+    width: 180px;
+    height: 90px;
+    margin-left: 10px;
+  }
+
+  .navbar {
+    position: fixed; /* Fixes the navbar to the top */
+    top: 0;
+    left: 0;
+    width: 100%; /* Makes it stretch across the top of the page */
+    background-color: #921a40; /* Your navbar background color */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for better design */
+    z-index: 1000; /* Ensures the navbar stays on top of other elements */
+  }
+
+  .menu a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 18px;
+  }
+  
+  .menu a:hover {
+    text-decoration: underline;
+  }
+  
+
   .payment-container {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    width: 600px;
+    width: 650px;
+    height: 450px;
     text-align: center;
     border: 2px solid #921a40a5;
   }

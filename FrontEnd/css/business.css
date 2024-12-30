@@ -6,6 +6,17 @@ body {
     background-attachment: fixed; /* Keeps gradient fixed while scrolling */
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 180px;
+    height: 90px;
+    margin-left: 10px;
+}
+
 header {
     background-color: #921a40;
     color: #fff;
@@ -20,18 +31,22 @@ header {
 
 nav {
     display: flex;
-    justify-content: right; /* Align links to the right */
-    padding: 10px 20px;
-    background-color: #921a40; /* Match the header background */
+    justify-content: space-between; /* Distributes space between logo and nav links */
+    align-items: center; /* Aligns items vertically in the center */
+    padding: 0 20px; /* Adds horizontal padding */
+}
 
+.nav-links {
+    display: flex;
+    gap: 15px; /* Space between nav links */
 }
 
 nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 15px;
-    font-size: 25px;
-    transition: color 0.3s ease;
+	color: #fff;
+	text-decoration: none;
+	margin: 0 15px;
+	font-size: 25px;
+	transition: color 0.3s;
 }
 
 nav a:hover {
@@ -41,6 +56,7 @@ nav a:hover {
 /* Main Content */
 main {
     padding: 20px;
+    margin-top: 50px;
 }
 
 .container-details, section {
