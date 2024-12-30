@@ -74,10 +74,34 @@
            </div>
            <div class="times-container" style="display: none;">
                <h3>שעות פנויות לתאריך <span id="selected-date"></span></h3>
-               <ul id="available-times">
-                   <!-- Times will be dynamically added here -->
+               <ul id="available-times" class="available-times">
+                    <li>9:00</li>
+                    <li>10:00</li>
+                    <li>11:00</li>
+                    <li>12:00</li>
+                    <li>13:00</li>
                </ul>
            </div>
+            <div class="details-container" style="display: none;">
+                <h3>פרטי משתמש</h3>
+                <form id="user-details-form">
+                    <div class="form-group">
+                        <label for="full-name">שם מלא:</label>
+                        <input type="text" id="full-name" name="full-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone-number">מספר טלפון:</label>
+                        <input type="tel" id="phone-number" name="phone-number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">הערות:</label>
+                        <textarea id="notes" name="notes" rows="3"></textarea>
+                    </div>
+                    <div class="button-container">
+                        <button type="button" id="payment-button">המשך לתשלום</button>
+                    </div>
+                </form>
+            </div> 
         </div>        
       </main>
       <footer>
