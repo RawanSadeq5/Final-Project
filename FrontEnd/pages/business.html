@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>עמוד בעל עסק</title>
+    <link rel="stylesheet" href="../css/business.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a id="language-link" href="#">שפה</a>
+                <a id="home-link" href="#">בית</a>
+                <a id="about-link" href="#" class="about">אודות</a>
+                <a id="contact-link" href="#">צור קשר</a>
+            </nav>
+        </div>
+    </header>
+    <br/>
+    <br/>
+    <br/>
+    <main>
+        <div class="container-details">
+            <h1>פרטי העסק</h1>
+            <div id="businessDetails">
+                <p>שם העסק:</p>
+                <p>כתובת:</p>
+                <p>טלפון:</p>
+                <p>שעות פתיחה:</p>
+            </div>
+            <button id="editDetailsButton">עריכת פרטים</button>
+            <form id="editDetailsForm" style="display: none;">
+                <label>שם העסק: <input type="text" id="businessName" value="דוגמה לעסק"></label><br>
+                <label>כתובת: <input type="text" id="businessAddress" value="רחוב הראשונים 1, תל אביב"></label><br>
+                <label>טלפון: <input type="text" id="businessPhone" value="03-1234567"></label><br>
+                <label>שעות פתיחה: <input type="text" id="businessHours" value="א' - ה': 09:00 - 18:00, ו': 09:00 - 14:00"></label><br>
+                <button type="button" id="saveDetailsButton">שמור</button>
+                <button type="button" id="cancelEditButton">בטל</button>
+            </form>
+        </div>
+    
+        <section>
+            <h2>התורים שלי</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>שירות</th>
+                        <th>תאריך</th>
+                        <th>שעה</th>
+                        <th>משך</th>
+                        <th>מחיר</th>
+                        <th>שם הלקוח</th>
+                        <th>מספר טלפון של הלקוח</th>
+                    </tr>
+                </thead>
+                <tbody id="appointmentsTable">
+                    <!-- Rows will be added dynamically -->
+                </tbody>
+            </table>
+        </section>
+    
+        <section>
+            <h2>הוספת תור פנוי ללקוחות</h2>
+            <form id="addAppointmentForm">
+                <label>שירות: <input type="text" id="service"></label><br>
+                <label>תאריך: <input type="date" id="date"></label><br>
+                <label>שעה: <input type="time" id="time"></label><br>
+                <label>משך: <input type="text" id="duration"></label><br>
+                <label>מחיר: <input type="number" id="price"></label><br>
+                <label>סכום המקדמה: <input type="number" id="advance"></label><br>
+                <button type="button" id="addButton">הוסף</button>
+            </form>
+        </section>
+    </main>
+   
+    <script defer src="../javascript/business.js"></script>
+</body>
+</html>

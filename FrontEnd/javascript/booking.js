@@ -2,55 +2,55 @@ document.addEventListener("DOMContentLoaded", function () {
     const serviceLinks = document.querySelectorAll(".service-link");
     const continueButton = document.querySelector("#continue-button");
     const calendarContainer = document.querySelector(".wrapper");
+    const newProceedButton = document.querySelector("#proceed-button");
+    const daysTag = document.querySelector(".days");
+    const currentDate = document.querySelector(".current-date");
+    const prevNextIcon = document.querySelectorAll(".icons span");
+    const timesContainer = document.querySelector(".times-container");
+    const availableTimesList = document.querySelector("#available-times");
+    const detailsContainer = document.querySelector(".details-container");
 
-    // Initially hide the "המשך" button and the calendar container
+    // Initially hide elements
     continueButton.style.display = "none";
     calendarContainer.style.display = "none";
+    newProceedButton.style.display = "none";
+    timesContainer.style.display = "none";
+    detailsContainer.style.display = "none";
 
-    // Add click event listener to service links
+    // Step 1: Select Service
     serviceLinks.forEach((link) => {
         link.addEventListener("click", function (event) {
-            event.preventDefault(); // Prevent default link behavior
+            event.preventDefault();
 
-            // Remove the "selected" class from all services
+            // Remove selected class from all services
             serviceLinks.forEach((l) => l.classList.remove("selected"));
 
-            // Add the "selected" class to the clicked service
+            // Add selected class to the clicked service
             link.classList.add("selected");
 
-            // Show the "המשך" button
-            continueButton.style.display = "inline-block"; // Make the button visible
+            // Show the first "המשך" button
+            continueButton.style.display = "inline-block";
         });
     });
 
-    // Add click event listener to the "המשך" button
+    // Step 2: Show Calendar
     continueButton.addEventListener("click", function () {
-        // Show the calendar container
         calendarContainer.style.display = "block";
 
-        // Smoothly scroll to the calendar container
+        // Scroll to the calendar
         calendarContainer.scrollIntoView({ behavior: "smooth", block: "start" });
     });
 
-    /*******************
-     * Calendar functionality (already provided in your code)
-     *******************/
-    const daysTag = document.querySelector(".days"),
-        currentDate = document.querySelector(".current-date"),
-        prevNextIcon = document.querySelectorAll(".icons span");
-
-    // Getting the current date, year, and month
+    // Step 3: Render Calendar
     let date = new Date(),
         currYear = date.getFullYear(),
         currMonth = date.getMonth();
 
-    // Full names of months
     const months = [
         "ינואר", "פברואר", "מרץ", "אפריל", "מאי", "יוני", "יולי",
-        "אוגוסט", "ספטמבר", "אוקטובר", "נובמבר", "דצמבר"
+        "אוגוסט", "ספטמבר", "אוקטובר", "נובמבר", "דצמבר",
     ];
 
-    // Function to render the calendar
     const renderCalendar = () => {
         let firstDayOfMonth = new Date(currYear, currMonth, 1).getDay(),
             lastDateOfMonth = new Date(currYear, currMonth + 1, 0).getDate(),
@@ -60,33 +60,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Previous month's days
         for (let i = firstDayOfMonth; i > 0; i--) {
-            liTag += <li class="inactive">${lastDateOfLastMonth - i + 1}</li>;
+            liTag += `<li class="inactive">${lastDateOfLastMonth - i + 1}</li>`;
         }
 
         // Current month's days
         for (let i = 1; i <= lastDateOfMonth; i++) {
-            // Highlight today
             let isToday =
                 i === date.getDate() &&
                 currMonth === new Date().getMonth() &&
                 currYear === new Date().getFullYear()
                     ? "active"
                     : "";
-            liTag += <li class="${isToday}">${i}</li>;
+            liTag += `<li class="${isToday}">${i}</li>`;
         }
 
         // Next month's days
         for (let i = lastDayOfMonth; i < 6; i++) {
-            liTag += <li class="inactive">${i - lastDayOfMonth + 1}</li>;
+            liTag += `<li class="inactive">${i - lastDayOfMonth + 1}</li>`;
         }
 
-        currentDate.innerText = `${months[currMonth]} ${currYear}`; // Update the month and year
+        currentDate.innerText = `${months[currMonth]} ${currYear}`;
         daysTag.innerHTML = liTag;
     };
 
     renderCalendar();
 
-    // Handle previous and next icons
     prevNextIcon.forEach((icon) => {
         icon.addEventListener("click", () => {
             currMonth = icon.id === "prev" ? currMonth - 1 : currMonth + 1;
@@ -101,147 +99,61 @@ document.addEventListener("DOMContentLoaded", function () {
             renderCalendar();
         });
     });
-});
 
-// Add this at the end of your existing JavaScript file
-const daysTag = document.querySelector(".days");
-const calendarContainer = document.querySelector(".wrapper");
-const proceedButtonContainer = document.createElement("div"); // Create a container for the new button
-proceedButtonContainer.className = "button-container"; // Add the button container class
+    // Step 4: Select Date
+    daysTag.addEventListener("click", function (event) {
+        if (event.target.tagName === "LI" && !event.target.classList.contains("inactive")) {
+            // Highlight selected date
+            daysTag.querySelectorAll("li").forEach((day) => day.classList.remove("active"));
+            event.target.classList.add("active");
 
-// Create the new button element
-const newProceedButton = document.createElement("button");
-newProceedButton.id = "new-proceed-button";
-newProceedButton.style.display = "none"; // Initially hidden
-newProceedButton.textContent = "המשך";
-
-// Append the button to the button container and then to the calendar container
-proceedButtonContainer.appendChild(newProceedButton);
-calendarContainer.appendChild(proceedButtonContainer);
-
-// Add click event listener to the calendar days
-daysTag.addEventListener("click", function (event) {
-    if (event.target.tagName === "LI" && !event.target.classList.contains("inactive")) {
-        // Remove active class from previously selected date
-        daysTag.querySelectorAll("li").forEach((day) => day.classList.remove("active"));
-
-        // Add active class to the clicked date
-        event.target.classList.add("active");
-
-        // Show the new "המשך" button
-        newProceedButton.style.display = "inline-block"; // Make the button visible
-    }
-});
-
-// Select necessary elements
-const continueButton = document.querySelector("#new-proceed-button"); // Your "המשך" button
-const timesContainer = document.querySelector(".times-container");
-const selectedDateSpan = document.querySelector("#selected-date");
-const availableTimesList = document.querySelector("#available-times");
-
-// Add a click event listener to the "המשך" button
-continueButton.addEventListener("click", function () {
-    // Ensure a date is selected
-    const activeDay = document.querySelector(".days li.active");
-    if (!activeDay) {
-        alert("אנא בחר תאריך");
-        return;
-    }
-
-    // Display the times container
-    timesContainer.style.display = "block";
-
-    // Set the selected date
-    const selectedDay = activeDay.textContent;
-    const selectedMonth = currMonth + 1; // Months are 0-indexed
-    const selectedYear = currYear;
-    selectedDateSpan.textContent = `${selectedDay}/${selectedMonth}/${selectedYear}`;
-
-    // Populate the available times dynamically
-    const availableTimes = [
-        "10:00 AM",
-        "11:00 AM",
-        "12:00 PM",
-        "02:00 PM",
-        "03:00 PM",
-        "04:00 PM"
-    ];
-
-    // Clear any existing times
-    availableTimesList.innerHTML = "";
-
-    // Add available times to the list
-    availableTimes.forEach((time) => {
-        const timeItem = document.createElement("li");
-        timeItem.textContent = time;
-
-        // Add click event to highlight the selected time
-        timeItem.addEventListener("click", function () {
-            availableTimesList.querySelectorAll("li").forEach((item) => item.classList.remove("selected"));
-            timeItem.classList.add("selected");
-        });
-
-        availableTimesList.appendChild(timeItem);
+            // Show the second "המשך" button
+            newProceedButton.style.display = "inline-block";
+        }
     });
 
-    // Smooth scroll to the times container
-    timesContainer.scrollIntoView({ behavior: "smooth", block: "start" });
-});
+    // Step 5: Show Times
+    newProceedButton.addEventListener("click", function () {
+        // Ensure a date is selected
+        const selectedDate = document.querySelector(".days li.active");
+        if (!selectedDate) {
+            alert("אנא בחר תאריך");
+            return;
+        }
 
+        timesContainer.style.display = "block";
 
-
-
-// Select necessary elements
-const continueButton = document.querySelector("#new-proceed-button"); // Your "המשך" button
-const timesContainer = document.querySelector(".times-container");
-const selectedDateSpan = document.querySelector("#selected-date");
-const availableTimesList = document.querySelector("#available-times");
-
-// Add a click event listener to the "המשך" button
-continueButton.addEventListener("click", function () {
-    // Ensure a date is selected
-    const activeDay = document.querySelector(".days li.active");
-    if (!activeDay) {
-        alert("אנא בחר תאריך");
-        return;
-    }
-
-    // Display the times container
-    timesContainer.style.display = "block";
-
-    // Set the selected date
-    const selectedDay = activeDay.textContent;
-    const selectedMonth = currMonth + 1; // Months are 0-indexed
-    const selectedYear = currYear;
-    selectedDateSpan.textContent = `${selectedDay}/${selectedMonth}/${selectedYear}`;
-
-    // Populate the available times dynamically
-    const availableTimes = [
-        "10:00 AM",
-        "11:00 AM",
-        "12:00 PM",
-        "02:00 PM",
-        "03:00 PM",
-        "04:00 PM"
-    ];
-
-    // Clear any existing times
-    availableTimesList.innerHTML = "";
-
-    // Add available times to the list
-    availableTimes.forEach((time) => {
-        const timeItem = document.createElement("li");
-        timeItem.textContent = time;
-
-        // Add click event to highlight the selected time
-        timeItem.addEventListener("click", function () {
-            availableTimesList.querySelectorAll("li").forEach((item) => item.classList.remove("selected"));
-            timeItem.classList.add("selected");
-        });
-
-        availableTimesList.appendChild(timeItem);
+        // Smooth scroll to times container
+        timesContainer.scrollIntoView({ behavior: "smooth", block: "start" });
     });
 
-    // Smooth scroll to the times container
-    timesContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+    // Step 6: Select Time
+    availableTimesList.addEventListener("click", function (event) {
+        if (event.target.tagName === "LI") {
+            availableTimesList.querySelectorAll("li").forEach((time) => time.classList.remove("selected"));
+            event.target.classList.add("selected");
+
+            // Show the details container
+            detailsContainer.style.display = "block";
+
+            // Smooth scroll to details container
+            detailsContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+    });
+
+    // Step 7: Proceed to Payment
+    const paymentButton = document.querySelector("#payment-button");
+    paymentButton.addEventListener("click", function () {
+        const fullName = document.querySelector("#full-name").value.trim();
+        const phoneNumber = document.querySelector("#phone-number").value.trim();
+        const notes = document.querySelector("#notes").value.trim();
+
+        if (!fullName || !phoneNumber) {
+            alert("אנא מלא את כל השדות הנדרשים");
+            return;
+        }
+
+        alert(`תשלום מתבצע עבור:\nשם מלא: ${fullName}\nמספר טלפון: ${phoneNumber}\nהערות: ${notes || "אין"}`);
+        // Redirect to payment page or handle payment logic here
+    });
 });
