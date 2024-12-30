@@ -446,6 +446,12 @@ header .icons span:hover{
     transition: background-color 0.3s, color 0.3s;
 }
 
+#available-times li.selected {
+    background-color: #921A40;
+    color: #fff;
+}
+
+
 #available-times li:hover {
     background-color: #921A40;
     color: #fff;
