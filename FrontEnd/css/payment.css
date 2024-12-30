@@ -1,0 +1,171 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  body {
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    direction: rtl;
+    background: linear-gradient(135deg, #921a40, #f8f9fa); /* Gradient background */
+    background-attachment: fixed; /* Keeps gradient fixed while scrolling */
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+  }
+
+  .logo img {
+    width: 180px;
+    height: 90px;
+    margin-left: 10px;
+  }
+
+  .navbar {
+    position: fixed; /* Fixes the navbar to the top */
+    top: 0;
+    left: 0;
+    width: 100%; /* Makes it stretch across the top of the page */
+    background-color: #921a40; /* Your navbar background color */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for better design */
+    z-index: 1000; /* Ensures the navbar stays on top of other elements */
+  }
+
+  .menu a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 18px;
+  }
+  
+  .menu a:hover {
+    text-decoration: underline;
+  }
+  
+
+  .payment-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 650px;
+    height: 450px;
+    text-align: center;
+    border: 2px solid #921a40a5;
+  }
+  
+  .payment-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #921a40;
+  }
+  
+  .alert-message {
+    background-color: #ed99b4a5;
+    color: black;
+    padding: 10px;
+    border: 1px solid #921a40a5;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 17px;
+    text-align: right;
+  }
+  
+  .payment-form .form-group {
+    margin-bottom: 15px;
+    text-align: right;
+  }
+  
+  .payment-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    font-size: 20px;
+    color: #921a40;
+  }
+  
+  .payment-form input,
+  .payment-form select {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #921a40;
+    border-radius: 5px;
+    margin-top: 5px;
+  }
+  
+  .payment-form .expiry-date {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .payment-form .expiry-date select,
+  .payment-form .expiry-date input {
+    flex: 1;
+  }
+  
+  .payment-form .amount-input {
+    display: flex;
+    align-items: center;
+  }
+  
+  .payment-form .amount-input span {
+    font-size: 20px;
+    color: #555;
+    padding-left: 5px;
+  }
+  
+  .payment-form .form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .payment-form .cancel-button,
+  .payment-form .submit-button {
+    width: 48%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .payment-form .cancel-button {
+    background-color: #333;
+    color: white;
+  }
+  
+  .payment-form .cancel-button:hover {
+    background-color: #d6d6d6;
+  }
+  
+  .payment-form .submit-button {
+    background-color: #921a40;
+    color: #fff;
+  }
+  
+  .payment-form .submit-button:hover {
+    background-color: #921a40a5;
+  }
+
+  .login-button {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .login-button:hover {
+    background-color: #0056b3;
+  }
+  

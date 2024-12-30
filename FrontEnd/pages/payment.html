@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>תשלום בכרטיס אשראי</title>
+  <link rel="stylesheet" href="../css/payment.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="navbar">
+        <div class="logo">
+          <a href="../pages/home.html"><img src="../Images/logo.jpg" alt="Logo"></a>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="payment-container">
+    <h2>תשלום בכרטיס אשראי</h2>
+    <div class="alert-message">סכום המקדמה: 50₪</div>
+    <form class="payment-form">
+      <div class="form-group">
+        <label for="card-holder-name">שם בעל הכרטיס:</label>
+        <input type="text" id="card-holder-name" name="card-holder-name" required>
+      </div>
+      <div class="form-group">
+        <label for="card-number">מספר כרטיס:</label>
+        <input type="text" id="card-number" name="card-number" maxlength="16" required>
+      </div>
+      <div class="form-group">
+        <label for="expiry-date">תוקף הכרטיס:</label>
+        <div class="expiry-date">
+         <select id="expiry-month" name="expiry-month" required>
+                <option value="" disabled selected>חודש</option>
+                <option value="01">01</option>
+                <option value="02">02</option>
+                <option value="03">03</option>
+                <option value="04">04</option>
+                <option value="05">05</option>
+                <option value="06">06</option>
+                <option value="07">07</option>
+                <option value="08">08</option>
+                <option value="09">09</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
+            <select id="expiry-year" name="expiry-year" required>
+                <option value="" disabled selected>שנה</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
+                <option value="2029">2029</option>
+                <option value="2030">2030</option>
+                <option value="2031">2031</option>
+                <option value="2032">2032</option>
+                <option value="2033">2033</option>
+                <option value="2034">2034</option>
+                <option value="2035">2035</option>
+                <option value="2036">2036</option>
+                <option value="2037">2037</option>
+                <option value="2038">2038</option>
+                <option value="2039">2039</option>
+                <option value="2040">2040</option>
+            </select>
+          <input type="text" id="cvc" name="cvc" placeholder="CVC" maxlength="4" required>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="cancel-button">ביטול</button>
+        <button type="submit" class="submit-button" onclick="openModal()">בצע תשלום</button>
+      </div>
+    </form>
+</div>
+<script src="../javascript/payment.js"></script>
+</body>
+</html>

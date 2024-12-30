@@ -8,6 +8,16 @@ body {
   background-attachment: fixed; /* Keeps gradient fixed while scrolling */
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 180px;
+  height: 90px;
+  margin-left: 10px;
+}
 
 /* Header */
 header {
@@ -24,22 +34,27 @@ header {
 
 nav {
   display: flex;
-  justify-content: right;
+  justify-content: space-between; /* Distributes space between logo and nav links */
+  align-items: center; /* Aligns items vertically in the center */
   padding: 0 20px; /* Adds horizontal padding */
 }
 
+.nav-links {
+  display: flex;
+  gap: 15px; /* Space between nav links */
+}
+
 nav a {
-  color: #fff;
-  text-decoration: none;
-  margin: 0 15px;
-  font-size: 25px;
-  transition: color 0.3s;
+	color: #fff;
+	text-decoration: none;
+	margin: 0 15px;
+	font-size: 25px;
+	transition: color 0.3s;
 }
 
 nav a:hover {
   color: black;
 }
-
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -57,6 +72,7 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 150px;
 }
 
 #appointment-container {
@@ -81,6 +97,8 @@ h1 {
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   justify-content: center;
+  border: 2px solid #921A40;
+
 }
 
 .waiting-list {

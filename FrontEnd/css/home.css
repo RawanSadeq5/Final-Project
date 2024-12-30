@@ -16,8 +16,8 @@ body {
 }
 
 .logo img {
-    width: 200px;
-    height: 100px;
+    width: 180px;
+    height: 90px;
     margin-left: 10px;
 }
 
@@ -27,6 +27,7 @@ header {
     top: 0;
     left: 0;
     width: 100%;
+    height: inherit;
     background-color: #921a40;
     color: white;
     z-index: 1000;
@@ -93,6 +94,7 @@ nav a:hover {
     padding: 150px 20px 50px;
     background: #e4e0e1;
     color: #921a40;
+    margin-top: 150px;
 }
 
 .hero h1 {

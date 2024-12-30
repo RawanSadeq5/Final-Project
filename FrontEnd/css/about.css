@@ -10,6 +10,17 @@ body {
     background: linear-gradient(135deg, #921a40, #f8f9fa); /* Gradient background */
     background-attachment: fixed; /* Keeps gradient fixed while scrolling */
   }
+
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo img {
+      width: 180px;
+      height: 90px;
+      margin-left: 10px;
+    }
   
   /* Header */
   header {
@@ -19,29 +30,34 @@ body {
     text-align: center;
   }
 
-  nav{
-    font-family:Arial, sans-serif;
+  nav {
+    display: flex;
+    justify-content: space-between; /* Distributes space between logo and nav links */
+    align-items: center; /* Aligns items vertically in the center */
+    padding: 0 20px; /* Adds horizontal padding */
+}
+
+  .nav-links {
       display: flex;
-      justify-content: right;
-      background-color: #921a40;
-      padding: 5px;
+      gap: 15px; /* Space between nav links */
   }
-    
+
   nav a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 15px;
-      font-size: 25px;
-      transition: color 0.3s;
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 25px;
+    transition: color 0.3s;
+  }
+
+  nav a:hover {
+      color: black;
   }
 
   .about{
     color: black;
   }
 
-  nav a:hover {
-      color: black;
-  }
     
   /* Main Content */
   main {
@@ -69,9 +85,9 @@ body {
   .about-section p,
   .mission-section p,
   .team-section p {
-    font-size: 1rem;
+    font-size: 18px;
     margin: 0;
-    color: #555;
+    color: black;
   }
   
   /* Footer */

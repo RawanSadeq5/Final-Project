@@ -13,6 +13,17 @@ body {
 
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 180px;
+  height: 90px;
+  margin-left: 10px;
+}
+
 /* Header */
 header {
   position: fixed; /* Fixes the header at the top of the viewport */
@@ -28,16 +39,22 @@ header {
 
 nav {
   display: flex;
-  justify-content: right;
+  justify-content: space-between; /* Distributes space between logo and nav links */
+  align-items: center; /* Aligns items vertically in the center */
   padding: 0 20px; /* Adds horizontal padding */
 }
 
+.nav-links {
+  display: flex;
+  gap: 15px; /* Space between nav links */
+}
+
 nav a {
-  color: #fff;
-  text-decoration: none;
-  margin: 0 15px;
-  font-size: 25px;
-  transition: color 0.3s;
+color: #fff;
+text-decoration: none;
+margin: 0 15px;
+font-size: 25px;
+transition: color 0.3s;
 }
 
 nav a:hover {
@@ -46,7 +63,7 @@ nav a:hover {
 
 /* Adjust the main container to sit below the header */
 main {
-  margin-top: 100px; /* Adjust this value to match the header's height */
+  margin-top: 120px; /* Adjust this value to match the header's height */
   padding: 10px;
   max-width:100%;
   width: 90%;

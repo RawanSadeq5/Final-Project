@@ -12,6 +12,17 @@ body {
 	/* Keeps gradient fixed while scrolling */
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 180px;
+    height: 90px;
+    margin-left: 10px;
+}
+
 /* Header */
 header {
 	position: fixed;
@@ -32,10 +43,15 @@ header {
 
 
 nav {
-	display: flex;
-	justify-content: right;
-	padding: 0 20px;
-	/* Adds horizontal padding */
+    display: flex;
+    justify-content: space-between; /* Distributes space between logo and nav links */
+    align-items: center; /* Aligns items vertically in the center */
+    padding: 0 20px; /* Adds horizontal padding */
+}
+
+.nav-links {
+    display: flex;
+    gap: 15px; /* Space between nav links */
 }
 
 nav a {
@@ -47,13 +63,12 @@ nav a {
 }
 
 nav a:hover {
-	color: black;
+    color: black;
 }
 
 /* Adjust the main container to sit below the header */
 main {
-	margin-top: 70px;
-	/* Adjust this value to match the header's height */
+	margin-top: 130px;
 	padding: 20px;
 }
 
@@ -77,6 +92,8 @@ main {
 	/* Adjust width to make the rectangular smaller (can change percentage) */
 	max-width: 600px;
 	/* Set a maximum width to avoid too large a container on wide screens */
+	border: 2px solid #921A40;
+
 }
 
 
@@ -136,6 +153,8 @@ header p {
 	margin: 0 auto;
 	text-align: center;
 	border-radius: 10px;
+	border: 2px solid #921A40;
+
 }
 
 .gallery img {
@@ -157,6 +176,8 @@ header p {
 	/* Adjust width to make the rectangular smaller (can change percentage) */
 	max-width: 600px;
 	/* Set a maximum width to avoid too large a container on wide screens */
+	border: 2px solid #921A40;
+
 }
 
 .services h2 {
@@ -324,6 +345,8 @@ footer {
     border-radius: 10px;
     padding: 20px;
     text-align: center;
+	border: 2px solid #921A40;
+
 }
 
 .wrapper header{
@@ -423,11 +446,13 @@ header .icons span:hover{
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
+	border: 2px solid #921A40;
+
 }
 
 .times-container h3 {
     margin-bottom: 20px;
-    font-size: 18px;
+    font-size: 22px;
     color: #921A40;
 }
 
@@ -444,16 +469,65 @@ header .icons span:hover{
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
+	font-weight: bold;
 }
-
-#available-times li.selected {
-    background-color: #921A40;
-    color: #fff;
-}
-
 
 #available-times li:hover {
     background-color: #921A40;
     color: #fff;
 }
 
+.details-container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+	border: 2px solid #921A40;
+}
+
+.details-container h3 {
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #921A40;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+	text-align: right;
+	font-size: 18px;
+
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#payment-button {
+    background-color: #921A40;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+#payment-button:hover {
+    background-color: #c42a5c;
+}

@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // login page navigation
     const loginLink = document.getElementById("login-link");
-    homeLink.addEventListener("click", (event) => {
+    loginLinkLink.addEventListener("click", (event) => {
       event.preventDefault();
       window.location.href = "login.html"; 
     });
