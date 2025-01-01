@@ -61,7 +61,7 @@ nav a:hover {
 
 /* Adjust the main container to sit below the header */
 main {
-    margin-top: 70px; /* Adjust this value to match the header's height */
+    margin-top: 170px; /* Adjust this value to match the header's height */
     padding: 20px;
   }  
 

@@ -14,13 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "contactUs.html"; 
   });
 
-  // Change language to English
-  const languageLink = document.getElementById("language-link");
-  languageLink.addEventListener("click", (event) => {
-    event.preventDefault();
-    changeLanguageToEnglish();
-  });
-
   // add business page navigation
   const addBusinessLink = document.getElementById("addBusiness-link");
   addBusinessLink.addEventListener("click", (event) => {

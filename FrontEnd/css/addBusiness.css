@@ -73,18 +73,6 @@ main {
   flex-direction: column;
 }
 
-/* Container Styling */
-/*.container {
-  max-width:100%;
-  width: 90%;
-  margin: 0 auto;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  flex-direction: column;
-}*/
-
 /* Progress Bar */
 .progress-bar {
   display: flex;
@@ -133,12 +121,13 @@ label {
   font-weight: bold;
   margin-bottom: 5px;
   display: block;
+  color:#921a40;
 }
 
 input {
   padding: 10px;
   margin-bottom: 20px;
-  border: 1px solid #ced4da;
+  border: 2px solid #921a40;
   border-radius: 5px;
   font-size: 16px;
   outline: none;
@@ -147,7 +136,7 @@ input {
 
 input:focus {
   border-color: #921A40;
-  box-shadow: 0 0 4px rgba(16, 108, 79, 0.5);
+  box-shadow: 0 0 4px rgba(10, 28, 22, 0.905);
 }
 
 /* Navigation Buttons */
@@ -165,12 +154,12 @@ button {
 }
 
 .previous {
-  background-color: #f1f3f5;
-  color: #495057;
+  background-color: #333;
+  color: white;
 }
 
 .previous:hover {
-  background-color: #e9ecef;
+  background-color: #495057;
 }
 
 .next {
@@ -245,7 +234,7 @@ button:disabled {
 /* Working Days Styling */
 #working-days {
   margin-top: 20px;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #921a40;
   padding-top: 20px;
 }
 
@@ -266,7 +255,7 @@ button:disabled {
 .day input[type="time"] {
   width: 125px;
   padding: 10px;
-  border: 1px solid #ced4da;
+  border-top: 1px solid #921a40;
   border-radius: 5px;
   font-size: 14px;
   text-align: center;
@@ -315,7 +304,7 @@ input[type="number"] {
   font-size: 14px;
   width: 100px;
   margin-top: 5px;
-  border: 1px solid #ced4da;
+  border-top: 1px solid #921a40;
   border-radius: 5px;
 }
 .radio-group {
@@ -345,7 +334,7 @@ input[type="number"] {
   font-size: 14px;
   width: 100px;
   margin-top: 5px;
-  border: 1px solid #ced4da;
+  border-top: 1px solid #921a40;
   border-radius: 5px;
 }
 
@@ -374,7 +363,7 @@ input[type="number"] {
 .upload-container input[type="file"] {
   margin: 15px 0;
   padding: 10px;
-  border: 1px solid #ced4da;
+  border-top: 1px solid #921a40;
   border-radius: 8px;
   width: 80%;
   font-size: 0.95rem;

@@ -21,6 +21,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // Handle "איפוס סיסמה" button
     const resetButton = document.querySelector("button[type='submit']");
     resetButton.addEventListener("click", (event) => {
+        
+        const emailAddress = document.querySelector("#email").value.trim();
+        const password = document.querySelector("#password").value.trim();
+    
+        if (!emailAddress || !password) {
+            alert("אנא מלא את כל השדות הנדרשים");
+            return;
+        }
         event.preventDefault();
 
         // Create success modal

@@ -63,12 +63,113 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "contactUs.html"; 
   });
 
-  // About page navigation
+  // home page navigation
   const homeLink = document.getElementById("home-link");
   homeLink.addEventListener("click", (event) => {
     event.preventDefault();
     window.location.href = "home.html"; 
   });
+
+  // About page navigation
+  const businessLink = document.getElementById("home-link");
+  businessLink.addEventListener("click", (event) => {
+    event.preventDefault();
+    window.location.href = "business.html"; 
+  });
+
+  // Add Service Lines Dynamically
+  const addServiceButton = document.getElementById("plus-button");
+  const removeServiceButton = document.getElementById("mi-button");
+  const servicesContainer = document.getElementById("services-container");
+
+  function addServiceLine(event) {
+    // Prevent default button behavior
+    event.preventDefault();
+
+    // Create a new div for the service line
+    const serviceLine = document.createElement("div");
+    serviceLine.className = "form-group";
+    serviceLine.style.display = "flex";
+    serviceLine.style.alignItems = "center";
+    serviceLine.style.gap = "20px";
+    serviceLine.style.marginBottom = "15px"; // Add space below each row
+
+    // Add the HTML structure for the new service line
+    serviceLine.innerHTML = `
+      <label style="font-size:17px;">
+        סוג שירות:
+        <input type="text" placeholder="הכנס סוג שירות" class="form-input" style="font-size: 17px; padding: 10px; width: 150px;">
+      </label>
+      <label style="font-size:17px;">
+        משך:
+        <input type="number" placeholder="0" style="font-size: 17px; padding: 10px; width: 60px;">
+        <span>שעות</span>
+        <input type="number" placeholder="0" style="font-size: 17px; padding: 10px; width: 60px;">
+        <span>דקות</span>
+      </label>
+      <label style="font-size:17px;">
+        מחיר:
+        <input type="number" placeholder="0.00" step="0.01" min="0" style="font-size: 17px; padding: 10px; width: 100px;">
+        <span>₪</span>
+      </label>
+    `;
+
+    // Append the new service line to the container
+    servicesContainer.appendChild(serviceLine);
+
+    // Show the "-" button if there's more than one service line
+    if (servicesContainer.childElementCount > 0) {
+      removeServiceButton.style.display = "inline-block";
+    }
+  }
+
+
+  // Add an event listener to the button
+  addServiceButton.addEventListener("click", addServiceLine);
+
+  // Remove the last added service line
+  function removeServiceLine(event) {
+    event.preventDefault();
+
+    // Only remove if there are more than one service line
+    if (servicesContainer.childElementCount > 1) {
+      servicesContainer.removeChild(servicesContainer.lastElementChild);
+    }
+
+    // Hide the "-" button if there's only one service line left
+    if (servicesContainer.childElementCount === 1) {
+      removeServiceButton.style.display = "none";
+    }
+  }
+
+  // Add event listeners for "+" and "-" buttons
+  addServiceButton.addEventListener("click", addServiceLine);
+  removeServiceButton.addEventListener("click", removeServiceLine);
+
+  // Initial setup: Hide the "-" button
+  removeServiceButton.style.display = "none";
+
+
+  // Select DOM elements for the radio buttons and price container
+  const yesRadioButton = document.getElementById("yes");
+  const noRadioButton = document.getElementById("no");
+  const priceContainer = document.getElementById("price-container");
+
+  // Show or hide the price input field based on the selected radio button
+  function handleRadioChange() {
+    if (yesRadioButton.checked) {
+      priceContainer.style.display = "block"; // Show the price input field
+    } else {
+      priceContainer.style.display = "none"; // Hide the price input field
+    }
+  }
+
+  // Add event listeners to the radio buttons
+  yesRadioButton.addEventListener("change", handleRadioChange);
+  noRadioButton.addEventListener("change", handleRadioChange);
+
+  // Initial setup: Ensure the price container is hidden by default
+  priceContainer.style.display = "none";
 
 });
 
@@ -159,7 +260,21 @@ function updateSteps() {
   });
 
   prevBtn.disabled = currentStep === 0;
-  nextBtn.textContent = currentStep === steps.length - 1 ? "הרשם כעת" : "הבא";
+
+  // Check if it's the last step
+  if (currentStep === steps.length - 1) {
+    nextBtn.textContent = "הרשם כעת";
+
+    // Add event listener to redirect on button click
+    nextBtn.addEventListener("click", function redirectToBusinessPage() {
+      window.location.href = "business.html";
+    });
+  } else {
+    nextBtn.textContent = "הבא";
+
+    // Remove the redirect event listener to avoid unnecessary redirection
+    nextBtn.removeEventListener("click", redirectToBusinessPage);
+  }
 }
 
 nextBtn.addEventListener("click", () => {
@@ -179,96 +294,3 @@ prevBtn.addEventListener("click", () => {
 });
 
 updateSteps();
-
-// Add Service Lines Dynamically
-const addServiceButton = document.getElementById("plus-button");
-const removeServiceButton = document.getElementById("mi-button");
-const servicesContainer = document.getElementById("services-container");
-
-function addServiceLine(event) {
-  // Prevent default button behavior
-  event.preventDefault();
-
-  // Create a new div for the service line
-  const serviceLine = document.createElement("div");
-  serviceLine.className = "form-group";
-  serviceLine.style.display = "flex";
-  serviceLine.style.alignItems = "center";
-  serviceLine.style.gap = "20px";
-  serviceLine.style.marginBottom = "15px"; // Add space below each row
-
-  // Add the HTML structure for the new service line
-  serviceLine.innerHTML = `
-    <label style="font-size:17px;">
-      סוג שירות:
-      <input type="text" placeholder="הכנס סוג שירות" class="form-input" style="font-size: 17px; padding: 10px; width: 150px;">
-    </label>
-    <label style="font-size:17px;">
-      משך:
-      <input type="number" placeholder="0" style="font-size: 17px; padding: 10px; width: 60px;">
-      <span>שעות</span>
-      <input type="number" placeholder="0" style="font-size: 17px; padding: 10px; width: 60px;">
-      <span>דקות</span>
-    </label>
-    <label style="font-size:17px;">
-      מחיר:
-      <input type="number" placeholder="0.00" step="0.01" min="0" style="font-size: 17px; padding: 10px; width: 100px;">
-      <span>₪</span>
-    </label>
-  `;
-
-  // Append the new service line to the container
-  servicesContainer.appendChild(serviceLine);
-
-  // Show the "-" button if there's more than one service line
-  if (servicesContainer.childElementCount > 0) {
-    removeServiceButton.style.display = "inline-block";
-  }
-}
-
-
-// Add an event listener to the button
-addServiceButton.addEventListener("click", addServiceLine);
-
-// Remove the last added service line
-function removeServiceLine(event) {
-  event.preventDefault();
-
-  // Only remove if there are more than one service line
-  if (servicesContainer.childElementCount > 1) {
-    servicesContainer.removeChild(servicesContainer.lastElementChild);
-  }
-
-  // Hide the "-" button if there's only one service line left
-  if (servicesContainer.childElementCount === 1) {
-    removeServiceButton.style.display = "none";
-  }
-}
-
-// Add event listeners for "+" and "-" buttons
-addServiceButton.addEventListener("click", addServiceLine);
-removeServiceButton.addEventListener("click", removeServiceLine);
-
-// Initial setup: Hide the "-" button
-removeServiceButton.style.display = "none";
-
-// Select DOM elements for the radio buttons and price container
-const yesRadioButton = document.getElementById("yes");
-const noRadioButton = document.getElementById("no");
-const priceContainer = document.getElementById("price-container");
-
-// Show or hide the price input field based on the selected radio button
-function handleRadioChange() {
-  if (yesRadioButton.checked) {
-    priceContainer.style.display = "block"; // Show the price input field
-  } else {
-    priceContainer.style.display = "none"; // Hide the price input field
-  }
-}
-
-// Add event listeners to the radio buttons
-yesRadioButton.addEventListener("change", handleRadioChange);
-noRadioButton.addEventListener("change", handleRadioChange);
-
-// Initial setup: Ensure the price container is hidden by default
-priceContainer.style.display = "none";

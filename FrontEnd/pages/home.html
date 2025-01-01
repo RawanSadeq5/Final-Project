@@ -30,7 +30,6 @@
         <!-- Navigation Bar -->
         <nav>
             <div class="nav-links">
-                <a id="language-link" href="#">שפה</a>
                 <a id="home-link"  class="home" href="#">בית</a>
                 <a id="about-link" href="#">אודות</a>
                 <a id="contact-link" href="#">צור קשר</a>
@@ -43,7 +42,6 @@
 
         <!-- Header Buttons -->
         <div class="header-buttons">
-            <button class="header-button">כניסה לעסקים</button>
             <button id="addBusiness-link" class="header-button">+ הוסף עסק חדש</button>
             <button id="logIn-link" class="header-button">התחברות</button>
         </div>
@@ -53,38 +51,43 @@
     <div class="hero">
         <h1>ברוכים הבאים ל- NexTor</h1>
         <p>הזמינו תור מראש, חסכו זמן, ותיהנו משירות מקצועי ומהיר.</p>
-        <form class="search-form">
-            <input type="text" placeholder="חיפוש עסק" name="topic">
-            <button>חפש</button>
-        </form>
+        <br/>
+            <form class="search-form">
+                <input type="text" placeholder="חיפוש עסק" name="business">
+                <input type="text" placeholder="חיפוש שירות" name="service">
+                <input type="text" placeholder="חיפוש אזור" name="area">
+                <button>חפש</button>
+            </form>    
     </div>
-
-    <!-- Hot Appointments Section -->
-    <div class="hot-appointments">
-        <h2>תורים חמים</h2>
-        <div class="appointments-grid">
-            <div class="appointment-card">
-                <img src="barber.jpg" alt="Man Hair Style">
-                <div class="appointment-info">
-                    <h3>עיצוב שיער</h3>
-                    <p>מאת: עבדול רזק</p>
-                    <p>מגדל העיר, רחוב: 1285, ארה"ב</p>
-                    <p><span class="price-discounted">$3500</span> <span class="price-original">$4000</span></p>
-                    <button>הזמן עכשיו</button>
+    <main>
+        <!-- Hot Appointments Section -->
+        <div class="hot-appointments">
+            <h2>תורים חמים</h2>
+            <div class="appointments-grid">
+                <div class="appointment-card">
+                    <img src="barber.jpg" alt="Man Hair Style">
+                    <div class="appointment-info">
+                        <h3>עיצוב שיער</h3>
+                        <p>מאת: עבדול רזק</p>
+                        <p>מגדל העיר, רחוב: 1285, ארה"ב</p>
+                        <p><span class="price-discounted">$3500</span> <span class="price-original">$4000</span></p>
+                        <button>הזמן עכשיו</button>
+                    </div>
                 </div>
-            </div>
-            <div class="appointment-card">
-                <img src="electrician.jpg" alt="Expert Electrician">
-                <div class="appointment-info">
-                    <h3>חשמלאי מומחה</h3>
-                    <p>מאת: אפיף איסלם</p>
-                    <p>מגדל העיר, רחוב: 1285, ארה"ב</p>
-                    <p><span class="price-discounted">$4000</span> <span class="price-original">$5000</span></p>
-                    <button>הזמן עכשיו</button>
+                <div class="appointment-card">
+                    <img src="electrician.jpg" alt="Expert Electrician">
+                    <div class="appointment-info">
+                        <h3>חשמלאי מומחה</h3>
+                        <p>מאת: אפיף איסלם</p>
+                        <p>מגדל העיר, רחוב: 1285, ארה"ב</p>
+                        <p><span class="price-discounted">$4000</span> <span class="price-original">$5000</span></p>
+                        <button>הזמן עכשיו</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+
+    </main>
 
     <!-- Footer -->
     <footer>

@@ -130,7 +130,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // Step 6: Select Time
     availableTimesList.addEventListener("click", function (event) {
         if (event.target.tagName === "LI") {
+            // Remove "selected" class from all times
             availableTimesList.querySelectorAll("li").forEach((time) => time.classList.remove("selected"));
+
+            // Add "selected" class to the clicked time
             event.target.classList.add("selected");
 
             // Show the details container
@@ -143,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Step 7: Proceed to Payment
     const paymentButton = document.querySelector("#payment-button");
-    paymentButton.addEventListener("click", function () {
+    paymentButton.addEventListener("click",  (event) => {
         const fullName = document.querySelector("#full-name").value.trim();
         const phoneNumber = document.querySelector("#phone-number").value.trim();
         const notes = document.querySelector("#notes").value.trim();
@@ -153,7 +156,29 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        alert(`תשלום מתבצע עבור:\nשם מלא: ${fullName}\nמספר טלפון: ${phoneNumber}\nהערות: ${notes || "אין"}`);
-        // Redirect to payment page or handle payment logic here
+        event.preventDefault();
+        window.location.href = "payment.html"; 
+
+    });
+
+    // About page navigation
+    const aboutLink = document.getElementById("about-link");
+    aboutLink.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.location.href = "about.html"; 
+    });
+
+    // Contact us page navigation
+    const contactLink = document.getElementById("contact-link");
+    contactLink.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.location.href = "contactUs.html"; 
+    });
+
+    // Home page navigation
+    const homeLink = document.getElementById("home-link");
+    homeLink.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.location.href = "home.html"; 
     });
 });

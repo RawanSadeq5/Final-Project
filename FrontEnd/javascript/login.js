@@ -1,4 +1,3 @@
-// Ensure DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
     // Reference to the form elements
     const form = document.querySelector("form");
@@ -36,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return emailPattern.test(email);
     }
 
-    // About page navigation
+  // About page navigation
   const aboutLink = document.getElementById("about-link");
   aboutLink.addEventListener("click", (event) => {
     event.preventDefault();
@@ -50,10 +49,32 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "contactUs.html"; 
   });
 
-  // Contact us page navigation
+  // home page navigation
   const homeLink = document.getElementById("home-link");
   homeLink.addEventListener("click", (event) => {
     event.preventDefault();
     window.location.href = "home.html"; 
   });
+
+  // my appointments page navigation
+  const appointmentLink = document.getElementById("submit");
+  appointmentLink.addEventListener("click", (event) => {
+    const emailAddress = document.querySelector("#email").value.trim();
+    const password = document.querySelector("#password").value.trim();
+
+    if (!emailAddress || !password) {
+        alert("אנא מלא את כל השדות הנדרשים");
+        return;
+    }
+    event.preventDefault();
+    window.location.href = "myAppointments.html"; 
+  });
+
+  // my forgetpass page navigation
+  const forgetLink = document.getElementById("forget");
+  forgetLink.addEventListener("click", (event) => {
+    event.preventDefault();
+    window.location.href = "forgetPass.html"; 
+  });
+
 });
