@@ -477,6 +477,15 @@ header .icons span:hover{
     color: #fff;
 }
 
+/* Highlight the selected hour */
+#available-times li.selected {
+    background-color: #921A40;
+    color: #fff;
+    border-color: #921A40;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
 .details-container {
     margin-top: 20px;
     padding: 20px;

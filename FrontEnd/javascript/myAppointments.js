@@ -64,6 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 
+
   // Handle deletion buttons for waiting list
   document.querySelectorAll(".waiting-list .action-button.delete-waiting").forEach(button => {
       button.addEventListener("click", (event) => {
@@ -108,3 +109,37 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 });
+
+const transferButton = document.getElementById('transferButton');
+const popup = document.getElementById('popup');
+const copyButton = document.getElementById('copyButton');
+const linkInput = document.getElementById('linkInput');
+
+// Show the popup and dim the background
+transferButton.addEventListener('click', function (event) {
+    event.preventDefault();
+    document.body.classList.add('popup-active');
+    popup.style.display = 'block';
+});
+
+copyButton.addEventListener('click', function () {
+    linkInput.select();
+    linkInput.setSelectionRange(0, 99999); // For mobile devices
+    navigator.clipboard.writeText(linkInput.value).then(() => {
+        const originalText = copyButton.innerHTML;
+        copyButton.innerHTML = 'הועתק!';
+        setTimeout(() => {
+            copyButton.innerHTML = originalText;
+        }, 2000); // Restore original text after 2 seconds
+    });
+});
+
+// Close the popup when clicking outside of it
+document.addEventListener('click', function (event) {
+    if (!popup.contains(event.target) && event.target !== transferButton) {
+        popup.style.display = 'none';
+        document.body.classList.remove('popup-active');
+    }
+});
+
+

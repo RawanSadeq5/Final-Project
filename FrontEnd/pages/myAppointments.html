@@ -10,7 +10,6 @@
       <header>
          <nav>
             <div class="nav-links">
-               <a id="language-link" href="#">שפה</a>
                <a id="home-link" href="#">בית</a>
                <a id="about-link" href="#" class="about">אודות</a>
                <a id="contact-link" href="#" class="contact-us">צור קשר</a>
@@ -55,7 +54,7 @@
                   <br/>
                   <br/>
                   <div class="appointment-actions">
-                     <button class="action-button transfer">העבר לחבר</button>
+                     <button id="transferButton" class="action-button transfer">העבר לחבר</button>
                      <button class="action-button cancel">ביטול תור</button>
                   </div>
                </div>
@@ -82,7 +81,19 @@
                   <label><strong>שעה:</strong> 19:00</label>
                   <br/>
                   <br/>
-                  <button class="action-button cancel">מחיקה מרשימת המתנה</button>
+                  <button class="action-button delete-waiting">מחיקה מרשימת המתנה</button>
+               </div>
+            </div>
+         </div>
+               <!-- Popup Window -->
+         <div id="popup" style="display: none;">
+            <div class="popup-content">
+               <p style="font-size: 20px; font-weight: bold;">כדי להעביר את התור לחבר, העתק את הקישור הבא</p>
+               <div class="link-container" style="display: flex; align-items: center;">
+                  <input type="text" id="linkInput" class="link-input" value="https://NexTor.com/home" readonly style="flex-grow: 1; padding: 8px; margin-right: 10px;">
+                  <button id="copyButton" class="copy-button" style="padding: 8px;">
+                        <img src="../Images/copy.jpg" alt="Copy" style="width: 20px; height: 20px;">
+                  </button>
                </div>
             </div>
          </div>

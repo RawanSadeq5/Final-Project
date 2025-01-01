@@ -62,7 +62,13 @@ nav a:hover {
 
 .home{
     color:black;
-  }
+}
+
+main {
+	margin-top: 130px;
+	padding: 20px;
+}
+
   
 /* Header Buttons */
 .header-buttons {
@@ -92,19 +98,20 @@ nav a:hover {
 .hero {
     text-align: center;
     padding: 150px 20px 50px;
-    background: #e4e0e1;
     color: #921a40;
     margin-top: 150px;
 }
 
 .hero h1 {
-    font-size: 40px;
+    font-size: 50px;
     margin-bottom: 10px;
 }
 
 .hero p {
-    font-size: 18px;
+    font-size: 30px;
     margin-bottom: 20px;
+    color: #521122;
+    font-weight: bold;
 }
 
 .search-form {
@@ -116,14 +123,16 @@ nav a:hover {
 
 .search-form input {
     padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+    width: 170px;
+    font-size: 20px;
+    border-radius: 8px;
+    border: 2px solid #921a40;
 }
 
 .search-form button {
     padding: 10px 15px;
-    font-size: 16px;
+    width: 100px;
+    font-size: 20px;
     background-color: #921a40;
     color: white;
     border: none;
@@ -132,7 +141,7 @@ nav a:hover {
 }
 
 .search-form button:hover {
-    background-color: #791833;
+    background-color: #921a40a5;
 }
 
 /* Hot Appointments */
@@ -142,7 +151,7 @@ nav a:hover {
 }
 
 .hot-appointments h2 {
-    font-size: 28px;
+    font-size: 36px;
     margin-bottom: 20px;
     text-align: center;
     color: #921a40;
