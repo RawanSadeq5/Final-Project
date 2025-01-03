@@ -155,18 +155,19 @@
                      <form>
                         <div class="radio-group">
                            <div class="radio-item">
-                  <label for="yes">
-                  <input type="radio" id="yes" name="choice" value="yes" style= "font-size: 20px">
-                  כן</label>
-                  </div>
-                  <div class="radio-item">
-                  <label for="no">
-                  <input type="radio" id="no" name="choice" value="no" style= "font-size: 20px">
-                  לא</label>
-                  </div>
-                  </div>
-                  </form>
+                              <label for="yes">
+                              <input type="radio" id="yes" name="choice" value="yes" style= "font-size: 20px">
+                              כן</label>
+                           </div>
+                           <div class="radio-item">
+                              <label for="no">
+                              <input type="radio" id="no" name="choice" value="no" style= "font-size: 20px">
+                              לא</label>
+                           </div>
+                        </div>
+                     </form>
                   </label>
+
                   <div id="price-container" class="price-input">
                      <label for="price" id="advance">הכנס את מחיר המקדמה:
                      <input type="number" id="price" name="price" placeholder="0.00" min="0" step="0.01">
@@ -174,6 +175,25 @@
                      </label>
                   </div>
                   <br/>
+
+                  <label for="username" style="font-size: 20px;">
+                     האם יש אפשרות ללקוחות להעביר את התור שקבעו?
+                    <form>
+                       <div class="radio-group">
+                          <div class="radio-item">
+                             <label for="yes">
+                             <input type="radio" id="yes" name="choice" value="yes" style= "font-size: 20px">
+                             כן</label>
+                          </div>
+                          <div class="radio-item">
+                             <label for="no">
+                             <input type="radio" id="no" name="choice" value="no" style= "font-size: 20px">
+                             לא</label>
+                          </div>
+                       </div>
+                    </form>
+                 </label>
+                 <br>
                   <label for="days" style= "font-size: 20px;">
                      כמה ימים לפני מועד התור אי אפשר לבטל אותו ולקחת את המקדמה בחזרה?
                      <select id="number-select" name="number" style="padding: 10px;">
@@ -191,8 +211,12 @@
                   <label for="reward" style= "font-size: 20px;">מה הוא הפרס שהלקוח מקבל אם הביא חבר?
                   <input type="text" style="font-size: 12px; padding: 10px; width: 300px;">
                   </label>
+                  <br>
+                  <label for="reward" style= "font-size: 20px;">מה אחוז ההנחה שאתה מועניין לקבוע לתור חם?
+                  <input type="text" style="font-size: 12px; padding: 10px; width: 100px;">
+                  </label>
                </div>
-               <!-- Confirmation -->
+               <!-- Cobel>rmation -->
                <div class="form-step">
                   <h2>אישור</h2>
                   <p style= "font-size: 20px;">הפרטים שאתה מספק יסייעו לנו להעניק לך שירות מדויק ומהיר.</p>
