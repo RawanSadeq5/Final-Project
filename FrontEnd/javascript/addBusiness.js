@@ -71,11 +71,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // About page navigation
-  const businessLink = document.getElementById("home-link");
+ /* const businessLink = document.getElementById("home-link");
   businessLink.addEventListener("click", (event) => {
     event.preventDefault();
     window.location.href = "business.html"; 
-  });
+  });*/
 
   // Add Service Lines Dynamically
   const addServiceButton = document.getElementById("plus-button");

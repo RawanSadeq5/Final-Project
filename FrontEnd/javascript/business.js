@@ -19,6 +19,53 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
         window.location.href = "contactUs.html"; // Replace with your actual about page URL
     });
+
+    // Profile Image Upload
+    const profileImage = document.getElementById("profileImage");
+    const uploadProfileImage = document.getElementById("uploadProfileImage");
+
+    profileImage.addEventListener("click", () => {
+        uploadProfileImage.click();
+    });
+
+    uploadProfileImage.addEventListener("change", (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                profileImage.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    const uploadImageInput = document.getElementById("uploadImageInput");
+    const imageGallery = document.getElementById("imageGallery");
+    
+    // Handle image click for updating
+    imageGallery.addEventListener("click", (event) => {
+        if (event.target.classList.contains("business-image")) {
+            const index = event.target.dataset.index;
+            uploadImageInput.dataset.index = index; // Save the index to identify which image to update
+            uploadImageInput.click();
+        }
+    });
+    
+    // Handle image file selection
+    uploadImageInput.addEventListener("change", (event) => {
+        const file = event.target.files[0];
+        const index = uploadImageInput.dataset.index;
+    
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = imageGallery.querySelector(`img[data-index='${index}']`);
+                img.src = e.target.result;
+                // Optionally, send the updated image to the server
+            };
+            reader.readAsDataURL(file);
+        }
+    });   
 });
 
 // Toggle edit form visibility
