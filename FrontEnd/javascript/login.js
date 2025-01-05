@@ -58,7 +58,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // my appointments page navigation
   const appointmentLink = document.getElementById("submit");
-  appointmentLink.addEventListener("click", (event) => {
+  appointmentLink.addEventListener("click", async(event) => {
+    event.preventDefault();
+    appointmentLink.disabled = true;
     const emailAddress = document.querySelector("#email").value.trim();
     const password = document.querySelector("#password").value.trim();
 
@@ -66,8 +68,20 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("אנא מלא את כל השדות הנדרשים");
         return;
     }
-    event.preventDefault();
-    window.location.href = "myAppointments.html"; 
+    try {
+      const data1 = {status:true};
+      const data = await Fetch("https://HananRawanSite.com/api/data", data1);
+      appointmentLink.disabled = false;
+      if (data.status === true){
+        window.location.href = "myAppointments.html"; 
+      }
+      else{
+        alert("הנתונים שהזנת אינם ניכונים, נסה שוב");
+      }
+    } catch (error) {
+      appointmentLink.disabled = false;
+      console.error(error);
+    }
   });
 
   // my forgetpass page navigation
@@ -78,3 +92,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
+function Fetch(url, data) {
+  return new Promise((resolve, reject) => {
+    console.log(`Fetching data from: ${url}`);
+    setTimeout(() => {
+      resolve(data);
+    }, 500);
+  });
+}
