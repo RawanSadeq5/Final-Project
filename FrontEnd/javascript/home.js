@@ -57,3 +57,43 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
+
+
+function Fetch(url, data) {
+  return new Promise((resolve, reject) => {
+    console.log(`Fetching data from: ${url}`);
+    setTimeout(() => {
+      resolve(data);
+    }, 500);
+  });
+}
+
+document.getElementById("search-button").addEventListener("click", async (e) => {
+  e.preventDefault();
+  const dataContainer = document.getElementById("businesses-container");
+  dataContainer.innerHTML = "<p>Loading...</p>";
+
+  try {
+    const data1 = [
+      { id: 1, name: "Product A"},
+      { id: 2, name: "Product B"},
+      { id: 3, name: "Product C"},
+    ];
+    const data = await Fetch("https://HananRawanSite.com/api/data", data1);
+    dataContainer.innerHTML = ""; // Clear loading state
+    const ul = document.createElement("ul");
+
+    data.forEach((item) => {
+      const li= document.createElement("li");
+      const a = document.createElement("a");
+      a.textContent = `${item.name}`;
+      a.href = "../pages/booking.html"
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+    dataContainer.appendChild(ul);
+  } catch (error) {
+    dataContainer.innerHTML = "<p>Error loading data.</p>";
+    console.error(error);
+  }
+});

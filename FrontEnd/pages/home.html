@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NexTor</title>
     <link rel="stylesheet" href="../css/home.css"> 
- <script>
+<!-- <script>
         function showResults(event) {
             event.preventDefault();
 
@@ -23,7 +23,7 @@
         const searchSection = document.getElementById('search-section');
         searchSection.scrollIntoView({ behavior: 'smooth' });
     }
-</script>
+</script>-->
 </head>
 <body>
     <header>
@@ -56,8 +56,9 @@
                 <input type="text" placeholder="חיפוש עסק" name="business">
                 <input type="text" placeholder="חיפוש שירות" name="service">
                 <input type="text" placeholder="חיפוש אזור" name="area">
-                <button>חפש</button>
-            </form>    
+                <button id="search-button">חפש</button>
+            </form> 
+            <div class="businesses-container" id = "businesses-container"></div>       
     </div>
     <main>
         <!-- Hot Appointments Section -->
@@ -65,7 +66,7 @@
             <h2>תורים חמים</h2>
             <div class="appointments-grid">
                 <div class="appointment-card">
-                    <img src="barber.jpg" alt="Man Hair Style">
+                   <!-- <img src="barber.jpg" alt="Man Hair Style">-->
                     <div class="appointment-info">
                         <h3>עיצוב שיער</h3>
                         <p>מאת: עבדול רזק</p>
@@ -75,7 +76,7 @@
                     </div>
                 </div>
                 <div class="appointment-card">
-                    <img src="electrician.jpg" alt="Expert Electrician">
+                    <!--<img src="electrician.jpg" alt="Expert Electrician">-->
                     <div class="appointment-info">
                         <h3>חשמלאי מומחה</h3>
                         <p>מאת: אפיף איסלם</p>
@@ -93,6 +94,6 @@
     <footer>
         <p>&copy; 2024 כל הזכויות שמורות.</p>
      </footer>
-    <script src="../javascript/home.js" defer></script>
+    <script src="../javascript/home.js"></script>
 </body>
 </html>
