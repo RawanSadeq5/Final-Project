@@ -1,44 +1,78 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>איפוס סיסמה</title>
-    <link rel="stylesheet" href="../css/forgetPass.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../css/forgetPass.css" />
+  </head>
+  <body>
     <header>
-        <nav>
-            <div class="nav-links">
-                <a id="home-link" href="#">בית</a>
-                <a id="about-link" href="#" class="about">אודות</a>
-                <a id="contact-link" href="#" class="contact-us">צור קשר</a>
-            </div>
-            <div class="logo">
-                <a href="../pages/home.html"><img src="../Images/logo.jpg" alt="Logo"></a>
-            </div>
-        </nav>
+      <nav>
+        <div class="nav-links">
+          <a id="home-link" href="#">בית</a>
+          <a id="about-link" href="#" class="about">אודות</a>
+          <a id="contact-link" href="#" class="contact-us">צור קשר</a>
+        </div>
+        <div class="logo">
+          <a href="../pages/home.html"
+            ><img src="../Images/logo.jpg" alt="Logo"
+          /></a>
+        </div>
+      </nav>
     </header>
     <main>
-        <div class="min-h-screen bg-gray-100 flex items-center justify-center">
-            <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-md w-full">
-                <h1 class="text-center text-2xl font-bold mb-6">איפוס סיסמה</h1>
-                <form>
-                    <div class="mb-4">
-                        <label class="block text-gray-700 font-bold mb-2" for="email">כתובת אימייל:</label>
-                        <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" style= "font-size: large;" placeholder="הכנס כתובת אימייל" required>
-                        <label class="block text-gray-700 font-bold mb-2" for="email">סיסמה חדשה:</label>
-                        <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" style= "font-size: large;" placeholder="הכנס סיסמה חדשה" required>
-                        <label class="block text-gray-700 font-bold mb-2" for="email">אימות סיסמה חדשה: </label>
-                        <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" style= "font-size: large;" placeholder="הכנס שוב את הסיסמה החדשה" required>
-                    </div>
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full" type="submit">
-                      אפס סיסמה
-                    </button>
-                </form>
+      <div class="min-h-screen bg-gray-100 flex items-center justify-center">
+        <div
+          class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 max-w-md w-full"
+        >
+          <h1 class="text-center text-2xl font-bold mb-6">איפוס סיסמה</h1>
+          <form>
+            <div class="mb-4">
+              <label class="block text-gray-700 font-bold mb-2" for="email"
+                >כתובת אימייל:</label
+              >
+              <input
+                class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="email"
+                type="email"
+                style="font-size: large"
+                placeholder="הכנס כתובת אימייל"
+                required
+              />
+              <label class="block text-gray-700 font-bold mb-2" for="email"
+                >סיסמה חדשה:</label
+              >
+              <input
+                class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="password"
+                type="password"
+                style="font-size: large"
+                placeholder="הכנס סיסמה חדשה"
+                required
+              />
+              <label class="block text-gray-700 font-bold mb-2" for="email"
+                >אימות סיסמה חדשה:
+              </label>
+              <input
+                class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="password"
+                type="password"
+                style="font-size: large"
+                placeholder="הכנס שוב את הסיסמה החדשה"
+                required
+              />
             </div>
+            <button
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+              type="submit"
+            >
+              אפס סיסמה
+            </button>
+          </form>
         </div>
+      </div>
     </main>
-    <script src="../javascript/forgetPass.js"></script>  
-</body>
+    <script src="../javascript/forgetPass.js"></script>
+  </body>
 </html>

@@ -25,7 +25,7 @@ profileImageUpload.addEventListener("change", (event) => {
       const img = document.createElement("img");
       img.src = e.target.result;
       img.alt = "תמונת פרופיל";
-      
+
       // Create a remove button
       const removeBtn = document.createElement("button");
       removeBtn.className = "remove-btn";
@@ -48,30 +48,29 @@ const maxImages = 6;
 let uploadedImages = [];
 
 document.addEventListener("DOMContentLoaded", () => {
-
   // About page navigation
   const aboutLink = document.getElementById("about-link");
   aboutLink.addEventListener("click", (event) => {
     event.preventDefault();
-    window.location.href = "about.html"; 
+    window.location.href = "about.html";
   });
 
   // Contact us page navigation
   const contactLink = document.getElementById("contact-link");
   contactLink.addEventListener("click", (event) => {
     event.preventDefault();
-    window.location.href = "contactUs.html"; 
+    window.location.href = "contactUs.html";
   });
 
   // home page navigation
   const homeLink = document.getElementById("home-link");
   homeLink.addEventListener("click", (event) => {
     event.preventDefault();
-    window.location.href = "home.html"; 
+    window.location.href = "home.html";
   });
 
   // About page navigation
- /* const businessLink = document.getElementById("home-link");
+  /* const businessLink = document.getElementById("home-link");
   businessLink.addEventListener("click", (event) => {
     event.preventDefault();
     window.location.href = "business.html"; 
@@ -123,7 +122,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-
   // Add an event listener to the button
   addServiceButton.addEventListener("click", addServiceLine);
 
@@ -149,7 +147,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initial setup: Hide the "-" button
   removeServiceButton.style.display = "none";
 
-
   // Select DOM elements for the radio buttons and price container
   const yesRadioButton = document.getElementById("yes");
   const noRadioButton = document.getElementById("no");
@@ -170,7 +167,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initial setup: Ensure the price container is hidden by default
   priceContainer.style.display = "none";
-
 });
 
 // Image upload functionality
@@ -219,7 +215,9 @@ imageUpload.addEventListener("change", (event) => {
         removeBtn.style.justifyContent = "center";
 
         removeBtn.addEventListener("click", () => {
-          const index = uploadedImages.findIndex((img) => img.name === file.name);
+          const index = uploadedImages.findIndex(
+            (img) => img.name === file.name
+          );
           if (index > -1) {
             uploadedImages.splice(index, 1);
             imgWrapper.remove();

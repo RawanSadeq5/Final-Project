@@ -1,114 +1,179 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>בעל העסק</title>
-    <link rel="stylesheet" href="../css/business.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../css/business.css" />
+  </head>
+  <body>
     <header>
-        <div class="container">
-            <nav>
-                <div class="nav-links">
-                    <a id="home-link" href="#">בית</a>
-                    <a id="about-link" href="#" class="about">אודות</a>
-                    <a id="contact-link" href="#">צור קשר</a>
-                </div>
-                <div class="logo">
-                    <a href="../pages/home.html"><img src="../Images/logo.jpg" alt="Logo"></a>
-                </div>
-            </nav>
-        </div>
+      <div class="container">
+        <nav>
+          <div class="nav-links">
+            <a id="home-link" href="#">בית</a>
+            <a id="about-link" href="#" class="about">אודות</a>
+            <a id="contact-link" href="#">צור קשר</a>
+          </div>
+          <div class="logo">
+            <a href="../pages/home.html"
+              ><img src="../Images/logo.jpg" alt="Logo"
+            /></a>
+          </div>
+        </nav>
+      </div>
     </header>
-    <br/>
-    <br/>
-    <br/>
+    <br />
+    <br />
+    <br />
     <main>
-        <div class="container-details">
-            <div class="profile-image-container">
-                <img id="profileImage" src="../Images/default-profile.jpg" alt="Profile Image">
-                <input type="file" id="uploadProfileImage" style="display: none;" accept="image/*">
-            </div>
-            <h1>פרטי העסק</h1>
-            <div id="businessDetails">
-                <p>שם העסק:</p>
-                <p>כתובת:</p>
-                <p>טלפון:</p>
-                <p>שעות פתיחה:</p>
-            </div>
-            <button id="editDetailsButton">עריכת פרטים</button>
-            <form id="editDetailsForm" style="display: none;">
-                <label>שם העסק: <input type="text" id="businessName" value="דוגמה לעסק"></label><br>
-                <label>כתובת: <input type="text" id="businessAddress" value="רחוב הראשונים 1, תל אביב"></label><br>
-                <label>טלפון: <input type="text" id="businessPhone" value="03-1234567"></label><br>
-                <label>שעות פתיחה: <input type="text" id="businessHours" value="א' - ה': 09:00 - 18:00, ו': 09:00 - 14:00"></label><br>
-                <button type="button" id="saveDetailsButton">שמור</button>
-                <button type="button" id="cancelEditButton">בטל</button>
-            </form>
-
-            <h2>תמונות העסק</h2>
-            <div id="businessImagesContainer">
-                <div id="imageGallery">
-                    <img src="../Images/default1.jpg" alt="Business Image 1" class="business-image" data-index="0">
-                    <img src="../Images/default2.jpg" alt="Business Image 2" class="business-image" data-index="1">
-                    <img src="../Images/default3.jpg" alt="Business Image 3" class="business-image" data-index="2">
-                    <img src="../Images/default4.jpg" alt="Business Image 4" class="business-image" data-index="3">
-                    <img src="../Images/default5.jpg" alt="Business Image 5" class="business-image" data-index="4">
-                    <img src="../Images/default6.jpg" alt="Business Image 6" class="business-image" data-index="5">
-                </div>
-                <input type="file" id="uploadImageInput" style="display: none;" accept="image/*">
-            </div>
+      <div class="container-details">
+        <div class="profile-image-container">
+          <img
+            id="profileImage"
+            src="../Images/default-profile.jpg"
+            alt="Profile Image"
+          />
+          <input
+            type="file"
+            id="uploadProfileImage"
+            style="display: none"
+            accept="image/*"
+          />
         </div>
-    
-        <section>
-            <h2>התורים שלי</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>שירות</th>
-                        <th>תאריך</th>
-                        <th>שעה</th>
-                        <th>משך</th>
-                        <th>מחיר</th>
-                        <th>שם הלקוח</th>
-                        <th>מספר טלפון של הלקוח</th>
-                        <th>לאשר/לבטל את התור</th>
-                    </tr>
-                </thead>
-                <tbody id="appointmentsTable">
-                    <!-- Rows will be added dynamically -->
-                </tbody>
-            </table>
-        </section>
-    
-        <section>
-            <h2>הוספת תור פנוי ללקוחות</h2>
-            <form id="addAppointmentForm">
-                <label for="service">שירות: 
-                <select id="service">
-                  <option value="service1">שירות 1</option>
-                  <option value="service2">שירות 2</option>
-                  <option value="service3">שירות 3</option>
-                </select>
-                </label><br>
-                <label>תאריך: <input type="date" id="date"></label><br>
-                <label>שעה: <input type="time" id="time"></label><br>
-                <button type="button" id="addButton">הוסף</button>
-            </form>
-        </section>
+        <h1>פרטי העסק</h1>
+        <div id="businessDetails">
+          <p>שם העסק:</p>
+          <p>כתובת:</p>
+          <p>טלפון:</p>
+          <p>שעות פתיחה:</p>
+        </div>
+        <button id="editDetailsButton">עריכת פרטים</button>
+        <form id="editDetailsForm" style="display: none">
+          <label
+            >שם העסק:
+            <input type="text" id="businessName" value="דוגמה לעסק" /></label
+          ><br />
+          <label
+            >כתובת:
+            <input
+              type="text"
+              id="businessAddress"
+              value="רחוב הראשונים 1, תל אביב" /></label
+          ><br />
+          <label
+            >טלפון:
+            <input type="text" id="businessPhone" value="03-1234567" /></label
+          ><br />
+          <label
+            >שעות פתיחה:
+            <input
+              type="text"
+              id="businessHours"
+              value="א' - ה': 09:00 - 18:00, ו': 09:00 - 14:00" /></label
+          ><br />
+          <button type="button" id="saveDetailsButton">שמור</button>
+          <button type="button" id="cancelEditButton">בטל</button>
+        </form>
 
-        <section>
-            <h2>הוספת תורים חמים</h2>
-            <form id="addAppointmentForm">
-                <label>תאריך: <input type="date" id="date"></label><br>
-                <label>שעה: <input type="time" id="time"></label><br>
-                <label>מחיר המקדמה: <input type="price" id="price"></label><br>
-                <button type="button" id="addButton">הוסף</button>
-            </form>
-        </section>
+        <h2>תמונות העסק</h2>
+        <div id="businessImagesContainer">
+          <div id="imageGallery">
+            <img
+              src="../Images/default1.jpg"
+              alt="Business Image 1"
+              class="business-image"
+              data-index="0"
+            />
+            <img
+              src="../Images/default2.jpg"
+              alt="Business Image 2"
+              class="business-image"
+              data-index="1"
+            />
+            <img
+              src="../Images/default3.jpg"
+              alt="Business Image 3"
+              class="business-image"
+              data-index="2"
+            />
+            <img
+              src="../Images/default4.jpg"
+              alt="Business Image 4"
+              class="business-image"
+              data-index="3"
+            />
+            <img
+              src="../Images/default5.jpg"
+              alt="Business Image 5"
+              class="business-image"
+              data-index="4"
+            />
+            <img
+              src="../Images/default6.jpg"
+              alt="Business Image 6"
+              class="business-image"
+              data-index="5"
+            />
+          </div>
+          <input
+            type="file"
+            id="uploadImageInput"
+            style="display: none"
+            accept="image/*"
+          />
+        </div>
+      </div>
+
+      <section>
+        <h2>התורים שלי</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>שירות</th>
+              <th>תאריך</th>
+              <th>שעה</th>
+              <th>משך</th>
+              <th>מחיר</th>
+              <th>שם הלקוח</th>
+              <th>מספר טלפון של הלקוח</th>
+              <th>לאשר/לבטל את התור</th>
+            </tr>
+          </thead>
+          <tbody id="appointmentsTable">
+            <!-- Rows will be added dynamically -->
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>הוספת תור פנוי ללקוחות</h2>
+        <form id="addAppointmentForm">
+          <label for="service"
+            >שירות:
+            <select id="service">
+              <option value="service1">שירות 1</option>
+              <option value="service2">שירות 2</option>
+              <option value="service3">שירות 3</option>
+            </select> </label
+          ><br />
+          <label>תאריך: <input type="date" id="date" /></label><br />
+          <label>שעה: <input type="time" id="time" /></label><br />
+          <button type="button" id="addButton">הוסף</button>
+        </form>
+      </section>
+
+      <section>
+        <h2>הוספת תורים חמים</h2>
+        <form id="addAppointmentForm">
+          <label>תאריך: <input type="date" id="date" /></label><br />
+          <label>שעה: <input type="time" id="time" /></label><br />
+          <label>מחיר המקדמה: <input type="price" id="price" /></label><br />
+          <button type="button" id="addButton">הוסף</button>
+        </form>
+      </section>
     </main>
-   
+
     <script defer src="../javascript/business.js"></script>
-</body>
+  </body>
 </html>

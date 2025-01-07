@@ -1,114 +1,163 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>זימון תור</title>
-      <link rel="stylesheet" href="../css/booking.css">
-   </head>
-   <body>
-      <header>
-         <nav>
-            <div class="nav-links">
-               <a id="home-link" class="home" href="#">בית</a>
-               <a id="about-link" href="#">אודות</a>
-               <a id="contact-link" href="#">צור קשר</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>זימון תור</title>
+    <link rel="stylesheet" href="../css/booking.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="nav-links">
+          <a id="home-link" class="home" href="#">בית</a>
+          <a id="about-link" href="#">אודות</a>
+          <a id="contact-link" href="#">צור קשר</a>
+        </div>
+        <div class="logo">
+          <a href="../pages/home.html"
+            ><img src="../Images/logo.jpg" alt="Logo"
+          /></a>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="profile">
+        <img src="../Images/sea1.jpg" alt="Business Logo" />
+        <h1>Salam Nails</h1>
+        <p><span>מגד אלכרום</span></p>
+        <div class="icons">
+          <a href="#" class="icon"
+            ><img src="../Images/waze.jpg" alt="Waze" width="20" height="20"
+          /></a>
+          <a href="#" class="icon"
+            ><img
+              src="../Images/instagram.jpg"
+              alt="Instagram"
+              width="20"
+              height="20"
+          /></a>
+          <a href="#" class="icon"
+            ><img
+              src="../Images/whatsapp.jpg"
+              alt="WhatsApp"
+              width="20"
+              height="20"
+          /></a>
+          <a href="#" class="icon"
+            ><img
+              src="../Images/telephone.jpg"
+              alt="Phone"
+              width="20"
+              height="20"
+          /></a>
+        </div>
+      </div>
+      <div class="gallery">
+        <img src="nail1.jpg" alt="Nail Design 1" />
+        <img src="nail2.jpg" alt="Nail Design 2" />
+        <img src="nail3.jpg" alt="Nail Design 3" />
+        <img src="nail4.jpg" alt="Nail Design 4" />
+        <img src="nail5.jpg" alt="Nail Design 5" />
+      </div>
+      <div class="services">
+        <h2>בחירת שירות</h2>
+        <ul class="service-list">
+          <li>
+            <a href="#" class="service-link"
+              >לק ג'ל + 3 ציפורניים שבורות<span class="price">₪180</span></a
+            >
+          </li>
+          <li>
+            <a href="#" class="service-link"
+              >מילוי אקריל + 3 ציפורניים שבורות<span class="price"
+                >₪180</span
+              ></a
+            >
+          </li>
+          <li>
+            <a href="#" class="service-link"
+              >לק ג'ל<span class="price">₪150</span></a
+            >
+          </li>
+          <li>
+            <a href="#" class="service-link"
+              >החלפת צבע<span class="price">₪100</span></a
+            >
+          </li>
+          <li>
+            <a href="#" class="service-link"
+              >תיקון ציפורן<span class="price">₪50</span></a
+            >
+          </li>
+        </ul>
+        <div class="button-container">
+          <button type="button" id="continue-button">המשך</button>
+        </div>
+      </div>
+      <div class="wrapper">
+        <div class="calendar-header">
+          <div class="icons">
+            <span id="prev" class="material-symbols-rounded">&#11166;</span>
+            <p class="current-date"></p>
+            <span id="next" class="material-symbols-rounded">&#11164;</span>
+          </div>
+        </div>
+        <div class="calendar">
+          <ul class="weeks">
+            <li>א</li>
+            <li>ב</li>
+            <li>ג</li>
+            <li>ד</li>
+            <li>ה</li>
+            <li>ו</li>
+            <li>ש</li>
+          </ul>
+          <ul class="days"></ul>
+        </div>
+        <div class="button-container">
+          <button id="proceed-button" style="display: none">המשך</button>
+        </div>
+        <div class="times-container" style="display: none">
+          <h3>שעות פנויות לתאריך הנבחר <span id="selected-date"></span></h3>
+          <ul id="available-times" class="available-times">
+            <li>9:00</li>
+            <li>10:00</li>
+            <li>11:00</li>
+            <li>12:00</li>
+            <li>13:00</li>
+          </ul>
+        </div>
+        <div class="details-container" style="display: none">
+          <h3>פרטי משתמש</h3>
+          <form id="user-details-form">
+            <div class="form-group">
+              <label for="full-name">שם מלא:</label>
+              <input type="text" id="full-name" name="full-name" required />
             </div>
-            <div class="logo">
-               <a href="../pages/home.html"><img src="../Images/logo.jpg" alt="Logo"></a>
+            <div class="form-group">
+              <label for="phone-number">מספר טלפון:</label>
+              <input
+                type="tel"
+                id="phone-number"
+                name="phone-number"
+                required
+              />
             </div>
-         </nav>
-      </header>
-      <main>
-         <div class="profile">
-            <img src="../Images/sea1.jpg" alt="Business Logo">
-            <h1>Salam Nails</h1>
-            <p><span>מגד אלכרום</span></p>
-            <div class="icons">
-               <a href="#" class="icon"><img src="../Images/waze.jpg" alt="Waze" width="20" height="20"></a>
-               <a href="#" class="icon"><img src="../Images/instagram.jpg" alt="Instagram" width="20" height="20"></a>
-               <a href="#" class="icon"><img src="../Images/whatsapp.jpg" alt="WhatsApp" width="20" height="20"></a>
-               <a href="#" class="icon"><img src="../Images/telephone.jpg" alt="Phone" width="20" height="20"></a>
+            <div class="form-group">
+              <label for="notes">הערות:</label>
+              <textarea id="notes" name="notes" rows="3"></textarea>
             </div>
-         </div>
-         <div class="gallery">
-            <img src="nail1.jpg" alt="Nail Design 1">
-            <img src="nail2.jpg" alt="Nail Design 2">
-            <img src="nail3.jpg" alt="Nail Design 3">
-            <img src="nail4.jpg" alt="Nail Design 4">
-            <img src="nail5.jpg" alt="Nail Design 5">
-         </div>
-         <div class="services">
-            <h2>בחירת שירות</h2>
-            <ul class="service-list">
-               <li><a href="#" class="service-link">לק ג'ל + 3 ציפורניים שבורות<span class="price">₪180</span></a></li>
-               <li><a href="#" class="service-link">מילוי אקריל + 3 ציפורניים שבורות<span class="price">₪180</span></a></li>
-               <li><a href="#" class="service-link">לק ג'ל<span class="price">₪150</span></a></li>
-               <li><a href="#" class="service-link">החלפת צבע<span class="price">₪100</span></a></li>
-               <li><a href="#" class="service-link">תיקון ציפורן<span class="price">₪50</span></a></li>
-            </ul>
             <div class="button-container">
-               <button type="button" id="continue-button">המשך</button>
+              <button type="button" id="payment-button">המשך לתשלום</button>
             </div>
-         </div>
-         <div class="wrapper">
-            <div class="calendar-header">
-                <div class="icons">
-                    <span id="prev" class="material-symbols-rounded">&#11166;</span>
-                    <p class="current-date"></p>
-                    <span id="next" class="material-symbols-rounded">&#11164;</span>
-                </div>
-               </div>
-            <div class="calendar">
-                <ul class="weeks">
-                    <li>א</li>
-                    <li>ב</li>
-                    <li>ג</li>
-                    <li>ד</li>
-                    <li>ה</li>
-                    <li>ו</li>
-                    <li>ש</li>
-                </ul>
-                <ul class="days"></ul>
-            </div>
-            <div class="button-container">
-               <button id="proceed-button" style="display: none;">המשך</button>
-           </div>
-           <div class="times-container" style="display: none;">
-               <h3>שעות פנויות לתאריך הנבחר <span id="selected-date"></span></h3>
-               <ul id="available-times" class="available-times">
-                    <li>9:00</li>
-                    <li>10:00</li>
-                    <li>11:00</li>
-                    <li>12:00</li>
-                    <li>13:00</li>
-               </ul>
-           </div>
-            <div class="details-container" style="display: none;">
-                <h3>פרטי משתמש</h3>
-                <form id="user-details-form">
-                    <div class="form-group">
-                        <label for="full-name" >שם מלא:</label>
-                        <input type="text" id="full-name" name="full-name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone-number">מספר טלפון:</label>
-                        <input type="tel" id="phone-number" name="phone-number" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="notes">הערות:</label>
-                        <textarea id="notes" name="notes" rows="3"></textarea>
-                    </div>
-                    <div class="button-container">
-                        <button type="button" id="payment-button">המשך לתשלום</button>
-                    </div>
-                </form>
-            </div> 
-        </div>        
-      </main>
-      <footer>
-         <p>&copy; 2024 כל הזכויות שמורות.</p>
-      </footer>
-      <script src="../javascript/booking.js"></script>
-   </body>
+          </form>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <p>&copy; 2024 כל הזכויות שמורות.</p>
+    </footer>
+    <script src="../javascript/booking.js"></script>
+  </body>
 </html>
