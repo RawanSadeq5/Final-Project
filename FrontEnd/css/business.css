@@ -1,172 +1,179 @@
 body {
-    font-family: Arial, sans-serif;
-    direction: rtl;
-    margin: 20px;
-    background: linear-gradient(135deg, #921a40, #f8f9fa); /* Gradient background */
-    background-attachment: fixed; /* Keeps gradient fixed while scrolling */
+  font-family: Arial, sans-serif;
+  direction: rtl;
+  margin: 20px;
+  background: linear-gradient(
+    135deg,
+    #921a40,
+    #f8f9fa
+  ); /* Gradient background */
+  background-attachment: fixed; /* Keeps gradient fixed while scrolling */
 }
 
 .logo {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .logo img {
-    width: 180px;
-    height: 90px;
-    margin-left: 10px;
+  width: 180px;
+  height: 90px;
+  margin-left: 10px;
 }
 
 header {
-    background-color: #921a40;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000; /* Ensures the header is above other content */
+  background-color: #921a40;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Ensures the header is above other content */
 }
 
 nav {
-    display: flex;
-    justify-content: space-between; /* Distributes space between logo and nav links */
-    align-items: center; /* Aligns items vertically in the center */
-    padding: 0 20px; /* Adds horizontal padding */
+  display: flex;
+  justify-content: space-between; /* Distributes space between logo and nav links */
+  align-items: center; /* Aligns items vertically in the center */
+  padding: 0 20px; /* Adds horizontal padding */
 }
 
 .nav-links {
-    display: flex;
-    gap: 15px; /* Space between nav links */
+  display: flex;
+  gap: 15px; /* Space between nav links */
 }
 
 nav a {
-	color: #fff;
-	text-decoration: none;
-	margin: 0 15px;
-	font-size: 25px;
-	transition: color 0.3s;
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 25px;
+  transition: color 0.3s;
 }
 
 nav a:hover {
-    color: black;
+  color: black;
 }
 
 /* Main Content */
 main {
-    padding: 20px;
-    margin-top: 50px;
+  padding: 20px;
+  margin-top: 50px;
 }
 
-.container-details, section {
-    margin-bottom: 20px;
-    padding: 15px;
-    border: 2px solid #921a40;
-    border-radius: 8px;
-    background-color: #fff;
+.container-details,
+section {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 2px solid #921a40;
+  border-radius: 8px;
+  background-color: #fff;
 }
 
 .profile-image-container {
-    position: relative;
-    text-align: center;
-    margin-bottom: 20px;
+  position: relative;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .profile-image-container img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    cursor: pointer;
-    border: 2px solid #921a40;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #921a40;
 }
 
-
 #businessImagesContainer {
-    margin-top: 20px;
-    text-align: center;
+  margin-top: 20px;
+  text-align: center;
 }
 
 #imageGallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columns */
-    gap: 15px;
-    justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  gap: 15px;
+  justify-content: center;
 }
 
 .business-image {
-    width: 150px;
-    height: 100px;
-    object-fit: cover;
-    border: 2px solid #921a40;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s;
+  width: 150px;
+  height: 100px;
+  object-fit: cover;
+  border: 2px solid #921a40;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s;
 }
 
 .business-image:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
-
-h1, h2 {
-    color: #921a40;
-    text-align: center;
+h1,
+h2 {
+  color: #921a40;
+  text-align: center;
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
 }
 
-table, th, td {
-    border: 2px solid #921a40;
-    text-align: center;
+table,
+th,
+td {
+  border: 2px solid #921a40;
+  text-align: center;
 }
 
-th, td {
-    padding: 10px;
+th,
+td {
+  padding: 10px;
 }
 
 form label {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 20px;
-    color: #921a40;
+  display: block;
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #921a40;
 }
 
 button {
-    padding: 10px 15px;
-    background-color: #921a40;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 18px;
+  padding: 10px 15px;
+  background-color: #921a40;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
 }
 
 button:hover {
-    background-color: #921a40a5;
+  background-color: #921a40a5;
 }
 
-label{
-    font-weight: bold;
+label {
+  font-weight: bold;
 }
 
-p{
-    font-weight: bold; 
+p {
+  font-weight: bold;
 }
 
-input{
-    border: 2px solid #921a40;
-    border-radius: 4px;
-    padding: 6px;
+input {
+  border: 2px solid #921a40;
+  border-radius: 4px;
+  padding: 6px;
 }
 
-select{
-    border: 2px solid #921a40;
-    border-radius: 4px;
-    padding: 6px;
-    width:100px ;
+select {
+  border: 2px solid #921a40;
+  border-radius: 4px;
+  padding: 6px;
+  width: 100px;
 }

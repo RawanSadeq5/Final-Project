@@ -8,9 +8,12 @@ body {
   justify-content: center;
   min-height: 100vh;
   direction: rtl; /* Right-to-left support */
-  background: linear-gradient(135deg, #921a40, #f8f9fa); /* Gradient background */
+  background: linear-gradient(
+    135deg,
+    #921a40,
+    #f8f9fa
+  ); /* Gradient background */
   background-attachment: fixed; /* Keeps gradient fixed while scrolling */
-
 }
 
 .logo {
@@ -50,11 +53,11 @@ nav {
 }
 
 nav a {
-color: #fff;
-text-decoration: none;
-margin: 0 15px;
-font-size: 25px;
-transition: color 0.3s;
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 25px;
+  transition: color 0.3s;
 }
 
 nav a:hover {
@@ -65,7 +68,7 @@ nav a:hover {
 main {
   margin-top: 120px; /* Adjust this value to match the header's height */
   padding: 10px;
-  max-width:100%;
+  max-width: 100%;
   width: 90%;
   background-color: #ffffff;
   border-radius: 10px;
@@ -98,7 +101,7 @@ main {
 }
 
 .step.completed .circle {
-  background-color: #921A40;
+  background-color: #921a40;
   color: white;
 }
 
@@ -121,7 +124,7 @@ label {
   font-weight: bold;
   margin-bottom: 5px;
   display: block;
-  color:#921a40;
+  color: #921a40;
 }
 
 input {
@@ -135,7 +138,7 @@ input {
 }
 
 input:focus {
-  border-color: #921A40;
+  border-color: #921a40;
   box-shadow: 0 0 4px rgba(10, 28, 22, 0.905);
 }
 
@@ -163,7 +166,7 @@ button {
 }
 
 .next {
-  background-color: #921A40;
+  background-color: #921a40;
   color: white;
 }
 
@@ -185,7 +188,7 @@ button:disabled {
 }
 .circle-button {
   color: white;
-  font-size:30px;
+  font-size: 30px;
   width: 50px; /* Width of the circle */
   height: 50px; /* Height of the circle */
   border-radius: 50%; /* Makes it a circle */
@@ -342,7 +345,7 @@ input[type="number"] {
   max-width: 500px;
   margin: 0 auto;
   text-align: right;
-  border: 2px dashed #921A40;
+  border: 2px dashed #921a40;
   padding: 10px;
   border-radius: 12px;
   background: linear-gradient(to bottom, #ffffff, #e9ecef);
@@ -357,7 +360,7 @@ input[type="number"] {
 
 .upload-container h2 {
   font-size: 1.5rem;
-  color: #921A40;
+  color: #921a40;
 }
 
 .upload-container input[type="file"] {
@@ -393,7 +396,7 @@ input[type="number"] {
   position: absolute;
   top: -10px;
   right: -10px;
-  background-color: #921A40;
+  background-color: #921a40;
   color: white;
   border: none;
   border-radius: 50%;
@@ -412,7 +415,7 @@ input[type="number"] {
 }
 
 .error-message {
-  color: #921A40;
+  color: #921a40;
   font-size: 0.9em;
   margin-top: 10px;
 }
@@ -450,7 +453,7 @@ input[type="number"] {
   position: absolute;
   top: -10px;
   right: -10px;
-  background-color: #921A40;
+  background-color: #921a40;
   color: white;
   border: none;
   border-radius: 50%;
@@ -467,8 +470,3 @@ input[type="number"] {
 .profile-image-preview .remove-btn:hover {
   background-color: #921a405a;
 }
-
-
-
-
-

@@ -1,32 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   // About page navigation
   const aboutLink = document.getElementById("about-link");
   aboutLink.addEventListener("click", (event) => {
     event.preventDefault();
-    window.location.href = "about.html"; 
+    window.location.href = "about.html";
   });
 
   // Contact us page navigation
   const contactLink = document.getElementById("contact-link");
   contactLink.addEventListener("click", (event) => {
     event.preventDefault();
-    window.location.href = "contactUs.html"; 
+    window.location.href = "contactUs.html";
   });
 
   // add business page navigation
   const addBusinessLink = document.getElementById("addBusiness-link");
   addBusinessLink.addEventListener("click", (event) => {
     event.preventDefault();
-    window.location.href = "addBusiness.html"; 
+    window.location.href = "addBusiness.html";
   });
 
-   // add business page navigation
-   const loginLink = document.getElementById("logIn-link");
-   loginLink.addEventListener("click", (event) => {
-     event.preventDefault();
-     window.location.href = "login.html"; 
-   });
+  // add business page navigation
+  const loginLink = document.getElementById("logIn-link");
+  loginLink.addEventListener("click", (event) => {
+    event.preventDefault();
+    window.location.href = "login.html";
+  });
 
   // Function to change page text to English
   function changeLanguageToEnglish() {
@@ -45,7 +44,9 @@ document.addEventListener("DOMContentLoaded", () => {
         "Book appointments in advance, save time, and enjoy professional and fast service.";
 
     // Update Hot Appointments Section
-    const hotAppointmentsHeading = document.querySelector(".hot-appointments h2");
+    const hotAppointmentsHeading = document.querySelector(
+      ".hot-appointments h2"
+    );
     if (hotAppointmentsHeading)
       hotAppointmentsHeading.textContent = "Hot Appointments";
 
@@ -58,7 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-
 function Fetch(url, data) {
   return new Promise((resolve, reject) => {
     console.log(`Fetching data from: ${url}`);
@@ -68,32 +68,34 @@ function Fetch(url, data) {
   });
 }
 
-document.getElementById("search-button").addEventListener("click", async (e) => {
-  e.preventDefault();
-  const dataContainer = document.getElementById("businesses-container");
-  dataContainer.innerHTML = "<p>Loading...</p>";
+document
+  .getElementById("search-button")
+  .addEventListener("click", async (e) => {
+    e.preventDefault();
+    const dataContainer = document.getElementById("businesses-container");
+    dataContainer.innerHTML = "<p>Loading...</p>";
 
-  try {
-    const data1 = [
-      { id: 1, name: "Product A"},
-      { id: 2, name: "Product B"},
-      { id: 3, name: "Product C"},
-    ];
-    const data = await Fetch("https://HananRawanSite.com/api/data", data1);
-    dataContainer.innerHTML = ""; // Clear loading state
-    const ul = document.createElement("ul");
+    try {
+      const data1 = [
+        { id: 1, name: "Product A" },
+        { id: 2, name: "Product B" },
+        { id: 3, name: "Product C" },
+      ];
+      const data = await Fetch("https://HananRawanSite.com/api/data", data1);
+      dataContainer.innerHTML = ""; // Clear loading state
+      const ul = document.createElement("ul");
 
-    data.forEach((item) => {
-      const li= document.createElement("li");
-      const a = document.createElement("a");
-      a.textContent = `${item.name}`;
-      a.href = "../pages/booking.html"
-      li.appendChild(a);
-      ul.appendChild(li);
-    });
-    dataContainer.appendChild(ul);
-  } catch (error) {
-    dataContainer.innerHTML = "<p>Error loading data.</p>";
-    console.error(error);
-  }
-});
+      data.forEach((item) => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.textContent = `${item.name}`;
+        a.href = "../pages/booking.html";
+        li.appendChild(a);
+        ul.appendChild(li);
+      });
+      dataContainer.appendChild(ul);
+    } catch (error) {
+      dataContainer.innerHTML = "<p>Error loading data.</p>";
+      console.error(error);
+    }
+  });

@@ -1,63 +1,92 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>יצירת חשבון</title>
-      <link rel="stylesheet" href="../css/signup.css">
-   </head>
-   <body>
-      <header>
-         <nav>
-            <div class="nav-links">
-               <a id="home-link" href="#">בית</a>
-               <a id="about-link" href="#" class="about">אודות</a>
-               <a id="contact-link" href="#" class="contact-us">צור קשר</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>יצירת חשבון</title>
+    <link rel="stylesheet" href="../css/signup.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="nav-links">
+          <a id="home-link" href="#">בית</a>
+          <a id="about-link" href="#" class="about">אודות</a>
+          <a id="contact-link" href="#" class="contact-us">צור קשר</a>
+        </div>
+        <div class="logo">
+          <a href="../pages/home.html"
+            ><img src="../Images/logo.jpg" alt="Logo"
+          /></a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="form-container">
+          <h1>יצירת חשבון חדש</h1>
+          <form method="POST">
+            <div>
+              <label for="full-name">שם מלא:</label>
+              <input
+                type="text"
+                name="name"
+                id="full-name"
+                placeholder="הכנס שם מלא"
+                required
+              />
             </div>
-            <div class="logo">
-               <a href="../pages/home.html"><img src="../Images/logo.jpg" alt="Logo"></a>
+            <div>
+              <label for="email">כתובת אימייל:</label>
+              <input
+                type="email"
+                name="username"
+                id="email"
+                placeholder="הכנס כתובת אימייל"
+                required
+              />
             </div>
-         </nav>
-      </header>
-      <main class="flex flex-col items-center pt-6">
-         <div
-            class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-               <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">יצירת חשבון חדש
-               </h1>
-               <form class="container" method="POST">
-                  <div>
-                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">שם מלא:</label>
-                     <input type="text" name="name" id="full-name" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="הכנס שם מלא" style="font-size: large;" required>
-                  </div>
-                  <div>
-                     <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">כתובת אימייל:</label>
-                     <input type="email" name="username" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="הכנס כתובת אימייל" style="font-size: large;" required>
-                  </div>
-                  <div>
-                     <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">סיסמה:</label>
-                     <input type="password" name="password" id="password" placeholder="הכנס סיסמה" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" style="font-size: large;" required>
-                  </div>
-                  <div>
-                    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">אימות סיסמה:</label>
-                    <input type="password" name="password" id="password" placeholder="הכנס שוב את הסיסמה" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" style="font-size: large;" required>
-                 </div>
-                  <button type="submit" class="sign-up" id="signup">יצירת חשבון</button>
-                  <p class="text-sm font-light text-gray-500 dark:text-gray-400">כבר יש לך חשבון? 
-                    <a class="font-medium text-blue-600 hover:underline dark:text-blue-500" href="../pages/login.html" id=" login-link">התחבר כאן</a>
-                  </p>
-               </div>
-               </div>
-               </form>
+            <div>
+              <label for="password">סיסמה:</label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="הכנס סיסמה"
+                required
+              />
             </div>
-         </div>
-        </main>
-        <!-- Popup Window -->
-        <div id="popup" style="display: none;">
-         <div class="popup-content">
-            <p style="font-size: 20px; font-weight: bold;">חשבונך יוצר בהצלחה!</p>
-            <button id="loginPopupButton" class="btn">התחבר כאן</button>
-         </div>
-      <script src="../javascript/signup.js"></script>
-   </body>
+            <div>
+              <label for="confirm-password">אימות סיסמה:</label>
+              <input
+                type="password"
+                name="confirm-password"
+                id="confirm-password"
+                placeholder="הכנס שוב את הסיסמה"
+                required
+              />
+            </div>
+            <button type="submit" class="sign-up" id="signup">
+              יצירת חשבון
+            </button>
+            <p>
+              כבר יש לך חשבון?
+              <a href="../pages/login.html" id="login-link">התחבר כאן</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <!-- Popup Window -->
+    <div id="popup" style="display: none">
+      <div class="popup-content">
+        <p>חשבונך יוצר בהצלחה!</p>
+        <button id="loginPopupButton" class="btn">התחבר כאן</button>
+      </div>
+    </div>
+
+    <script src="../javascript/signup.js"></script>
+  </body>
 </html>

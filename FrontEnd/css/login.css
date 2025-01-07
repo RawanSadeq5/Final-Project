@@ -1,220 +1,222 @@
 /* General Body Styles */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    color:#921A40;
-    background: linear-gradient(135deg, #921a40, #f8f9fa); /* Gradient background */
-    background-attachment: fixed; /* Keeps gradient fixed while scrolling */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #921a40;
+  background: linear-gradient(
+    135deg,
+    #921a40,
+    #f8f9fa
+  ); /* Gradient background */
+  background-attachment: fixed; /* Keeps gradient fixed while scrolling */
 }
 
 .logo {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .logo img {
-    width: 180px;
-    height: 90px;
-    margin-left: 10px;
+  width: 180px;
+  height: 90px;
+  margin-left: 10px;
 }
-
 
 /* Navigation Bar */
 header nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #921A40;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #921a40;
 }
 
 .nav-links {
-    display: flex;
-    gap: 30px;
+  display: flex;
+  gap: 30px;
 }
 
 nav a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 25px;
-    transition: color 0.3s;
+  color: #fff;
+  text-decoration: none;
+  font-size: 25px;
+  transition: color 0.3s;
 }
 
 nav a:hover {
-    color: black;
+  color: black;
 }
 
 /* Center the content vertically and horizontally */
 .min-h-screen {
-    height: 90vh;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    max-width:400%;
-    width:1200px;
-    margin: 0 auto; /* Center the container horizontally */
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 400%;
+  width: 1200px;
+  margin: 0 auto; /* Center the container horizontally */
 }
 
 /* Container for the form */
 .bg-white {
-    margin-top: 0px;
-    background-color: white;
-    border: 2px solid #921A40;
+  margin-top: 0px;
+  background-color: white;
+  border: 2px solid #921a40;
 }
 
 .shadow-md {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .rounded-lg {
-    border-radius: 8px;
+  border-radius: 8px;
 }
 
 .px-8 {
-    padding-left: 4rem;
-    padding-right: 4rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
 }
 
 .py-6 {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .max-w-md {
-    width: 600px;
-    height: 400px;
+  width: 600px;
+  height: 400px;
 }
 
 /* Heading */
 .text-2xl {
-    font-size: 2rem;
+  font-size: 2rem;
 }
 
 .font-bold {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .text-center {
-    text-align: center;
+  text-align: center;
 }
 
 .mb-4 {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .dark .text-gray-200 {
-    color: #e2e8f0;
+  color: #e2e8f0;
 }
 
 /* Form Styles */
 label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 0.5rem;
-    font-size: 24px;
-    color: #921A40;
-    text-align: right;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 24px;
+  color: #921a40;
+  text-align: right;
 }
 
 input[type="email"],
 input[type="password"] {
-    width: 100%;
-    padding: 0.5rem 1rem;
-    border-radius: 0.375rem;
-    border: 1px solid #921A40;
-    box-sizing: border-box;
-    font-size: 1rem;
-    text-align: right; 
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  border: 1px solid #921a40;
+  box-sizing: border-box;
+  font-size: 1rem;
+  text-align: right;
 }
 
 input:focus {
-    outline: none;
-    border-color: black;
-    box-shadow: 0 0 0 2px rgba(75, 85, 99, 0.1);
+  outline: none;
+  border-color: black;
+  box-shadow: 0 0 0 2px rgba(75, 85, 99, 0.1);
 }
 
 /* Password and sign up recovery link */
 a {
-    text-decoration: none;
-    color: black;
-    font-size: 20px;
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
 }
 
 .text-indigo-500 {
-    color: black;
+  color: black;
 }
 
-
 a:hover {
-    color: #6b7280;
+  color: #6b7280;
 }
 
 p {
-	margin-top: 1rem;
-	font-size: 17px;
-	color: black;
-	text-align: right;
-	/* Right-align footer */
+  margin-top: 1rem;
+  font-size: 17px;
+  color: black;
+  text-align: right;
+  /* Right-align footer */
 }
 
 /* Checkbox and label */
 input[type="checkbox"] {
-    width: 1rem;
-    height: 1rem;
-    border-radius: 0.5rem;
-    border: 1px solid #e2e8f0;   
+  width: 1rem;
+  height: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #e2e8f0;
 }
 
 .ml-2 {
-    margin-left: 0; 
-    margin-right: 0.5rem; /* Adjust for RTL */
+  margin-left: 0;
+  margin-right: 0.5rem; /* Adjust for RTL */
 }
 
 /* Adjust Form Text and Links */
-input[type="checkbox"] + label, 
-a.text-xs, 
+input[type="checkbox"] + label,
+a.text-xs,
 a.text-indigo-500 {
-    text-align: right;
-    display: block;
-    direction: rtl;
+  text-align: right;
+  display: block;
+  direction: rtl;
 }
 
 /* Ensure Proper Form Layout */
 form div {
-    text-align: right;
+  text-align: right;
 }
 
 /* Reset Button Text Alignment */
 button {
-    text-align: center;
+  text-align: center;
 }
 
 /* Button Styles */
 button {
-    padding: 0.75rem 1.5rem;
-    font-size: 24px;
-    background-color: #921A40;
-    color: #fff;
-    border: none;
-    border-radius: 0.375rem;
-    cursor: pointer;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background-color 0.3s;
+  padding: 0.75rem 1.5rem;
+  font-size: 24px;
+  background-color: #921a40;
+  color: #fff;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s;
 }
 
 button:hover {
-    background-color: #921a405a;
+  background-color: #921a405a;
 }
 
 button:focus {
-    outline: none;
-    ring: 2px solid #4c51bf;
+  outline: none;
+  ring: 2px solid #4c51bf;
 }
 
 button:active {
-    background-color: #921A40;
+  background-color: #921a40;
 }

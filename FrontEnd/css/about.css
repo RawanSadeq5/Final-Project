@@ -1,105 +1,107 @@
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f8f9fa;
-    direction: rtl;
-    background: linear-gradient(135deg, #921a40, #f8f9fa); /* Gradient background */
-    background-attachment: fixed; /* Keeps gradient fixed while scrolling */
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-  }
-
-  .logo img {
-      width: 180px;
-      height: 90px;
-      margin-left: 10px;
-    }
-  
-  /* Header */
-  header {
-    background-color: #921a40;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
-  }
-
-  nav {
-    display: flex;
-    justify-content: space-between; /* Distributes space between logo and nav links */
-    align-items: center; /* Aligns items vertically in the center */
-    padding: 0 20px; /* Adds horizontal padding */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f8f9fa;
+  direction: rtl;
+  background: linear-gradient(
+    135deg,
+    #921a40,
+    #f8f9fa
+  ); /* Gradient background */
+  background-attachment: fixed; /* Keeps gradient fixed while scrolling */
 }
 
-  .nav-links {
-      display: flex;
-      gap: 15px; /* Space between nav links */
-  }
+.logo {
+  display: flex;
+  align-items: center;
+}
 
-  nav a {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 15px;
-    font-size: 25px;
-    transition: color 0.3s;
-  }
+.logo img {
+  width: 180px;
+  height: 90px;
+  margin-left: 10px;
+}
 
-  nav a:hover {
-      color: black;
-  }
+/* Header */
+header {
+  background-color: #921a40;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+}
 
-  .about{
-    color: black;
-  }
+nav {
+  display: flex;
+  justify-content: space-between; /* Distributes space between logo and nav links */
+  align-items: center; /* Aligns items vertically in the center */
+  padding: 0 20px; /* Adds horizontal padding */
+}
 
-    
-  /* Main Content */
-  main {
-    padding: 20px;
-  }
-  
-  .about-section,
-  .mission-section,
-  .team-section {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    padding: 20px;
-  }
-  
-  .about-section h2,
-  .mission-section h2,
-  .team-section h2 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-    color: #921a40;
-  }
-  
-  .about-section p,
-  .mission-section p,
-  .team-section p {
-    font-size: 18px;
-    margin: 0;
-    color: black;
-  }
-  
-  /* Footer */
-  footer {
-    background-color: #e4e0e1;
-    text-align: center;
-    padding: 10px 0;
-    color: #333;
-  }
-  
-  footer p {
-    font-size: 0.9rem;
-    margin: 0;
-  }
-  
+.nav-links {
+  display: flex;
+  gap: 15px; /* Space between nav links */
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 25px;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: black;
+}
+
+.about {
+  color: black;
+}
+
+/* Main Content */
+main {
+  padding: 20px;
+}
+
+.about-section,
+.mission-section,
+.team-section {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.about-section h2,
+.mission-section h2,
+.team-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: #921a40;
+}
+
+.about-section p,
+.mission-section p,
+.team-section p {
+  font-size: 18px;
+  margin: 0;
+  color: black;
+}
+
+/* Footer */
+footer {
+  background-color: #e4e0e1;
+  text-align: center;
+  padding: 10px 0;
+  color: #333;
+}
+
+footer p {
+  font-size: 0.9rem;
+  margin: 0;
+}

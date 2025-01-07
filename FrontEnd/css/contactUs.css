@@ -1,16 +1,20 @@
 /* General Styling */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    direction: rtl; /* Right-to-left support */
-    background: linear-gradient(135deg, #921a40, #f8f9fa); /* Gradient background */
-    background-attachment: fixed; /* Keeps gradient fixed while scrolling */
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  direction: rtl; /* Right-to-left support */
+  background: linear-gradient(
+    135deg,
+    #921a40,
+    #f8f9fa
+  ); /* Gradient background */
+  background-attachment: fixed; /* Keeps gradient fixed while scrolling */
 }
 
 .logo {
@@ -23,7 +27,7 @@ body {
   height: 90px;
   margin-left: 10px;
 }
-  
+
 /* Header */
 header {
   position: fixed; /* Fixes the header at the top of the viewport */
@@ -50,11 +54,11 @@ nav {
 }
 
 nav a {
-color: #fff;
-text-decoration: none;
-margin: 0 15px;
-font-size: 25px;
-transition: color 0.3s;
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 25px;
+  transition: color 0.3s;
 }
 
 nav a:hover {
@@ -75,78 +79,79 @@ main {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border: 2px solid #921A40;
-
+  border: 2px solid #921a40;
 }
 
+.contact-us {
+  color: black;
+}
 
-  .contact-us{
-    color:black;
-  }
-  
-  h1 {
-    font-size: 40px;
-    color: #921A40;
-    margin-bottom: 10px;
-    text-align: center;
-  }
-  
-  p {
-    font-size: 18px;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  /* Form Styling */
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  label {
-    font-size: 24px;
-    color: #921A40;
-    margin-bottom: 1px;
-    text-align: right;
-    font-weight: bold;
-  }
-  
-  input, textarea, button {
-    font-size: 17px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #921A40;
-    outline: none;
-    box-sizing: border-box;
-    width: 100%;
-    margin-bottom: 8px;
-  }
-  
-  input:focus, textarea:focus {
-    border-color: #921A40;
-    box-shadow: 0 0 5px rgba(146, 26, 64, 0.5);
-  }
-  
-  textarea {
-    resize: none;
-  }
-  
-  /* Submit Button Styling */
-  button {
-    background-color: #921A40;
-    font-size: 30px;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #921a405a;
-  }
+h1 {
+  font-size: 40px;
+  color: #921a40;
+  margin-bottom: 10px;
+  text-align: center;
+}
 
-  /* Modal Styles */
+p {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Form Styling */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-size: 24px;
+  color: #921a40;
+  margin-bottom: 1px;
+  text-align: right;
+  font-weight: bold;
+}
+
+input,
+textarea,
+button {
+  font-size: 17px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #921a40;
+  outline: none;
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #921a40;
+  box-shadow: 0 0 5px rgba(146, 26, 64, 0.5);
+}
+
+textarea {
+  resize: none;
+}
+
+/* Submit Button Styling */
+button {
+  background-color: #921a40;
+  font-size: 30px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #921a405a;
+}
+
+/* Modal Styles */
 .modal {
   position: fixed;
   top: 0;
@@ -182,7 +187,7 @@ main {
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
-  background-color: #921A40;
+  background-color: #921a40;
   color: #fff;
   transition: background-color 0.3s;
 }
