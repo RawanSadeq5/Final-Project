@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const data1 = {
       Appointments: [
         {
-          BN: "Salam Nails",
+          BusinessName: "Salam Nails",
           Address: "אנילביץ 9, עכו",
           ServiceType: "לק גל",
           Price: 150,
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           DurationInMinutes: 120,
         },
         {
-          BN: "Care Laser",
+          BusinessName: "Care Laser",
           Address: "העצמאות 13, חיפה",
           ServiceType: "טיפול להסרת משקפיים",
           Price: 110,
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       ],
       WaitingList: [
         {
-          BN: "Alex Hair Salon",
+          BusinessName: "Alex Hair Salon",
           Address: "יצחק רבין 4, תל אביב",
           ServiceType: "תספורת",
           Date: "15/01/2025",
@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const div = document.createElement("div");
       div.className = "appointment-card";
       const h2 = document.createElement("h2");
-      h2.innerHTML = `<strong>שם העסק:</strong> ${appointment.BN}`;
+      h2.innerHTML = `<strong>שם העסק:</strong> ${appointment.BusinessName}`;
       const labelAddress = document.createElement("label");
       labelAddress.innerHTML = `<strong>כתובת:</strong> ${appointment.Address}`;
       const labelServiceType = document.createElement("label");
@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const div = document.createElement("div");
       div.className = "appointment-card";
       const h2 = document.createElement("h2");
-      h2.innerHTML = `<strong>שם העסק:</strong> ${waitingItem.BN}`;
+      h2.innerHTML = `<strong>שם העסק:</strong> ${waitingItem.BusinessName}`;
       const labelAddress = document.createElement("label");
       labelAddress.innerHTML = `<strong>כתובת:</strong> ${waitingItem.Address}`;
       const labelServiceType = document.createElement("label");
