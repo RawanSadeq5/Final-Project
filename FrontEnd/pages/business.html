@@ -27,13 +27,9 @@
     <br />
     <br />
     <main>
-      <div class="container-details">
+      <div class="container-details" id="container-details">
         <div class="profile-image-container">
-          <img
-            id="profileImage"
-            src="../Images/default-profile.jpg"
-            alt="Profile Image"
-          />
+          <img id="profileImage" />
           <input
             type="file"
             id="uploadProfileImage"
@@ -149,7 +145,7 @@
       <section>
         <h2>הוספת תור פנוי ללקוחות</h2>
         <form id="addAppointmentForm">
-          <label for="service"
+          <label for="service" id="serviceOptions"
             >שירות:
             <select id="service">
               <option value="service1">שירות 1</option>
@@ -166,9 +162,24 @@
       <section>
         <h2>הוספת תורים חמים</h2>
         <form id="addAppointmentForm">
+          <label for="service" id="serviceTypes"
+            >שירות:
+            <select id="hotService">
+              <option value="service1">שירות 1</option>
+              <option value="service2">שירות 2</option>
+              <option value="service3">שירות 3</option>
+            </select> </label
+          ><br />
           <label>תאריך: <input type="date" id="date" /></label><br />
           <label>שעה: <input type="time" id="time" /></label><br />
-          <label>מחיר המקדמה: <input type="price" id="price" /></label><br />
+          <label
+            >מחיר לפני הנחה:
+            <input type="price" id="price" style="width: 60px" />₪</label
+          ><br />
+          <label
+            >מחיר אחרי הנחה:
+            <input type="price" id="price" style="width: 60px" />₪</label
+          ><br />
           <button type="button" id="addButton">הוסף</button>
         </form>
       </section>

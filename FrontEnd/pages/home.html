@@ -5,25 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NexTor</title>
     <link rel="stylesheet" href="../css/home.css" />
-    <!-- <script>
-        function showResults(event) {
-            event.preventDefault();
-
-            // Show the results section
-            const resultsSection = document.querySelector('.results-section');
-            resultsSection.classList.add('active');
-
-            // Optionally scroll to the results section for better user experience
-            resultsSection.scrollIntoView({ behavior: 'smooth' });
-        }
-    </script>
-
-<script>
-    function scrollToSearch() {
-        const searchSection = document.getElementById('search-section');
-        searchSection.scrollIntoView({ behavior: 'smooth' });
-    }
-</script>-->
   </head>
   <body>
     <header>
@@ -47,8 +28,26 @@
           + הוסף עסק חדש
         </button>
         <button id="logIn-link" class="header-button">התחברות</button>
+        <button id="bringFriend-link" class="header-button">הביא חבר</button>
       </div>
     </header>
+
+    <!-- Modal for the bring a friend feature -->
+    <div id="friend-modal" class="modal" style="display: none">
+      <div class="modal-content">
+        <span id="close-modal" class="close-button">&times;</span>
+        <h3>שיתוף קישור</h3>
+        <div class="copy-container">
+          <input
+            type="text"
+            id="copy-link"
+            value="https://nexTor.com/home"
+            readonly
+          />
+          <button id="copy-button" class="copy-icon">📄</button>
+        </div>
+      </div>
+    </div>
 
     <!-- Hero Section -->
     <div class="hero">
@@ -67,7 +66,7 @@
       <!-- Hot Appointments Section -->
       <div class="hot-appointments">
         <h2>תורים חמים</h2>
-        <div class="appointments-grid">
+        <div class="appointments-grid" id="appointment-grid">
           <div class="appointment-card">
             <!-- <img src="barber.jpg" alt="Man Hair Style">-->
             <div class="appointment-info">
@@ -78,15 +77,11 @@
                 <span class="price-discounted">$3500</span>
                 <span class="price-original">$4000</span>
               </p>
-              <button>הזמן עכשיו</button>
+              <button id="bookNowButton">הזמן עכשיו</button>
             </div>
           </div>
           <div class="appointment-card">
-            <!--<img src="electrician.jpg" alt="Expert Electrician">-->
             <div class="appointment-info">
-              <h3>חשמלאי מומחה</h3>
-              <p>מאת: אפיף איסלם</p>
-              <p>מגדל העיר, רחוב: 1285, ארה"ב</p>
               <p>
                 <span class="price-discounted">$4000</span>
                 <span class="price-original">$5000</span>
@@ -94,6 +89,36 @@
               <button>הזמן עכשיו</button>
             </div>
           </div>
+        </div>
+        <div
+          id="details-container"
+          class="details-container"
+          style="display: none"
+        >
+          <button id="close-details" class="close-button">X</button>
+          <h3>פרטי משתמש</h3>
+          <form id="user-details-form">
+            <div class="form-group">
+              <label for="full-name">שם מלא:</label>
+              <input type="text" id="full-name" name="full-name" required />
+            </div>
+            <div class="form-group">
+              <label for="phone-number">מספר טלפון:</label>
+              <input
+                type="tel"
+                id="phone-number"
+                name="phone-number"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="notes">הערות:</label>
+              <textarea id="notes" name="notes" rows="3"></textarea>
+            </div>
+            <div class="button-container">
+              <button type="button" id="payment-button">המשך לתשלום</button>
+            </div>
+          </form>
         </div>
       </div>
     </main>
