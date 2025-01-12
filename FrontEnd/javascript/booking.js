@@ -1,13 +1,13 @@
 document.addEventListener("DOMContentLoaded", async function () {
+  const timesContainer = document.querySelector(".times-container");
+  const availableTimesList = document.querySelector("#available-times");
+  const detailsContainer = document.querySelector(".details-container");
   const continueButton = document.querySelector("#continue-button");
   const calendarContainer = document.querySelector(".wrapper");
   const newProceedButton = document.querySelector("#proceed-button");
   const daysTag = document.querySelector(".days");
   const currentDate = document.querySelector(".current-date");
   const prevNextIcon = document.querySelectorAll(".icons span");
-  const timesContainer = document.querySelector(".times-container");
-  const availableTimesList = document.querySelector("#available-times");
-  const detailsContainer = document.querySelector(".details-container");
 
   // Initially hide elements
   continueButton.style.display = "none";
@@ -25,60 +25,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Scroll to the calendar
     calendarContainer.scrollIntoView({ behavior: "smooth", block: "start" });
   });
-
-  // Step 3: Render Calendar
-  let date = new Date(),
-    currYear = date.getFullYear(),
-    currMonth = date.getMonth();
-
-  const months = [
-    "ינואר",
-    "פברואר",
-    "מרץ",
-    "אפריל",
-    "מאי",
-    "יוני",
-    "יולי",
-    "אוגוסט",
-    "ספטמבר",
-    "אוקטובר",
-    "נובמבר",
-    "דצמבר",
-  ];
-
-  const renderCalendar = () => {
-    let firstDayOfMonth = new Date(currYear, currMonth, 1).getDay(),
-      lastDateOfMonth = new Date(currYear, currMonth + 1, 0).getDate(),
-      lastDayOfMonth = new Date(currYear, currMonth, lastDateOfMonth).getDay(),
-      lastDateOfLastMonth = new Date(currYear, currMonth, 0).getDate();
-    let liTag = "";
-
-    // Previous month's days
-    for (let i = firstDayOfMonth; i > 0; i--) {
-      liTag += `<li class="inactive">${lastDateOfLastMonth - i + 1}</li>`;
-    }
-
-    // Current month's days
-    for (let i = 1; i <= lastDateOfMonth; i++) {
-      let isToday =
-        i === date.getDate() &&
-        currMonth === new Date().getMonth() &&
-        currYear === new Date().getFullYear()
-          ? "active"
-          : "";
-      liTag += `<li class="${isToday}">${i}</li>`;
-    }
-
-    // Next month's days
-    for (let i = lastDayOfMonth; i < 6; i++) {
-      liTag += `<li class="inactive">${i - lastDayOfMonth + 1}</li>`;
-    }
-
-    currentDate.innerText = `${months[currMonth]} ${currYear}`;
-    daysTag.innerHTML = liTag;
-  };
-
-  renderCalendar();
 
   prevNextIcon.forEach((icon) => {
     icon.addEventListener("click", () => {
@@ -135,13 +81,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         .querySelectorAll("li")
         .forEach((time) => time.classList.remove("selected"));
 
-      // Add "selected" class to the clicked time
       event.target.classList.add("selected");
-
-      // Show the details container
       detailsContainer.style.display = "block";
-
-      // Smooth scroll to details container
       detailsContainer.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   });
@@ -189,9 +130,16 @@ document.addEventListener("DOMContentLoaded", async function () {
   const serviceList = document.getElementById("serviceList");
   const imageGallery = document.getElementById("imageGallery");
 
+  // profileImage.innerHTML = ""; // Clear previous times
+  // businessName.innerHTML = ""; // Clear previous times
+  // businessAddress.innerHTML = ""; // Clear previous times
+  // serviceList.innerHTML = ""; // Clear previous times
+  // imageGallery.innerHTML = ""; // Clear previous times
+  // availableTimesList.innerHTML = ""; // Clear previous times
+
   const data1 = {
     profileImage: "https://www.w3schools.com/images/w3schools_green.jpg",
-    businessName: "Salam Nails",
+    businessName: "Hanan Nails",
     businessAddress: "אנילביץ 9, עכו",
     serviceList: [
       { name: "לק ג'ל + 3 ציפורניים שבורות", price: "₪180" },
@@ -255,11 +203,166 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       serviceLinks.forEach((l) => l.classList.remove("selected"));
 
+      // Add selected class to the clicked service
       link.classList.add("selected");
 
       // Show the first "המשך" button
       continueButton.style.display = "inline-block";
     });
+  });
+
+  // Initially hide elements
+  continueButton.style.display = "none";
+  calendarContainer.style.display = "none";
+  newProceedButton.style.display = "none";
+  timesContainer.style.display = "none";
+  detailsContainer.style.display = "none";
+
+  let date = new Date(),
+    currYear = date.getFullYear(),
+    currMonth = date.getMonth();
+
+  const months = [
+    "ינואר",
+    "פברואר",
+    "מרץ",
+    "אפריל",
+    "מאי",
+    "יוני",
+    "יולי",
+    "אוגוסט",
+    "ספטמבר",
+    "אוקטובר",
+    "נובמבר",
+    "דצמבר",
+  ];
+
+  // Simulate a fetch for available dates
+  async function fetchAvailableDates(year, month) {
+    console.log(`Fetching available dates for ${year}-${month + 1}`);
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({
+          availableDates: [3, 5, 10, 15, 20], // Example available dates
+        });
+      }, 500);
+    });
+  }
+
+  const renderCalendar = async () => {
+    const { availableDates } = await fetchAvailableDates(currYear, currMonth);
+
+    let firstDayOfMonth = new Date(currYear, currMonth, 1).getDay(),
+      lastDateOfMonth = new Date(currYear, currMonth + 1, 0).getDate(),
+      lastDayOfMonth = new Date(currYear, currMonth, lastDateOfMonth).getDay(),
+      lastDateOfLastMonth = new Date(currYear, currMonth, 0).getDate();
+
+    let liTag = "";
+
+    // Previous month's days
+    for (let i = firstDayOfMonth; i > 0; i--) {
+      liTag += `<li class="inactive">${lastDateOfLastMonth - i + 1}</li>`;
+    }
+
+    // Current month's days
+    for (let i = 1; i <= lastDateOfMonth; i++) {
+      let isToday =
+        i === date.getDate() &&
+        currMonth === new Date().getMonth() &&
+        currYear === new Date().getFullYear()
+          ? "active"
+          : "";
+      let isAvailable = availableDates.includes(i)
+        ? "available"
+        : "unavailable";
+      liTag += `<li class="${isToday} ${isAvailable}" data-date="${i}">${i}</li>`;
+    }
+
+    // Next month's days
+    for (let i = lastDayOfMonth; i < 6; i++) {
+      liTag += `<li class="inactive">${i - lastDayOfMonth + 1}</li>`;
+    }
+
+    currentDate.innerText = `${months[currMonth]} ${currYear}`;
+    daysTag.innerHTML = liTag;
+  };
+
+  await renderCalendar();
+
+  prevNextIcon.forEach((icon) => {
+    icon.addEventListener("click", async () => {
+      currMonth = icon.id === "prev" ? currMonth : currMonth;
+
+      if (currMonth < 0 || currMonth > 11) {
+        date = new Date(currYear, currMonth, new Date().getDate());
+        currYear = date.getFullYear();
+        currMonth = date.getMonth();
+      } else {
+        date = new Date();
+      }
+      await renderCalendar();
+    });
+  });
+
+  daysTag.addEventListener("click", function (event) {
+    if (
+      event.target.tagName === "LI" &&
+      event.target.classList.contains("available")
+    ) {
+      daysTag
+        .querySelectorAll("li")
+        .forEach((day) => day.classList.remove("active"));
+      event.target.classList.add("active");
+
+      newProceedButton.style.display = "inline-block";
+    } else if (
+      event.target.tagName === "LI" &&
+      event.target.classList.contains("unavailable")
+    ) {
+      alert("This date is unavailable. Please select another date.");
+    }
+  });
+
+  // Simulate a fetch for available times
+  async function fetchAvailableTimes(date) {
+    console.log(`Fetching available times for ${date}`);
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({
+          availableTimes: ["09:00", "10:00", "11:30", "17:00", "18:00"], // Example available times
+        });
+      }, 500);
+    });
+  }
+
+  // Step 5: Show Times (Updated)
+  newProceedButton.addEventListener("click", async function () {
+    // Ensure a date is selected
+    const selectedDateElement = document.querySelector(".days li.active");
+    if (!selectedDateElement) {
+      alert("אנא בחר תאריך");
+      return;
+    }
+
+    const selectedDate = selectedDateElement.dataset.date;
+    const formattedDate = `${currYear}-${currMonth + 1}-${selectedDate}`; // Example: 2024-12-10
+
+    // Fetch available times for the selected date
+    const { availableTimes } = await fetchAvailableTimes(formattedDate);
+
+    // Populate the available times list
+    availableTimesList.innerHTML = ""; // Clear previous times
+    availableTimes.forEach((time) => {
+      const timeItem = document.createElement("li");
+      timeItem.textContent = time;
+      availableTimesList.appendChild(timeItem);
+    });
+
+    // Show the times container
+    timesContainer.style.display = "block";
+
+    // Smooth scroll to times container
+    timesContainer.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 });
 
