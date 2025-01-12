@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           a.className = "businesses-name";
 
           a.textContent = `${item.name}`;
-          a.href = "../pages/booking.html";
+          a.href = `../pages/booking.html?id=${item.id}`;
           li.appendChild(a);
           ul.appendChild(li);
         });
