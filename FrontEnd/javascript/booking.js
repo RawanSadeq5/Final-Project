@@ -1,5 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const serviceLinks = document.querySelectorAll(".service-link");
+document.addEventListener("DOMContentLoaded", async function () {
   const continueButton = document.querySelector("#continue-button");
   const calendarContainer = document.querySelector(".wrapper");
   const newProceedButton = document.querySelector("#proceed-button");
@@ -18,20 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
   detailsContainer.style.display = "none";
 
   // Step 1: Select Service
-  serviceLinks.forEach((link) => {
-    link.addEventListener("click", function (event) {
-      event.preventDefault();
-
-      // Remove selected class from all services
-      serviceLinks.forEach((l) => l.classList.remove("selected"));
-
-      // Add selected class to the clicked service
-      link.classList.add("selected");
-
-      // Show the first "המשך" button
-      continueButton.style.display = "inline-block";
-    });
-  });
 
   // Step 2: Show Calendar
   continueButton.addEventListener("click", function () {
@@ -197,4 +182,97 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault();
     window.location.href = "home.html";
   });
+
+  const profileImage = document.getElementById("profileImage");
+  const businessName = document.getElementById("businessName");
+  const businessAddress = document.getElementById("businessAddress");
+  const serviceList = document.getElementById("serviceList");
+  const imageGallery = document.getElementById("imageGallery");
+
+  const data1 = {
+    profileImage: "https://www.w3schools.com/images/w3schools_green.jpg",
+    businessName: "Salam Nails",
+    businessAddress: "אנילביץ 9, עכו",
+    serviceList: [
+      { name: "לק ג'ל + 3 ציפורניים שבורות", price: "₪180" },
+      { name: "מילוי אקריל + 3 ציפורניים שבורות", price: "₪180" },
+      { name: "לק ג'ל", price: "₪150" },
+      { name: "החלפת צבע", price: "₪100" },
+      { name: "תיקון ציפורן", price: "₪50" },
+    ],
+    imageGallery: [
+      "https://www.w3schools.com/images/w3schools_green.jpg",
+      "https://www.w3schools.com/images/w3schools_green.jpg",
+      "https://www.w3schools.com/images/w3schools_green.jpg",
+      "https://www.w3schools.com/images/w3schools_green.jpg",
+      "https://www.w3schools.com/images/w3schools_green.jpg",
+      "https://www.w3schools.com/images/w3schools_green.jpg",
+    ],
+  };
+
+  const id = getQueryParam();
+
+  // if(!id){
+  //   document.body.textContent = "No Buisness Id found";
+  //   return;
+  // }
+
+  const data = await Fetch(
+    `https://HananRawanSite.com/api/data/buisness/${id}`,
+    data1
+  );
+  profileImage.src = data.profileImage;
+  businessName.textContent = data.businessName;
+  businessAddress.textContent = data.businessAddress;
+  imageGallery.innerHTML = "";
+  data.imageGallery.forEach((item) => {
+    const image = document.createElement("img");
+    image.src = item;
+    imageGallery.appendChild(image);
+  });
+  serviceList.innerHTML = "";
+  data.serviceList.forEach((service) => {
+    const listItem = document.createElement("li");
+    const serviceLink = document.createElement("a");
+    const serviceName = document.createTextNode(service.name);
+    const servicePrice = document.createElement("span");
+
+    serviceLink.href = "#";
+    serviceLink.classList.add("service-link");
+    servicePrice.classList.add("price");
+
+    servicePrice.textContent = service.price;
+    serviceLink.appendChild(serviceName);
+    serviceLink.appendChild(servicePrice);
+    listItem.appendChild(serviceLink);
+    serviceList.appendChild(listItem);
+  });
+
+  const serviceLinks = document.querySelectorAll(".service-link");
+  serviceLinks.forEach((link) => {
+    link.addEventListener("click", function (event) {
+      event.preventDefault();
+
+      serviceLinks.forEach((l) => l.classList.remove("selected"));
+
+      link.classList.add("selected");
+
+      // Show the first "המשך" button
+      continueButton.style.display = "inline-block";
+    });
+  });
 });
+
+function getQueryParam() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get("id");
+}
+
+function Fetch(url, data) {
+  return new Promise((resolve, reject) => {
+    console.log(`Fetching data from: ${url}`);
+    setTimeout(() => {
+      resolve(data);
+    }, 500);
+  });
+}
