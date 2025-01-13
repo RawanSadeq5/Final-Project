@@ -127,20 +127,22 @@ document.addEventListener("DOMContentLoaded", async function () {
   const profileImage = document.getElementById("profileImage");
   const businessName = document.getElementById("businessName");
   const businessAddress = document.getElementById("businessAddress");
+  const businessPhone = document.getElementById("businessPhone");
   const serviceList = document.getElementById("serviceList");
   const imageGallery = document.getElementById("imageGallery");
 
-  // profileImage.innerHTML = ""; // Clear previous times
-  // businessName.innerHTML = ""; // Clear previous times
-  // businessAddress.innerHTML = ""; // Clear previous times
-  // serviceList.innerHTML = ""; // Clear previous times
-  // imageGallery.innerHTML = ""; // Clear previous times
-  // availableTimesList.innerHTML = ""; // Clear previous times
+  profileImage.innerHTML = ""; // Clear previous times
+  businessName.innerHTML = ""; // Clear previous times
+  businessAddress.innerHTML = ""; // Clear previous times
+  serviceList.innerHTML = ""; // Clear previous times
+  imageGallery.innerHTML = ""; // Clear previous times
+  availableTimesList.innerHTML = ""; // Clear previous times
 
   const data1 = {
     profileImage: "https://www.w3schools.com/images/w3schools_green.jpg",
     businessName: "Hanan Nails",
     businessAddress: "אנילביץ 9, עכו",
+    businessPhone: "0524366744",
     serviceList: [
       { name: "לק ג'ל + 3 ציפורניים שבורות", price: "₪180" },
       { name: "מילוי אקריל + 3 ציפורניים שבורות", price: "₪180" },
@@ -172,6 +174,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   profileImage.src = data.profileImage;
   businessName.textContent = data.businessName;
   businessAddress.textContent = data.businessAddress;
+  businessPhone.textContent = data.businessPhone;
   imageGallery.innerHTML = "";
   data.imageGallery.forEach((item) => {
     const image = document.createElement("img");
@@ -316,13 +319,12 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       newProceedButton.style.display = "inline-block";
     } else if (
-      event.target.tagName === "LI" &&
-      event.target.classList.contains("unavailable")
+      clickedDay.tagName === "LI" &&
+      clickedDay.classList.contains("unavailable")
     ) {
       alert("This date is unavailable. Please select another date.");
     }
   });
-
   // Simulate a fetch for available times
   async function fetchAvailableTimes(date) {
     console.log(`Fetching available times for ${date}`);
