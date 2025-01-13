@@ -138,6 +138,16 @@ header p {
   /* Maintain aspect ratio of the image */
 }
 
+#businessAddress {
+  color: #333;
+  font-size: 19px;
+}
+
+#businessPhone {
+  color: #333;
+  font-size: 19px;
+}
+
 .gallery {
   display: flex;
   flex-wrap: wrap;
