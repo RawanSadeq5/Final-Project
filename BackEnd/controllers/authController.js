@@ -7,9 +7,11 @@ const User = require("../models/User");
 exports.signup = async (req, res) => {
   try {
     const { fullName, emailAddress, password } = req.body;
+    console.log("test test..");
 
     // Basic validation
     if (!fullName || !emailAddress || !password) {
+      console.log("We are here1");
       return res.status(400).json({
         status: false,
         message: "All fields are required",
@@ -19,6 +21,7 @@ exports.signup = async (req, res) => {
     // Check if user already exists
     const existingUser = await User.findOne({ emailAddress });
     if (existingUser) {
+      console.log("User already exists");
       return res.status(400).json({
         status: false,
         message: "User already exists. Please log in instead.",

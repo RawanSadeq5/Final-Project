@@ -7,10 +7,18 @@ const openingHoursSchema = new mongoose.Schema({
 
 const serviceSchema = new mongoose.Schema({
   name: { type: String, required: true }, // e.g. "Haircut"
-  duration: { type: Number, required: true }, // e.g. 30 (minutes)
+  durationMinutes: { type: Number, required: true }, // e.g. 30 (minutes)
+  durationHours: { type: Number, required: true },
+  price: { type: Number, required: true },
 });
 
-const businessSchema = new mongoose.Schema({
+const agreementsSchema = new mongoose.Schema({
+  advancePayment: { type: Number, required: true }, // Advance payment amount
+  cancellationDays: { type: Number, required: true }, // Number of days before cancellation without a refund
+  customerReward: { type: String, required: true }, // Reward for bringing a friend
+});
+
+const BusinessSchema = new mongoose.Schema({
   name: { type: String, required: true }, // e.g. "Salam Nails"
   address: { type: String, required: true }, // e.g. "Main St. 123"
   phoneNumber: { type: String, required: true },
@@ -25,10 +33,10 @@ const businessSchema = new mongoose.Schema({
   },
   services: [serviceSchema], // array of { name, duration }
 
-  // Store image paths/URLs for the business
-  images: [{ type: String }], // e.g. ["uploads/business1/img1.jpg", ...]
-
+  profileImage: { type: String }, // Path to profile image
+  images: { type: [String], default: [] }, // Paths to uploaded images
+  agreements: agreementsSchema, // Agreements section
   createdAt: { type: Date, default: Date.now },
 });
 
-module.exports = mongoose.model("Business", businessSchema);
+module.exports = mongoose.model("Business", BusinessSchema);

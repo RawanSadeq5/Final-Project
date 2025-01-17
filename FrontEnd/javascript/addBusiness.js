@@ -69,13 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "home.html";
   });
 
-  // About page navigation
-  /* const businessLink = document.getElementById("home-link");
-  businessLink.addEventListener("click", (event) => {
-    event.preventDefault();
-    window.location.href = "business.html"; 
-  });*/
-
   // Add Service Lines Dynamically
   const addServiceButton = document.getElementById("plus-button");
   const removeServiceButton = document.getElementById("mi-button");
@@ -146,27 +139,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initial setup: Hide the "-" button
   removeServiceButton.style.display = "none";
-
-  // Select DOM elements for the radio buttons and price container
-  const yesRadioButton = document.getElementById("yes");
-  const noRadioButton = document.getElementById("no");
-  const priceContainer = document.getElementById("price-container");
-
-  // Show or hide the price input field based on the selected radio button
-  function handleRadioChange() {
-    if (yesRadioButton.checked) {
-      priceContainer.style.display = "block"; // Show the price input field
-    } else {
-      priceContainer.style.display = "none"; // Hide the price input field
-    }
-  }
-
-  // Add event listeners to the radio buttons
-  yesRadioButton.addEventListener("change", handleRadioChange);
-  noRadioButton.addEventListener("change", handleRadioChange);
-
-  // Initial setup: Ensure the price container is hidden by default
-  priceContainer.style.display = "none";
 });
 
 // Image upload functionality

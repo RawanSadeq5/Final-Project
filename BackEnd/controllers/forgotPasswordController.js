@@ -8,6 +8,7 @@ exports.forgotPassword = async (req, res) => {
 
     // Validate input
     if (!emailAddress || !password) {
+      console.log("user test");
       return res.status(400).json({
         status: false,
         message: "Email and new password are required.",
@@ -17,6 +18,7 @@ exports.forgotPassword = async (req, res) => {
     // Check if the user exists
     const user = await User.findOne({ emailAddress });
     if (!user) {
+      console.log("user");
       return res.status(404).json({
         status: false,
         message: "User not found. Please register first.",
@@ -26,10 +28,12 @@ exports.forgotPassword = async (req, res) => {
     // Hash the new password
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
+    console.log("pass test");
 
     // Update the user's password
     user.password = hashedPassword;
     await user.save();
+    console.log("Password updated for user:", user.emailAddress);
 
     return res.json({
       status: true,

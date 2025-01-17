@@ -13,14 +13,14 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "contactUs.html";
   });
 
-  // home page navigation
+  // Home page navigation
   const homeLink = document.getElementById("home-link");
   homeLink.addEventListener("click", (event) => {
     event.preventDefault();
     window.location.href = "home.html";
   });
 
-  // login page navigation
+  // Login page navigation
   const loginLink = document.getElementById("login-link");
   loginLink.addEventListener("click", (event) => {
     event.preventDefault();
@@ -30,10 +30,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const createAccountButton = document.getElementById("signup");
 const popup = document.getElementById("popup");
+const loginPopupButton = document.getElementById("loginPopupButton");
 
-// Show the popup
+// Show the popup when "התחבר כאן" is clicked on the popup
+loginPopupButton.addEventListener("click", function () {
+  window.location.href = "../pages/login.html"; // Redirect to login.html
+});
+
+// Handle sign-up
 createAccountButton.addEventListener("click", async function (event) {
   event.preventDefault();
+
   // Get input values
   const fullName = document.querySelector("#full-name").value.trim();
   const emailAddress = document.querySelector("#email").value.trim();
@@ -44,32 +51,40 @@ createAccountButton.addEventListener("click", async function (event) {
     alert("אנא מלא את כל השדות הנדרשים"); // Show an alert if fields are empty
     return;
   }
+
   try {
-    const data1 = { status: true };
-    const data = await Fetch("https://HananRawanSite.com/api/data", data1);
+    // Send signup request to the server
+    const response = await fetch("http://localhost:3000/api/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        fullName,
+        emailAddress,
+        password,
+      }),
+    });
+
+    // Check if the response from the server was OK
+    if (!response.ok) {
+      // You could handle server errors more specifically here
+      throw new Error(`Server error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log(data);
+
     if (data.status === true) {
+      // If the server confirms signup success
       document.body.classList.add("popup-active");
       popup.style.display = "block";
     } else {
-      alert("הנתונים שהזנת אינם ניכונים, נסה שוב");
+      // If the server says something went wrong
+      alert(data.message || "הנתונים שהזנת אינם נכונים, נסה שוב");
     }
   } catch (error) {
-    console.error(error);
+    console.error("Sign-up error:", error);
+    alert("שגיאה בהתחברות לשרת. אנא נסה שוב מאוחר יותר");
   }
 });
-
-// Redirect to login.html when "התחבר כאן" is clicked
-const loginPopupButton = document.getElementById("loginPopupButton");
-
-loginPopupButton.addEventListener("click", function () {
-  window.location.href = "../pages/login.html"; // Redirect to login.html
-});
-
-function Fetch(url, data) {
-  return new Promise((resolve, reject) => {
-    console.log(`Fetching data from: ${url}`);
-    setTimeout(() => {
-      resolve(data);
-    }, 500);
-  });
-}

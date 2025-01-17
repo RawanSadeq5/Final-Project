@@ -1,5 +1,5 @@
-const Appointment = require("../models/Appointment");
-const Business = require("../models/Business");
+const { Appointment } = require("../models/appointment");
+const Business = require("../models/businessModel");
 
 /**
  * Helper function to convert "HH:mm" to total minutes from midnight.
@@ -88,7 +88,7 @@ exports.createAppointment = async (req, res) => {
 /**
  * GET ALL HOT APPOINTMENTS
  */
-exports.getAllHotAppointments = async (req, res) => {
+/*exports.getAllHotAppointments = async (req, res) => {
   try {
     const hotAppointments = await Appointment.find({ isHot: true });
     return res.json({ success: true, hotAppointments });
@@ -96,7 +96,7 @@ exports.getAllHotAppointments = async (req, res) => {
     console.error("Error fetching hot appointments:", error);
     return res.status(500).json({ success: false, message: "Server error." });
   }
-};
+};*/
 
 exports.getAllAppointments = async (req, res) => {
   try {
@@ -108,11 +108,7 @@ exports.getAllAppointments = async (req, res) => {
   }
 };
 
-/*
-Maybe Hanan we will use the underneath code in the future.
-
-
-*/
+//Maybe Hanan we will use the underneath code in the future.
 
 /**
  * GET AVAILABLE HOURS for a specific business on a specific date.
