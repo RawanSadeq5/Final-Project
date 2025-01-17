@@ -300,3 +300,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error(error);
   }
 });
+
+/*const { UserAppointment, WaitingList } = require("../models/Schemas");
+
+// Example: Fetch all user appointments
+exports.getUserAppointments = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const appointments = await UserAppointment.find({ userId });
+    res.status(200).json({ success: true, appointments });
+  } catch (error) {
+    console.error("Error fetching user appointments:", error);
+    res.status(500).json({ success: false, message: "Failed to fetch appointments." });
+  }
+};*/

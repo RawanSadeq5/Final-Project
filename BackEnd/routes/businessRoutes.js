@@ -1,8 +1,37 @@
 const express = require("express");
 const router = express.Router();
-const multer = require("multer");
+//const multer = require("multer");
 
 const {
+  getBusinessDetails,
+  updateBusinessDetails,
+  getAppointments,
+  addAvailableAppointment,
+  addHotAppointment,
+  updateBusinessImage,
+} = require("../controllers/businessController");
+
+// Fetch business details
+router.get("/business/:businessId", getBusinessDetails);
+
+// Update business details
+router.put("/business/:businessId", updateBusinessDetails);
+
+// Get business appointments
+router.get("/business/:businessId/appointments", getAppointments);
+
+// Add a new available appointment
+router.post("/business/:businessId/appointments", addAvailableAppointment);
+
+// Add a hot appointment
+router.post("/business/:businessId/hot-appointments", addHotAppointment);
+
+// Update business images
+router.post("/business/:businessId/images", updateBusinessImage);
+
+module.exports = router;
+
+/*const {
   createBusiness,
   getAllBusinesses,
 } = require("../controllers/businessController");
@@ -33,4 +62,4 @@ router.post(
 // GET ALL BUSINESSES Names and IDS
 router.get("/businesses", authMiddleware, getAllBusinesses);
 
-module.exports = router;
+module.exports = router;*/
