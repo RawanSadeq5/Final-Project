@@ -42,19 +42,25 @@ document.addEventListener("DOMContentLoaded", async function () {
   });
 
   // Step 4: Select Date
+  // Handle date selection
   daysTag.addEventListener("click", function (event) {
-    if (
-      event.target.tagName === "LI" &&
-      !event.target.classList.contains("inactive")
-    ) {
-      // Highlight selected date
+    const target = event.target;
+
+    if (target.tagName === "LI") {
+      // Remove "active" class and hide "המשך" button for all dates
       daysTag
         .querySelectorAll("li")
         .forEach((day) => day.classList.remove("active"));
-      event.target.classList.add("active");
+      newProceedButton.style.display = "none";
 
-      // Show the second "המשך" button
-      newProceedButton.style.display = "inline-block";
+      if (target.classList.contains("available")) {
+        // Add "active" class and show "המשך" button for available dates
+        target.classList.add("active");
+        newProceedButton.style.display = "inline-block";
+      } else if (target.classList.contains("unavailable")) {
+        // Just ensure "המשך" button remains hidden
+        newProceedButton.style.display = "none";
+      }
     }
   });
 
@@ -85,6 +91,62 @@ document.addEventListener("DOMContentLoaded", async function () {
       detailsContainer.style.display = "block";
       detailsContainer.scrollIntoView({ behavior: "smooth", block: "start" });
     }
+  });
+  const waitingListModal = document.getElementById("waiting-list-modal");
+  const closeButton = document.querySelector(".close-button");
+  const addToWaitlistButton = document.getElementById("add-to-waitlist-button");
+
+  daysTag.addEventListener("click", function (event) {
+    if (
+      event.target.tagName === "LI" &&
+      event.target.classList.contains("available")
+    ) {
+      daysTag
+        .querySelectorAll("li")
+        .forEach((day) => day.classList.remove("active"));
+      event.target.classList.add("active");
+
+      newProceedButton.style.display = "inline-block";
+    } else if (
+      event.target.tagName === "LI" &&
+      event.target.classList.contains("unavailable")
+    ) {
+      // Show the modal
+      waitingListModal.style.display = "block";
+    }
+  });
+
+  // Close modal on clicking the close button
+  closeButton.addEventListener("click", () => {
+    waitingListModal.style.display = "none";
+  });
+
+  // Close modal when clicking outside the modal content
+  window.addEventListener("click", (event) => {
+    if (event.target === waitingListModal) {
+      waitingListModal.style.display = "none";
+    }
+  });
+
+  // Handle adding to the waiting list
+  addToWaitlistButton.addEventListener("click", () => {
+    const fullName = document.getElementById("waitlist-full-name").value.trim();
+    const phoneNumber = document
+      .getElementById("waitlist-phone-number")
+      .value.trim();
+    const notes = document.getElementById("waitlist-notes").value.trim();
+
+    if (!fullName || !phoneNumber) {
+      alert("אנא מלא את כל השדות הנדרשים");
+      return;
+    }
+
+    console.log("Adding to waitlist:", { fullName, phoneNumber, notes });
+
+    // Hide modal after submitting
+    waitingListModal.style.display = "none";
+
+    alert("נרשמת בהצלחה לרשימת ההמתנה!");
   });
 
   // Step 7: Proceed to Payment

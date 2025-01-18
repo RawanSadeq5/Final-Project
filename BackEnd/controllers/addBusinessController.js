@@ -37,10 +37,21 @@ exports.addBusiness = async (req, res) => {
   }
 };
 
+// In your addBusinessController.js
+
 // Upload business images
 exports.uploadBusinessImages = async (req, res) => {
   try {
-    const { businessId, images } = req.body;
+    // When using upload.array("images"):
+    // req.files is an array of file objects
+    // Each file object has properties like 'filename', 'path', etc.
+
+    // e.g. from the client, you might also receive something like:
+    // POST /api/add-business/images
+    // Form data: businessId=... & images=[the actual files]
+
+    const businessId = req.body.businessId;
+    const files = req.files; // Array of uploaded files
 
     const business = await Business.findById(businessId);
     if (!business) {
@@ -49,7 +60,15 @@ exports.uploadBusinessImages = async (req, res) => {
         .json({ success: false, message: "Business not found." });
     }
 
-    business.images.push(...images);
+    // Construct URLs for each file
+    const imagePaths = files.map((file) => {
+      // Example of the final path:
+      // "http://localhost:3000/uploads/image-1681327123456.png"
+      return `${req.protocol}://${req.get("host")}/uploads/${file.filename}`;
+    });
+
+    // Save these URLs in DB
+    business.images.push(...imagePaths);
     await business.save();
 
     res.status(200).json({ success: true, business });
@@ -64,7 +83,8 @@ exports.uploadBusinessImages = async (req, res) => {
 // Upload profile image
 exports.uploadProfileImage = async (req, res) => {
   try {
-    const { businessId, profileImage } = req.body;
+    const businessId = req.body.businessId;
+    const file = req.file; // single file
 
     const business = await Business.findById(businessId);
     if (!business) {
@@ -73,7 +93,12 @@ exports.uploadProfileImage = async (req, res) => {
         .json({ success: false, message: "Business not found." });
     }
 
-    business.profileImage = profileImage;
+    // Build the URL for the uploaded image
+    const imageUrl = `${req.protocol}://${req.get("host")}/uploads/${
+      file.filename
+    }`;
+
+    business.profileImage = imageUrl;
     await business.save();
 
     res.status(200).json({ success: true, business });

@@ -10,6 +10,7 @@ const homeRoutes = require("./routes/homeRoutes");
 const myAppointmentsRoutes = require("./routes/myAppointmentsRoutes");
 const addBusinessRoutes = require("./routes/addBusinessRoutes");
 const forgotPasswordRoutes = require("./routes/forgotPasswordRoutes");
+const bookingRoutes = require("./routes/bookingRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -32,6 +33,7 @@ app.use("/api", homeRoutes);
 app.use("/api", myAppointmentsRoutes);
 app.use("/api", addBusinessRoutes);
 app.use("/api", forgotPasswordRoutes);
+app.use("/api", bookingRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
