@@ -23,68 +23,21 @@
     </header>
     <main class="appointments-page">
       <div class="appointment-navigator">
-        <div class="container" id="appointment-container">
+        <div class="container">
           <h1>התורים שלי</h1>
-          <div class="appointment-card">
-            <h2>שם העסק: סלון יופי</h2>
-            <br />
-            <label><strong>כתובת:</strong> רחוב היופי 12, תל אביב</label>
-            <br />
-            <br />
-            <label><strong>סוג שירות:</strong> לק ג'ל</label>
-            <br />
-            <br />
-            <label><strong>מחיר:</strong> ₪150</label>
-            <br />
-            <br />
-            <label><strong>תאריך:</strong> 12/01/2024</label>
-            <br />
-            <br />
-            <label><strong>שעה:</strong> 10:00</label>
-            <br />
-            <br />
-            <label><strong>משך זמן:</strong> 60 דקות</label>
-            <br />
-            <br />
-            <label>
-              <strong>סטטוס:</strong>
-              <select class="status-selector">
-                <option value="appointment-taken">התור תפוס</option>
-                <option value="ready-to-give-up">מוכן לוותר</option>
-              </select>
-            </label>
-            <br />
-            <br />
-            <div class="appointment-actions">
-              <button id="transferButton" class="action-button transfer">
-                העבר לחבר
-              </button>
+          <div class="appointment-navigator" id="appointment-container">
+            <div class="appointment-card">
+              <button class="action-button transfer">העבר לחבר</button>
               <button class="action-button cancel">ביטול תור</button>
             </div>
           </div>
-          <!-- Add more appointment cards here -->
         </div>
       </div>
       <br />
       <div class="container">
         <h1>רשימת המתנה</h1>
         <div class="waiting-list" id="waiting-list">
-          <!-- Add waiting list appointments here -->
           <div class="appointment-card">
-            <h2>שם העסק: מסעדת גורמה</h2>
-            <br />
-            <label><strong>כתובת:</strong> רחוב הגורמה 5, חיפה</label>
-            <br />
-            <br />
-            <label><strong>סוג שירות:</strong> הזמנה לשולחן</label>
-            <br />
-            <br />
-            <label><strong>תאריך:</strong> 15/01/2024</label>
-            <br />
-            <br />
-            <label><strong>שעה:</strong> 19:00</label>
-            <br />
-            <br />
             <button class="action-button delete-waiting">
               מחיקה מרשימת המתנה
             </button>

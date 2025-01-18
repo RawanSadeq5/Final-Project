@@ -21,7 +21,9 @@ exports.searchArea = async (req, res) => {
     const query = req.query.name || "";
     const areas = await Business.find({
       area: { $regex: query, $options: "i" },
-    }).distinct("area");
+    })
+      .distinct("area")
+      .select("name address _id");
     res.json({ success: true, areas });
   } catch (error) {
     console.error("Error searching areas:", error);
@@ -35,7 +37,7 @@ exports.searchService = async (req, res) => {
     const query = req.query.type || "";
     const services = await Business.find({
       serviceType: { $regex: query, $options: "i" },
-    });
+    }).select("name address _id");
     res.json({ success: true, services });
   } catch (error) {
     console.error("Error searching services:", error);

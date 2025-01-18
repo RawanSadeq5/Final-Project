@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // Show the container and reset any previous content
         dataContainer.style.display = "block";
-        dataContainer.innerHTML = "<p>Loading...</p>";
+        dataContainer.innerHTML = "<p>טוען...</p>";
 
         const data = await Fetch("https://HananRawanSite.com/api/data", data1);
         dataContainer.innerHTML = ""; // Clear loading state
