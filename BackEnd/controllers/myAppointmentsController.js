@@ -4,7 +4,7 @@ const { UserAppointment, WaitingList } = require("../models/appointment");
 exports.getUserAppointments = async (req, res) => {
   try {
     // Replace with actual user ID (e.g., from auth middleware)
-    const userId = req.user.id;
+    const userId = req.userId;
 
     const appointments = await UserAppointment.find({ userId });
     res.status(200).json({ success: true, appointments });
@@ -19,8 +19,7 @@ exports.getUserAppointments = async (req, res) => {
 // Get user's waiting list
 exports.getUserWaitingList = async (req, res) => {
   try {
-    // Replace with actual user ID (e.g., from auth middleware)
-    const userId = req.user.id;
+    const userId = req.userId;
 
     const waitingList = await WaitingList.find({ userId });
     res.status(200).json({ success: true, waitingList });
@@ -37,7 +36,7 @@ exports.cancelAppointment = async (req, res) => {
   try {
     const { appointmentId } = req.params;
 
-    const appointment = await Appointment.findByIdAndDelete(appointmentId);
+    const appointment = await UserAppointment.findByIdAndDelete(appointmentId);
     if (!appointment) {
       return res
         .status(404)

@@ -7,7 +7,7 @@ body {
     #921a40,
     #f8f9fa
   ); /* Gradient background */
-  background-attachment: fixed; /* Keeps gradient fixed while scrolling */
+  background-attachment: fixed;
 }
 
 .logo {
