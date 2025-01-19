@@ -37,8 +37,6 @@ exports.addBusiness = async (req, res) => {
   }
 };
 
-// In your addBusinessController.js
-
 // Upload business images
 exports.uploadBusinessImages = async (req, res) => {
   try {
@@ -113,21 +111,15 @@ exports.uploadProfileImage = async (req, res) => {
 //agreements
 exports.addAgreements = async (req, res) => {
   try {
-    const {
-      businessId,
-      advancePayment,
-      cancellationDays,
-      customerReward,
-      hotDiscount,
-    } = req.body;
+    const { businessId, advancePayment, cancellationDays, customerReward } =
+      req.body;
 
     // Validate input
     if (
       !businessId ||
       typeof advancePayment === "undefined" ||
       !cancellationDays ||
-      !customerReward ||
-      !hotDiscount
+      !customerReward
     ) {
       return res.status(400).json({
         success: false,

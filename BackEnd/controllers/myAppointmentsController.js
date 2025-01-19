@@ -1,4 +1,4 @@
-const { UserAppointment, WaitingList } = require("../models/appointment");
+const { UserAppointment, WaitingList } = require("../models/Appointment");
 
 // Get all appointments for a user
 exports.getUserAppointments = async (req, res) => {
