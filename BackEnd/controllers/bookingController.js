@@ -80,13 +80,13 @@ exports.getAvailableTimes = async (req, res) => {
       date,
     }).select("time");
 
-    const bookedTimes = appointments.map((appointment) => appointment.time);
+    //const bookedTimes = appointments.map((appointment) => appointment.time);
 
     // Example: You may replace this with service's available times logic
-    const allTimes = ["09:00", "10:00", "11:30", "14:00", "16:00"]; // Example all times
+    /*const allTimes = ["09:00", "10:00", "11:30", "14:00", "16:00"]; // Example all times
     const availableTimes = allTimes.filter(
       (time) => !bookedTimes.includes(time)
-    );
+    );*/
 
     res.status(200).json({ availableTimes });
   } catch (error) {

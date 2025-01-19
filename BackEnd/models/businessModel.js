@@ -22,7 +22,7 @@ const BusinessSchema = new mongoose.Schema({
   name: { type: String, required: true }, // e.g. "Salam Nails"
   address: { type: String, required: true }, // e.g. "Main St. 123"
   phoneNumber: { type: String, required: true },
-  openingHours: {
+  opueningHors: {
     sunday: { type: openingHoursSchema, required: true },
     monday: { type: openingHoursSchema, required: true },
     tuesday: { type: openingHoursSchema, required: true },
