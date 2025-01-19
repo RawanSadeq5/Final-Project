@@ -1,6 +1,6 @@
 const Business = require("../models/businessModel");
 
-// Add a new business
+// Add a new business with profile image, gallery images, and agreements
 exports.addBusiness = async (req, res) => {
   try {
     const {
@@ -10,9 +10,25 @@ exports.addBusiness = async (req, res) => {
       address,
       services,
       openingHours,
-      profileImage,
-      images,
+      advancePayment,
+      cancellationDays,
+      customerReward,
     } = req.body;
+
+    // Handle file uploads
+    const profileImageFile = req.files?.profileImage?.[0]; // Single file for profile image
+    const galleryFiles = req.files?.images || []; // Array of gallery images
+
+    // Construct URLs for uploaded files
+    const profileImageUrl = profileImageFile
+      ? `${req.protocol}://${req.get("host")}/uploads/${
+          profileImageFile.filename
+        }`
+      : null;
+
+    const galleryUrls = galleryFiles.map(
+      (file) => `${req.protocol}://${req.get("host")}/uploads/${file.filename}`
+    );
 
     // Create a new business instance
     const newBusiness = new Business({
@@ -20,141 +36,30 @@ exports.addBusiness = async (req, res) => {
       email,
       phone,
       address,
-      services,
-      openingHours,
-      profileImage,
-      images,
+      services: JSON.parse(services), // Assuming services is sent as a JSON string
+      openingHours: JSON.parse(openingHours), // Assuming openingHours is sent as a JSON string
+      profileImage: profileImageUrl,
+      images: galleryUrls,
+      agreements: {
+        advancePayment,
+        cancellationDays,
+        customerReward,
+      },
     });
 
+    // Save the business to the database
     await newBusiness.save();
 
-    res.status(201).json({ success: true, business: newBusiness });
+    res.status(201).json({
+      success: true,
+      message: "Business added successfully.",
+      business: newBusiness,
+    });
   } catch (error) {
     console.error("Error adding business:", error);
-    res
-      .status(500)
-      .json({ success: false, message: "Failed to add business." });
-  }
-};
-
-// Upload business images
-exports.uploadBusinessImages = async (req, res) => {
-  try {
-    // When using upload.array("images"):
-    // req.files is an array of file objects
-    // Each file object has properties like 'filename', 'path', etc.
-
-    // e.g. from the client, you might also receive something like:
-    // POST /api/add-business/images
-    // Form data: businessId=... & images=[the actual files]
-
-    const businessId = req.body.businessId;
-    const files = req.files; // Array of uploaded files
-
-    const business = await Business.findById(businessId);
-    if (!business) {
-      return res
-        .status(404)
-        .json({ success: false, message: "Business not found." });
-    }
-
-    // Construct URLs for each file
-    const imagePaths = files.map((file) => {
-      // Example of the final path:
-      // "http://localhost:3000/uploads/image-1681327123456.png"
-      return `${req.protocol}://${req.get("host")}/uploads/${file.filename}`;
-    });
-
-    // Save these URLs in DB
-    business.images.push(...imagePaths);
-    await business.save();
-
-    res.status(200).json({ success: true, business });
-  } catch (error) {
-    console.error("Error uploading business images:", error);
-    res
-      .status(500)
-      .json({ success: false, message: "Failed to upload images." });
-  }
-};
-
-// Upload profile image
-exports.uploadProfileImage = async (req, res) => {
-  try {
-    const businessId = req.body.businessId;
-    const file = req.file; // single file
-
-    const business = await Business.findById(businessId);
-    if (!business) {
-      return res
-        .status(404)
-        .json({ success: false, message: "Business not found." });
-    }
-
-    // Build the URL for the uploaded image
-    const imageUrl = `${req.protocol}://${req.get("host")}/uploads/${
-      file.filename
-    }`;
-
-    business.profileImage = imageUrl;
-    await business.save();
-
-    res.status(200).json({ success: true, business });
-  } catch (error) {
-    console.error("Error uploading profile image:", error);
-    res
-      .status(500)
-      .json({ success: false, message: "Failed to upload profile image." });
-  }
-};
-
-//agreements
-exports.addAgreements = async (req, res) => {
-  try {
-    const { businessId, advancePayment, cancellationDays, customerReward } =
-      req.body;
-
-    // Validate input
-    if (
-      !businessId ||
-      typeof advancePayment === "undefined" ||
-      !cancellationDays ||
-      !customerReward
-    ) {
-      return res.status(400).json({
-        success: false,
-        message: "All fields are required.",
-      });
-    }
-
-    // Find the business by ID
-    const business = await Business.findById(businessId);
-    if (!business) {
-      return res.status(404).json({
-        success: false,
-        message: "Business not found.",
-      });
-    }
-
-    // Update the agreements data
-    business.agreements = {
-      advancePayment,
-      cancellationDays,
-      customerReward,
-    };
-
-    await business.save();
-
-    res.status(200).json({
-      success: true,
-      message: "Business agreements updated successfully.",
-      agreements: business.agreements,
-    });
-  } catch (error) {
-    console.error("Error updating agreements:", error);
     res.status(500).json({
       success: false,
-      message: "Internal server error.",
+      message: "Failed to add business.",
     });
   }
 };
