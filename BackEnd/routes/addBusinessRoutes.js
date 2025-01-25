@@ -1,16 +1,21 @@
 const express = require("express");
 const router = express.Router();
-const multer = require("../config/multerConfig");
-const { addBusiness } = require("../controllers/addBusinessController");
+const {
+  addBusiness,
+  uploadBusinessImages,
+  uploadProfileImage,
+} = require("../controllers/addBusinessController");
 
-// Single route to add a new business with images and agreements
-router.post(
-  "/add-business",
-  multer.fields([
-    { name: "profileImage", maxCount: 1 }, // Single profile image
-    { name: "images", maxCount: 6 }, // Up to 6 gallery images
-  ]),
-  addBusiness
-);
+// Route to add a new business
+router.post("/add-business", addBusiness);
+
+// Route to upload business images
+router.post("/add-business/images", uploadBusinessImages);
+
+// Route to upload profile image
+router.post("/add-business/profile-image", uploadProfileImage);
+
+// Route to add or update agreements
+router.post("/add-agreements", addAgreements);
 
 module.exports = router;
