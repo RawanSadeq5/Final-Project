@@ -182,10 +182,7 @@ addServiceButton.addEventListener("click", addServiceLine);
 removeServiceButton.addEventListener("click", removeServiceLine);
 removeServiceButton.style.display = "none";
 
-// Form submission logic
-const submitBusinessForm = async (event) => {
-  event.preventDefault();
-
+const submitTest = async () => {
   const formData = new FormData(document.getElementById("multi-step-form"));
 
   const openingHours = [];
@@ -269,10 +266,11 @@ const submitBusinessForm = async (event) => {
     });
 
     const result = await response.json();
+    console.log(result.business);
 
     if (response.ok) {
       alert("העסק נוסף בהצלחה!");
-      window.location.href = `business.html?businessId=${result.business._id}`;
+      return result.business._id;
     } else {
       alert(result.message || "הנתונים שהזנת אינם נכונים, נסה שוב.");
     }
@@ -282,10 +280,118 @@ const submitBusinessForm = async (event) => {
   }
 };
 
-// Event listener for form submission
-document
+// Form submission logic
+/*document
   .getElementById("multi-step-form")
-  .addEventListener("submit", submitBusinessForm);
+  .addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(document.getElementById("multi-step-form"));
+
+    const openingHours = [];
+
+    document.querySelectorAll("#working-days .day").forEach((dayDiv) => {
+      const checkbox = dayDiv.querySelector("input[type=checkbox]");
+      const timeInputs = dayDiv.querySelectorAll("input[type=time]");
+
+      if (checkbox.checked) {
+        const dayName = checkbox.parentElement.textContent.trim().toLowerCase();
+        const openTime = timeInputs[0]?.value || null;
+        const closeTime = timeInputs[1]?.value || null;
+
+        if (openTime && closeTime) {
+          openingHours[dayName] = { open: openTime, close: closeTime };
+        }
+      }
+    });
+
+    const services = [];
+    document
+      .querySelectorAll("#services-container .form-group")
+      .forEach((serviceGroup) => {
+        const serviceName = serviceGroup.querySelector(
+          'input[placeholder="הכנס סוג שירות"]'
+        ).value;
+        const durationHours =
+          serviceGroup.querySelector('input[placeholder="0"]:nth-child(1)')
+            .value || "0";
+        const durationMinutes =
+          serviceGroup.querySelector('input[placeholder="0"]:nth-child(3)')
+            .value || "0";
+        const price =
+          serviceGroup.querySelector('input[placeholder="0.00"]').value ||
+          "0.00";
+
+        services.push({
+          name: serviceName,
+          durationHours: parseInt(durationHours, 10),
+          durationMinutes: parseInt(durationMinutes, 10),
+          price: parseFloat(price),
+        });
+      });
+
+    // Add all required fields
+    formData.append(
+      "fullName",
+      document.getElementById("full-name").value.trim()
+    );
+    formData.append(
+      "businessName",
+      document.getElementById("name").value.trim()
+    );
+    formData.append("email", document.getElementById("email").value.trim());
+    formData.append(
+      "password",
+      document.getElementById("password").value.trim()
+    );
+    formData.append("phone", document.getElementById("phone").value.trim());
+    formData.append(
+      "address",
+      document.getElementById("location").value.trim()
+    );
+    formData.append("openingHours", JSON.stringify(openingHours));
+    formData.append("services", JSON.stringify(services));
+
+    formData.append(
+      "advancePayment",
+      document.getElementById("price").value.trim()
+    );
+    formData.append(
+      "cancellationDays",
+      document.getElementById("number-select").value.trim()
+    );
+    formData.append("reward", document.getElementById("reward").value.trim());
+
+    const profileImage = document.getElementById("profileImageUpload").files[0];
+    if (profileImage) {
+      formData.append("profileImage", profileImage);
+    }
+
+    const galleryImages = document.getElementById("imageUpload").files;
+    for (let i = 0; i < galleryImages.length; i++) {
+      formData.append("images", galleryImages[i]);
+    }
+
+    try {
+      const response = await fetch("http://localhost:3000/api/add-business", {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await response.json();
+      console.log(result);
+
+      if (response.ok) {
+        alert("העסק נוסף בהצלחה!");
+        window.location.href = `business.html?businessId=${result.business}`;
+      } else {
+        alert(result.message || "הנתונים שהזנת אינם נכונים, נסה שוב.");
+      }
+    } catch (error) {
+      console.error("Submission failed:", error);
+      alert("אירעה שגיאה ברשת. אנא נסה שוב.");
+    }
+  });*/
 
 // Form step navigation
 let currentStep = 0;
@@ -321,7 +427,8 @@ const updateSteps = () => {
   nextBtn.textContent = currentStep === steps.length - 1 ? "הרשם כעת" : "הבא";
 };
 
-nextBtn.addEventListener("click", () => {
+nextBtn.addEventListener("click", async (event) => {
+  event.preventDefault();
   if (currentStep < steps.length - 1) {
     if (validateStep()) {
       currentStep++;
@@ -331,16 +438,21 @@ nextBtn.addEventListener("click", () => {
     }
   } else {
     if (validateStep()) {
-      document
+      const businessIdOutput = await submitTest();
+      window.location.href = "business.html";
+
+      console.log(`business.html?businessId=${businessIdOutput}`);
+      /*document
         .getElementById("multi-step-form")
-        .dispatchEvent(new Event("submit"));
+        .dispatchEvent(new Event("submit"));*/
     } else {
       alert("אנא מלא את כל השדות הנדרשים לפני הגשת הטופס.");
     }
   }
 });
 
-prevBtn.addEventListener("click", () => {
+prevBtn.addEventListener("click", (event) => {
+  event.preventDefault();
   if (currentStep > 0) {
     currentStep--;
     updateSteps();
@@ -348,3 +460,5 @@ prevBtn.addEventListener("click", () => {
 });
 
 updateSteps();
+
+console.log("This is a test!!");

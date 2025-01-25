@@ -5,7 +5,9 @@ const Appointment = require("../models/Appointment");
 exports.getBusinessDetails = async (req, res) => {
   try {
     const { businessId } = req.params;
+    console.log(businessId);
     const business = await Business.findById(businessId);
+    console.log(business);
 
     if (!business) {
       return res
@@ -13,7 +15,20 @@ exports.getBusinessDetails = async (req, res) => {
         .json({ success: false, message: "Business not found." });
     }
 
-    res.status(200).json({ success: true, business });
+    res.status(200).json({
+      success: true,
+      business: {
+        _id: business._id,
+        profileImage: business.profileImage,
+        images: business.images,
+        services: business.services,
+        openingHours: business.openingHours,
+        agreements: business.agreements,
+        BusinessName: business.BusinessName,
+        address: business.address,
+        phoneNumber: business.phoneNumber,
+      },
+    });
   } catch (error) {
     console.error("Error fetching business details:", error);
     res

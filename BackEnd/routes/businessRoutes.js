@@ -13,13 +13,13 @@ const {
 } = require("../controllers/businessController");
 
 // Fetch business details
-router.get("/:businessId", getBusinessDetails);
+router.get("/api/business/:businessId", getBusinessDetails);
 
 // Update business details
-router.put("/:businessId", updateBusinessDetails);
+router.put("/api/business/:businessId", updateBusinessDetails);
 
 // Get business appointments
-router.get("/:businessId/appointments", getAppointments);
+router.get("/api/business/:businessId/appointments", getAppointments);
 
 // Add a new available appointment
 router.post("/:businessId/appointments", addAvailableAppointment);
@@ -29,7 +29,7 @@ router.post("/:businessId/hot-appointments", addHotAppointment);
 
 // Update profile image
 router.post(
-  "/:businessId/profile-image",
+  "/api/business/:businessId/profile-image",
   multer.single("profileImage"),
   updateProfileImage
 );
