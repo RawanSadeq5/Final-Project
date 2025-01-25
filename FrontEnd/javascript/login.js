@@ -1,14 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Reference to the form elements
   const form = document.querySelector("form");
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
 
   // Handle form submission
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault(); // Prevent default form submission
 
-    // Get input values
     const email = emailInput.value.trim();
     const password = passwordInput.value.trim();
 
@@ -25,8 +23,33 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Simulate login success
-    alert(`Login successful for: ${email}`);
+    try {
+      // Use the Fetch function to communicate with the server
+      const response = await Fetch("http://localhost:3000/api/login", {
+        email,
+        password,
+      });
+
+      if (response.ok) {
+        alert("הכניסה בוצעה בהצלחה!");
+
+        // Navigate based on user type
+        if (response.data.userType === "businessOwner") {
+          window.location.href = "business.html";
+        } else {
+          window.location.href = "myAppointments.html";
+        }
+      } else {
+        // Handle invalid login details or server error
+        alert(
+          response.data.message ||
+            "Invalid email or password. Please try again."
+        );
+      }
+    } catch (error) {
+      console.error("Error logging in:", error);
+      alert("An error occurred while logging in. Please try again later.");
+    }
   });
 
   // Email validation function
@@ -35,67 +58,48 @@ document.addEventListener("DOMContentLoaded", () => {
     return emailPattern.test(email);
   }
 
-  // About page navigation
+  // Fetch function for API requests
+  async function Fetch(url, data) {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    const responseBody = await response.json();
+
+    // Return the response body, even if the response status is not OK
+    return {
+      ok: response.ok,
+      status: response.status,
+      data: responseBody,
+    };
+  }
+
+  // Navigation links
   const aboutLink = document.getElementById("about-link");
   aboutLink.addEventListener("click", (event) => {
     event.preventDefault();
     window.location.href = "about.html";
   });
 
-  // Contact us page navigation
   const contactLink = document.getElementById("contact-link");
   contactLink.addEventListener("click", (event) => {
     event.preventDefault();
     window.location.href = "contactUs.html";
   });
 
-  // home page navigation
   const homeLink = document.getElementById("home-link");
   homeLink.addEventListener("click", (event) => {
     event.preventDefault();
     window.location.href = "home.html";
   });
 
-  // my appointments page navigation
-  const appointmentLink = document.getElementById("submit");
-  appointmentLink.addEventListener("click", async (event) => {
-    event.preventDefault();
-    appointmentLink.disabled = true;
-    const emailAddress = document.querySelector("#email").value.trim();
-    const password = document.querySelector("#password").value.trim();
-
-    if (!emailAddress || !password) {
-      alert("אנא מלא את כל השדות הנדרשים");
-      return;
-    }
-    try {
-      const data1 = { status: true };
-      const data = await Fetch("https://HananRawanSite.com/api/data", data1);
-      appointmentLink.disabled = false;
-      if (data.status === true) {
-        window.location.href = "myAppointments.html";
-      } else {
-        alert("הנתונים שהזנת אינם ניכונים, נסה שוב");
-      }
-    } catch (error) {
-      appointmentLink.disabled = false;
-      console.error(error);
-    }
-  });
-
-  // my forgetpass page navigation
   const forgetLink = document.getElementById("forget");
   forgetLink.addEventListener("click", (event) => {
     event.preventDefault();
     window.location.href = "forgetPass.html";
   });
 });
-
-function Fetch(url, data) {
-  return new Promise((resolve, reject) => {
-    console.log(`Fetching data from: ${url}`);
-    setTimeout(() => {
-      resolve(data);
-    }, 500);
-  });
-}

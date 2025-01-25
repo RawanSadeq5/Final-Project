@@ -67,35 +67,39 @@ exports.login = async (req, res) => {
       });
     }
 
-    // Find user in the database
+    // Check if the user exists in the database
     const user = await User.findOne({ emailAddress: email });
     if (!user) {
-      return res.status(400).json({
+      return res.status(404).json({
         status: false,
-        message: "Invalid credentials.",
+        message: "המשתמש לא קיים במערכת!",
       });
     }
 
-    // Compare password
+    // Compare the provided password with the hashed password in the database
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({
+      return res.status(401).json({
         status: false,
-        message: "Invalid credentials.",
+        message: "אחד או יותר מהנתונים שהזנת אינם נכונים, אנא נסה שוב!",
       });
     }
 
-    // Generate JWT
+    // Generate a JWT for authentication
     const token = jwt.sign(
       { userId: user._id },
       process.env.JWT_SECRET || "secretKey",
       { expiresIn: "1h" }
     );
 
-    return res.json({
+    // Determine user type
+    const userType = user.isBusinessOwner ? "businessOwner" : "regularUser";
+
+    return res.status(200).json({
       status: true,
       message: "Login successful!",
       token,
+      userType,
     });
   } catch (error) {
     console.error("Login error:", error);

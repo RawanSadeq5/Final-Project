@@ -1,25 +1,36 @@
 const Business = require("../models/businessModel");
 
-// Add a new business with profile image, gallery images, and agreements
 exports.addBusiness = async (req, res) => {
   try {
     const {
-      name,
+      fullName,
+      businessName,
       email,
+      password,
       phone,
       address,
       services,
       openingHours,
       advancePayment,
       cancellationDays,
-      customerReward,
+      reward,
     } = req.body;
 
-    // Handle file uploads
-    const profileImageFile = req.files?.profileImage?.[0]; // Single file for profile image
-    const galleryFiles = req.files?.images || []; // Array of gallery images
+    const parsedOpeningHours = JSON.parse(openingHours || "[]");
 
-    // Construct URLs for uploaded files
+    // Filter out days with `null` or missing `open` and `close` times
+    const formattedOpeningHours = [];
+    for (const [day, hours] of Object.entries(parsedOpeningHours)) {
+      if (hours && hours.open && hours.close) {
+        formattedOpeningHours[day] = hours;
+      }
+    }
+
+    const parsedServices = JSON.parse(services || "[]");
+
+    const profileImageFile = req.files?.profileImage?.[0];
+    const galleryFiles = req.files?.images || [];
+
     const profileImageUrl = profileImageFile
       ? `${req.protocol}://${req.get("host")}/uploads/${
           profileImageFile.filename
@@ -30,36 +41,55 @@ exports.addBusiness = async (req, res) => {
       (file) => `${req.protocol}://${req.get("host")}/uploads/${file.filename}`
     );
 
-    // Create a new business instance
     const newBusiness = new Business({
-      name,
-      email,
-      phone,
+      fullName,
+      BusinessName: businessName,
+      businessEmail: email,
+      businessPassword: password,
+      phoneNumber: phone,
       address,
-      services: JSON.parse(services), // Assuming services is sent as a JSON string
-      openingHours: JSON.parse(openingHours), // Assuming openingHours is sent as a JSON string
+      services: parsedServices,
+      openingHours: formattedOpeningHours,
       profileImage: profileImageUrl,
       images: galleryUrls,
       agreements: {
         advancePayment,
         cancellationDays,
-        customerReward,
+        customerReward: reward,
       },
     });
 
-    // Save the business to the database
     await newBusiness.save();
 
     res.status(201).json({
       success: true,
       message: "Business added successfully.",
-      business: newBusiness,
+      business: newBusiness._id,
     });
   } catch (error) {
-    console.error("Error adding business:", error);
+    console.error("Error occurred:", error);
     res.status(500).json({
       success: false,
-      message: "Failed to add business.",
+      message: "An error occurred while adding the business.",
+    });
+    // Return validation errors
+    if (error.name === "ValidationError") {
+      const errors = Object.keys(error.errors).reduce((acc, key) => {
+        acc[key] = error.errors[key].message;
+        return acc;
+      }, {});
+
+      return res.status(400).json({
+        success: false,
+        message: "Validation failed",
+        errors,
+      });
+    }
+
+    // General error handler
+    res.status(500).json({
+      success: false,
+      message: "An error occurred while adding the business.",
     });
   }
 };

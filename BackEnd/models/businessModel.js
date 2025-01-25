@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const openingHoursSchema = new mongoose.Schema({
-  open: { type: String, required: true }, // e.g. "09:00"
-  close: { type: String, required: true }, // e.g. "17:00"
+  open: { type: String }, // e.g. "09:00"
+  close: { type: String }, // e.g. "17:00"
 });
 
 const serviceSchema = new mongoose.Schema({
@@ -19,18 +19,21 @@ const agreementsSchema = new mongoose.Schema({
 });
 
 const BusinessSchema = new mongoose.Schema({
-  name: { type: String, required: true }, // e.g. "Salam Nails"
+  fullName: { type: String, required: true },
+  BusinessName: { type: String, required: true }, // e.g. "Salam Nails"
+  businessEmail: { type: String, required: true },
+  businessPassword: { type: String, required: true },
   address: { type: String, required: true }, // e.g. "Main St. 123"
   phoneNumber: { type: String, required: true },
-  opueningHors: {
-    sunday: { type: openingHoursSchema, required: true },
-    monday: { type: openingHoursSchema, required: true },
-    tuesday: { type: openingHoursSchema, required: true },
-    wednesday: { type: openingHoursSchema, required: true },
-    thursday: { type: openingHoursSchema, required: true },
-    friday: { type: openingHoursSchema, required: true },
-    saturday: { type: openingHoursSchema, required: true },
-  },
+  openingHours: [
+    { sunday: { type: openingHoursSchema } },
+    { monday: { type: openingHoursSchema } },
+    { tuesday: { type: openingHoursSchema } },
+    { wednesday: { type: openingHoursSchema } },
+    { thursday: { type: openingHoursSchema } },
+    { friday: { type: openingHoursSchema } },
+    { saturday: { type: openingHoursSchema } },
+  ],
   services: [serviceSchema], // array of { name, duration }
 
   profileImage: { type: String }, // Path to profile image

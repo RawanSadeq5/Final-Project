@@ -11,137 +11,81 @@ const errorMessage = document.getElementById("errorMessage");
 const profileImageUpload = document.getElementById("profileImageUpload");
 const profileImagePreview = document.getElementById("profileImagePreview");
 
-profileImageUpload.addEventListener("change", (event) => {
-  const file = event.target.files[0];
-
-  if (file) {
-    const reader = new FileReader();
-
-    reader.onload = (e) => {
-      // Clear any existing profile image
-      profileImagePreview.innerHTML = "";
-
-      // Create an image element
-      const img = document.createElement("img");
-      img.src = e.target.result;
-      img.alt = "תמונת פרופיל";
-
-      // Create a remove button
-      const removeBtn = document.createElement("button");
-      removeBtn.className = "remove-btn";
-      removeBtn.textContent = "×";
-      removeBtn.addEventListener("click", () => {
-        profileImagePreview.innerHTML = ""; // Clear the preview
-        profileImageUpload.value = ""; // Reset the file input
-      });
-
-      // Append the image and remove button to the preview
-      profileImagePreview.appendChild(img);
-      profileImagePreview.appendChild(removeBtn);
-    };
-
-    reader.readAsDataURL(file);
-  }
-});
+const addServiceButton = document.getElementById("plus-button");
+const removeServiceButton = document.getElementById("mi-button");
+const servicesContainer = document.getElementById("services-container");
 
 const maxImages = 6;
 let uploadedImages = [];
 
-document.addEventListener("DOMContentLoaded", () => {
-  // About page navigation
-  const aboutLink = document.getElementById("about-link");
-  aboutLink.addEventListener("click", (event) => {
-    event.preventDefault();
-    window.location.href = "about.html";
-  });
-
-  // Contact us page navigation
-  const contactLink = document.getElementById("contact-link");
-  contactLink.addEventListener("click", (event) => {
-    event.preventDefault();
-    window.location.href = "contactUs.html";
-  });
-
-  // home page navigation
-  const homeLink = document.getElementById("home-link");
-  homeLink.addEventListener("click", (event) => {
-    event.preventDefault();
-    window.location.href = "home.html";
-  });
-
-  // Add Service Lines Dynamically
-  const addServiceButton = document.getElementById("plus-button");
-  const removeServiceButton = document.getElementById("mi-button");
-  const servicesContainer = document.getElementById("services-container");
-
-  function addServiceLine(event) {
-    // Prevent default button behavior
-    event.preventDefault();
-
-    // Create a new div for the service line
-    const serviceLine = document.createElement("div");
-    serviceLine.className = "form-group";
-    serviceLine.style.display = "flex";
-    serviceLine.style.alignItems = "center";
-    serviceLine.style.gap = "20px";
-    serviceLine.style.marginBottom = "15px"; // Add space below each row
-
-    // Add the HTML structure for the new service line
-    serviceLine.innerHTML = `
-      <label style="font-size:17px;">
-        סוג שירות:
-        <input type="text" placeholder="הכנס סוג שירות" class="form-input" style="font-size: 17px; padding: 10px; width: 150px;">
-      </label>
-      <label style="font-size:17px;">
-        משך:
-        <input type="number" placeholder="0" style="font-size: 17px; padding: 10px; width: 60px;">
-        <span>שעות</span>
-        <input type="number" placeholder="0" style="font-size: 17px; padding: 10px; width: 60px;">
-        <span>דקות</span>
-      </label>
-      <label style="font-size:17px;">
-        מחיר:
-        <input type="number" placeholder="0.00" step="0.01" min="0" style="font-size: 17px; padding: 10px; width: 100px;">
-        <span>₪</span>
-      </label>
-    `;
-
-    // Append the new service line to the container
-    servicesContainer.appendChild(serviceLine);
-
-    // Show the "-" button if there's more than one service line
-    if (servicesContainer.childElementCount > 0) {
-      removeServiceButton.style.display = "inline-block";
-    }
-  }
-
-  // Add an event listener to the button
-  addServiceButton.addEventListener("click", addServiceLine);
-
-  // Remove the last added service line
-  function removeServiceLine(event) {
-    event.preventDefault();
-
-    // Only remove if there are more than one service line
-    if (servicesContainer.childElementCount > 1) {
-      servicesContainer.removeChild(servicesContainer.lastElementChild);
-    }
-
-    // Hide the "-" button if there's only one service line left
-    if (servicesContainer.childElementCount === 1) {
-      removeServiceButton.style.display = "none";
-    }
-  }
-
-  // Add event listeners for "+" and "-" buttons
-  addServiceButton.addEventListener("click", addServiceLine);
-  removeServiceButton.addEventListener("click", removeServiceLine);
-
-  // Initial setup: Hide the "-" button
-  removeServiceButton.style.display = "none";
+// Navbar navigation
+document.getElementById("home-link").addEventListener("click", (event) => {
+  event.preventDefault();
+  window.location.href = "home.html";
 });
 
+document.getElementById("about-link").addEventListener("click", (event) => {
+  event.preventDefault();
+  window.location.href = "about.html";
+});
+
+document.getElementById("contact-link").addEventListener("click", (event) => {
+  event.preventDefault();
+  window.location.href = "contactUs.html";
+});
+
+// Reusable fetch function
+const Fetch = async (url, formData) => {
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      body: formData, // Pass FormData directly
+    });
+
+    const responseBody = await response.json();
+
+    // Return the response body, even if the response status is not OK
+    return {
+      ok: response.ok,
+      status: response.status,
+      data: responseBody,
+    };
+  } catch (error) {
+    console.error("Error during fetch:", error);
+    return {
+      ok: false,
+      status: 500,
+      data: { message: "Network error occurred." },
+    };
+  }
+};
+
 // Image upload functionality
+profileImageUpload.addEventListener("change", (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      profileImagePreview.innerHTML = "";
+      const img = document.createElement("img");
+      img.src = e.target.result;
+      img.alt = "תמונת פרופיל";
+
+      const removeBtn = document.createElement("button");
+      removeBtn.textContent = "×";
+      removeBtn.className = "remove-btn";
+      removeBtn.addEventListener("click", () => {
+        profileImagePreview.innerHTML = "";
+        profileImageUpload.value = "";
+      });
+
+      profileImagePreview.appendChild(img);
+      profileImagePreview.appendChild(removeBtn);
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
 imageUpload.addEventListener("change", (event) => {
   const files = Array.from(event.target.files);
 
@@ -153,39 +97,14 @@ imageUpload.addEventListener("change", (event) => {
 
     if (uploadedImages.length < maxImages) {
       const reader = new FileReader();
-
       reader.onload = (e) => {
         const imgWrapper = document.createElement("div");
-        imgWrapper.className = "image-wrapper";
-        imgWrapper.style.position = "relative";
-        imgWrapper.style.display = "inline-block";
-        imgWrapper.style.margin = "10px";
-
         const img = document.createElement("img");
         img.src = e.target.result;
-        img.style.width = "120px";
-        img.style.height = "120px";
-        img.style.objectFit = "cover";
-        img.style.borderRadius = "8px";
-        img.style.boxShadow = "0px 2px 4px rgba(0, 0, 0, 0.1)";
 
         const removeBtn = document.createElement("button");
-        removeBtn.className = "remove-btn";
         removeBtn.textContent = "×";
-        removeBtn.style.position = "absolute";
-        removeBtn.style.top = "5px";
-        removeBtn.style.right = "5px";
-        removeBtn.style.backgroundColor = "#921A40";
-        removeBtn.style.color = "white";
-        removeBtn.style.border = "none";
-        removeBtn.style.borderRadius = "50%";
-        removeBtn.style.width = "20px";
-        removeBtn.style.height = "20px";
-        removeBtn.style.cursor = "pointer";
-        removeBtn.style.display = "flex";
-        removeBtn.style.alignItems = "center";
-        removeBtn.style.justifyContent = "center";
-
+        removeBtn.className = "remove-btn";
         removeBtn.addEventListener("click", () => {
           const index = uploadedImages.findIndex(
             (img) => img.name === file.name
@@ -200,29 +119,198 @@ imageUpload.addEventListener("change", (event) => {
         imgWrapper.appendChild(removeBtn);
         imagePreview.appendChild(imgWrapper);
       };
-
       reader.readAsDataURL(file);
       uploadedImages.push(file);
-      errorMessage.textContent = "";
     } else {
       errorMessage.textContent = `ניתן להעלות עד ${maxImages} תמונות.`;
     }
   });
 
-  imageUpload.value = ""; // Reset file input
+  imageUpload.value = ""; // Reset input
 });
 
-// Initialize the current step
+// Add service line dynamically
+const addServiceLine = (event) => {
+  event.preventDefault();
+
+  const serviceLine = document.createElement("div");
+  serviceLine.className = "form-group";
+  serviceLine.style.display = "flex";
+  serviceLine.style.alignItems = "center";
+  serviceLine.style.gap = "20px";
+  serviceLine.style.marginBottom = "15px";
+
+  serviceLine.innerHTML = `
+    <label style="font-size: 17px;">
+      סוג שירות:
+      <input type="text" placeholder="הכנס סוג שירות" class="form-input" style="font-size: 17px; padding: 10px; width: 150px;">
+    </label>
+    <label style="font-size: 17px;">
+      משך:
+      <input type="number" placeholder="0" style="font-size: 17px; padding: 10px; width: 60px;">
+      <span>שעות</span>
+      <input type="number" placeholder="0" style="font-size: 17px; padding: 10px; width: 60px;">
+      <span>דקות</span>
+    </label>
+    <label style="font-size: 17px;">
+      מחיר:
+      <input type="number" placeholder="0.00" step="0.01" min="0" style="font-size: 17px; padding: 10px; width: 100px;">
+      <span>₪</span>
+    </label>
+  `;
+
+  servicesContainer.appendChild(serviceLine);
+
+  if (servicesContainer.childElementCount > 1) {
+    removeServiceButton.style.display = "inline-block";
+  }
+};
+
+const removeServiceLine = (event) => {
+  event.preventDefault();
+
+  if (servicesContainer.childElementCount > 1) {
+    servicesContainer.removeChild(servicesContainer.lastElementChild);
+  }
+
+  if (servicesContainer.childElementCount === 1) {
+    removeServiceButton.style.display = "none";
+  }
+};
+
+addServiceButton.addEventListener("click", addServiceLine);
+removeServiceButton.addEventListener("click", removeServiceLine);
+removeServiceButton.style.display = "none";
+
+// Form submission logic
+const submitBusinessForm = async (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(document.getElementById("multi-step-form"));
+
+  const openingHours = [];
+
+  document.querySelectorAll("#working-days .day").forEach((dayDiv) => {
+    const checkbox = dayDiv.querySelector("input[type=checkbox]");
+    const timeInputs = dayDiv.querySelectorAll("input[type=time]");
+
+    if (checkbox.checked) {
+      const dayName = checkbox.parentElement.textContent.trim().toLowerCase();
+      const openTime = timeInputs[0]?.value || null;
+      const closeTime = timeInputs[1]?.value || null;
+
+      if (openTime && closeTime) {
+        openingHours[dayName] = { open: openTime, close: closeTime };
+      }
+    }
+  });
+
+  const services = [];
+  document
+    .querySelectorAll("#services-container .form-group")
+    .forEach((serviceGroup) => {
+      const serviceName = serviceGroup.querySelector(
+        'input[placeholder="הכנס סוג שירות"]'
+      ).value;
+      const durationHours =
+        serviceGroup.querySelector('input[placeholder="0"]:nth-child(1)')
+          .value || "0";
+      const durationMinutes =
+        serviceGroup.querySelector('input[placeholder="0"]:nth-child(3)')
+          .value || "0";
+      const price =
+        serviceGroup.querySelector('input[placeholder="0.00"]').value || "0.00";
+
+      services.push({
+        name: serviceName,
+        durationHours: parseInt(durationHours, 10),
+        durationMinutes: parseInt(durationMinutes, 10),
+        price: parseFloat(price),
+      });
+    });
+
+  // Add all required fields
+  formData.append(
+    "fullName",
+    document.getElementById("full-name").value.trim()
+  );
+  formData.append("businessName", document.getElementById("name").value.trim());
+  formData.append("email", document.getElementById("email").value.trim());
+  formData.append("password", document.getElementById("password").value.trim());
+  formData.append("phone", document.getElementById("phone").value.trim());
+  formData.append("address", document.getElementById("location").value.trim());
+  formData.append("openingHours", JSON.stringify(openingHours));
+  formData.append("services", JSON.stringify(services));
+
+  formData.append(
+    "advancePayment",
+    document.getElementById("price").value.trim()
+  );
+  formData.append(
+    "cancellationDays",
+    document.getElementById("number-select").value.trim()
+  );
+  formData.append("reward", document.getElementById("reward").value.trim());
+
+  const profileImage = document.getElementById("profileImageUpload").files[0];
+  if (profileImage) {
+    formData.append("profileImage", profileImage);
+  }
+
+  const galleryImages = document.getElementById("imageUpload").files;
+  for (let i = 0; i < galleryImages.length; i++) {
+    formData.append("images", galleryImages[i]);
+  }
+
+  try {
+    const response = await fetch("http://localhost:3000/api/add-business", {
+      method: "POST",
+      body: formData,
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
+      alert("העסק נוסף בהצלחה!");
+      window.location.href = `business.html?businessId=${result.business._id}`;
+    } else {
+      alert(result.message || "הנתונים שהזנת אינם נכונים, נסה שוב.");
+    }
+  } catch (error) {
+    console.error("Submission failed:", error);
+    alert("אירעה שגיאה ברשת. אנא נסה שוב.");
+  }
+};
+
+// Event listener for form submission
+document
+  .getElementById("multi-step-form")
+  .addEventListener("submit", submitBusinessForm);
+
+// Form step navigation
 let currentStep = 0;
 
-// Update the progress bar and form step
-function updateSteps() {
-  steps.forEach((step, index) => {
-    if (index <= currentStep) {
-      step.classList.add("completed");
+const validateStep = () => {
+  const currentFormStep = formSteps[currentStep];
+  const requiredInputs = currentFormStep.querySelectorAll(".required");
+
+  let isValid = true;
+
+  requiredInputs.forEach((input) => {
+    if (!input.value.trim()) {
+      isValid = false;
+      input.classList.add("input-error");
     } else {
-      step.classList.remove("completed");
+      input.classList.remove("input-error");
     }
+  });
+
+  return isValid;
+};
+
+const updateSteps = () => {
+  steps.forEach((step, index) => {
+    step.classList.toggle("completed", index <= currentStep);
   });
 
   formSteps.forEach((formStep, index) => {
@@ -230,29 +318,25 @@ function updateSteps() {
   });
 
   prevBtn.disabled = currentStep === 0;
-
-  // Check if it's the last step
-  if (currentStep === steps.length - 1) {
-    nextBtn.textContent = "הרשם כעת";
-
-    // Add event listener to redirect on button click
-    nextBtn.addEventListener("click", function redirectToBusinessPage() {
-      window.location.href = "business.html";
-    });
-  } else {
-    nextBtn.textContent = "הבא";
-
-    // Remove the redirect event listener to avoid unnecessary redirection
-    nextBtn.removeEventListener("click", redirectToBusinessPage);
-  }
-}
+  nextBtn.textContent = currentStep === steps.length - 1 ? "הרשם כעת" : "הבא";
+};
 
 nextBtn.addEventListener("click", () => {
   if (currentStep < steps.length - 1) {
-    currentStep++;
-    updateSteps();
+    if (validateStep()) {
+      currentStep++;
+      updateSteps();
+    } else {
+      alert("אנא מלא את כל השדות הנדרשים לפני המעבר לשלב הבא.");
+    }
   } else {
-    alert("הטופס נשלח בהצלחה!");
+    if (validateStep()) {
+      document
+        .getElementById("multi-step-form")
+        .dispatchEvent(new Event("submit"));
+    } else {
+      alert("אנא מלא את כל השדות הנדרשים לפני הגשת הטופס.");
+    }
   }
 });
 

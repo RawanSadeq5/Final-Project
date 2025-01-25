@@ -31,7 +31,7 @@ exports.forgotPassword = async (req, res) => {
     console.log("pass test");
 
     // Update the user's password
-    user.password = hashedPassword;
+    user.password = password;
     await user.save();
     console.log("Password updated for user:", user.emailAddress);
 
