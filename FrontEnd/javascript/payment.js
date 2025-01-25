@@ -14,7 +14,7 @@ function redirectToLogin() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // booking page navigation
+  // Booking page navigation
   const bookingLink = document.getElementById("cancel");
   bookingLink.addEventListener("click", (event) => {
     event.preventDefault();
@@ -22,23 +22,37 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-function Fetch(url, data) {
-  return new Promise((resolve, reject) => {
-    console.log(`Fetching data from: ${url}`);
-    setTimeout(() => {
-      resolve(data);
-    }, 500);
-  });
+// Reusable Fetch Function
+async function fetchAdvancePayment(businessId) {
+  try {
+    const response = await fetch(
+      `http://localhost:3000/api/payment/advance-payment/${businessId}`
+    );
+
+    const data = await response.json();
+
+    if (response.ok) {
+      return data.advancePayment;
+    } else {
+      console.error("Error fetching advance payment:", data.message);
+      throw new Error(data.message || "Failed to fetch advance payment");
+    }
+  } catch (error) {
+    console.error("Network error:", error);
+    throw error;
+  }
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    const data1 = { price: 50 };
-    const data = await Fetch("https://HananRawanSite.com/api/data", data1);
+    // Replace this with the actual business ID
+    const businessId = "YOUR_BUSINESS_ID"; // Example: "64a9c1e3b59d1c1f2e8d0e6b"
+
+    const advancePayment = await fetchAdvancePayment(businessId);
+
     const div = document.getElementById("advance-payment");
-    div.textContent = `סכום המקדמה: ₪ ${data.price} `;
+    div.textContent = `סכום המקדמה: ₪ ${advancePayment}`;
   } catch (error) {
-    alert("Error");
-    console.error(error);
+    alert("שגיאה בטעינת סכום המקדמה");
   }
 });

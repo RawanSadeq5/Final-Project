@@ -1,26 +1,42 @@
-// config/multerConfig.js
 const multer = require("multer");
 const path = require("path");
 
-// 1) Configure the storage to define where and how the files should be saved
+// Supported file types
+const allowedFileTypes = ["image/jpeg", "image/png", "image/gif"];
+
+// 1) Configure storage
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    // "uploads" is the folder where files will be stored
-    // You can change it to "public/images" or any other folder
-    cb(null, "uploads");
+    // Ensure the folder exists or handle errors
+    cb(null, "uploads"); // Use the "uploads" folder
   },
   filename: (req, file, cb) => {
-    // Generate a unique file name (e.g., "profileImage-1673891234567.png")
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    // path.extname(file.originalname) gets the file’s extension (.png, .jpg, etc.)
-    const fileExtension = path.extname(file.originalname);
-    // file.fieldname could be "images" or "profileImage", depending on your field name
-    cb(null, file.fieldname + "-" + uniqueSuffix + fileExtension);
+    const fileExtension = path.extname(file.originalname); // Get file extension
+    cb(null, `${file.fieldname}-${uniqueSuffix}${fileExtension}`);
   },
 });
 
-// 2) Create the upload object with the storage config
-const upload = multer({ storage });
+// 2) File filter for validation
+const fileFilter = (req, file, cb) => {
+  if (allowedFileTypes.includes(file.mimetype)) {
+    cb(null, true); // Accept the file
+  } else {
+    cb(
+      new Error(
+        "Unsupported file type. Please upload JPEG, PNG, or GIF files."
+      ),
+      false
+    );
+  }
+};
 
-// 3) Export the upload so it can be used in routes
+// 3) Upload instance with limits and file filter
+const upload = multer({
+  storage,
+  limits: { fileSize: 5 * 1024 * 1024 }, // Set a 5MB file size limit
+  fileFilter,
+});
+
+// 4) Export the configured upload middleware
 module.exports = upload;

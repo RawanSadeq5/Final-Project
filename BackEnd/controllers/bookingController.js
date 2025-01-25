@@ -2,7 +2,7 @@ const Business = require("../models/businessModel");
 const { Appointment, WaitingList } = require("../models/Appointment");
 
 // Fetch business details
-exports.getBusinessDetails = async (req, res) => {
+exports.getBusinessDetailsBook = async (req, res) => {
   try {
     const businessId = req.params.id;
     const business = await Business.findById(businessId).select(
