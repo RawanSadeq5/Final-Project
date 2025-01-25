@@ -2,6 +2,7 @@ const Business = require("../models/businessModel");
 
 exports.addBusiness = async (req, res) => {
   try {
+    console.log(req.body);
     const {
       fullName,
       businessName,
@@ -64,7 +65,17 @@ exports.addBusiness = async (req, res) => {
     res.status(201).json({
       success: true,
       message: "Business added successfully.",
-      business: newBusiness._id,
+      business: {
+        _id: newBusiness._id,
+        profileImage: newBusiness.profileImage,
+        images: newBusiness.images,
+        services: newBusiness.services,
+        openingHours: newBusiness.openingHours,
+        agreements: newBusiness.agreements,
+        BusinessName: newBusiness.BusinessName,
+        address: newBusiness.address,
+        phoneNumber: newBusiness.phoneNumber,
+      },
     });
   } catch (error) {
     console.error("Error occurred:", error);

@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Fetch and display business details
   const urlParams = new URLSearchParams(window.location.search);
   const businessId = urlParams.get("businessId");
-
+  console.log(businessId);
   if (!businessId) {
     alert("No business ID provided!");
     return;
@@ -80,6 +80,22 @@ document.addEventListener("DOMContentLoaded", async () => {
         serviceElement.textContent = `${service.name} - ${service.durationHours}h ${service.durationMinutes}min - ₪${service.price}`;
         servicesContainer.appendChild(serviceElement);
       });
+
+      // Display agreements
+      const agreementsContainer = document.getElementById(
+        "agreementsContainer"
+      );
+      agreementsContainer.innerHTML = `
+        <p><strong>תשלום מראש:</strong> ₪${business.agreements.advancePayment}</p>
+        <p><strong>ימי ביטול:</strong> ${business.agreements.cancellationDays} ימים</p>
+        <p><strong>פרס ללקוח:</strong> ${business.agreements.customerReward}</p>
+      `;
+
+      // Display profile image
+      const profileImageElement = document.getElementById("profileImage");
+      if (business.profileImage) {
+        profileImageElement.src = business.profileImage;
+      }
     } else {
       alert(response.data.message || "Failed to load business details.");
     }

@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const { connectToDatabase } = require("./config/database");
+//const multer = require("multer");
 
 const authRoutes = require("./routes/authRoutes");
 const businessRoutes = require("./routes/businessRoutes");
@@ -21,6 +22,7 @@ connectToDatabase();
 // Middleware
 app.use(cors());
 app.use(express.json());
+//app.use(multer());
 
 // Static folder for image access
 app.use("/uploads", express.static("uploads"));
@@ -33,7 +35,7 @@ app.use("/api", myAppointmentsRoutes);
 app.use("/api", addBusinessRoutes);
 app.use("/api", forgotPasswordRoutes);
 app.use("/api", bookingRoutes);
-app.use("/api/", paymentRoutes);
+app.use("/api", paymentRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
