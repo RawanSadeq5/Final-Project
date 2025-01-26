@@ -269,7 +269,7 @@ const submitTest = async () => {
     console.log(result.business);
 
     if (response.ok) {
-      alert("העסק נוסף בהצלחה!");
+      //alert("העסק נוסף בהצלחה!");
       return result.business._id;
     } else {
       alert(result.message || "הנתונים שהזנת אינם נכונים, נסה שוב.");
@@ -439,6 +439,7 @@ nextBtn.addEventListener("click", async (event) => {
   } else {
     if (validateStep()) {
       const businessIdOutput = await submitTest();
+      localStorage.setItem("businessId", businessIdOutput);
       window.location.href = "business.html";
 
       console.log(`business.html?businessId=${businessIdOutput}`);
