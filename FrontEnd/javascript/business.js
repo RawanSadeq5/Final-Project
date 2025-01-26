@@ -36,8 +36,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   // Fetch and display business details
-  const urlParams = new URLSearchParams(window.location.search);
-  const businessId = urlParams.get("businessId");
+  const businessId = localStorage.getItem("businessId");
   console.log(businessId);
   if (!businessId) {
     alert("No business ID provided!");
