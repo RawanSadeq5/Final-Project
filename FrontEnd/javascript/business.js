@@ -1,24 +1,4 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  // Helper Fetch Function
-  const Fetch = async (url, options = {}) => {
-    try {
-      const response = await fetch(url, options);
-      const data = await response.json();
-      return {
-        ok: response.ok,
-        status: response.status,
-        data,
-      };
-    } catch (error) {
-      console.error("Error during fetch:", error);
-      return {
-        ok: false,
-        status: 500,
-        data: { message: "Network error occurred." },
-      };
-    }
-  };
-
   // Navigation
   document.getElementById("home-link").addEventListener("click", (event) => {
     event.preventDefault();
@@ -202,3 +182,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 });
+
+const Fetch = async (url, options = {}) => {
+  try {
+    const response = await fetch(url, options);
+    const data = await response.json();
+    return {
+      ok: response.ok,
+      status: response.status,
+      data,
+    };
+  } catch (error) {
+    console.error("Error during fetch:", error);
+    return {
+      ok: false,
+      status: 500,
+      data: { message: "Network error occurred." },
+    };
+  }
+};
