@@ -440,7 +440,7 @@ nextBtn.addEventListener("click", async (event) => {
     if (validateStep()) {
       const businessIdOutput = await submitTest();
       localStorage.setItem("businessId", businessIdOutput);
-      window.location.href = "business.html";
+      window.location.href = `business.html?businessId=${businessIdOutput}`;
 
       console.log(`business.html?businessId=${businessIdOutput}`);
       /*document

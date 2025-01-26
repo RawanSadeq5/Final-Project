@@ -1,4 +1,5 @@
 require("dotenv").config();
+const bodyParser = require("body-parser");
 const express = require("express");
 const cors = require("cors");
 const { connectToDatabase } = require("./config/database");
@@ -22,6 +23,7 @@ connectToDatabase();
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(bodyParser.json());
 //app.use(multer());
 
 // Static folder for image access
