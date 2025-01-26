@@ -29,7 +29,7 @@ router.post("/:businessId/hot-appointments", addHotAppointment);
 
 // Update profile image
 router.post(
-  "/api/business/:businessId/profile-image",
+  "/business/:businessId/profile-image",
   multer.single("profileImage"),
   updateProfileImage
 );

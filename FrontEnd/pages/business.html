@@ -39,88 +39,64 @@
         </div>
         <h1>פרטי העסק</h1>
         <div id="businessDetails">
-          <p>שם העסק:</p>
-          <p>כתובת:</p>
-          <p>טלפון:</p>
-          <p>שעות פתיחה:</p>
+          <p><strong>שם העסק:</strong> דוגמה לעסק</p>
+          <p><strong>כתובת:</strong> רחוב הראשונים 1, תל אביב</p>
+          <p><strong>טלפון:</strong> 03-1234567</p>
+          <p>
+            <strong>שעות פתיחה:</strong> א' - ה': 09:00 - 18:00, ו': 09:00 -
+            14:00
+          </p>
+
+          <p>
+            <strong>תשלום מראש:</strong> <span id="advancePayment">24</span> ₪
+          </p>
+          <p>
+            <strong>ימי ביטול:</strong>
+            <span id="cancellationDays">1</span> ימים
+          </p>
+          <p>
+            <strong>פרס ללקוח:</strong> <span id="customerReward">40%</span>
+          </p>
         </div>
+
+        <!-- Table for services -->
+        <h2>שירותים</h2>
+        <table id="servicesTable">
+          <thead>
+            <tr>
+              <th>שם שירות</th>
+              <th>משך שעות</th>
+              <th>משך דקות</th>
+              <th>מחיר</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Rows will be populated dynamically -->
+          </tbody>
+        </table>
+
         <button id="editDetailsButton">עריכת פרטים</button>
+        <!-- Editable form for additional details -->
         <form id="editDetailsForm" style="display: none">
-          <label
-            >שם העסק:
-            <input type="text" id="businessName" value="דוגמה לעסק" /></label
+          <h2>עריכת פרטי העסק</h2>
+          <label>
+            תשלום מראש:
+            <input type="number" id="editAdvancePayment" /> </label
           ><br />
-          <label
-            >כתובת:
-            <input
-              type="text"
-              id="businessAddress"
-              value="רחוב הראשונים 1, תל אביב" /></label
+          <label>
+            ימי ביטול:
+            <input type="number" id="editCancellationDays" /> </label
           ><br />
-          <label
-            >טלפון:
-            <input type="text" id="businessPhone" value="03-1234567" /></label
+          <label>
+            פרס ללקוח:
+            <input type="text" id="editCustomerReward" /> </label
           ><br />
-          <label
-            >שעות פתיחה:
-            <input
-              type="text"
-              id="businessHours"
-              value="א' - ה': 09:00 - 18:00, ו': 09:00 - 14:00" /></label
-          ><br />
-          <div id="servicesContainer"></div>
-          <div id="agreementsContainer"></div>
+          <h3>עריכת שירותים</h3>
+          <button type="button" id="addServiceButton">הוסף שירות</button>
+          <div id="editableServicesContainer"></div>
           <button type="button" id="saveDetailsButton">שמור</button>
           <button type="button" id="cancelEditButton">בטל</button>
         </form>
-
-        <h2>תמונות העסק</h2>
-        <div id="businessImagesContainer">
-          <div id="imageGallery">
-            <img
-              src="../Images/default1.jpg"
-              alt="Business Image 1"
-              class="business-image"
-              data-index="0"
-            />
-            <img
-              src="../Images/default2.jpg"
-              alt="Business Image 2"
-              class="business-image"
-              data-index="1"
-            />
-            <img
-              src="../Images/default3.jpg"
-              alt="Business Image 3"
-              class="business-image"
-              data-index="2"
-            />
-            <img
-              src="../Images/default4.jpg"
-              alt="Business Image 4"
-              class="business-image"
-              data-index="3"
-            />
-            <img
-              src="../Images/default5.jpg"
-              alt="Business Image 5"
-              class="business-image"
-              data-index="4"
-            />
-            <img
-              src="../Images/default6.jpg"
-              alt="Business Image 6"
-              class="business-image"
-              data-index="5"
-            />
-          </div>
-          <input
-            type="file"
-            id="uploadImageInput"
-            style="display: none"
-            accept="image/*"
-          />
-        </div>
       </div>
 
       <section>
