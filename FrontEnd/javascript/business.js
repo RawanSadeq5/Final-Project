@@ -42,16 +42,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         )}</p>
       `;
 
-      // Display business images
-      const imageGallery = document.getElementById("imageGallery");
-      business.images.forEach((image) => {
-        const imgElement = document.createElement("img");
-        imgElement.src = image;
-        imgElement.alt = "Business Image";
-        imgElement.className = "business-image";
-        imageGallery.appendChild(imgElement);
-      });
-
       // Display services
       const servicesContainer = document.getElementById("servicesContainer");
       business.services.forEach((service) => {
@@ -97,32 +87,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       const reader = new FileReader();
       reader.onload = (e) => {
         profileImage.src = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    }
-  });
-
-  // Image Gallery Upload
-  const uploadImageInput = document.getElementById("uploadImageInput");
-  const imageGallery = document.getElementById("imageGallery");
-
-  imageGallery.addEventListener("click", (event) => {
-    if (event.target.classList.contains("business-image")) {
-      const index = event.target.dataset.index;
-      uploadImageInput.dataset.index = index; // Save the index to identify which image to update
-      uploadImageInput.click();
-    }
-  });
-
-  uploadImageInput.addEventListener("change", (event) => {
-    const file = event.target.files[0];
-    const index = uploadImageInput.dataset.index;
-
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const img = imageGallery.querySelector(`img[data-index='${index}']`);
-        img.src = e.target.result;
       };
       reader.readAsDataURL(file);
     }

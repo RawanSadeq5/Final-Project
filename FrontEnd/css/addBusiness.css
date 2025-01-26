@@ -279,14 +279,6 @@ body {
   direction: rtl; /* Right-to-left support */
 }
 
-.radio-group {
-  display: flex; /* Place items side by side */
-  align-items: center; /* Align vertically */
-  gap: 20px; /* Space between options */
-  margin-bottom: 10px; /* Space below the group */
-  direction: rtl; /* Right-to-left support */
-}
-
 .price-input {
   display: none; /* Hidden by default */
   margin-top: 10px;
@@ -309,12 +301,6 @@ input[type="number"] {
   margin-top: 5px;
   border-top: 1px solid #921a40;
   border-radius: 5px;
-}
-.radio-group {
-  display: flex; /* Place items side by side */
-  align-items: center; /* Align vertically */
-  gap: 20px; /* Space between options */
-  margin-bottom: 10px; /* Space below the group */
 }
 
 .price-input {
@@ -371,47 +357,6 @@ input[type="number"] {
   width: 80%;
   font-size: 0.95rem;
   color: #495057;
-}
-
-/* Image Preview */
-.image-preview {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin-top: 20px;
-  justify-content: center;
-  position: relative;
-}
-
-.image-preview img {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border: 2px solid #dee2e6;
-  border-radius: 8px;
-  position: relative;
-}
-
-.image-preview .remove-btn {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  background-color: #921a40;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 15px;
-  height: 25px;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.image-preview .remove-btn:hover {
-  background-color: #921a405a;
 }
 
 .error-message {
