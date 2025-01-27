@@ -5,9 +5,7 @@ const Appointment = require("../models/Appointment");
 exports.getBusinessDetails = async (req, res) => {
   try {
     const { businessId } = req.params;
-    console.log(businessId);
     const business = await Business.findById(businessId);
-    console.log(business);
 
     if (!business) {
       return res
@@ -41,11 +39,31 @@ exports.getBusinessDetails = async (req, res) => {
 exports.updateBusinessDetails = async (req, res) => {
   try {
     const { businessId } = req.params;
-    const { name, address, phone, openingHours } = req.body;
+    const {
+      name,
+      address,
+      phone,
+      openingHours,
+      advancePayment,
+      cancellationDays,
+      customerReward,
+    } = req.body;
+
+    const updateData = {
+      BusinessName: name,
+      address,
+      phoneNumber: phone,
+      openingHours: JSON.parse(openingHours || "[]"),
+      agreements: {
+        advancePayment: parseFloat(advancePayment),
+        cancellationDays: parseInt(cancellationDays, 10),
+        customerReward,
+      },
+    };
 
     const updatedBusiness = await Business.findByIdAndUpdate(
       businessId,
-      { name, address, phone, openingHours },
+      updateData,
       { new: true }
     );
 
@@ -55,12 +73,15 @@ exports.updateBusinessDetails = async (req, res) => {
         .json({ success: false, message: "Business not found." });
     }
 
+    await updatedBusiness.save();
+
     res.status(200).json({ success: true, business: updatedBusiness });
   } catch (error) {
     console.error("Error updating business details:", error);
-    res
-      .status(500)
-      .json({ success: false, message: "Failed to update business details." });
+    res.status(500).json({
+      success: false,
+      message: "Failed to update business details.",
+    });
   }
 };
 
@@ -177,40 +198,5 @@ exports.updateProfileImage = async (req, res) => {
     res
       .status(500)
       .json({ success: false, message: "Failed to update profile image." });
-  }
-};
-
-// Update business images
-exports.updateBusinessImages = async (req, res) => {
-  try {
-    const { businessId } = req.params;
-    const files = req.files;
-
-    if (!files || files.length === 0) {
-      return res
-        .status(400)
-        .json({ success: false, message: "No files uploaded." });
-    }
-
-    const business = await Business.findById(businessId);
-    if (!business) {
-      return res
-        .status(404)
-        .json({ success: false, message: "Business not found." });
-    }
-
-    const imageUrls = files.map(
-      (file) => `${req.protocol}://${req.get("host")}/uploads/${file.filename}`
-    );
-
-    business.images.push(...imageUrls);
-    await business.save();
-
-    res.status(200).json({ success: true, images: business.images });
-  } catch (error) {
-    console.error("Error updating business images:", error);
-    res
-      .status(500)
-      .json({ success: false, message: "Failed to update business images." });
   }
 };
