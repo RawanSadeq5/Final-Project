@@ -37,7 +37,6 @@ const BusinessSchema = new mongoose.Schema({
   services: [serviceSchema], // array of { name, duration }
 
   profileImage: { type: String }, // Path to profile image
-  images: { type: [String], default: [] }, // Paths to uploaded images
   agreements: agreementsSchema, // Agreements section
   createdAt: { type: Date, default: Date.now },
 });

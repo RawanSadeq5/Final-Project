@@ -9,7 +9,6 @@ const {
   addAvailableAppointment,
   addHotAppointment,
   updateProfileImage,
-  updateBusinessImages,
 } = require("../controllers/businessController");
 
 // Fetch business details
@@ -32,13 +31,6 @@ router.post(
   "/business/:businessId/profile-image",
   multer.single("profileImage"),
   updateProfileImage
-);
-
-// Update business images
-router.post(
-  "/:businessId/images",
-  multer.array("images", 6),
-  updateBusinessImages
 );
 
 module.exports = router;

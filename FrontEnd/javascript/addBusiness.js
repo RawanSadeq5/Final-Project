@@ -272,20 +272,22 @@ nextBtn.addEventListener("click", async (event) => {
       currentStep++;
       updateSteps();
     } else {
-      alert("אנא מלא את כל השדות הנדרשים לפני המעבר לשלב הבא.");
+      alert("Please complete all required fields before moving forward.");
     }
   } else {
     if (validateStep()) {
-      const businessIdOutput = await submitTest();
-      localStorage.setItem("businessId", businessIdOutput);
-      window.location.href = `business.html?businessId=${businessIdOutput}`;
-
-      console.log(`business.html?businessId=${businessIdOutput}`);
-      /*document
-        .getElementById("multi-step-form")
-        .dispatchEvent(new Event("submit"));*/
+      try {
+        const businessIdOutput = await submitTest();
+        if (businessIdOutput) {
+          localStorage.setItem("businessId", businessIdOutput);
+          window.location.href = `business.html?businessId=${businessIdOutput}`;
+        }
+      } catch (error) {
+        console.error("Failed to submit form:", error);
+        alert("An error occurred while submitting the form.");
+      }
     } else {
-      alert("אנא מלא את כל השדות הנדרשים לפני הגשת הטופס.");
+      alert("Please complete all required fields before submitting.");
     }
   }
 });

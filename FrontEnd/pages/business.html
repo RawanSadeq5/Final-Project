@@ -39,24 +39,15 @@
         </div>
         <h1>פרטי העסק</h1>
         <div id="businessDetails">
-          <p><strong>שם העסק:</strong> דוגמה לעסק</p>
-          <p><strong>כתובת:</strong> רחוב הראשונים 1, תל אביב</p>
-          <p><strong>טלפון:</strong> 03-1234567</p>
+          <p>שם העסק: <span id="businessName"></span></p>
+          <p>כתובת: <span id="businessAddress"></span></p>
+          <p>טלפון: <span id="businessPhone"></span></p>
+          <p>תשלום מראש: <span id="advancePayment"></span> ₪</p>
           <p>
-            <strong>שעות פתיחה:</strong> א' - ה': 09:00 - 18:00, ו': 09:00 -
-            14:00
+            ימי ביטול:
+            <span id="cancellationDays"></span> ימים
           </p>
-
-          <p>
-            <strong>תשלום מראש:</strong> <span id="advancePayment">24</span> ₪
-          </p>
-          <p>
-            <strong>ימי ביטול:</strong>
-            <span id="cancellationDays">1</span> ימים
-          </p>
-          <p>
-            <strong>פרס ללקוח:</strong> <span id="customerReward">40%</span>
-          </p>
+          <p>פרס ללקוח: <span id="customerReward"></span></p>
         </div>
 
         <!-- Table for services -->
@@ -77,8 +68,20 @@
 
         <button id="editDetailsButton">עריכת פרטים</button>
         <!-- Editable form for additional details -->
-        <form id="editDetailsForm" style="display: none">
+        <div id="editDetailsForm" style="display: none">
           <h2>עריכת פרטי העסק</h2>
+          <label>
+            שם העסק:
+            <input type="text" id="editBusinessName" /> </label
+          ><br />
+          <label>
+            כתובת:
+            <input type="text" id="editAddress" /> </label
+          ><br />
+          <label>
+            טלפון:
+            <input type="text" id="editPhoneNumber" /> </label
+          ><br />
           <label>
             תשלום מראש:
             <input type="number" id="editAdvancePayment" /> </label
@@ -96,7 +99,7 @@
           <div id="editableServicesContainer"></div>
           <button type="button" id="saveDetailsButton">שמור</button>
           <button type="button" id="cancelEditButton">בטל</button>
-        </form>
+        </div>
       </div>
 
       <section>
