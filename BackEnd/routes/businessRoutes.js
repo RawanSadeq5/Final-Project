@@ -21,10 +21,10 @@ router.put("/business/:businessId", updateBusinessDetails);
 router.get("/business/:businessId/appointments", getAppointments);
 
 // Add a new available appointment
-router.post("/:businessId/appointments", addAvailableAppointment);
+router.post("/business/:businessId/appointments", addAvailableAppointment);
 
 // Add a hot appointment
-router.post("/:businessId/hot-appointments", addHotAppointment);
+router.post("/business/:businessId/hot-appointments", addHotAppointment);
 
 // Update profile image
 router.post(

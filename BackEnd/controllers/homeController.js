@@ -1,4 +1,4 @@
-//const Appointment = require("../models/Appointment");
+const { appointment } = require("../models/Appointment");
 const Business = require("../models/businessModel");
 
 // Search for businesses
@@ -50,7 +50,7 @@ exports.searchService = async (req, res) => {
  */
 exports.getAllHotAppointments = async (req, res) => {
   try {
-    const hotAppointments = await Appointment.find({ isHot: true });
+    const hotAppointments = await appointment.find({ isHot: true });
     return res.json({ success: true, hotAppointments });
   } catch (error) {
     console.error("Error fetching hot appointments:", error);

@@ -221,6 +221,7 @@ const submitTest = async () => {
 
     if (response.ok) {
       //alert("העסק נוסף בהצלחה!");
+
       return result.business._id;
     } else {
       alert(result.message || "הנתונים שהזנת אינם נכונים, נסה שוב.");
