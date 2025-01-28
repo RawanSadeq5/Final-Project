@@ -1,5 +1,5 @@
 const Business = require("../models/businessModel");
-const Appointment = require("../models/Appointment");
+const { appointment } = require("../models/Appointment");
 
 // Fetch business details
 exports.getBusinessDetails = async (req, res) => {
@@ -90,7 +90,7 @@ exports.getAppointments = async (req, res) => {
   try {
     const { businessId } = req.params;
 
-    const appointments = await Appointment.find({ businessId });
+    const appointments = await appointment.find({ businessId });
 
     const formattedAppointments = appointments.map((appointment) => ({
       service: appointment.serviceType,
@@ -116,11 +116,33 @@ exports.getAppointments = async (req, res) => {
 // Add a new available appointment
 exports.addAvailableAppointment = async (req, res) => {
   try {
+    console.log("server");
     const { businessId } = req.params;
-    const { serviceType, date, time, durationInMinutes, originalPrice } =
-      req.body;
+    const { serviceType, date, time, durationInMinutes } = req.body;
+    // Find the business by ID and retrieve the price of the requested service
+    const business = await Business.findById(businessId);
 
-    const newAppointment = new Appointment({
+    if (!business) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Business not found" });
+    }
+
+    // Find the specific service in the business's services array
+    const service = business.services.find(
+      (service) => service.name === serviceType
+    );
+
+    if (!service) {
+      return res.status(404).json({
+        success: false,
+        message: "Service not found for this business",
+      });
+    }
+
+    const originalPrice = service.price;
+
+    const newAppointment = new appointment({
       businessId,
       serviceType,
       date,
@@ -143,10 +165,11 @@ exports.addAvailableAppointment = async (req, res) => {
 // Add a hot appointment
 exports.addHotAppointment = async (req, res) => {
   try {
+    console.log("Hot");
     const { businessId } = req.params;
     const { serviceType, date, time, originalPrice, discountPrice } = req.body;
 
-    const newHotAppointment = new Appointment({
+    const newHotAppointment = new appointment({
       businessId,
       serviceType,
       date,

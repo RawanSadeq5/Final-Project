@@ -1,3 +1,5 @@
+//const { response } = require("express");
+
 document.addEventListener("DOMContentLoaded", async () => {
   const businessId = new URLSearchParams(window.location.search).get(
     "businessId"
@@ -168,5 +170,143 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Cancel edit
   cancelEditButton.addEventListener("click", () => {
     editDetailsForm.style.display = "none";
+  });
+
+  // Fetch services from the server
+  fetch(`http://localhost:3000/api/business/${businessId}`) // Replace with your actual API URL
+    .then((response) => response.json())
+    .then((services) => {
+      const serviceDropdown = document.getElementById("service");
+      const hotServiceDropdown = document.getElementById("hotService");
+      serviceDropdown.innerHTML = '<option value="">בחר שירות</option>'; // Clear placeholder
+      hotServiceDropdown.innerHTML = '<option value="">בחר שירות</option>';
+
+      console.log(services.business.services.length);
+
+      if (services.business.services.length > 0) {
+        // Populate dropdown with service names
+        services.business.services.forEach((service) => {
+          console.log(service.name);
+          const option = document.createElement("option");
+          option.value = service.name; // Use service name for simplicity
+          option.textContent = service.name; // Display service name
+          serviceDropdown.appendChild(option);
+        });
+
+        services.business.services.forEach((service) => {
+          console.log(service.name);
+          const option = document.createElement("option");
+          option.value = service.name; // Use service name for simplicity
+          option.textContent = service.name; // Display service name
+          hotServiceDropdown.appendChild(option);
+        });
+      }
+    })
+    .catch((error) => {
+      console.error("Error fetching services:", error);
+      const serviceDropdown = document.getElementById("service");
+      const hotServiceDropdown = document.getElementById("hotService");
+      serviceDropdown.innerHTML =
+        '<option value="">שגיאה בטעינת השירותים</option>';
+      hotServiceDropdown.innerHTML =
+        '<option value="">שגיאה בטעינת השירותים</option>';
+    });
+
+  // Handle form submission
+  const addButton = document.getElementById("addButton");
+  addButton.addEventListener("click", (event) => {
+    console.log("Regular appointment button clicked");
+    event.preventDefault(); // Prevent default form submission
+
+    const serviceType = document.getElementById("service").value;
+    const date = document.getElementById("date").value;
+    const time = document.getElementById("time").value;
+
+    if (!serviceType) {
+      alert("אנא בחר שירות");
+      return;
+    }
+
+    // Prepare the data to send
+    const data = {
+      serviceType,
+      date,
+      time,
+      //originalPrice,
+      isHot: false,
+    };
+    console.log(data);
+
+    // Post the data to the server
+    fetch(`http://localhost:3000/api/business/${businessId}/appointments`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error("Failed to add appointment");
+        return response.json();
+      })
+      .then((result) => {
+        alert("התור נוסף בהצלחה");
+        console.log("Appointment added:", result);
+      })
+      .catch((error) => {
+        console.error("Error adding appointment:", error);
+        alert("שגיאה בהוספת התור");
+      });
+  });
+
+  // Handle form submission
+  const addHotButton = document.getElementById("addHotButton");
+  addHotButton.addEventListener("click", (event) => {
+    console.log("Hot appointment button clicked"); // Debug log
+    event.preventDefault(); // Prevent default form submission
+
+    const serviceType = document.getElementById("hotService").value;
+    const date = document.getElementById("dateHot").value;
+    const time = document.getElementById("timeHot").value;
+    const originalPrice = document.getElementById("priceBefore").value;
+    const discountPrice = document.getElementById("priceAfter").value;
+
+    if (!serviceType) {
+      alert("אנא בחר שירות");
+      return;
+    }
+
+    // Prepare the data to send
+    const data = {
+      serviceType,
+      date,
+      time,
+      originalPrice,
+      discountPrice,
+      isHot: true,
+    };
+
+    console.log(data);
+
+    // Post the data to the server
+    fetch(`http://localhost:3000/api/business/${businessId}/hot-appointments`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error("Failed to add appointment");
+        return response.json();
+      })
+      .then((result) => {
+        alert("התור נוסף בהצלחה");
+        console.log("Appointment added:", result);
+      })
+      .catch((error) => {
+        console.error("Error adding appointment:", error);
+        alert("שגיאה בהוספת התור");
+      });
   });
 });

@@ -128,11 +128,7 @@
         <form id="addAppointmentForm">
           <label for="service" id="serviceOptions"
             >שירות:
-            <select id="service">
-              <option value="service1">שירות 1</option>
-              <option value="service2">שירות 2</option>
-              <option value="service3">שירות 3</option>
-            </select> </label
+            <select id="service"></select> </label
           ><br />
           <label>תאריך: <input type="date" id="date" /></label><br />
           <label>שעה: <input type="time" id="time" /></label><br />
@@ -151,17 +147,17 @@
               <option value="service3">שירות 3</option>
             </select> </label
           ><br />
-          <label>תאריך: <input type="date" id="date" /></label><br />
-          <label>שעה: <input type="time" id="time" /></label><br />
+          <label>תאריך: <input type="date" id="dateHot" /></label><br />
+          <label>שעה: <input type="time" id="timeHot" /></label><br />
           <label
             >מחיר לפני הנחה:
-            <input type="price" id="price" style="width: 60px" />₪</label
+            <input type="price" id="priceBefore" style="width: 60px" />₪</label
           ><br />
           <label
             >מחיר אחרי הנחה:
-            <input type="price" id="price" style="width: 60px" />₪</label
+            <input type="price" id="priceAfter" style="width: 60px" />₪</label
           ><br />
-          <button type="button" id="addButton">הוסף</button>
+          <button type="button" id="addHotButton">הוסף</button>
         </form>
       </section>
     </main>
