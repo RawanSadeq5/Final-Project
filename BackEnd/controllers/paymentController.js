@@ -14,8 +14,6 @@ exports.getAdvancePayment = async (req, res) => {
         message: "Business not found",
       });
     }
-
-    // Extract advance payment amount
     const advancePayment = business.agreements.advancePayment;
 
     res.status(200).json({
