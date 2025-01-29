@@ -1,18 +1,21 @@
 const express = require("express");
 const router = express.Router();
-const authMiddleware = require("../middleware/authMiddleware");
+//const authMiddleware = require("../middleware/authMiddleware");
 
 const {
   getAllHotAppointments,
-  searchBusiness,
+  searchBusinesses,
+  /*searchBusiness,
   searchArea,
-  searchService,
+  searchService,*/
 } = require("../controllers/homeController");
 
 // Search endpoints
-router.get("/search/business", searchBusiness);
+/*router.get("/search/business", searchBusiness);
 router.get("/search/area", searchArea);
-router.get("/search/service", searchService);
+router.get("/search/service", searchService);*/
+
+router.get("/search", searchBusinesses);
 
 // GET ALL HOT APPOINTMENTS
 router.get("/appointments/hot", getAllHotAppointments);

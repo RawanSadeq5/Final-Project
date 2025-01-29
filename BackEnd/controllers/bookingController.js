@@ -4,19 +4,31 @@ const { Appointment, WaitingList } = require("../models/Appointment");
 // Fetch business details
 exports.getBusinessDetailsBook = async (req, res) => {
   try {
-    const businessId = req.params.id;
-    const business = await Business.findById(businessId).select(
-      "profileImage name address phoneNumber images services"
-    );
+    const { businessId } = req.params;
+    const business = await Business.findById(businessId);
 
     if (!business) {
-      return res.status(404).json({ error: "Business not found" });
+      return res
+        .status(404)
+        .json({ success: false, message: "Business not found." });
     }
 
-    res.status(200).json(business);
+    res.status(200).json({
+      success: true,
+      business: {
+        _id: business._id,
+        profileImage: business.profileImage,
+        services: business.services,
+        BusinessName: business.BusinessName,
+        address: business.address,
+        phoneNumber: business.phoneNumber,
+      },
+    });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Failed to fetch business details" });
+    console.error("Error fetching business details:", error);
+    res
+      .status(500)
+      .json({ success: false, message: "Failed to fetch business details." });
   }
 };
 

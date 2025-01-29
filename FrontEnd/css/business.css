@@ -70,6 +70,7 @@ section {
   border: 2px solid #921a40;
   border-radius: 8px;
   background-color: #fff;
+  font-size: 22px;
 }
 
 .profile-image-container {
@@ -89,13 +90,6 @@ section {
 #businessImagesContainer {
   margin-top: 20px;
   text-align: center;
-}
-
-#imageGallery {
-  display: grid;
-  grid-template-columns: repeat(3, 200px); /* 3 columns */
-  column-gap: 5px;
-  row-gap: 5px;
 }
 
 .business-image {
