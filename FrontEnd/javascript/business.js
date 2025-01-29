@@ -111,7 +111,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const editDetailsButton = document.getElementById("editDetailsButton");
   const saveDetailsButton = document.getElementById("saveDetailsButton");
   const cancelEditButton = document.getElementById("cancelEditButton");
-  //const addServiceButton = document.getElementById("addServiceButton");
   const editDetailsForm = document.getElementById("editDetailsForm");
   const businessNameInput = document.getElementById("editBusinessName");
   const addressInput = document.getElementById("editAddress");
@@ -119,7 +118,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const advanceInput = document.getElementById("editAdvancePayment");
   const cancellationInput = document.getElementById("editCancellationDays");
   const rewardInput = document.getElementById("editCustomerReward");
-  //const srviceInput = document.getElementById("editableServicesContainer");
 
   editDetailsButton.addEventListener("click", () => {
     businessNameInput.value =

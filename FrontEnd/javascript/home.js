@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     alert("הקישור הועתק!");
   });
 
-  // Close modal on outside click (optional)
+  // Close modal on outside click
   window.addEventListener("click", (e) => {
     if (e.target === modal) {
       modal.style.display = "none";
@@ -73,8 +73,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.location.href = "payment.html";
   });
 
-  try {
-    const data1 = [
+  /*const data1 = [
       { id: 1, name: "Product A" },
       { id: 2, name: "Product B" },
       { id: 3, name: "Product C" },
@@ -101,45 +100,77 @@ document.addEventListener("DOMContentLoaded", async () => {
         Time: "12:30",
         DurationInMinutes: 60,
       },
-    ];
+    ];*/
 
-    const hotAppointmentsdata = await Fetch(
+  /*const hotAppointmentsdata = await Fetch(
       "https://HananRawanSite.com/api/data",
       data2
-    );
+    );*/
 
-    document
-      .getElementById("search-button")
-      .addEventListener("click", async (e) => {
-        e.preventDefault();
-        const dataContainer = document.getElementById("businesses-container");
+  document
+    .getElementById("search-button")
+    .addEventListener("click", async (e) => {
+      e.preventDefault();
 
-        // Show the container and reset any previous content
-        dataContainer.style.display = "block";
-        dataContainer.innerHTML = "<p>טוען...</p>";
+      const name = document.getElementById("name-input").value.trim();
+      const service = document.getElementById("service-input").value.trim();
+      const area = document.getElementById("area-input").value.trim();
 
-        const data = await Fetch("https://HananRawanSite.com/api/data", data1);
-        dataContainer.innerHTML = ""; // Clear loading state
+      // Ensure at least one field is filled
+      if (!name && !service && !area) {
+        alert("נא להזין לפחות אחד מהשדות לחיפוש");
+        return;
+      }
 
+      const dataContainer = document.getElementById("businesses-container");
+      dataContainer.style.display = "block";
+      dataContainer.innerHTML = "<p>טוען...</p>";
+
+      try {
+        const queryParams = new URLSearchParams();
+        if (name) queryParams.append("name", name);
+        if (service) queryParams.append("service", service);
+        if (area) queryParams.append("area", area);
+
+        const response = await fetch(
+          `http://localhost:3000/api/search?${queryParams.toString()}`
+        );
+        const result = await response.json();
+
+        if (!result.success || result.businesses.length === 0) {
+          dataContainer.innerHTML = "<p>לא נמצאו תוצאות</p>";
+          return;
+        }
+
+        dataContainer.innerHTML = "";
         const ul = document.createElement("ul");
 
-        data.forEach((item) => {
+        result.businesses.forEach((business) => {
           const li = document.createElement("li");
-          const a = document.createElement("a");
-          a.className = "businesses-name";
-
-          a.textContent = `${item.name}`;
-          a.href = `../pages/booking.html?id=${item.id}`;
-          li.appendChild(a);
+          li.textContent = `${business.name} - ${business.address}`;
           ul.appendChild(li);
         });
+
         dataContainer.appendChild(ul);
-      });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        dataContainer.innerHTML = "<p>שגיאה בטעינת הנתונים</p>";
+      }
+    });
+
+  try {
+    const response = await fetch("http://localhost:3000/api/appointments/hot");
+    const result = await response.json();
+
+    if (!result.success || result.hotAppointments.length === 0) {
+      console.log("No hot appointments found.");
+      return;
+    }
 
     const appointmentGridDiv = document.getElementById("appointment-grid");
     appointmentGridDiv.innerHTML = ""; // Clear loading state
 
-    hotAppointmentsdata.forEach((item) => {
+    result.hotAppointments.forEach((item) => {
       const carddiv = document.createElement("div");
       carddiv.className = "appointment-card";
 
@@ -147,7 +178,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       infodiv.className = "appointment-info";
 
       const h2 = document.createElement("h2");
-      h2.innerHTML = `${item.BusinessName}`;
+      h2.innerHTML = item.BusinessName;
 
       const labelAddress = document.createElement("label");
       labelAddress.innerHTML = `<strong>כתובת:</strong> ${item.Address}`;
@@ -161,15 +192,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       const labelTime = document.createElement("label");
       labelTime.innerHTML = `<strong>שעה:</strong> ${item.Time}`;
 
-      const labelDuration = document.createElement("label");
-      labelDuration.innerHTML = `<strong>משך:</strong> ${item.DurationInMinutes} דקות`;
-
       const labelDiscountPrice = document.createElement("p");
-      labelDiscountPrice.innerHTML = `${item.discountPrice}`;
+      labelDiscountPrice.innerHTML = `<strong>מחיר אחרי הנחה:</strong> ${item.discountPrice}₪`;
       labelDiscountPrice.className = "price-discounted";
 
       const labelOriginalPrice = document.createElement("p");
-      labelOriginalPrice.innerHTML = `${item.originalPrice}`;
+      labelOriginalPrice.innerHTML = `<strong>מחיר לפני הנחה:</strong> ${item.originalPrice}₪`;
       labelOriginalPrice.className = "price-original";
 
       const submitButtonElement = document.createElement("button");
@@ -178,14 +206,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       // Add click event for the button
       submitButtonElement.addEventListener("click", () => {
         const detailsContainer = document.getElementById("details-container");
-
-        // Ensure the details container is below all cards
         appointmentGridDiv.insertAdjacentElement("afterend", detailsContainer);
-
-        // Show the details container
         detailsContainer.style.display = "block";
-
-        // Scroll to the details container for better UX
         detailsContainer.scrollIntoView({ behavior: "smooth", block: "start" });
       });
 
@@ -194,7 +216,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       infodiv.appendChild(labelServiceType);
       infodiv.appendChild(labelDate);
       infodiv.appendChild(labelTime);
-      infodiv.appendChild(labelDuration);
       infodiv.appendChild(labelDiscountPrice);
       infodiv.appendChild(labelOriginalPrice);
       infodiv.appendChild(submitButtonElement);
@@ -202,23 +223,23 @@ document.addEventListener("DOMContentLoaded", async () => {
       carddiv.appendChild(infodiv);
       appointmentGridDiv.appendChild(carddiv);
     });
-
-    // Close details container when "X" is clicked
-    const closeButton = document.getElementById("close-details");
-    closeButton.addEventListener("click", () => {
-      const detailsContainer = document.getElementById("details-container");
-      detailsContainer.style.display = "none";
-    });
   } catch (error) {
-    console.error(error);
+    console.error("Error fetching hot appointments:", error);
   }
+
+  // Close details container when "X" is clicked
+  const closeButton = document.getElementById("close-details");
+  closeButton.addEventListener("click", () => {
+    const detailsContainer = document.getElementById("details-container");
+    detailsContainer.style.display = "none";
+  });
 });
 
-function Fetch(url, data) {
+/*function Fetch(url, data) {
   return new Promise((resolve, reject) => {
     console.log(`Fetching data from: ${url}`);
     setTimeout(() => {
       resolve(data);
     }, 500);
   });
-}
+}*/

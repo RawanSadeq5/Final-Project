@@ -191,16 +191,14 @@ document.addEventListener("DOMContentLoaded", async function () {
   const businessAddress = document.getElementById("businessAddress");
   const businessPhone = document.getElementById("businessPhone");
   const serviceList = document.getElementById("serviceList");
-  const imageGallery = document.getElementById("imageGallery");
 
-  profileImage.innerHTML = ""; // Clear previous times
-  businessName.innerHTML = ""; // Clear previous times
-  businessAddress.innerHTML = ""; // Clear previous times
-  serviceList.innerHTML = ""; // Clear previous times
-  imageGallery.innerHTML = ""; // Clear previous times
-  availableTimesList.innerHTML = ""; // Clear previous times
+  profileImage.innerHTML = "";
+  businessName.innerHTML = "";
+  businessAddress.innerHTML = "";
+  serviceList.innerHTML = "";
+  availableTimesList.innerHTML = "";
 
-  const data1 = {
+  /*const data1 = {
     profileImage: "https://www.w3schools.com/images/w3schools_green.jpg",
     businessName: "Hanan Nails",
     businessAddress: "אנילביץ 9, עכו",
@@ -212,54 +210,59 @@ document.addEventListener("DOMContentLoaded", async function () {
       { name: "החלפת צבע", price: "₪100" },
       { name: "תיקון ציפורן", price: "₪50" },
     ],
-    imageGallery: [
-      "https://www.w3schools.com/images/w3schools_green.jpg",
-      "https://www.w3schools.com/images/w3schools_green.jpg",
-      "https://www.w3schools.com/images/w3schools_green.jpg",
-      "https://www.w3schools.com/images/w3schools_green.jpg",
-      "https://www.w3schools.com/images/w3schools_green.jpg",
-      "https://www.w3schools.com/images/w3schools_green.jpg",
-    ],
-  };
+  };*/
 
-  const id = getQueryParam();
-
-  // if(!id){
-  //   document.body.textContent = "No Buisness Id found";
-  //   return;
-  // }
-
-  const data = await Fetch(
-    `https://HananRawanSite.com/api/data/buisness/${id}`,
-    data1
+  const businessId = new URLSearchParams(window.location.search).get(
+    "businessId"
   );
-  profileImage.src = data.profileImage;
-  businessName.textContent = data.businessName;
-  businessAddress.textContent = data.businessAddress;
-  businessPhone.textContent = data.businessPhone;
-  imageGallery.innerHTML = "";
-  data.imageGallery.forEach((item) => {
-    const image = document.createElement("img");
-    image.src = item;
-    imageGallery.appendChild(image);
-  });
-  serviceList.innerHTML = "";
-  data.serviceList.forEach((service) => {
-    const listItem = document.createElement("li");
-    const serviceLink = document.createElement("a");
-    const serviceName = document.createTextNode(service.name);
-    const servicePrice = document.createElement("span");
 
-    serviceLink.href = "#";
-    serviceLink.classList.add("service-link");
-    servicePrice.classList.add("price");
+  if (!businessId) {
+    alert("No business ID provided!");
+    return;
+  }
 
-    servicePrice.textContent = service.price;
-    serviceLink.appendChild(serviceName);
-    serviceLink.appendChild(servicePrice);
-    listItem.appendChild(serviceLink);
-    serviceList.appendChild(listItem);
-  });
+  try {
+    const response = await fetch(
+      `http://localhost:3000/api/business/${businessId}/details`
+    );
+    console.log(response);
+    const data = await response.json();
+    console.log(data);
+
+    if (response.ok) {
+      const { business } = data;
+
+      // Populate profile image
+      if (business.profileImage) {
+        profileImage.src = business.profileImage;
+      }
+      businessName.textContent = business.BusinessName;
+      businessAddress.textContent = business.address;
+      businessPhone.textContent = business.phoneNumber;
+      serviceList.innerHTML = "";
+      business.services.forEach((service) => {
+        const listItem = document.createElement("li");
+        const serviceLink = document.createElement("a");
+        const serviceName = document.createTextNode(service.name);
+        const servicePrice = document.createElement("span");
+
+        serviceLink.href = "#";
+        serviceLink.classList.add("service-link");
+        servicePrice.classList.add("price");
+
+        servicePrice.textContent = service.price;
+        serviceLink.appendChild(serviceName);
+        serviceLink.appendChild(servicePrice);
+        listItem.appendChild(serviceLink);
+        serviceList.appendChild(listItem);
+      });
+    } else {
+      alert(data.message || "Failed to load business details.");
+    }
+  } catch (error) {
+    console.error("Error fetching business details:", error);
+    alert("An error occurred while loading the business details.");
+  }
 
   const serviceLinks = document.querySelectorAll(".service-link");
   serviceLinks.forEach((link) => {
@@ -303,7 +306,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   ];
 
   // Simulate a fetch for available dates
-  async function fetchAvailableDates(year, month) {
+  /*async function fetchAvailableDates(year, month) {
     console.log(`Fetching available dates for ${year}-${month + 1}`);
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -387,6 +390,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       alert("This date is unavailable. Please select another date.");
     }
   });
+
   // Simulate a fetch for available times
   async function fetchAvailableTimes(date) {
     console.log(`Fetching available times for ${date}`);
@@ -427,19 +431,10 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     // Smooth scroll to times container
     timesContainer.scrollIntoView({ behavior: "smooth", block: "start" });
-  });
+  });*/
 });
 
-function getQueryParam() {
+/*function getQueryParam() {
   const urlParams = new URLSearchParams(window.location.search);
   return urlParams.get("id");
-}
-
-function Fetch(url, data) {
-  return new Promise((resolve, reject) => {
-    console.log(`Fetching data from: ${url}`);
-    setTimeout(() => {
-      resolve(data);
-    }, 500);
-  });
-}
+}*/

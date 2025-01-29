@@ -55,9 +55,24 @@
       <p>הזמינו תור מראש, חסכו זמן, ותיהנו משירות מקצועי ומהיר.</p>
       <br />
       <form class="search-form">
-        <input type="text" placeholder="חיפוש עסק" name="business" />
-        <input type="text" placeholder="חיפוש שירות" name="service" />
-        <input type="text" placeholder="חיפוש אזור" name="area" />
+        <input
+          type="text"
+          placeholder="חיפוש עסק"
+          name="business"
+          id="name-input"
+        />
+        <input
+          type="text"
+          placeholder="חיפוש שירות"
+          name="service"
+          id="service-input"
+        />
+        <input
+          type="text"
+          placeholder="חיפוש אזור"
+          name="area"
+          id="area-input"
+        />
         <button id="search-button">חפש</button>
       </form>
       <div class="businesses-container" id="businesses-container"></div>
@@ -76,7 +91,9 @@
                 <span class="price-discounted">$3500</span>
                 <span class="price-original">$4000</span>
               </p>
-              <button id="bookNowButton">הזמן עכשיו</button>
+              <button id="bookNowButton" class="bookNowButton">
+                הזמן עכשיו
+              </button>
             </div>
           </div>
           <div class="appointment-card">
