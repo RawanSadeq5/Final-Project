@@ -433,8 +433,3 @@ document.addEventListener("DOMContentLoaded", async function () {
     timesContainer.scrollIntoView({ behavior: "smooth", block: "start" });
   });*/
 });
-
-/*function getQueryParam() {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get("id");
-}*/
