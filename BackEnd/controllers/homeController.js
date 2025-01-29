@@ -53,17 +53,17 @@ exports.searchBusinesses = async (req, res) => {
     let searchCriteria = {};
 
     if (name) {
-      searchCriteria.name = { $regex: name, $options: "i" };
+      searchCriteria.BusinessName = { $regex: name, $options: "i" };
     }
     if (service) {
-      searchCriteria.serviceType = { $regex: service, $options: "i" };
+      searchCriteria["services.name"] = { $regex: service, $options: "i" };
     }
     if (area) {
       searchCriteria.address = { $regex: area, $options: "i" };
     }
 
     const businesses = await Business.find(searchCriteria).select(
-      "name address _id"
+      "BusinessName address _id"
     );
 
     if (!businesses.length) {
@@ -104,6 +104,7 @@ exports.getAllHotAppointments = async (req, res) => {
     }
 
     const formattedAppointments = hotAppointments.map((app) => ({
+      businessId: app.businessId._id,
       BusinessName: app.businessId.BusinessName,
       Address: app.businessId.address,
       ServiceType: app.serviceType,

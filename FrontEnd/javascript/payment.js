@@ -50,17 +50,3 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.location.href = `booking.html?businessId=${businessId}`;
   });
 });
-
-/*document.addEventListener("DOMContentLoaded", async () => {
-  try {
-    // Replace this with the actual business ID
-    const businessId = "YOUR_BUSINESS_ID"; // Example: "64a9c1e3b59d1c1f2e8d0e6b"
-
-    const advancePayment = await fetchAdvancePayment(businessId);
-
-    const div = document.getElementById("advance-payment");
-    div.textContent = `סכום המקדמה: ₪ ${advancePayment}`;
-  } catch (error) {
-    alert("שגיאה בטעינת סכום המקדמה");
-  }
-});*/

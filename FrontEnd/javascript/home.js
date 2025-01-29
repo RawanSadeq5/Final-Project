@@ -60,6 +60,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const paymentButton = document.querySelector("#payment-button");
   paymentButton.addEventListener("click", (event) => {
+    console.log(event.target);
     const fullName = document.querySelector("#full-name").value.trim();
     const phoneNumber = document.querySelector("#phone-number").value.trim();
     const notes = document.querySelector("#notes").value.trim();
@@ -70,42 +71,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     event.preventDefault();
-    window.location.href = "payment.html";
+    // Get the businessId from the button's data attribute
+    const businessId = event.target.dataset.businessId;
+
+    // Navigate to payment.html with the businessId as a query parameter
+    window.location.href = `payment.html?businessId=${businessId}`;
   });
-
-  /*const data1 = [
-      { id: 1, name: "Product A" },
-      { id: 2, name: "Product B" },
-      { id: 3, name: "Product C" },
-    ];
-
-    const data2 = [
-      {
-        BusinessName: "Salam Nails",
-        Address: "אנילביץ 9, עכו",
-        ServiceType: "לק גל",
-        originalPrice: 300,
-        discountPrice: 150,
-        Date: "12/01/2025",
-        Time: "12:05",
-        DurationInMinutes: 120,
-      },
-      {
-        BusinessName: "Hanan Nails",
-        Address: "אנילביץ 9, עכו",
-        ServiceType: "לק גל",
-        originalPrice: 200,
-        discountPrice: 120,
-        Date: "15/01/2025",
-        Time: "12:30",
-        DurationInMinutes: 60,
-      },
-    ];*/
-
-  /*const hotAppointmentsdata = await Fetch(
-      "https://HananRawanSite.com/api/data",
-      data2
-    );*/
 
   document
     .getElementById("search-button")
@@ -136,6 +107,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           `http://localhost:3000/api/search?${queryParams.toString()}`
         );
         const result = await response.json();
+        console.log(result.businesses);
 
         if (!result.success || result.businesses.length === 0) {
           dataContainer.innerHTML = "<p>לא נמצאו תוצאות</p>";
@@ -147,7 +119,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         result.businesses.forEach((business) => {
           const li = document.createElement("li");
-          li.textContent = `${business.name} - ${business.address}`;
+          const a = document.createElement("a");
+          a.textContent = `${business.BusinessName} - ${business.address}`;
+          a.href = `booking.html?businessId=${business._id}`;
+          li.appendChild(a);
           ul.appendChild(li);
         });
 
@@ -203,12 +178,20 @@ document.addEventListener("DOMContentLoaded", async () => {
       const submitButtonElement = document.createElement("button");
       submitButtonElement.textContent = "הזמן עכשיו";
 
+      const hiddenBusinessId = document.createElement("p");
+      hiddenBusinessId.textContent = item.businessId;
+      hiddenBusinessId.style.display = "none";
+      hiddenBusinessId.className = "hiddenBusinessId";
+
       // Add click event for the button
       submitButtonElement.addEventListener("click", () => {
         const detailsContainer = document.getElementById("details-container");
         appointmentGridDiv.insertAdjacentElement("afterend", detailsContainer);
         detailsContainer.style.display = "block";
         detailsContainer.scrollIntoView({ behavior: "smooth", block: "start" });
+
+        const paymentButton = document.querySelector("#payment-button");
+        paymentButton.dataset.businessId = item.businessId;
       });
 
       infodiv.appendChild(h2);
@@ -219,6 +202,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       infodiv.appendChild(labelDiscountPrice);
       infodiv.appendChild(labelOriginalPrice);
       infodiv.appendChild(submitButtonElement);
+      infodiv.appendChild(hiddenBusinessId);
+      console.log(infodiv);
 
       carddiv.appendChild(infodiv);
       appointmentGridDiv.appendChild(carddiv);
