@@ -1,3 +1,16 @@
+/**
+ * File: home.js
+ * Description: This script manages various interactive elements on the NexTor home page, including:
+ *              - Navigation between different pages (about, contact, add business, login)
+ *              - "Bring a Friend" modal functionality with link copying
+ *              - Handling search functionality for businesses, services, and areas
+ *              - Fetching and displaying hot appointment deals dynamically
+ *              - Managing appointment booking interactions, including payment redirection
+ *              - Closing the appointment details container when dismissed
+ * Dependencies: Requires a backend API at "http://localhost:3000/api" for fetching businesses and hot appointments.
+ *               Works with home.html.
+ **/
+
 document.addEventListener("DOMContentLoaded", async () => {
   // About page navigation
   const aboutLink = document.getElementById("about-link");
@@ -219,12 +232,3 @@ document.addEventListener("DOMContentLoaded", async () => {
     detailsContainer.style.display = "none";
   });
 });
-
-/*function Fetch(url, data) {
-  return new Promise((resolve, reject) => {
-    console.log(`Fetching data from: ${url}`);
-    setTimeout(() => {
-      resolve(data);
-    }, 500);
-  });
-}*/

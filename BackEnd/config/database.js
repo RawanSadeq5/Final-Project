@@ -1,3 +1,12 @@
+/**
+ * Database Connection Module
+ * This module establishes a connection to a MongoDB database using Mongoose.
+ * It loads environment variables from a `.env` file to retrieve the database URI.
+ * Functions:
+ * - connectToDatabase(): Asynchronously connects to MongoDB and logs the connection status.
+ *   If the connection fails, it logs the error and exits the process.
+ **/
+
 require("dotenv").config();
 const mongoose = require("mongoose");
 

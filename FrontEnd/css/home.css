@@ -1,4 +1,14 @@
-/* General Styling */
+/**
+ * File: home.css
+ * Description: This CSS file provides styling for the home page of the NexTor appointment booking system, including:
+ *              - A structured layout for the navigation bar, hero section, and appointment listings
+ *              - A search form for users to find businesses and services
+ *              - Styling for appointment cards with pricing and discount indicators
+ *              - Modal popups for sharing referral links
+ *              - Responsive design for an optimized user experience on various screen sizes
+ * Dependencies: Works with home.html.
+ **/
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -36,7 +46,7 @@ header {
   color: white;
   z-index: 1000;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  justify-content: space-between; /* Space between logo and links */
+  justify-content: space-between;
 }
 
 /* Navigation Bar */
@@ -147,8 +157,8 @@ main {
 }
 
 .businesses-container {
-  margin-top: 20px; /* Adjust the value for the desired gap */
-  display: none; /* Hide by default */
+  margin-top: 20px;
+  display: none;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -173,10 +183,10 @@ main {
 }
 
 ul {
-  list-style-position: inside; /* Keeps the bullet points inside the list item box */
+  list-style-position: inside;
   padding: 0;
-  text-align: right; /* Aligns both bullets and text to the right */
-  direction: rtl; /* Ensures proper alignment for right-to-left languages */
+  text-align: right;
+  direction: rtl;
 }
 
 li {
@@ -213,9 +223,9 @@ li {
 
 .appointment-info {
   display: flex;
-  flex-direction: column; /* Stack all labels vertically */
-  gap: 10px; /* Add space between labels */
-  text-align: right; /* Align text in labels to the right */
+  flex-direction: column;
+  gap: 10px;
+  text-align: right;
 }
 
 .appointment-info h2 {
@@ -235,14 +245,14 @@ li {
 
 .price-discounted,
 .price-original {
-  display: inline; /* Keep the prices inline */
+  display: inline;
   text-align: center;
 }
 
 .price-row {
-  display: flex; /* Arrange prices on the same row */
-  justify-content: flex-end; /* Align prices to the right */
-  gap: 10px; /* Add spacing between the two prices */
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
 .price-discounted {
@@ -277,7 +287,7 @@ li {
 }
 
 .details-container {
-  position: relative; /* Enable positioning for child elements */
+  position: relative;
   border: 1px solid #ccc;
   padding: 20px;
   background: #fff;

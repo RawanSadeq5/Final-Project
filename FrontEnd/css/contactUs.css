@@ -1,4 +1,12 @@
-/* General Styling */
+/**
+ * File: contactUs.css
+ * Description: This CSS file provides styling for the Contact Us page of the NexTor appointment booking system, including:
+ *              - A structured and responsive form layout
+ *              - A modern gradient background
+ *              - Styled input fields, buttons, and modal popups for user interactions
+ * Dependencies: Works with contactUs.html.
+ **/
+
 body {
   font-family: Arial, sans-serif;
   background-color: #f8f9fa;
@@ -30,27 +38,27 @@ body {
 
 /* Header */
 header {
-  position: fixed; /* Fixes the header at the top of the viewport */
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%; /* Ensures the header spans the full width */
+  width: 100%;
   background-color: #921a40;
   color: #fff;
-  z-index: 1000; /* Ensures the header is always on top */
-  padding: 20px 0; /* Adds vertical padding */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds shadow for better visibility */
+  z-index: 1000;
+  padding: 20px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 nav {
   display: flex;
-  justify-content: space-between; /* Distributes space between logo and nav links */
-  align-items: center; /* Aligns items vertically in the center */
-  padding: 0 20px; /* Adds horizontal padding */
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
 }
 
 .nav-links {
   display: flex;
-  gap: 15px; /* Space between nav links */
+  gap: 15px;
 }
 
 nav a {
@@ -65,13 +73,11 @@ nav a:hover {
   color: black;
 }
 
-/* Adjust the main container to sit below the header */
 main {
   padding: 20px;
   margin-top: 150px;
 }
 
-/* General container styling */
 .container {
   width: 750px;
   margin: 0 auto;
@@ -99,7 +105,6 @@ p {
   margin-bottom: 20px;
 }
 
-/* Form Styling */
 form {
   display: flex;
   flex-direction: column;
@@ -137,7 +142,6 @@ textarea {
   resize: none;
 }
 
-/* Submit Button Styling */
 button {
   background-color: #921a40;
   font-size: 30px;

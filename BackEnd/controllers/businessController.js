@@ -1,3 +1,37 @@
+/**
+ * Business Controller
+ * This module manages business-related operations, including fetching, updating, and managing appointments.
+ *
+ * 1) **Get Business Details (`getBusinessDetails` function)**:
+ *    - Retrieves business information using the `businessId`.
+ *    - Returns essential business details including profile image, services, agreements, and contact information.
+ *
+ * 2) **Update Business Details (`updateBusinessDetails` function)**:
+ *    - Allows modification of business details such as name, address, phone, working hours, and agreements.
+ *    - Parses and updates structured data including service agreements and working hours.
+ *
+ * 3) **Retrieve Business Appointments (`getAppointments` function)**:
+ *    - Fetches all scheduled appointments associated with a business.
+ *    - Returns appointment details including service type, date, time, price, and customer details.
+ *
+ * 4) **Add New Available Appointment (`addAvailableAppointment` function)**:
+ *    - Allows businesses to add available appointment slots based on their services.
+ *    - Ensures that the service type exists for the business before assigning a price.
+ *
+ * 5) **Add a Hot Appointment (`addHotAppointment` function)**:
+ *    - Enables businesses to offer discounted time slots for appointments.
+ *    - Saves both the original price and the discount price for promotional offers.
+ *
+ * 6) **Update Business Profile Image (`updateProfileImage` function)**:
+ *    - Handles file upload and updates the business's profile image.
+ *    - Stores image URLs and returns them upon successful upload.
+ *
+ * Error Handling:
+ * - Provides detailed error messages and appropriate status codes.
+ * - Handles missing parameters, invalid requests, and database issues.
+ * - Implements validation for services, file uploads, and appointment data.
+ **/
+
 const Business = require("../models/businessModel");
 const { appointment } = require("../models/Appointment");
 

@@ -1,14 +1,22 @@
+/**
+ * File Upload Middleware
+ * This module configures and exports a Multer middleware for handling file uploads.
+ * It allows users to upload image files (JPEG, PNG, or GIF) with a file size limit of 5MB.
+ * - Uses `multer.diskStorage()` to store uploaded files in the "uploads" directory.
+ * - Generates a unique filename using the field name, timestamp, and random number.
+ * - Implements a file filter to restrict uploads to allowed image types.
+ * - Limits file size to prevent excessively large uploads.
+ **/
+
 const multer = require("multer");
 const path = require("path");
 
-// Supported file types
 const allowedFileTypes = ["image/jpeg", "image/png", "image/gif"];
 
 // 1) Configure storage
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    // Ensure the folder exists or handle errors
-    cb(null, "uploads"); // Use the "uploads" folder
+    cb(null, "uploads");
   },
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
@@ -20,7 +28,7 @@ const storage = multer.diskStorage({
 // 2) File filter for validation
 const fileFilter = (req, file, cb) => {
   if (allowedFileTypes.includes(file.mimetype)) {
-    cb(null, true); // Accept the file
+    cb(null, true);
   } else {
     cb(
       new Error(
@@ -34,7 +42,7 @@ const fileFilter = (req, file, cb) => {
 // 3) Upload instance with limits and file filter
 const upload = multer({
   storage,
-  limits: { fileSize: 5 * 1024 * 1024 }, // Set a 5MB file size limit
+  limits: { fileSize: 5 * 1024 * 1024 },
   fileFilter,
 });
 

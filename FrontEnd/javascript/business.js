@@ -1,4 +1,14 @@
-//const { response } = require("express");
+/**
+ * File: business.js
+ * Description: This script manages business profile functionality in the NexTor appointment booking system, including:
+ *              - Fetching and displaying business details and services
+ *              - Handling profile image upload and update
+ *              - Enabling and saving business details edits
+ *              - Fetching available services and populating dropdown lists
+ *              - Adding new regular and hot appointments
+ * Dependencies: Requires a backend API at "http://localhost:3000/api/business/{businessId}"
+ *               and related appointment endpoints. Works with business.html.
+ */
 
 document.addEventListener("DOMContentLoaded", async () => {
   const businessId = new URLSearchParams(window.location.search).get(
@@ -171,31 +181,30 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   // Fetch services from the server
-  fetch(`http://localhost:3000/api/business/${businessId}`) // Replace with your actual API URL
+  fetch(`http://localhost:3000/api/business/${businessId}`)
     .then((response) => response.json())
     .then((services) => {
       const serviceDropdown = document.getElementById("service");
       const hotServiceDropdown = document.getElementById("hotService");
-      serviceDropdown.innerHTML = '<option value="">בחר שירות</option>'; // Clear placeholder
+      serviceDropdown.innerHTML = '<option value="">בחר שירות</option>';
       hotServiceDropdown.innerHTML = '<option value="">בחר שירות</option>';
 
       console.log(services.business.services.length);
 
       if (services.business.services.length > 0) {
-        // Populate dropdown with service names
         services.business.services.forEach((service) => {
           console.log(service.name);
           const option = document.createElement("option");
-          option.value = service.name; // Use service name for simplicity
-          option.textContent = service.name; // Display service name
+          option.value = service.name;
+          option.textContent = service.name;
           serviceDropdown.appendChild(option);
         });
 
         services.business.services.forEach((service) => {
           console.log(service.name);
           const option = document.createElement("option");
-          option.value = service.name; // Use service name for simplicity
-          option.textContent = service.name; // Display service name
+          option.value = service.name;
+          option.textContent = service.name;
           hotServiceDropdown.appendChild(option);
         });
       }
@@ -214,7 +223,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const addButton = document.getElementById("addButton");
   addButton.addEventListener("click", (event) => {
     console.log("Regular appointment button clicked");
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault();
 
     const serviceType = document.getElementById("service").value;
     const date = document.getElementById("date").value;
@@ -230,7 +239,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       serviceType,
       date,
       time,
-      //originalPrice,
       isHot: false,
     };
     console.log(data);

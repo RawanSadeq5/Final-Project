@@ -1,3 +1,12 @@
+<!-- 
+    File: business.html
+    Description: This HTML file provides the structure for the business owner dashboard in the NexTor appointment booking system. 
+                 It includes business details, services management, appointment scheduling, and editing functionalities. 
+                 The page allows business owners to view and manage appointments, add new services, edit business details, 
+                 and offer discounted hot appointments. It supports right-to-left (RTL) layout for Hebrew users.
+    Dependencies: business.css, business.js
+-->
+
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
   <head>
@@ -61,13 +70,10 @@
               <th>מחיר</th>
             </tr>
           </thead>
-          <tbody>
-            <!-- Rows will be populated dynamically -->
-          </tbody>
+          <tbody></tbody>
         </table>
 
         <button id="editDetailsButton">עריכת פרטים</button>
-        <!-- Editable form for additional details -->
         <div id="editDetailsForm" style="display: none">
           <h2>עריכת פרטי העסק</h2>
           <label>
@@ -126,9 +132,7 @@
               <th>לאשר/לבטל את התור</th>
             </tr>
           </thead>
-          <tbody id="appointmentsTable">
-            <!-- Rows will be added dynamically -->
-          </tbody>
+          <tbody id="appointmentsTable"></tbody>
         </table>
       </section>
 

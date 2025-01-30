@@ -1,3 +1,14 @@
+/**
+ * File: forgetPass.css
+ * Description: This CSS file provides styling for the password reset page of the NexTor appointment booking system.
+ *              It includes:
+ *              - A structured and responsive form layout
+ *              - Styled input fields and buttons for user-friendly interaction
+ *              - A gradient background for a modern design
+ *              - Modal styles for confirmation messages
+ * Dependencies: Works with forgetPass.html.
+ **/
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -28,27 +39,27 @@ body {
 
 /* Header */
 header {
-  position: fixed; /* Fixes the header at the top of the viewport */
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%; /* Ensures the header spans the full width */
+  width: 100%;
   background-color: #921a40;
   color: #fff;
-  z-index: 1000; /* Ensures the header is always on top */
-  padding: 20px 0; /* Adds vertical padding */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds shadow for better visibility */
+  z-index: 1000;
+  padding: 20px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 nav {
   display: flex;
-  justify-content: space-between; /* Distributes space between logo and nav links */
-  align-items: center; /* Aligns items vertically in the center */
-  padding: 0 20px; /* Adds horizontal padding */
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
 }
 
 .nav-links {
   display: flex;
-  gap: 15px; /* Space between nav links */
+  gap: 15px;
 }
 
 nav a {
@@ -63,9 +74,8 @@ nav a:hover {
   color: black;
 }
 
-/* Adjust the main container to sit below the header */
 main {
-  margin-top: 170px; /* Adjust this value to match the header's height */
+  margin-top: 170px;
   padding: 20px;
 }
 
@@ -73,7 +83,7 @@ main {
 .bg-white {
   background-color: white;
   border: 2px solid #921a40;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   padding: 50px;
   width: 400px;
@@ -105,7 +115,7 @@ label {
   font-weight: bold;
   margin-bottom: 10px;
   display: block;
-  text-align: right; /* Align label text to the right */
+  text-align: right;
 }
 
 /* Input Styles */
@@ -118,18 +128,17 @@ input {
   color: #333;
   margin-bottom: 20px;
   box-sizing: border-box;
-  text-align: right; /* Align text inside input field to the right */
-  direction: rtl; /* Right-to-left text direction for the input field */
+  text-align: right;
+  direction: rtl;
 }
 
 input:focus {
-  border-color: #921a40; /* Focus color */
+  border-color: #921a40;
   outline: none;
 }
 
-/* Button Styles */
 button {
-  background-color: #921a40; /* Blue background */
+  background-color: #921a40;
   color: white;
   font-size: 24px;
   padding: 12px;
@@ -141,15 +150,14 @@ button {
 }
 
 button:hover {
-  background-color: #921a405a; /* Darker blue on hover */
+  background-color: #921a405a;
 }
 
 button:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(0, 120, 255, 0.5); /* Focus outline */
+  box-shadow: 0 0 0 2px rgba(0, 120, 255, 0.5);
 }
 
-/* Responsive Design */
 @media screen and (max-width: 480px) {
   .bg-white {
     padding: 30px;
@@ -160,7 +168,6 @@ button:focus {
   }
 }
 
-/* Modal Styles */
 .modal {
   position: fixed;
   top: 0;

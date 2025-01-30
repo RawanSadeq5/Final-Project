@@ -1,3 +1,11 @@
+/**
+ * File: contactUs.js
+ * Description: This script manages the "Contact Us" page functionality in the NexTor appointment booking system.
+ *              It includes navigation between pages and handles form submission by displaying a success modal
+ *              upon successful message submission. The modal provides user feedback and redirects to the home page.
+ * Dependencies: Works with contactUs.html.
+ **/
+
 document.addEventListener("DOMContentLoaded", () => {
   // Home page navigation
   const homeLink = document.getElementById("home-link");

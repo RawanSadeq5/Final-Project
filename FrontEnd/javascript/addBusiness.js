@@ -1,4 +1,16 @@
-// Select DOM elements
+/**
+ * File: addBusiness.js
+ * Description: This script manages the multi-step business registration process in the NexTor appointment booking system, including:
+ *              - Step-by-step navigation for filling out business details
+ *              - Image upload and preview functionality for the business profile
+ *              - Adding and removing service offerings dynamically
+ *              - Collecting and validating user inputs before form submission
+ *              - Sending business registration data to the backend API
+ *              - Redirecting users to their business management page upon successful registration
+ * Dependencies: Requires an API at "http://localhost:3000/api/add-business" for business registration.
+ *               Works with addBusiness.html.
+ **/
+
 const steps = document.querySelectorAll(".step");
 const formSteps = document.querySelectorAll(".form-step");
 const nextBtn = document.getElementById("next-btn");
@@ -38,7 +50,7 @@ const Fetch = async (url, formData) => {
   try {
     const response = await fetch(url, {
       method: "POST",
-      body: formData, // Pass FormData directly
+      body: formData,
     });
 
     const responseBody = await response.json();
@@ -85,7 +97,6 @@ profileImageUpload.addEventListener("change", (event) => {
   }
 });
 
-// Add service line dynamically
 const addServiceLine = (event) => {
   event.preventDefault();
 
@@ -220,8 +231,6 @@ const submitTest = async () => {
     console.log(result.business);
 
     if (response.ok) {
-      //alert("העסק נוסף בהצלחה!");
-
       return result.business._id;
     } else {
       alert(result.message || "הנתונים שהזנת אינם נכונים, נסה שוב.");
