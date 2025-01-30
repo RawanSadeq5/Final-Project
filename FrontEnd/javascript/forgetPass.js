@@ -31,16 +31,33 @@ document.addEventListener("DOMContentLoaded", () => {
   const resetButton = document.querySelector("button[type='submit']");
   resetButton.addEventListener("click", async (event) => {
     event.preventDefault();
-    const emailAddress = document.querySelector("#email").value.trim();
-    const password = document.querySelector("#password").value.trim();
 
-    if (!emailAddress || !password) {
+    const emailInput = document.querySelector("#email");
+    const passwordInput = document.querySelector("#password");
+    const confirmPasswordInput = document.querySelector("#confirmPassword");
+
+    // Validate elements exist
+    if (!emailInput || !passwordInput || !confirmPasswordInput) {
+      alert("One or more required input fields are missing in the HTML!");
+      return;
+    }
+
+    const emailAddress = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+    const confirmPassword = confirmPasswordInput.value.trim();
+
+    // Validate inputs
+    if (!emailAddress || !password || !confirmPassword) {
       alert("אנא מלא את כל השדות הנדרשים");
       return;
     }
 
+    if (password !== confirmPassword) {
+      alert("הסיסמאות אינן תואמות");
+      return;
+    }
+
     try {
-      // Send reset request to backend
       const response = await fetch("http://localhost:3000/api/forgotPassword", {
         method: "POST",
         headers: {
@@ -49,17 +66,11 @@ document.addEventListener("DOMContentLoaded", () => {
         body: JSON.stringify({ emailAddress, password }),
       });
 
-      if (!response.ok) {
-        throw new Error(`Server error: ${response.status}`);
-      }
-
       const data = await response.json();
 
-      if (data.status === true) {
-        // Password changed successfully: show success modal
+      if (response.ok && data.status) {
         createSuccessModal();
       } else {
-        // If server returned an error message
         alert(data.message || "לא היה ניתן לאפס את הסיסמה, נסה שוב");
       }
     } catch (error) {

@@ -60,5 +60,6 @@ const BusinessSchema = new mongoose.Schema({
   agreements: agreementsSchema,
   createdAt: { type: Date, default: Date.now },
 });
+const Business = mongoose.model("Business", BusinessSchema);
 
-module.exports = mongoose.model("Business", BusinessSchema);
+module.exports = Business;
