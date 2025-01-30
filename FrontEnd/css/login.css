@@ -1,4 +1,13 @@
-/* General Body Styles */
+/**
+ * File: login.css
+ * Description: This CSS file provides styling for the login page of the NexTor appointment booking system, including:
+ *              - A structured layout for login form elements
+ *              - Navigation bar styling with branding and links
+ *              - Styling for form inputs, labels, and buttons
+ *              - Gradient background and shadow effects for improved visual aesthetics
+ * Dependencies: Works with login.html.
+ **/
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -48,7 +57,6 @@ nav a:hover {
   color: black;
 }
 
-/* Center the content vertically and horizontally */
 .min-h-screen {
   height: 90vh;
   display: flex;
@@ -56,7 +64,7 @@ nav a:hover {
   align-items: center;
   max-width: 400%;
   width: 1200px;
-  margin: 0 auto; /* Center the container horizontally */
+  margin: 0 auto;
 }
 
 /* Container for the form */

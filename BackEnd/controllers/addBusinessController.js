@@ -1,3 +1,24 @@
+/**
+ * Add Business Controller
+ * This module handles the creation of a new business entity in the system.
+ * It receives business details from the client, processes the request,
+ * and stores the information in the database.
+ *
+ * Functionality:
+ * 1) Extracts business details from `req.body`, including:
+ *    - Business owner details (full name, email, password, phone).
+ *    - Business-specific details (name, address, services, operating hours).
+ *    - Payment agreements (advance payment, cancellation policy, customer rewards).
+ * 2) Parses and validates `services` and `openingHours` to ensure correct formatting.
+ * 3) Handles file uploads for profile images and business gallery.
+ * 4) Saves the new business entity to MongoDB.
+ * 5) Returns a response containing essential business details or error
+ * Error Handling:
+ * - Validates required fields and returns appropriate status codes.
+ * - Handles file upload errors and database validation errors.
+ * - Ensures proper error messaging for debugging and client-side processing.
+ **/
+
 const Business = require("../models/businessModel");
 
 exports.addBusiness = async (req, res) => {

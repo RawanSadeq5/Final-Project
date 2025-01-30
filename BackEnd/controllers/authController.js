@@ -1,3 +1,27 @@
+/**
+ * User Authentication Controller
+ * This module handles user authentication, including user signup and login.
+ *
+ * 1) **Signup (`signup` function)**:
+ *    - Receives user details (full name, email, password) from `req.body`.
+ *    - Validates required fields and checks if the email is already registered.
+ *    - Hashes the password using bcrypt for security.
+ *    - Saves the new user to MongoDB.
+ *    - Returns a success message or an error if signup fails.
+ *
+ * 2) **Login (`login` function)**:
+ *    - Validates email and password inputs.
+ *    - Checks if the user exists in the database.
+ *    - Compares the provided password with the stored hashed password.
+ *    - Generates a JWT token for authenticated sessions.
+ *    - Determines user type (`businessOwner` or `regularUser`) and returns it.
+ *
+ * Error Handling:
+ * - Provides appropriate status codes and descriptive error messages.
+ * - Handles missing fields, incorrect credentials, and database issues.
+ * - Ensures security by hashing passwords and using JWT for authentication.
+ **/
+
 require("dotenv").config();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");

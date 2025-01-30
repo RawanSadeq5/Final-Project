@@ -1,49 +1,27 @@
+/**
+ * Home Controller
+ * This module provides functionalities to:
+ * 1) **Search Businesses (`searchBusinesses` function)**:
+ *    - Allows users to search for businesses based on:
+ *      - Business name (`name` query parameter, case-insensitive).
+ *      - Service type (`service` query parameter, case-insensitive).
+ *      - Location/area (`area` query parameter, case-insensitive).
+ *    - Returns a list of matching businesses with their names and addresses.
+ *
+ * 2) **Retrieve Hot Appointments (`getAllHotAppointments` function)**:
+ *    - Fetches all available hot appointments (discounted appointments).
+ *    - Populates business details (`BusinessName` and `Address`).
+ *    - Returns a formatted list of appointments including:
+ *      - Business name, address, service type, original price, discount price, date, and time.
+ *
+ * Error Handling:
+ * - `404 Not Found`: If no matching businesses or hot appointments exist.
+ * - `500 Internal Server Error`: If unexpected issues occur.
+ * - Logs errors for debugging purposes.
+ **/
+
 const { appointment } = require("../models/Appointment");
 const Business = require("../models/businessModel");
-
-// Search for businesses
-/*exports.searchBusiness = async (req, res) => {
-  try {
-    const query = req.query.name || "";
-    const businesses = await Business.find({
-      name: { $regex: query, $options: "i" },
-    }).select("name address _id");
-    res.json({ success: true, businesses });
-  } catch (error) {
-    console.error("Error searching businesses:", error);
-    res.status(500).json({ success: false, message: "Server error." });
-  }
-};
-
-// Search for areas
-exports.searchArea = async (req, res) => {
-  try {
-    const query = req.query.name || "";
-    const areas = await Business.find({
-      area: { $regex: query, $options: "i" },
-    })
-      .distinct("area")
-      .select("name address _id");
-    res.json({ success: true, areas });
-  } catch (error) {
-    console.error("Error searching areas:", error);
-    res.status(500).json({ success: false, message: "Server error." });
-  }
-};
-
-// Search for services
-exports.searchService = async (req, res) => {
-  try {
-    const query = req.query.type || "";
-    const services = await Business.find({
-      serviceType: { $regex: query, $options: "i" },
-    }).select("name address _id");
-    res.json({ success: true, services });
-  } catch (error) {
-    console.error("Error searching services:", error);
-    res.status(500).json({ success: false, message: "Server error." });
-  }
-};*/
 
 exports.searchBusinesses = async (req, res) => {
   try {
@@ -76,19 +54,6 @@ exports.searchBusinesses = async (req, res) => {
     res.status(500).json({ success: false, message: "Server error." });
   }
 };
-
-/**
- * GET ALL HOT APPOINTMENTS
- */
-/*exports.getAllHotAppointments = async (req, res) => {
-  try {
-    const hotAppointments = await appointment.find({ isHot: true });
-    return res.json({ success: true, hotAppointments });
-  } catch (error) {
-    console.error("Error fetching hot appointments:", error);
-    return res.status(500).json({ success: false, message: "Server error." });
-  }
-};*/
 
 exports.getAllHotAppointments = async (req, res) => {
   try {

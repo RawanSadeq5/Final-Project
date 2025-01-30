@@ -1,3 +1,14 @@
+/**
+ * File: payment.css
+ * Description: This CSS file provides styling for the payment page of the NexTor appointment booking system, including:
+ *              - A structured layout for payment form elements
+ *              - Styling for form inputs, dropdowns, and buttons
+ *              - Alert messages for displaying payment details
+ *              - A fixed navigation bar with branding and links
+ *              - Responsive and user-friendly design with a gradient background
+ * Dependencies: Works with payment.html.
+ **/
+
 * {
   margin: 0;
   padding: 0;
@@ -33,17 +44,17 @@ body {
 }
 
 .navbar {
-  position: fixed; /* Fixes the navbar to the top */
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%; /* Makes it stretch across the top of the page */
-  background-color: #921a40; /* Your navbar background color */
+  width: 100%;
+  background-color: #921a40;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for better design */
-  z-index: 1000; /* Ensures the navbar stays on top of other elements */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
 
 .menu a {

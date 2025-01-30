@@ -1,3 +1,12 @@
+/**
+ * File: forgetPass.js
+ * Description: This script handles the password reset functionality for the NexTor appointment booking system.
+ *              It includes navigation between different pages, form validation, sending password reset requests
+ *              to the backend, and displaying a success modal upon successful password change.
+ * Dependencies: Requires a backend API at "http://localhost:3000/api/forgotPassword" for handling password reset requests.
+ *               Works with forgetPass.html.
+ **/
+
 document.addEventListener("DOMContentLoaded", () => {
   // About page navigation
   const aboutLink = document.getElementById("about-link");
@@ -41,7 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       if (!response.ok) {
-        // For non-2xx responses
         throw new Error(`Server error: ${response.status}`);
       }
 

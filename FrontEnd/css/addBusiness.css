@@ -1,4 +1,14 @@
-/* General Styling */
+/**
+ * File: addBusiness.css
+ * Description: This CSS file provides styling for the business registration form in the NexTor appointment booking system.
+ *              It includes:
+ *              - Gradient background for a modern look.
+ *              - Responsive layout with structured sections for business details, working hours, and service management.
+ *              - Styled navigation buttons, progress bar, tooltips, and form elements for a smooth user experience.
+ *              - Enhancements for file uploads, service additions, and input validation.
+ * Dependencies: Works with addBusiness.html.
+ **/
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -7,7 +17,7 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  direction: rtl; /* Right-to-left support */
+  direction: rtl;
   background: linear-gradient(
     135deg,
     #921a40,
@@ -29,27 +39,27 @@ body {
 
 /* Header */
 header {
-  position: fixed; /* Fixes the header at the top of the viewport */
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%; /* Ensures the header spans the full width */
+  width: 100%;
   background-color: #921a40;
   color: #fff;
-  z-index: 1000; /* Ensures the header is always on top */
-  padding: 20px 0; /* Adds vertical padding */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds shadow for better visibility */
+  z-index: 1000;
+  padding: 20px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 nav {
   display: flex;
-  justify-content: space-between; /* Distributes space between logo and nav links */
-  align-items: center; /* Aligns items vertically in the center */
-  padding: 0 20px; /* Adds horizontal padding */
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
 }
 
 .nav-links {
   display: flex;
-  gap: 15px; /* Space between nav links */
+  gap: 15px;
 }
 
 nav a {
@@ -64,9 +74,8 @@ nav a:hover {
   color: black;
 }
 
-/* Adjust the main container to sit below the header */
 main {
-  margin-top: 120px; /* Adjust this value to match the header's height */
+  margin-top: 120px;
   padding: 10px;
   max-width: 100%;
   width: 90%;
@@ -106,11 +115,10 @@ main {
 }
 
 .label {
-  margin-left: 10px; /* Adjusted for RTL */
+  margin-left: 10px;
   font-size: 14px;
 }
 
-/* Form Step Styling */
 .form-step {
   display: none;
 }
@@ -180,61 +188,57 @@ button:disabled {
   cursor: not-allowed;
 }
 
-/* Container for the button and tooltip */
 .button-container {
   position: relative;
-  display: inline-flex; /* Ensures the tooltip can align beside */
-  align-items: center; /* Aligns tooltip vertically with button */
+  display: inline-flex;
+  align-items: center;
 }
 .circle-button {
   color: white;
   font-size: 30px;
-  width: 50px; /* Width of the circle */
-  height: 50px; /* Height of the circle */
-  border-radius: 50%; /* Makes it a circle */
-  border: none; /* Removes default button border */
-  background-color: #921a40; /* Button background color */
-  display: flex; /* Centers the SVG */
-  justify-content: center; /* Horizontally center the SVG */
-  align-items: center; /* Vertically center the SVG */
-  cursor: pointer; /* Changes the cursor to pointer on hover */
-  transition: background-color 0.3s; /* Smooth background color change */
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background-color: #921a40;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
   margin-bottom: 20px;
 }
 
 .circle-button:hover {
-  background-color: #921a405a; /* Lighter green on hover */
+  background-color: #921a405a;
 }
 
 .circle-button:active {
-  background-color: #921a40; /* Darker green on click */
+  background-color: #921a40;
 }
 
-/* Tooltip styling */
 .tooltip {
-  visibility: hidden; /* Hidden by default */
-  background-color: #333; /* Dark background for the tooltip */
-  color: #fff; /* White text */
+  visibility: hidden;
+  background-color: #333;
+  color: #fff;
   text-align: center;
   border-radius: 5px;
   padding: 5px;
   position: absolute;
-  bottom: -40px; /* Position above the button */
+  bottom: -40px;
   left: 50%;
   transform: translateX(-50%);
-  white-space: nowrap; /* Prevent text wrapping */
-  z-index: 1; /* Ensure it appears above other elements */
-  opacity: 0; /* Fully transparent by default */
-  transition: opacity 0.3s ease; /* Smooth transition for showing/hiding */
-  font-size: 14px; /* Tooltip font size */
+  white-space: nowrap;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-size: 14px;
 }
-/* Show the tooltip when hovering over the button */
 .button-container:hover .tooltip {
   visibility: visible;
-  opacity: 1; /* Fully opaque */
+  opacity: 1;
 }
 
-/* Working Days Styling */
 #working-days {
   margin-top: 20px;
   border-top: 1px solid #921a40;
@@ -276,11 +280,11 @@ button:disabled {
 body {
   font-family: Arial, sans-serif;
   margin: 20px;
-  direction: rtl; /* Right-to-left support */
+  direction: rtl;
 }
 
 .price-input {
-  display: none; /* Hidden by default */
+  display: none;
   margin-top: 10px;
 }
 
@@ -304,7 +308,7 @@ input[type="number"] {
 }
 
 .price-input {
-  display: none; /* Hidden by default */
+  display: none;
   margin-top: 10px;
 }
 
@@ -367,15 +371,15 @@ input[type="number"] {
 
 #services-container {
   display: flex;
-  flex-direction: column; /* Stack rows vertically */
-  gap: 15px; /* Add space between rows */
+  flex-direction: column;
+  gap: 15px;
 }
 
 .form-group {
   display: flex;
   align-items: center;
   gap: 20px;
-  justify-content: flex-start; /* Align content to the start (RTL support) */
+  justify-content: flex-start;
 }
 
 .profile-image-preview {
@@ -390,7 +394,7 @@ input[type="number"] {
   height: 150px;
   object-fit: cover;
   border: 2px solid #dee2e6;
-  border-radius: 50%; /* Circular image for profile */
+  border-radius: 50%;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 

@@ -1,3 +1,14 @@
+/**
+ * Authentication Middleware
+ * This middleware validates JSON Web Tokens (JWT) to authenticate users.
+ * It extracts the token from the `Authorization` header, verifies its validity,
+ * and attaches the decoded user ID to the request object for further processing.
+ * - Checks if the `Authorization` header is present.
+ * - Extracts and verifies the JWT using a secret key from the environment variables.
+ * - Attaches the decoded `userId` to `req.userId` for route handlers to access.
+ * - Returns a 401 Unauthorized response if the token is missing or invalid.
+ **/
+
 const jwt = require("jsonwebtoken");
 
 module.exports = function (req, res, next) {
@@ -15,7 +26,6 @@ module.exports = function (req, res, next) {
     const secretKey = process.env.JWT_SECRET || "secretKey";
     const decoded = jwt.verify(token, secretKey);
 
-    // Attach userId to the request for further usage if needed
     req.userId = decoded.userId;
     next();
   } catch (error) {

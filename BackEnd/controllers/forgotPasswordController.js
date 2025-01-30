@@ -1,3 +1,21 @@
+/**
+ * Forgot Password Controller
+ * This module handles user password reset functionality by allowing users to update their password securely.
+ *
+ * 1) **Forgot Password (`forgotPassword` function)**:
+ *    - Validates the request to ensure `emailAddress` and `password` are provided.
+ *    - Checks if the user exists in the database.
+ *    - Hashes the new password using `bcrypt` before storing it in the database.
+ *    - Updates the user's password and returns a success message upon completion.
+ *
+ * Error Handling:
+ * - Returns appropriate HTTP status codes:
+ *   - `400 Bad Request`: Missing email or password.
+ *   - `404 Not Found`: User does not exist.
+ *   - `500 Internal Server Error`: Unexpected issues.
+ * - Logs errors for debugging purposes.
+ **/
+
 require("dotenv").config();
 const bcrypt = require("bcrypt");
 const User = require("../models/User");

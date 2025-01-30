@@ -1,17 +1,11 @@
-// Open modal
-/*function openModal() {
-  document.getElementById("successModal").style.display = "block";
-}
-
-// Close modal
-function closeModal() {
-  document.getElementById("successModal").style.display = "none";
-}
-
-// Redirect to login
-function redirectToLogin() {
-  alert("מעבר לדף ההתחברות"); // Replace with actual redirection logic
-}*/
+/**
+ * File: payment.js
+ * Description: This script handles advance payment retrieval and navigation for the NexTor appointment booking system.
+ *              It fetches the advance payment amount from the server based on the business ID in the URL query parameters.
+ *              It also includes event listeners for navigation to the booking page and error handling for failed API requests.
+ * Dependencies: Requires an API endpoint at "http://localhost:3000/api/payment/{businessId}/advance-payment"
+ *               and works with payment.html.
+ **/
 
 document.addEventListener("DOMContentLoaded", async () => {
   const businessId = new URLSearchParams(window.location.search).get(
@@ -30,8 +24,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log(data);
 
     if (response.ok) {
-      //const { business } = data;
-
       document.getElementById(
         "advance-payment"
       ).textContent = `סכום המקדמה: ${data.advancePayment}₪`;

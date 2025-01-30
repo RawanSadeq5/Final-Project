@@ -1,4 +1,14 @@
-/* General Styles */
+/**
+ * File: about.css
+ * Description: This CSS file provides styling for the "About Us" page of the NexTor appointment booking system.
+*              It includes:
+ *              - Modern, gradient background for an engaging design.
+ *              - Responsive and structured sections for about, mission, and team information.
+ *              - Styled navigation bar and footer for consistency across the website.
+ *              - Readable typography and spacing for better user experience.
+ * Dependencies: Works with about.html.
+ **/
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -36,14 +46,14 @@ header {
 
 nav {
   display: flex;
-  justify-content: space-between; /* Distributes space between logo and nav links */
-  align-items: center; /* Aligns items vertically in the center */
-  padding: 0 20px; /* Adds horizontal padding */
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
 }
 
 .nav-links {
   display: flex;
-  gap: 15px; /* Space between nav links */
+  gap: 15px;
 }
 
 nav a {

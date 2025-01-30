@@ -1,3 +1,25 @@
+/**
+ * Appointment Models
+ * This module defines Mongoose schemas for handling business appointments, user appointments,
+ * and the waiting list. It facilitates efficient scheduling, tracking, and management of appointments.
+ *
+ * 1) Business Appointments:
+ *    - Stores business-specific appointments with details like service type, price, date, and time.
+ *    - Supports "hot appointments" with discounted prices.
+ *
+ * 2) User Appointments:
+ *    - Tracks appointments booked by users.
+ *    - Includes appointment status: "appointment-taken" or "ready-to-give-up".
+ *
+ * 3) Waiting List:
+ *    - Manages users who wish to be notified if an appointment slot becomes available.
+ *
+ * Models:
+ * - `Appointment`: Stores business appointments.
+ * - `UserAppointment`: Tracks user bookings and appointment status.
+ * - `WaitingList`: Maintains a waiting list for users.
+ **/
+
 const mongoose = require("mongoose");
 
 //business appointment
@@ -9,11 +31,11 @@ const appointmentSchema = new mongoose.Schema({
   },
   serviceType: { type: String, required: true },
   originalPrice: { type: Number },
-  discountPrice: { type: Number }, // if there's a discount
-  date: { type: String, required: true }, // e.g. "12/01/2025"
-  time: { type: String, required: true }, // e.g. "12:05"
+  discountPrice: { type: Number },
+  date: { type: String, required: true },
+  time: { type: String, required: true },
   durationInMinutes: { type: Number },
-  isHot: { type: Boolean, default: false }, // indicates a "hot" appointment
+  isHot: { type: Boolean, default: false },
 });
 
 // User Appointment Schema

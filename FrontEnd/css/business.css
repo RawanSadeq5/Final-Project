@@ -1,3 +1,12 @@
+/**
+ * File: business.css
+ * Description: This CSS file provides styling for the Business Owner's Dashboard in the NexTor appointment booking system.
+ *              It includes:
+ *              - A structured layout for business details, service tables, and appointment management.
+ *              - Responsive and user-friendly styles for images, tables, buttons, and forms.
+ * Dependencies: Works with business.html.
+ **/
+
 body {
   font-family: Arial, sans-serif;
   direction: rtl;
@@ -30,19 +39,19 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000; /* Ensures the header is above other content */
+  z-index: 1000;
 }
 
 nav {
   display: flex;
-  justify-content: space-between; /* Distributes space between logo and nav links */
-  align-items: center; /* Aligns items vertically in the center */
-  padding: 0 20px; /* Adds horizontal padding */
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
 }
 
 .nav-links {
   display: flex;
-  gap: 15px; /* Space between nav links */
+  gap: 15px;
 }
 
 nav a {
