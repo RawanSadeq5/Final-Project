@@ -39,87 +39,75 @@
         </div>
         <h1>פרטי העסק</h1>
         <div id="businessDetails">
-          <p>שם העסק:</p>
-          <p>כתובת:</p>
-          <p>טלפון:</p>
-          <p>שעות פתיחה:</p>
+          <p>שם העסק: <span id="businessName"></span></p>
+          <p>כתובת: <span id="businessAddress"></span></p>
+          <p>טלפון: <span id="businessPhone"></span></p>
+          <p>תשלום מראש: <span id="advancePayment"></span> ₪</p>
+          <p>
+            ימי ביטול:
+            <span id="cancellationDays"></span> ימים
+          </p>
+          <p>פרס ללקוח: <span id="customerReward"></span></p>
         </div>
+
+        <!-- Table for services -->
+        <h2>שירותים</h2>
+        <table id="servicesTable">
+          <thead>
+            <tr>
+              <th>שם שירות</th>
+              <th>משך שעות</th>
+              <th>משך דקות</th>
+              <th>מחיר</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Rows will be populated dynamically -->
+          </tbody>
+        </table>
+
         <button id="editDetailsButton">עריכת פרטים</button>
-        <form id="editDetailsForm" style="display: none">
-          <label
-            >שם העסק:
-            <input type="text" id="businessName" value="דוגמה לעסק" /></label
+        <!-- Editable form for additional details -->
+        <div id="editDetailsForm" style="display: none">
+          <h2>עריכת פרטי העסק</h2>
+          <label>
+            שם העסק:
+            <input type="text" id="editBusinessName" /> </label
           ><br />
-          <label
-            >כתובת:
-            <input
-              type="text"
-              id="businessAddress"
-              value="רחוב הראשונים 1, תל אביב" /></label
+          <br />
+
+          <label>
+            כתובת:
+            <input type="text" id="editAddress" /> </label
           ><br />
-          <label
-            >טלפון:
-            <input type="text" id="businessPhone" value="03-1234567" /></label
+
+          <br />
+          <label>
+            טלפון:
+            <input type="text" id="editPhoneNumber" /> </label
           ><br />
-          <label
-            >שעות פתיחה:
-            <input
-              type="text"
-              id="businessHours"
-              value="א' - ה': 09:00 - 18:00, ו': 09:00 - 14:00" /></label
+
+          <br />
+          <label>
+            תשלום מראש:
+            <input type="number" id="editAdvancePayment" /> </label
           ><br />
-          <div id="servicesContainer"></div>
-          <div id="agreementsContainer"></div>
+
+          <br />
+          <label>
+            ימי ביטול:
+            <input type="number" id="editCancellationDays" /> </label
+          ><br />
+
+          <br />
+          <label>
+            פרס ללקוח:
+            <input type="text" id="editCustomerReward" /> </label
+          ><br />
+          <br />
+
           <button type="button" id="saveDetailsButton">שמור</button>
           <button type="button" id="cancelEditButton">בטל</button>
-        </form>
-
-        <h2>תמונות העסק</h2>
-        <div id="businessImagesContainer">
-          <div id="imageGallery">
-            <img
-              src="../Images/default1.jpg"
-              alt="Business Image 1"
-              class="business-image"
-              data-index="0"
-            />
-            <img
-              src="../Images/default2.jpg"
-              alt="Business Image 2"
-              class="business-image"
-              data-index="1"
-            />
-            <img
-              src="../Images/default3.jpg"
-              alt="Business Image 3"
-              class="business-image"
-              data-index="2"
-            />
-            <img
-              src="../Images/default4.jpg"
-              alt="Business Image 4"
-              class="business-image"
-              data-index="3"
-            />
-            <img
-              src="../Images/default5.jpg"
-              alt="Business Image 5"
-              class="business-image"
-              data-index="4"
-            />
-            <img
-              src="../Images/default6.jpg"
-              alt="Business Image 6"
-              class="business-image"
-              data-index="5"
-            />
-          </div>
-          <input
-            type="file"
-            id="uploadImageInput"
-            style="display: none"
-            accept="image/*"
-          />
         </div>
       </div>
 
@@ -149,11 +137,7 @@
         <form id="addAppointmentForm">
           <label for="service" id="serviceOptions"
             >שירות:
-            <select id="service">
-              <option value="service1">שירות 1</option>
-              <option value="service2">שירות 2</option>
-              <option value="service3">שירות 3</option>
-            </select> </label
+            <select id="service"></select> </label
           ><br />
           <label>תאריך: <input type="date" id="date" /></label><br />
           <label>שעה: <input type="time" id="time" /></label><br />
@@ -172,17 +156,17 @@
               <option value="service3">שירות 3</option>
             </select> </label
           ><br />
-          <label>תאריך: <input type="date" id="date" /></label><br />
-          <label>שעה: <input type="time" id="time" /></label><br />
+          <label>תאריך: <input type="date" id="dateHot" /></label><br />
+          <label>שעה: <input type="time" id="timeHot" /></label><br />
           <label
             >מחיר לפני הנחה:
-            <input type="price" id="price" style="width: 60px" />₪</label
+            <input type="price" id="priceBefore" style="width: 60px" />₪</label
           ><br />
           <label
             >מחיר אחרי הנחה:
-            <input type="price" id="price" style="width: 60px" />₪</label
+            <input type="price" id="priceAfter" style="width: 60px" />₪</label
           ><br />
-          <button type="button" id="addButton">הוסף</button>
+          <button type="button" id="addHotButton">הוסף</button>
         </form>
       </section>
     </main>

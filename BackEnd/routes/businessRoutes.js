@@ -9,36 +9,28 @@ const {
   addAvailableAppointment,
   addHotAppointment,
   updateProfileImage,
-  updateBusinessImages,
 } = require("../controllers/businessController");
 
 // Fetch business details
-router.get("/api/business/:businessId", getBusinessDetails);
+router.get("/business/:businessId", getBusinessDetails);
 
 // Update business details
-router.put("/api/business/:businessId", updateBusinessDetails);
+router.put("/business/:businessId", updateBusinessDetails);
 
 // Get business appointments
-router.get("/api/business/:businessId/appointments", getAppointments);
+router.get("/business/:businessId/appointments", getAppointments);
 
 // Add a new available appointment
-router.post("/:businessId/appointments", addAvailableAppointment);
+router.post("/business/:businessId/appointments", addAvailableAppointment);
 
 // Add a hot appointment
-router.post("/:businessId/hot-appointments", addHotAppointment);
+router.post("/business/:businessId/hot-appointments", addHotAppointment);
 
 // Update profile image
 router.post(
-  "/api/business/:businessId/profile-image",
+  "/business/:businessId/profile-image",
   multer.single("profileImage"),
   updateProfileImage
-);
-
-// Update business images
-router.post(
-  "/:businessId/images",
-  multer.array("images", 6),
-  updateBusinessImages
 );
 
 module.exports = router;
