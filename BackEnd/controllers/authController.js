@@ -25,6 +25,7 @@
 require("dotenv").config();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const Business = require("../models/businessModel");
 const User = require("../models/User");
 
 // SIGNUP
@@ -80,56 +81,39 @@ exports.signup = async (req, res) => {
 
 // LOGIN
 exports.login = async (req, res) => {
+  const { email, password } = req.body;
+  console.log("Request Body:", req.body);
+
+  if (!email || !password) {
+    return res.status(400).json({ message: "Email and password are required" });
+  }
+
   try {
-    const { email, password } = req.body;
-
-    // Validate request
-    if (!email || !password) {
-      return res.status(400).json({
-        status: false,
-        message: "Please provide an email and password.",
-      });
+    // Check Business model
+    const business = await Business.findOne({ businessEmail: email });
+    if (business) {
+      if (business.businessPassword !== password) {
+        return res.status(401).json({ message: "Incorrect password" });
+      }
+      return res.json({ redirect: `business.html?businessId=${business._id}` });
     }
 
-    // Check if the user exists in the database
+    // Check User model
     const user = await User.findOne({ emailAddress: email });
-    if (!user) {
-      return res.status(404).json({
-        status: false,
-        message: "המשתמש לא קיים במערכת!",
-      });
+    if (user) {
+      const isUserPasswordMatch = await bcrypt.compare(password, user.password);
+      if (!isUserPasswordMatch) {
+        return res.status(401).json({ message: "Incorrect password" });
+      }
+      return res.json({ redirect: `myAppointments.html?id=${user._id}` });
     }
 
-    // Compare the provided password with the hashed password in the database
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(401).json({
-        status: false,
-        message: "אחד או יותר מהנתונים שהזנת אינם נכונים, אנא נסה שוב!",
-      });
-    }
-
-    // Generate a JWT for authentication
-    const token = jwt.sign(
-      { userId: user._id },
-      process.env.JWT_SECRET || "secretKey",
-      { expiresIn: "1h" }
-    );
-
-    // Determine user type
-    const userType = user.isBusinessOwner ? "businessOwner" : "regularUser";
-
-    return res.status(200).json({
-      status: true,
-      message: "Login successful!",
-      token,
-      userType,
-    });
+    // If email not found
+    return res
+      .status(404)
+      .json({ message: "Email not found. Please sign up first!" });
   } catch (error) {
     console.error("Login error:", error);
-    return res.status(500).json({
-      status: false,
-      message: "Internal server error.",
-    });
+    return res.status(500).json({ message: "Internal server error" });
   }
 };
