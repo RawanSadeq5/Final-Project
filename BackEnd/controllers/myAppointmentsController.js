@@ -1,13 +1,41 @@
-const { UserAppointment, WaitingList } = require("../models/Appointment");
+const {
+  UserAppointment,
+  WaitingList,
+  appointment,
+} = require("../models/Appointment");
+const User = require("../models/User");
+const Business = require("../models/businessModel");
 
 // Get all appointments for a user
 exports.getUserAppointments = async (req, res) => {
   try {
     // Replace with actual user ID (e.g., from auth middleware)
     const userId = req.userId;
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "User was not found",
+      });
+    }
 
-    const appointments = await UserAppointment.find({ userId });
-    res.status(200).json({ success: true, appointments });
+    const userEmailAddress = user.emailAddress;
+
+    let appointments = await UserAppointment.find({ email: userEmailAddress });
+
+    // Update appointments where businessName is missing
+    const updatedAppointments = await Promise.all(
+      appointments.map(async (appointment) => {
+        if (!appointment.businessName && appointment.businessId) {
+          const business = await Business.findById(appointment.businessId);
+          if (business) {
+            appointment.businessName = business.BusinessName;
+          }
+        }
+        return appointment;
+      })
+    );
+    res.status(200).json({ success: true, appointments: updatedAppointments });
   } catch (error) {
     console.error("Error fetching appointments:", error);
     res
@@ -20,8 +48,17 @@ exports.getUserAppointments = async (req, res) => {
 exports.getUserWaitingList = async (req, res) => {
   try {
     const userId = req.userId;
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "User was not found",
+      });
+    }
 
-    const waitingList = await WaitingList.find({ userId });
+    const userEmailAddress = user.emailAddress;
+
+    const waitingList = await WaitingList.find({ email: userEmailAddress });
     res.status(200).json({ success: true, waitingList });
   } catch (error) {
     console.error("Error fetching waiting list:", error);
@@ -36,16 +73,34 @@ exports.cancelAppointment = async (req, res) => {
   try {
     const { appointmentId } = req.params;
 
-    const appointment = await UserAppointment.findByIdAndDelete(appointmentId);
-    if (!appointment) {
+    // Find and delete the user appointment
+    const userAppointment = await UserAppointment.findByIdAndDelete(
+      appointmentId
+    );
+    if (!userAppointment) {
       return res
         .status(404)
         .json({ success: false, message: "Appointment not found." });
     }
 
-    res
-      .status(200)
-      .json({ success: true, message: "Appointment canceled successfully." });
+    // Create a new Appointment from the canceled UserAppointment
+    const newAppointment = new appointment({
+      businessId: userAppointment.businessId,
+      serviceType: userAppointment.serviceType,
+      originalPrice: userAppointment.price,
+      date: userAppointment.date,
+      time: userAppointment.time,
+      durationInMinutes: userAppointment.durationInMinutes,
+      isHot: false,
+    });
+
+    await newAppointment.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Appointment canceled and new appointment listed successfully.",
+      newAppointment,
+    });
   } catch (error) {
     console.error("Error canceling appointment:", error);
     res

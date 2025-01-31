@@ -1,5 +1,5 @@
 const Business = require("../models/businessModel");
-const { Appointment, WaitingList } = require("../models/Appointment");
+const { appointment, WaitingList } = require("../models/Appointment");
 
 // Fetch business details
 exports.getBusinessDetailsBook = async (req, res) => {
@@ -33,45 +33,53 @@ exports.getBusinessDetailsBook = async (req, res) => {
 };
 
 // Fetch available dates for a specific service
-exports.getAvailableDates = async (req, res) => {
+/*exports.getAvailableDates = async (req, res) => {
+  console.log("get available dates:", req, res);
   try {
     const businessId = req.params.id;
-    const { serviceId } = req.query;
+
+    const { serviceId } = "6797732d84601359ea4579c4";
+
+    console.log("business id ", serviceId);
 
     if (!serviceId) {
       return res.status(400).json({ error: "Service ID is required" });
     }
 
     const business = await Business.findById(businessId).select("services");
+    console.log("busniess we got from id ", business);
     if (!business) {
       return res.status(404).json({ error: "Business not found" });
     }
-
+    console.log("the service id ", serviceId);
     const service = business.services.id(serviceId);
     if (!service) {
       return res.status(404).json({ error: "Service not found" });
     }
 
     // Find appointments for the given service
-    const appointments = await Appointment.find({
-      businessId,
-      serviceId,
-    }).select("date");
-
+    const appointments = await appointment
+      .find({
+        businessId,
+        serviceId,
+      })
+      .select("date");
+    console.log("appointments ", appointments);
     const bookedDates = appointments.map(
       (appointment) => appointment.date.toISOString().split("T")[0]
     );
 
+    console.log("booked dates ", bookedDates);
     const availableDates = service.availableDates.filter(
       (date) => !bookedDates.includes(date)
     );
-
+    console.log("available dates ", availableDates);
     res.status(200).json({ availableDates });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Failed to fetch available dates" });
   }
-};
+};*/
 
 // Fetch available times for a specific date
 exports.getAvailableTimes = async (req, res) => {

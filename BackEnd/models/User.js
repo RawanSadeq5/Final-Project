@@ -24,7 +24,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  userPhoneNumber: { type: String },
+  UserAppointment: [
+    { type: mongoose.Schema.Types.ObjectId, ref: "UserAppointment" },
+  ], //check it!!!
 });
 
 const User = mongoose.model("User", userSchema);

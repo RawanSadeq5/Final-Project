@@ -198,20 +198,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   serviceList.innerHTML = "";
   availableTimesList.innerHTML = "";
 
-  /*const data1 = {
-    profileImage: "https://www.w3schools.com/images/w3schools_green.jpg",
-    businessName: "Hanan Nails",
-    businessAddress: "אנילביץ 9, עכו",
-    businessPhone: "0524366744",
-    serviceList: [
-      { name: "לק ג'ל + 3 ציפורניים שבורות", price: "₪180" },
-      { name: "מילוי אקריל + 3 ציפורניים שבורות", price: "₪180" },
-      { name: "לק ג'ל", price: "₪150" },
-      { name: "החלפת צבע", price: "₪100" },
-      { name: "תיקון ציפורן", price: "₪50" },
-    ],
-  };*/
-
   const businessId = new URLSearchParams(window.location.search).get(
     "businessId"
   );
@@ -264,6 +250,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     alert("An error occurred while loading the business details.");
   }
 
+  //let selectedService = "";
+
   const serviceLinks = document.querySelectorAll(".service-link");
   serviceLinks.forEach((link) => {
     link.addEventListener("click", function (event) {
@@ -273,6 +261,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       // Add selected class to the clicked service
       link.classList.add("selected");
+
+      selectedService = link.textContent.trim();
+      console.log("Selected Service:", selectedService);
 
       // Show the first "המשך" button
       continueButton.style.display = "inline-block";
@@ -306,17 +297,28 @@ document.addEventListener("DOMContentLoaded", async function () {
   ];
 
   // Simulate a fetch for available dates
-  /*async function fetchAvailableDates(year, month) {
+  async function fetchAvailableDates(year, month) {
     console.log(`Fetching available dates for ${year}-${month + 1}`);
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve({
-          availableDates: [3, 5, 10, 15, 20], // Example available dates
+          //availableDates: [3, 5, 10, 15, 20], // Example available dates
+          availableDates: availableDates,
         });
       }, 500);
     });
   }
+  const response = await fetch(
+    `http://localhost:3000/api/business/appointments/${businessId}`
+  );
 
+  const data = await response.json();
+
+  console.log("here", data);
+
+  console.log(selectedService);
+
+  availableDates = getAvailableDatesByService(selectedService);
   const renderCalendar = async () => {
     const { availableDates } = await fetchAvailableDates(currYear, currMonth);
 
@@ -403,6 +405,20 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
   }
 
+  function getAvailableDatesByService(serviceType) {
+    // Filter the appointments for the given service type
+    const filteredAppointments = appointments.filter(
+      (appointment) => appointment.service === serviceType
+    );
+
+    // Extract the dates from the filtered appointments
+    const availableDates = filteredAppointments.map(
+      (appointment) => appointment.date
+    );
+
+    return availableDates;
+  }
+
   // Step 5: Show Times (Updated)
   newProceedButton.addEventListener("click", async function () {
     // Ensure a date is selected
@@ -431,5 +447,5 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     // Smooth scroll to times container
     timesContainer.scrollIntoView({ behavior: "smooth", block: "start" });
-  });*/
+  });
 });
