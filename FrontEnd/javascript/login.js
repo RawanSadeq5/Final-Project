@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
+
       try {
         const response = await fetch("http://localhost:3000/api/login", {
           method: "POST",
@@ -22,6 +23,10 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(data);
 
         if (response.ok) {
+          // Store token in localStorage
+          localStorage.setItem("authToken", data.token);
+
+          // Redirect to the user's page
           window.location.href = data.redirect;
         } else {
           alert(data.message);
@@ -32,53 +37,28 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-  // Email validation function
-  /*function validateEmail(email) {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email);
-  }*/
-
-  // Fetch function for API requests
-  /*async function Fetch(url, data) {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-
-    const responseBody = await response.json();
-
-    // Return the response body, even if the response status is not OK
-    return {
-      ok: response.ok,
-      status: response.status,
-      data: responseBody,
-    };
-  }*/
+  // Function to check if user is logged in
+  function isLoggedIn() {
+    return localStorage.getItem("authToken") !== null;
+  }
 
   // Navigation links
-  const aboutLink = document.getElementById("about-link");
-  aboutLink.addEventListener("click", (event) => {
+  document.getElementById("about-link").addEventListener("click", (event) => {
     event.preventDefault();
     window.location.href = "about.html";
   });
 
-  const contactLink = document.getElementById("contact-link");
-  contactLink.addEventListener("click", (event) => {
+  document.getElementById("contact-link").addEventListener("click", (event) => {
     event.preventDefault();
     window.location.href = "contactUs.html";
   });
 
-  const homeLink = document.getElementById("home-link");
-  homeLink.addEventListener("click", (event) => {
+  document.getElementById("home-link").addEventListener("click", (event) => {
     event.preventDefault();
     window.location.href = "home.html";
   });
 
-  const forgetLink = document.getElementById("forget");
-  forgetLink.addEventListener("click", (event) => {
+  document.getElementById("forget").addEventListener("click", (event) => {
     event.preventDefault();
     window.location.href = "forgetPass.html";
   });

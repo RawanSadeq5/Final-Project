@@ -9,6 +9,7 @@ const {
   addAvailableAppointment,
   addHotAppointment,
   updateProfileImage,
+  getBusinessAppointments,
 } = require("../controllers/businessController");
 
 // Fetch business details
@@ -18,7 +19,7 @@ router.get("/business/:businessId", getBusinessDetails);
 router.put("/business/:businessId", updateBusinessDetails);
 
 // Get business appointments
-router.get("/business/:businessId/appointments", getAppointments);
+router.get("/business/appointments/:businessId", getBusinessAppointments);
 
 // Add a new available appointment
 router.post("/business/:businessId/appointments", addAvailableAppointment);

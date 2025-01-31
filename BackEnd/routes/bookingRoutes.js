@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const {
   getBusinessDetailsBook,
-  getAvailableDates,
+  //getAvailableDates,
   getAvailableTimes,
   bookAppointment,
   addToWaitingList,
@@ -12,7 +12,7 @@ const {
 router.get("/business/:businessId/details", getBusinessDetailsBook);
 
 // Route to fetch available dates for a specific service
-router.get("/business/:businessId/available-dates", getAvailableDates);
+//router.get("/business/:businessId/available-dates", getAvailableDates);
 
 // Route to fetch available times for a specific date
 router.get("/business/:businessId/available-times", getAvailableTimes);

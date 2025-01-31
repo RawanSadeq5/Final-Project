@@ -72,13 +72,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   const paymentButton = document.querySelector("#payment-button");
-  paymentButton.addEventListener("click", (event) => {
+  paymentButton.addEventListener("click", async (event) => {
     console.log(event.target);
     const fullName = document.querySelector("#full-name").value.trim();
+    const email = document.querySelector("#email").value.trim();
     const phoneNumber = document.querySelector("#phone-number").value.trim();
     const notes = document.querySelector("#notes").value.trim();
 
-    if (!fullName || !phoneNumber) {
+    if (!fullName || !phoneNumber || !email) {
       alert("אנא מלא את כל השדות הנדרשים");
       return;
     }
@@ -86,6 +87,34 @@ document.addEventListener("DOMContentLoaded", async () => {
     event.preventDefault();
     // Get the businessId from the button's data attribute
     const businessId = event.target.dataset.businessId;
+
+    const appointmentId = event.target.dataset.appointmentId;
+
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/appointments/hot/${appointmentId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ fullName, email, phoneNumber }),
+        }
+      );
+
+      const data = await response.json();
+      console.log(data);
+
+      if (response.ok) {
+        alert("Appointment booked successfully!");
+        window.location.href = "myAppointments.html"; // Redirect on success
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error("Error booking appointment:", error);
+      alert("An error occurred. Please try again later.");
+    }
 
     // Navigate to payment.html with the businessId as a query parameter
     window.location.href = `payment.html?businessId=${businessId}`;
@@ -205,6 +234,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const paymentButton = document.querySelector("#payment-button");
         paymentButton.dataset.businessId = item.businessId;
+        paymentButton.dataset.appointmentId = item.appointmentId;
       });
 
       infodiv.appendChild(h2);

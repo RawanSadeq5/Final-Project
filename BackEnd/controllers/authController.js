@@ -95,7 +95,19 @@ exports.login = async (req, res) => {
       if (business.businessPassword !== password) {
         return res.status(401).json({ message: "Incorrect password" });
       }
-      return res.json({ redirect: `business.html?businessId=${business._id}` });
+
+      // Generate JWT token for business
+      const token = jwt.sign(
+        { userId: business._id, role: "business" },
+        process.env.JWT_SECRET || "secretKey",
+        { expiresIn: "24h" }
+      );
+
+      return res.json({
+        message: "Login successful",
+        token,
+        redirect: `business.html?businessId=${business._id}`,
+      });
     }
 
     // Check User model
@@ -105,7 +117,19 @@ exports.login = async (req, res) => {
       if (!isUserPasswordMatch) {
         return res.status(401).json({ message: "Incorrect password" });
       }
-      return res.json({ redirect: `myAppointments.html?id=${user._id}` });
+
+      // Generate JWT token for user
+      const token = jwt.sign(
+        { userId: user._id, role: "user" },
+        process.env.JWT_SECRET || "secretKey",
+        { expiresIn: "24h" }
+      );
+
+      return res.json({
+        message: "Login successful",
+        token,
+        redirect: `myAppointments.html?id=${user._id}`,
+      });
     }
 
     // If email not found

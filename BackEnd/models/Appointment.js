@@ -29,6 +29,7 @@ const appointmentSchema = new mongoose.Schema({
     ref: "Business",
     required: true,
   },
+
   serviceType: { type: String, required: true },
   originalPrice: { type: Number },
   discountPrice: { type: Number },
@@ -40,14 +41,17 @@ const appointmentSchema = new mongoose.Schema({
 
 // User Appointment Schema
 const UserAppointmentSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-  businessName: { type: String, required: true },
+  businessId: { type: String },
+  businessName: { type: String },
+  fullName: { type: String },
+  email: { type: String, required: true },
+  phoneNumber: { type: String },
   address: { type: String, required: true },
   serviceType: { type: String, required: true },
   price: { type: Number, required: true },
   date: { type: String, required: true },
   time: { type: String, required: true },
-  durationInMinutes: { type: Number, required: true },
+  durationInMinutes: { type: Number },
   status: {
     type: String,
     enum: ["appointment-taken", "ready-to-give-up"],
@@ -57,9 +61,9 @@ const UserAppointmentSchema = new mongoose.Schema({
 
 // Waiting List Schema
 const WaitingListSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   businessName: { type: String, required: true },
   address: { type: String, required: true },
+  email: { type: String, required: true },
   serviceType: { type: String, required: true },
   date: { type: String, required: true },
   time: { type: String, required: true },

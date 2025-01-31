@@ -315,4 +315,37 @@ document.addEventListener("DOMContentLoaded", async () => {
         alert("שגיאה בהוספת התור");
       });
   });
+
+  //get the users appointments
+  console.log("Fetching appointments for businessId:", businessId);
+
+  try {
+    const response = await fetch(
+      `http://localhost:3000/api/business/appointments/${businessId}`
+    );
+    console.log("API response:", response);
+    const data = await response.json();
+
+    if (data.success) {
+      const appointmentsTable = document.getElementById("appointmentsTable");
+      appointmentsTable.innerHTML = ""; // Clear existing rows
+
+      data.appointments.forEach((appointment) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+        <td>${appointment.service}</td>
+        <td>${appointment.date}</td>
+        <td>${appointment.time}</td>
+        <td>${appointment.price || "N/A"}</td>
+        <td>${appointment.customerName || "Unknown"}</td>
+        <td>${appointment.customerPhoneNumber || "N/A"}</td>
+      `;
+        appointmentsTable.appendChild(row);
+      });
+    } else {
+      console.error("Failed to fetch appointments:", data.message);
+    }
+  } catch (error) {
+    console.error("Error fetching appointments:", error);
+  }
 });

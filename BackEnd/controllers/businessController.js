@@ -34,6 +34,7 @@
 
 const Business = require("../models/businessModel");
 const { appointment } = require("../models/Appointment");
+const { UserAppointment } = require("../models/Appointment");
 
 // Fetch business details
 exports.getBusinessDetails = async (req, res) => {
@@ -124,18 +125,54 @@ exports.getAppointments = async (req, res) => {
   try {
     const { businessId } = req.params;
 
-    const appointments = await appointment.find({ businessId });
+    console.log("Fetching appointments for businessId:", businessId);
 
-    const formattedAppointments = appointments.map((appointment) => ({
-      service: appointment.serviceType,
-      date: appointment.date,
-      time: appointment.time,
-      duration: appointment.durationInMinutes,
-      price: appointment.originalPrice || appointment.discountPrice,
-      customerName: appointment.customerName,
-      customerPhoneNumber: appointment.customerPhone,
+    const appointments = await UserAppointment.find({ businessId });
+
+    if (!appointments.length) {
+      return res
+        .status(404)
+        .json({ success: false, message: "No appointments found." });
+    }
+
+    const formattedAppointments = appointments.map((appt) => ({
+      id: appt._id,
+      service: appt.serviceType,
+      date: appt.date,
+      time: appt.time,
+      price: appt.price,
+      customerName: appt.fullName,
+      customerPhoneNumber: appt.phoneNumber,
     }));
 
+    res
+      .status(200)
+      .json({ success: true, appointments: formattedAppointments });
+  } catch (error) {
+    console.error("Error fetching appointments:", error);
+    res
+      .status(500)
+      .json({ success: false, message: "Failed to fetch appointments." });
+  }
+};
+
+// Get appointments for a business
+exports.getBusinessAppointments = async (req, res) => {
+  try {
+    const { businessId } = req.params;
+
+    // Fetch appointments from the database
+    const appointments = await UserAppointment.find({ businessId }).lean(); // Use .lean() to return plain JSON
+
+    // Format the response data
+    const formattedAppointments = appointments.map((appt) => ({
+      id: appt._id,
+      service: appt.serviceType,
+      date: appt.date,
+      time: appt.time,
+    }));
+
+    // Send the response
     res
       .status(200)
       .json({ success: true, appointments: formattedAppointments });

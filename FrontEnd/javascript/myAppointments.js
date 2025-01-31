@@ -23,17 +23,16 @@ function wait(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function Fetch(url, data) {
-  return new Promise((resolve, reject) => {
-    console.log(`Fetching data from: ${url}`);
-    setTimeout(() => {
-      resolve(data);
-    }, 1500);
-  });
-}
-
 document.addEventListener("DOMContentLoaded", async () => {
   // const transferButton = document.getElementById('transferButton');
+  const token = localStorage.getItem("authToken");
+
+  if (!token) {
+    //alert();
+    window.location.href = "login.html";
+    return;
+  }
+
   const popup = document.getElementById("popup");
   const copyButton = document.getElementById("copyButton");
   const linkInput = document.getElementById("linkInput");
@@ -98,28 +97,61 @@ document.addEventListener("DOMContentLoaded", async () => {
         },
       ],
     };
-    const data = await Fetch("https://HananRawanSite.com/api/data", data1);
+    //const data = await Fetch("https://HananRawanSite.com/api/data", data1);
+
+    const appointmentsResult = await fetch(
+      `http://localhost:3000/api/appointments`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    // Parse JSON response
+    const appointmentsData = await appointmentsResult.json();
+
+    const waitingListResult = await fetch(
+      `http://localhost:3000/api/appointments/waiting-list`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    // Parse JSON response
+    const waitingListData = await waitingListResult.json();
+
+    // Extract appointment and waiting list data
+    const Appointments = appointmentsData.appointments;
+    const WaitingList = waitingListData.waitingList;
+
     dataContainer.innerHTML = "";
 
-    const { Appointments, WaitingList } = data;
+    // const { Appointments, WaitingList } = data;
 
     Appointments.forEach((appointment, index) => {
       const div = document.createElement("div");
       div.className = "appointment-card";
       const h2 = document.createElement("h2");
-      h2.innerHTML = `<strong>שם העסק:</strong> ${appointment.BusinessName}`;
+      h2.innerHTML = `<strong>שם העסק:</strong> ${appointment.businessName}`;
       const labelAddress = document.createElement("label");
-      labelAddress.innerHTML = `<strong>כתובת:</strong> ${appointment.Address}`;
+      labelAddress.innerHTML = `<strong>כתובת:</strong> ${appointment.address}`;
       const labelServiceType = document.createElement("label");
-      labelServiceType.innerHTML = `<strong>סוג שירות:</strong> ${appointment.ServiceType}`;
+      labelServiceType.innerHTML = `<strong>סוג שירות:</strong> ${appointment.serviceType}`;
       const labelPrice = document.createElement("label");
-      labelPrice.innerHTML = `<strong>מחיר:</strong> ${appointment.Price}`;
+      labelPrice.innerHTML = `<strong>מחיר:</strong> ${appointment.price}`;
       const labelDate = document.createElement("label");
-      labelDate.innerHTML = `<strong>תאריך:</strong> ${appointment.Date}`;
+      labelDate.innerHTML = `<strong>תאריך:</strong> ${appointment.date}`;
       const labelTime = document.createElement("label");
-      labelTime.innerHTML = `<strong>שעה:</strong> ${appointment.Time}`;
-      const labelDuration = document.createElement("label");
-      labelDuration.innerHTML = `<strong>משך:</strong> ${appointment.DurationInMinutes} דקות`;
+      labelTime.innerHTML = `<strong>שעה:</strong> ${appointment.time}`;
+      // const labelDuration = document.createElement("label");
+      // labelDuration.innerHTML = `<strong>משך:</strong> ${appointment.DurationInMinutes} דקות`;
 
       const statusDiv = document.createElement("div");
       statusDiv.innerHTML = `
@@ -153,7 +185,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       div.appendChild(labelPrice);
       div.appendChild(labelDate);
       div.appendChild(labelTime);
-      div.appendChild(labelDuration);
+      // div.appendChild(labelDuration);
       div.appendChild(statusDiv);
 
       dataContainer.appendChild(div);
@@ -166,15 +198,15 @@ document.addEventListener("DOMContentLoaded", async () => {
       const div = document.createElement("div");
       div.className = "appointment-card";
       const h2 = document.createElement("h2");
-      h2.innerHTML = `<strong>שם העסק:</strong> ${waitingItem.BusinessName}`;
+      h2.innerHTML = `<strong>שם העסק:</strong> ${waitingItem.businessName}`;
       const labelAddress = document.createElement("label");
-      labelAddress.innerHTML = `<strong>כתובת:</strong> ${waitingItem.Address}`;
+      labelAddress.innerHTML = `<strong>כתובת:</strong> ${waitingItem.address}`;
       const labelServiceType = document.createElement("label");
-      labelServiceType.innerHTML = `<strong>סוג שירות:</strong> ${waitingItem.ServiceType}`;
+      labelServiceType.innerHTML = `<strong>סוג שירות:</strong> ${waitingItem.serviceType}`;
       const labelDate = document.createElement("label");
-      labelDate.innerHTML = `<strong>תאריך:</strong> ${waitingItem.Date}`;
+      labelDate.innerHTML = `<strong>תאריך:</strong> ${waitingItem.date}`;
       const labelTime = document.createElement("label");
-      labelTime.innerHTML = `<strong>שעה:</strong> ${waitingItem.Time}`;
+      labelTime.innerHTML = `<strong>שעה:</strong> ${waitingItem.time}`;
 
       const transferButtonElement = document.createElement("button");
       transferButtonElement.className += " action-button delete-waiting";
