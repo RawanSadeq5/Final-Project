@@ -1,12 +1,3 @@
-/**
- * File: signup.js
- * Description: This script handles navigation and user registration for the NexTor appointment booking system.
- *              It includes event listeners for page navigation, form validation, and sending user registration
- *              data to the server. If the signup process is successful, a popup notification appears, prompting
- *              the user to log in.
- * Dependencies: Works with signup.html and requires a backend API endpoint at "http://localhost:3000/api/signup".
- **/
-
 document.addEventListener("DOMContentLoaded", () => {
   // About page navigation
   const aboutLink = document.getElementById("about-link");

@@ -121,18 +121,18 @@ document.addEventListener("DOMContentLoaded", async () => {
       const statusDiv = document.createElement("div");
       statusDiv.innerHTML = `
             <label>
-                <strong>סטטוס:</strong>
-                <select class="status-selector">
-                    <option value="appointment-taken">התור תפוס</option>
-                    <option value="ready-to-give-up">מוכן לוותר</option>
-                </select>
-            </label>
-            <br/>
-            <br/>
-            <div class="appointment-actions">
-                <button id="transferButton${index}" class="action-button transfer">העבר לחבר</button>
-               <button class="action-button cancel" data-appointment-id="${appointment._id}">ביטול תור</button>
-            </div>
+        <strong>סטטוס:</strong>
+        <select class="status-selector">
+          <option value="appointment-taken">התור תפוס</option>
+          <option value="ready-to-give-up">מוכן לוותר</option>
+        </select>
+      </label>
+      <br/>
+      <br/>
+      <div class="appointment-actions">
+        <button id="transferButton${index}" class="action-button transfer">העבר לחבר</button>
+        <button class="action-button cancel" data-appointment-id="${appointment._id}">ביטול תור</button>
+      </div>
         `;
 
       statusDiv
@@ -143,6 +143,39 @@ document.addEventListener("DOMContentLoaded", async () => {
           const popup = document.getElementById("popup");
           popup.style.display = "block";
         });
+
+      // Handle status changes (new code)
+      const statusSelector = statusDiv.querySelector(".status-selector");
+      statusSelector.addEventListener("change", async (event) => {
+        const newStatus = event.target.value;
+        // Dummy POST request to update status
+        try {
+          const response = await fetch(
+            "http://localhost:3000/api/appointments/update-status",
+            {
+              method: "POST",
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                appointmentId: appointment._id,
+                newStatus: newStatus,
+              }),
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error("Failed to update status");
+          }
+
+          // For a real API, you’d parse the server's response
+          const result = await response.json();
+          console.log("Status update successful:", result);
+        } catch (error) {
+          console.error("Error updating status:", error);
+        }
+      });
 
       div.appendChild(h2);
       div.appendChild(labelAddress);
@@ -160,63 +193,75 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     waitingListContainerDiv.innerHTML = "";
     WaitingList.forEach((waitingItem) => {
+      const businessName = waitingItem.businessId?.BusinessName || "";
+      const address = waitingItem.businessId?.address || "";
       const div = document.createElement("div");
       div.className = "appointment-card";
       const h2 = document.createElement("h2");
-      h2.innerHTML = `<strong>שם העסק:</strong> ${waitingItem.businessName}`;
+      h2.innerHTML = `<strong>שם העסק:</strong> ${businessName}`;
       const labelAddress = document.createElement("label");
-      labelAddress.innerHTML = `<strong>כתובת:</strong> ${waitingItem.address}`;
+      labelAddress.innerHTML = `<strong>כתובת:</strong> ${address}`;
       const labelServiceType = document.createElement("label");
       labelServiceType.innerHTML = `<strong>סוג שירות:</strong> ${waitingItem.serviceType}`;
       const labelDate = document.createElement("label");
       labelDate.innerHTML = `<strong>תאריך:</strong> ${waitingItem.date}`;
-      const labelTime = document.createElement("label");
-      labelTime.innerHTML = `<strong>שעה:</strong> ${waitingItem.time}`;
+      //const labelTime = document.createElement("label");
+      //labelTime.innerHTML = `<strong>שעה:</strong> ${waitingItem.time}`;
 
-      const transferButtonElement = document.createElement("button");
-      transferButtonElement.className += " action-button delete-waiting";
-      transferButtonElement.textContent = "מחיקה מרשימת המתנה";
+      const deleteButton = document.createElement("button");
+      deleteButton.classList.add("action-button", "delete-waiting");
+      deleteButton.textContent = "מחיקה מרשימת המתנה";
+
+      // IMPORTANT: Store the waiting list _id on the button so we can reference it later
+      deleteButton.dataset.waitingId = waitingItem._id;
 
       div.appendChild(h2);
       div.appendChild(labelAddress);
       div.appendChild(labelServiceType);
       div.appendChild(labelDate);
-      div.appendChild(labelTime);
+      //div.appendChild(labelTime);
 
-      div.appendChild(transferButtonElement);
+      div.appendChild(deleteButton);
 
       waitingListContainerDiv.appendChild(div);
     });
 
     document.querySelectorAll(".delete-waiting").forEach((button) => {
-      console.log(button);
       button.addEventListener("click", (event) => {
         event.preventDefault();
 
-        // Create confirmation modal for deleting from waiting list
+        // Retrieve the waiting list ID from the button's dataset
+        const waitingListId = button.dataset.waitingId;
+        console.log("Waiting List ID:", waitingListId);
+
+        // Create confirmation modal
         const confirmationModal = document.createElement("div");
         confirmationModal.classList.add("modal");
         confirmationModal.innerHTML = `
-                <div class="modal-content">
-                    <p>האם ברצונך למחוק את התור מרשימת המתנה?</p>
-                    <button class="modal-btn confirm" data-appointment-id="${waitingItem._id}">כן</button>
-                    <button class="modal-btn cancel">לא</button>
-                </div>
-            `;
+          <div class="modal-content">
+              <p>האם ברצונך למחוק את התור מרשימת המתנה?</p>
+              <button class="modal-btn confirm" data-waiting-list-id="${waitingListId}">כן</button>
+              <button class="modal-btn cancel">לא</button>
+          </div>
+        `;
+
         document.body.appendChild(confirmationModal);
 
-        const appointmentId = event.currentTarget.dataset.appointmentId;
-        console.log("Appointment ID:", appointmentId); // Debugging
-        // Add event listeners to modal buttons
+        // Handle the "Confirm" click
         confirmationModal
           .querySelector(".confirm")
-          .addEventListener("click", async () => {
-            confirmationModal.dataset.appointmentId = appointmentId; // Attach ID to modal
+          .addEventListener("click", async (e) => {
+            // Read the ID from the button's dataset
+            const idToDelete = e.currentTarget.dataset.waitingListId;
+
+            // Remove modal from DOM
             confirmationModal.remove();
 
             try {
+              // Make DELETE request to remove from waiting list
+              // Adjust the endpoint if yours differs, e.g. /api/waiting-list/:id
               const response = await fetch(
-                `http://localhost:3000/api/appointments/${appointmentId}`,
+                `http://localhost:3000/api/appointments/waiting-list/${idToDelete}`,
                 {
                   method: "DELETE",
                   headers: {
@@ -229,24 +274,18 @@ document.addEventListener("DOMContentLoaded", async () => {
               const data = await response.json();
 
               if (data.success) {
-                alert("התור בוטל בהצלחה!");
+                alert("התור נמחק בהצלחה מרשימת ההמתנה!");
                 window.location.reload();
               } else {
-                alert("Failed to cancel: " + data.message);
+                alert("Failed to delete: " + data.message);
               }
             } catch (error) {
-              console.error("Error canceling appointment:", error);
-              alert("An error occurred while canceling the appointment.");
+              console.error("Error deleting from waiting list:", error);
+              alert("An error occurred while deleting from waiting list.");
             }
-
-            // Add close button event listener
-            deletionModal
-              .querySelector(".close")
-              .addEventListener("click", () => {
-                deletionModal.remove();
-              });
           });
 
+        // Handle the "Cancel" click
         confirmationModal
           .querySelector(".cancel")
           .addEventListener("click", () => {
