@@ -66,39 +66,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   dataContainer.innerHTML = "<p>טוען...</p>";
 
   try {
-    const data1 = {
-      Appointments: [
-        {
-          BusinessName: "Salam Nails",
-          Address: "אנילביץ 9, עכו",
-          ServiceType: "לק גל",
-          Price: 150,
-          Date: "12/01/2025",
-          Time: "12:05",
-          DurationInMinutes: 120,
-        },
-        {
-          BusinessName: "Care Laser",
-          Address: "העצמאות 13, חיפה",
-          ServiceType: "טיפול להסרת משקפיים",
-          Price: 110,
-          Date: "12/01/2025",
-          Time: "12:05",
-          DurationInMinutes: 120,
-        },
-      ],
-      WaitingList: [
-        {
-          BusinessName: "Alex Hair Salon",
-          Address: "יצחק רבין 4, תל אביב",
-          ServiceType: "תספורת",
-          Date: "15/01/2025",
-          Time: "13:55",
-        },
-      ],
-    };
-    //const data = await Fetch("https://HananRawanSite.com/api/data", data1);
-
     const appointmentsResult = await fetch(
       `http://localhost:3000/api/appointments`,
       {
@@ -150,8 +117,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       labelDate.innerHTML = `<strong>תאריך:</strong> ${appointment.date}`;
       const labelTime = document.createElement("label");
       labelTime.innerHTML = `<strong>שעה:</strong> ${appointment.time}`;
-      // const labelDuration = document.createElement("label");
-      // labelDuration.innerHTML = `<strong>משך:</strong> ${appointment.DurationInMinutes} דקות`;
 
       const statusDiv = document.createElement("div");
       statusDiv.innerHTML = `
@@ -166,7 +131,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             <br/>
             <div class="appointment-actions">
                 <button id="transferButton${index}" class="action-button transfer">העבר לחבר</button>
-                <button class="action-button cancel">ביטול תור</button>
+               <button class="action-button cancel" data-appointment-id="${appointment._id}">ביטול תור</button>
             </div>
         `;
 
@@ -194,7 +159,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Waiting list Container Div
 
     waitingListContainerDiv.innerHTML = "";
-    WaitingList.forEach((waitingItem, index) => {
+    WaitingList.forEach((waitingItem) => {
       const div = document.createElement("div");
       div.className = "appointment-card";
       const h2 = document.createElement("h2");
@@ -234,28 +199,45 @@ document.addEventListener("DOMContentLoaded", async () => {
         confirmationModal.innerHTML = `
                 <div class="modal-content">
                     <p>האם ברצונך למחוק את התור מרשימת המתנה?</p>
-                    <button class="modal-btn confirm">כן</button>
+                    <button class="modal-btn confirm" data-appointment-id="${waitingItem._id}">כן</button>
                     <button class="modal-btn cancel">לא</button>
                 </div>
             `;
         document.body.appendChild(confirmationModal);
 
+        const appointmentId = event.currentTarget.dataset.appointmentId;
+        console.log("Appointment ID:", appointmentId); // Debugging
         // Add event listeners to modal buttons
         confirmationModal
           .querySelector(".confirm")
-          .addEventListener("click", () => {
+          .addEventListener("click", async () => {
+            confirmationModal.dataset.appointmentId = appointmentId; // Attach ID to modal
             confirmationModal.remove();
 
-            // Create deletion modal
-            const deletionModal = document.createElement("div");
-            deletionModal.classList.add("modal");
-            deletionModal.innerHTML = `
-                    <div class="modal-content">
-                        <p>התור נמחק בהצלחה מרשימת ההמתנה</p>
-                        <button class="modal-btn close">סגור</button>
-                    </div>
-                `;
-            document.body.appendChild(deletionModal);
+            try {
+              const response = await fetch(
+                `http://localhost:3000/api/appointments/${appointmentId}`,
+                {
+                  method: "DELETE",
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                  },
+                }
+              );
+
+              const data = await response.json();
+
+              if (data.success) {
+                alert("התור בוטל בהצלחה!");
+                window.location.reload();
+              } else {
+                alert("Failed to cancel: " + data.message);
+              }
+            } catch (error) {
+              console.error("Error canceling appointment:", error);
+              alert("An error occurred while canceling the appointment.");
+            }
 
             // Add close button event listener
             deletionModal
@@ -273,13 +255,14 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     });
 
-    // Handle the Cancel button
-
     // Handle cancellation buttons for appointments
     document
       .querySelectorAll(".appointment-card .action-button.cancel")
       .forEach((button) => {
         button.addEventListener("click", (event) => {
+          const appointmentId = event.currentTarget.dataset.appointmentId;
+          console.log("Appointment ID:", appointmentId); // Debugging
+
           event.preventDefault();
 
           // Create confirmation modal for canceling appointment
@@ -297,26 +280,34 @@ document.addEventListener("DOMContentLoaded", async () => {
           // Add event listeners to modal buttons
           confirmationModal
             .querySelector(".confirm")
-            .addEventListener("click", () => {
+            .addEventListener("click", async () => {
+              confirmationModal.dataset.appointmentId = appointmentId; // Attach ID to modal
               confirmationModal.remove();
 
-              // Create cancellation modal
-              const cancellationModal = document.createElement("div");
-              cancellationModal.classList.add("modal");
-              cancellationModal.innerHTML = `
-                    <div class="modal-content">
-                        <p>התור התבטל בהצלחה</p>
-                        <button class="modal-btn close">סגור</button>
-                    </div>
-                `;
-              document.body.appendChild(cancellationModal);
+              try {
+                const response = await fetch(
+                  `http://localhost:3000/api/appointments/${appointmentId}`,
+                  {
+                    method: "DELETE",
+                    headers: {
+                      Authorization: `Bearer ${token}`,
+                      "Content-Type": "application/json",
+                    },
+                  }
+                );
 
-              // Add close button event listener
-              cancellationModal
-                .querySelector(".close")
-                .addEventListener("click", () => {
-                  cancellationModal.remove();
-                });
+                const data = await response.json();
+
+                if (data.success) {
+                  alert("התור בוטל בהצלחה!");
+                  window.location.reload();
+                } else {
+                  alert("Failed to cancel: " + data.message);
+                }
+              } catch (error) {
+                console.error("Error canceling appointment:", error);
+                alert("An error occurred while canceling the appointment.");
+              }
             });
 
           confirmationModal

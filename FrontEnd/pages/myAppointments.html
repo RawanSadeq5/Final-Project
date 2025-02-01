@@ -37,7 +37,12 @@
           <div class="appointment-navigator" id="appointment-container">
             <div class="appointment-card">
               <button class="action-button transfer">העבר לחבר</button>
-              <button class="action-button cancel">ביטול תור</button>
+              <button
+                class="action-button cancel"
+                data-appointment-id="<%= appointment._id %>"
+              >
+                ביטול תור
+              </button>
             </div>
           </div>
         </div>
@@ -47,7 +52,10 @@
         <h1>רשימת המתנה</h1>
         <div class="waiting-list" id="waiting-list">
           <div class="appointment-card">
-            <button class="action-button delete-waiting">
+            <button
+              class="action-button delete-waiting"
+              data-appointment-id="<%= appointment._id %>"
+            >
               מחיקה מרשימת המתנה
             </button>
           </div>

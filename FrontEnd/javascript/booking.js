@@ -258,13 +258,27 @@ document.addEventListener("DOMContentLoaded", async function () {
       event.preventDefault();
 
       serviceLinks.forEach((l) => l.classList.remove("selected"));
-
-      // Add selected class to the clicked service
+      //const serviceLinks = document.querySelectorAll(".service-link");
       link.classList.add("selected");
 
-      selectedService = link.textContent.trim();
-      console.log("Selected Service:", selectedService);
+      // Find the element that has the 'selected' class
+      const selectedElement = Array.from(serviceLinks).find((link) =>
+        link.classList.contains("selected")
+      );
 
+      if (selectedElement) {
+        const anchorElement = selectedElement; // The <a> itself
+        console.log("Selected element:", anchorElement);
+        // Extract only the text node (ignoring spans)
+        let pureText = Array.from(anchorElement.childNodes)
+          .filter((node) => node.nodeType === Node.TEXT_NODE)
+          .map((node) => node.textContent.trim())
+          .join(" ");
+
+        console.log("Selected value:", pureText);
+      } else {
+        console.log("No element with 'selected' class found.");
+      }
       // Show the first "המשך" button
       continueButton.style.display = "inline-block";
     });
@@ -316,9 +330,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   console.log("here", data);
 
-  console.log(selectedService);
+  //console.log(selectedService);
 
-  availableDates = getAvailableDatesByService(selectedService);
+  availableDates = getAvailableDatesByService(pureText);
   const renderCalendar = async () => {
     const { availableDates } = await fetchAvailableDates(currYear, currMonth);
 

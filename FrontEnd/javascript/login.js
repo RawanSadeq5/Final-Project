@@ -1,8 +1,13 @@
-document.addEventListener("DOMContentLoaded", () => {
-  //const form = document.querySelector("form");
-  //const emailInput = document.getElementById("email");
-  //const passwordInput = document.getElementById("password");
+/**
+ * File: login.js
+ * Description: This script manages user authentication for the NexTor appointment booking system.
+ *              It handles login form submission, token storage, and user redirection upon successful authentication.
+ *              Additionally, it provides client-side navigation for key pages.
+ *
+ * Dependencies: Works with login.html and Requires a backend API endpoint at "http://localhost:3000/api/login".
+ **/
 
+document.addEventListener("DOMContentLoaded", () => {
   // Handle form submission
   document
     .getElementById("loginForm")
