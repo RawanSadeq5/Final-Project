@@ -323,8 +323,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     const response = await fetch(
       `http://localhost:3000/api/business/appointments/${businessId}`
     );
-    console.log("API response:", response);
     const data = await response.json();
+    console.log("API response:", data);
 
     if (data.success) {
       const appointmentsTable = document.getElementById("appointmentsTable");
