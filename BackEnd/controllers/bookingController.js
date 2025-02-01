@@ -1,5 +1,88 @@
 const Business = require("../models/businessModel");
-const { appointment, WaitingList } = require("../models/Appointment");
+const {
+  appointment,
+  WaitingList,
+  UserAppointment,
+} = require("../models/Appointment");
+
+exports.getBusinessServiceAvailableTimes = async (req, res) => {
+  try {
+    const { businessId, serviceName, date } = req.params;
+
+    // Validate business
+    const business = await Business.findById(businessId);
+    if (!business) {
+      return res.status(404).json({ error: "Business not found" });
+    }
+
+    // Check if the service exists
+    const serviceExists = business.services.some(
+      (service) => service.name.toLowerCase() === serviceName.toLowerCase()
+    );
+    if (!serviceExists) {
+      return res
+        .status(404)
+        .json({ error: "Service not found for this business" });
+    }
+
+    // Optionally validate date format (e.g., "YYYY-MM-DD"), but not mandatory
+    // if your system handles any valid date string
+    const jsDate = new Date(date);
+    if (isNaN(jsDate)) {
+      return res
+        .status(400)
+        .json({ error: "Invalid date format. Use YYYY-MM-DD." });
+    }
+
+    // Fetch all DISTINCT times for the given date, business, and service
+    const appointments = await appointment.find({
+      businessId,
+      serviceType: serviceName,
+      date,
+    });
+
+    // Map each doc to an object containing _id and time
+    const availableAppointments = appointments.map((appt) => ({
+      _id: appt._id,
+      time: appt.time,
+    }));
+
+    return res.status(200).json({ availableAppointments });
+  } catch (error) {
+    console.error("Error getting available times:", error);
+    return res.status(500).json({ error: "Server error" });
+  }
+};
+
+exports.getBusinessServiceAvailableDates = async (req, res) => {
+  try {
+    const { businessId, serviceName } = req.params;
+
+    const business = await Business.findById(businessId);
+    if (!business) {
+      return res.status(404).json({ error: "Business not found" });
+    }
+
+    const serviceExists = business.services.some(
+      (service) => service.name.toLowerCase() === serviceName.toLowerCase()
+    );
+    if (!serviceExists) {
+      return res
+        .status(404)
+        .json({ error: "Service not found for this business" });
+    }
+
+    const availableDates = await appointment.distinct("date", {
+      businessId,
+      serviceType: serviceName,
+    });
+
+    return res.status(200).json({ availableDates });
+  } catch (error) {
+    console.error("Error getting available dates:", error);
+    return res.status(500).json({ error: "Server error" });
+  }
+};
 
 // Fetch business details
 exports.getBusinessDetailsBook = async (req, res) => {
@@ -116,111 +199,178 @@ exports.getAvailableTimes = async (req, res) => {
 };
 
 // Book an appointment
-exports.bookAppointment = async (req, res) => {
-  try {
-    const businessId = req.params.id;
-    const { serviceId, date, time, customerName, customerPhone, notes } =
-      req.body;
+// exports.bookAppointment = async (req, res) => {
+//   try {
+//     const businessId = req.params.id;
+//     const { serviceId, date, time, customerName, customerPhone, notes } =
+//       req.body;
 
-    if (!serviceId || !date || !time || !customerName || !customerPhone) {
-      return res
-        .status(400)
-        .json({ error: "All required fields must be provided" });
-    }
+//     if (!serviceId || !date || !time || !customerName || !customerPhone) {
+//       return res
+//         .status(400)
+//         .json({ error: "All required fields must be provided" });
+//     }
 
-    const business = await Business.findById(businessId).select(
-      "name address services"
-    );
-    if (!business) {
-      return res.status(404).json({ error: "Business not found" });
-    }
+//     const business = await Business.findById(businessId).select(
+//       "name address services"
+//     );
+//     if (!business) {
+//       return res.status(404).json({ error: "Business not found" });
+//     }
 
-    const service = business.services.id(serviceId);
-    if (!service) {
-      return res.status(404).json({ error: "Service not found" });
-    }
+//     const service = business.services.id(serviceId);
+//     if (!service) {
+//       return res.status(404).json({ error: "Service not found" });
+//     }
 
-    const newAppointment = new Appointment({
-      businessId,
-      serviceId,
-      date,
-      time,
-      customerName,
-      customerPhone,
-      notes,
-      serviceName: service.name,
-      servicePrice: service.price,
-      duration: service.duration,
-    });
+//     const newAppointment = new appointment({
+//       businessId,
+//       serviceId,
+//       date,
+//       time,
+//       customerName,
+//       customerPhone,
+//       notes,
+//       serviceName: service.name,
+//       servicePrice: service.price,
+//       duration: service.duration,
+//     });
 
-    await newAppointment.save();
+//     await newAppointment.save();
 
-    res.status(200).json({
-      message: "Appointment booked successfully",
-      bookingDetails: {
-        businessName: business.name,
-        businessAddress: business.address,
-        serviceName: service.name,
-        servicePrice: service.price,
-        date,
-        time,
-        duration: service.duration,
-      },
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Failed to book appointment" });
-  }
-};
+//     res.status(200).json({
+//       message: "Appointment booked successfully",
+//       bookingDetails: {
+//         businessName: business.name,
+//         businessAddress: business.address,
+//         serviceName: service.name,
+//         servicePrice: service.price,
+//         date,
+//         time,
+//         duration: service.duration,
+//       },
+//     });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: "Failed to book appointment" });
+//   }
+// };
 
 // Add to waiting list
 exports.addToWaitingList = async (req, res) => {
   try {
-    const businessId = req.params.id;
-    const { serviceId, date, time, fullName, phoneNumber, notes } = req.body;
+    const { businessId } = req.params;
+    const { email, serviceType, date } = req.body;
 
-    if (!serviceId || !date || !time || !fullName || !phoneNumber) {
-      return res
-        .status(400)
-        .json({ error: "All required fields must be provided" });
-    }
-
-    const business = await Business.findById(businessId).select(
-      "name address services"
-    );
+    // 1) Validate the business
+    const business = await Business.findById(businessId);
     if (!business) {
       return res.status(404).json({ error: "Business not found" });
     }
 
-    const service = business.services.id(serviceId);
-    if (!service) {
-      return res.status(404).json({ error: "Service not found" });
+    const serviceExists = business.services.some(
+      (service) => service.name.toLowerCase() === serviceType.toLowerCase()
+    );
+    if (!serviceExists) {
+      return res
+        .status(404)
+        .json({ error: "Service not found for this business" });
     }
 
-    const newWaitingListEntry = new WaitingList({
+    const waitingEntry = new WaitingList({
       businessId,
-      serviceId,
+      email,
+      serviceType,
       date,
-      time,
-      fullName,
-      phoneNumber,
-      notes,
     });
 
-    await newWaitingListEntry.save();
+    await waitingEntry.save();
 
-    res.status(200).json({
-      message: "Added to waiting list successfully",
-      waitingListDetails: {
-        businessName: business.name,
-        businessAddress: business.address,
-        serviceName: service.name,
-        date,
-        time,
-      },
+    // 5) Respond to the client
+    return res.status(201).json({
+      message: "Successfully added to waiting list",
+      waitingEntry,
     });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Failed to add to waiting list" });
+    console.error("Error adding to waiting list:", error);
+    return res.status(500).json({ error: "Server error" });
+  }
+};
+
+exports.bookAppointment = async (req, res) => {
+  try {
+    const { appointmentId } = req.params;
+    const { fullName, email, phoneNumber } = req.body;
+    // const userId = req.userId;
+
+    //const userEmail = await User.findById(email);
+    // const user = await User.findById(userId);
+    // if (!user) {
+    //   return res.status(404).json({ message: "User not found" });
+    // }
+
+    // Check if appointment exists and is hot
+    const selectedAppointment = await appointment.findById(appointmentId);
+    if (!selectedAppointment) {
+      return res.status(404).json({ message: "Appointment not found" });
+    }
+    if (selectedAppointment.currentTemporaryOwnerEmail) {
+      const result = await UserAppointment.findOneAndDelete({
+        businessId: selectedAppointment.businessId,
+        email: selectedAppointment.currentTemporaryOwnerEmail,
+        serviceType: selectedAppointment.serviceType,
+      });
+      if (!result) {
+        console.log("could not do that !!");
+        return res.status(404).json({
+          success: false,
+          message: "No matching appointment found to remove.",
+        });
+      }
+    }
+
+    const business = await Business.findById(selectedAppointment.businessId);
+    if (!business) {
+      return res
+        .status(404)
+        .json({ message: "Business Id does not exist Error" });
+    }
+    const appointmentAddress = business.address || "Default Location";
+
+    // Create new user appointment linked to the business appointment
+    const newAppointment = new UserAppointment({
+      fullName: fullName,
+      email: email,
+      phoneNumber: phoneNumber,
+      businessId: selectedAppointment.businessId,
+      businessName: selectedAppointment.businessName,
+      address: appointmentAddress,
+      serviceType: selectedAppointment.serviceType,
+      price:
+        selectedAppointment.discountPrice || selectedAppointment.originalPrice,
+      date: selectedAppointment.date,
+      time: selectedAppointment.time,
+      status: "appointment-taken",
+    });
+
+    // Save user appointment
+    const savedAppointment = await newAppointment.save();
+
+    // Remove the appointment from availability
+    await appointment.findByIdAndDelete(appointmentId);
+    /*if (!userEmail) {
+      res.status(201).json({
+        message:
+          "Appointment booked successfully, the email not foun, please sign up with the same email!",
+        appointment: savedAppointment,
+      });
+    }*/
+
+    res.status(201).json({
+      message: "Appointment booked successfully",
+      appointment: savedAppointment,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
   }
 };

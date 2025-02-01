@@ -170,6 +170,9 @@ exports.getBusinessAppointments = async (req, res) => {
       service: appt.serviceType,
       date: appt.date,
       time: appt.time,
+      price: appt.price,
+      customerName: appt.fullName,
+      customerPhoneNumber: appt.phoneNumber,
     }));
 
     // Send the response

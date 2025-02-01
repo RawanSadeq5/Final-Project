@@ -37,6 +37,7 @@ const appointmentSchema = new mongoose.Schema({
   time: { type: String, required: true },
   durationInMinutes: { type: Number },
   isHot: { type: Boolean, default: false },
+  currentTemporaryOwnerEmail: { type: String },
 });
 
 // User Appointment Schema
@@ -61,12 +62,14 @@ const UserAppointmentSchema = new mongoose.Schema({
 
 // Waiting List Schema
 const WaitingListSchema = new mongoose.Schema({
-  businessName: { type: String, required: true },
-  address: { type: String, required: true },
+  businessId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Business",
+    required: true,
+  },
   email: { type: String, required: true },
   serviceType: { type: String, required: true },
   date: { type: String, required: true },
-  time: { type: String, required: true },
 });
 
 // Export models
