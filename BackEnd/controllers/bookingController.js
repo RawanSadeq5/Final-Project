@@ -1,3 +1,15 @@
+/**
+ * File: bookingController.js
+ * Description: This controller manages appointment-related operations for the NexTor platform.
+ *              It includes functionalities for retrieving available service dates and times,
+ *              booking appointments, handling waiting lists, and managing user reservations.
+ *
+ * Dependencies:
+ * - Requires Mongoose models (Business, Appointment, UserAppointment, WaitingList).
+ * - Uses Express.js for handling requests and responses.
+ * - Works in conjunction with the frontend booking UI.
+ **/
+
 const Business = require("../models/businessModel");
 const {
   appointment,

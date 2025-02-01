@@ -1,3 +1,14 @@
+/**
+ * File: appointmentsController.js
+ * Description: This module manages user appointments, including status changes, retrieval, cancellations, and waiting list management
+ *              within the NexTor appointment booking system. It provides API endpoints for users to interact with their bookings.
+ *
+ * Dependencies:
+ * - Requires authentication via authMiddleware (token-based access control).
+ * - Uses MongoDB models for Appointments, WaitingList, Users, and Businesses.
+ * - Connects with business and user management modules for data consistency.
+ **/
+
 const {
   UserAppointment,
   WaitingList,

@@ -1,3 +1,16 @@
+/**
+ * File: Booking.js
+ * Description: This script manages the appointment booking process for the NexTor platform.
+ *              It enables users to select a business service, choose an available date and time,
+ *              and proceed with booking and payment. Additionally, it provides a waiting list feature
+ *              for unavailable slots.
+ *
+ * Dependencies:
+ * - Works with the appointment booking UI in the HTML frontend.
+ * - Requires backend API endpoints for fetching business details, available dates, times, and appointment booking.
+ * - Uses Fetch API to interact with the backend at "http://localhost:3000/api/business".
+ **/
+
 document.addEventListener("DOMContentLoaded", async function () {
   /** ---------------------------
    *   Grab DOM Elements
