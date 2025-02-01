@@ -6,6 +6,79 @@ const {
 const User = require("../models/User");
 const Business = require("../models/businessModel");
 
+exports.changeAppointmentStatus = async (req, res) => {
+  try {
+    //const userEmailAddress = user.emailAddress;
+    const { appointmentId, newStatus } = req.body;
+
+    // Grab the user ID from the token (set by authMiddleware)
+    const userId = req.userId;
+
+    // Find the user in the database
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "User was not found.",
+      });
+    }
+
+    const userAppointment = await UserAppointment.findById(appointmentId);
+    if (!userAppointment) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Appointment not found." });
+    }
+    if (userAppointment.status === newStatus) {
+      return res
+        .status(200)
+        .json({ success: true, message: "This status is already set." });
+    }
+
+    userAppointment.status = newStatus;
+
+    if (newStatus === "ready-to-give-up") {
+      const newAppointment = new appointment({
+        businessId: userAppointment.businessId,
+        serviceType: userAppointment.serviceType,
+        originalPrice: userAppointment.price,
+        date: userAppointment.date,
+        time: userAppointment.time,
+        durationInMinutes: userAppointment.durationInMinutes,
+        isHot: false,
+        currentTemporaryOwnerEmail: userAppointment.email,
+      });
+
+      await newAppointment.save();
+    } else {
+      // lets search inside the appointment model for currentTemporaryOwnerEmail
+      const result = await appointment.findOneAndDelete({
+        businessId: userAppointment.businessId,
+        currentTemporaryOwnerEmail: userAppointment.email,
+        serviceType: userAppointment.serviceType,
+      });
+      if (!result) {
+        return res.status(404).json({
+          success: false,
+          message: "No matching appointment found to remove.",
+        });
+      }
+    }
+
+    await userAppointment.save();
+    return res.status(200).json({
+      success: true,
+      message: "Appointment status updated successfully.",
+    });
+  } catch (error) {
+    console.error("Error fetching appointments:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to change appointment status.",
+    });
+  }
+};
+
 // Get all appointments for a user
 exports.getUserAppointments = async (req, res) => {
   try {
@@ -58,7 +131,12 @@ exports.getUserWaitingList = async (req, res) => {
 
     const userEmailAddress = user.emailAddress;
 
-    const waitingList = await WaitingList.find({ email: userEmailAddress });
+    const waitingList = await WaitingList.find({
+      email: userEmailAddress,
+    }).populate({
+      path: "businessId",
+      select: "BusinessName address",
+    });
     res.status(200).json({ success: true, waitingList });
   } catch (error) {
     console.error("Error fetching waiting list:", error);

@@ -111,6 +111,20 @@ exports.bookHotAppointments = async (req, res) => {
         .status(400)
         .json({ message: "This appointment is not available for hot booking" });
     }
+    if (selectedAppointment.currentTemporaryOwnerEmail) {
+      const result = await UserAppointment.findOneAndDelete({
+        businessId: selectedAppointment.businessId,
+        email: selectedAppointment.currentTemporaryOwnerEmail,
+        serviceType: selectedAppointment.serviceType,
+      });
+      if (!result) {
+        console.log("could not do that !!");
+        return res.status(404).json({
+          success: false,
+          message: "No matching appointment found to remove.",
+        });
+      }
+    }
 
     const business = await Business.findById(selectedAppointment.businessId);
     if (!business) {

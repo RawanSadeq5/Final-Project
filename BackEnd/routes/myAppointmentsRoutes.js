@@ -7,6 +7,7 @@ const {
   getUserWaitingList,
   cancelAppointment,
   deleteFromWaitingList,
+  changeAppointmentStatus,
 } = require("../controllers/myAppointmentsController");
 
 // Get all user appointments
@@ -14,6 +15,12 @@ router.get("/appointments", authMiddleware, getUserAppointments);
 
 // Get user's waiting list
 router.get("/appointments/waiting-list", authMiddleware, getUserWaitingList);
+
+router.post(
+  "/appointments/update-status",
+  authMiddleware,
+  changeAppointmentStatus
+);
 
 // Cancel an appointment
 router.delete(
