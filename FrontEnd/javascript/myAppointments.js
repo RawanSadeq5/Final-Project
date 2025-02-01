@@ -1,3 +1,14 @@
+/**
+ * File: myAppointments.js
+ * Description: This script handles the retrieval, display, and management of user appointments and waiting list entries
+ *              for the NexTor appointment booking system. It dynamically fetches data from the backend and updates
+ *              the user interface with active and pending bookings.
+ * Dependencies:
+ * - Requires a valid authentication token (authToken) stored in localStorage.
+ * - Works in conjunction with the backend API for appointment and waiting list management.
+ * - Uses JavaScript's Fetch API for asynchronous data retrieval and updates.
+ **/
+
 // About page navigation
 const aboutLink = document.getElementById("about-link");
 aboutLink.addEventListener("click", (event) => {
@@ -205,8 +216,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       labelServiceType.innerHTML = `<strong>סוג שירות:</strong> ${waitingItem.serviceType}`;
       const labelDate = document.createElement("label");
       labelDate.innerHTML = `<strong>תאריך:</strong> ${waitingItem.date}`;
-      //const labelTime = document.createElement("label");
-      //labelTime.innerHTML = `<strong>שעה:</strong> ${waitingItem.time}`;
 
       const deleteButton = document.createElement("button");
       deleteButton.classList.add("action-button", "delete-waiting");
@@ -219,7 +228,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       div.appendChild(labelAddress);
       div.appendChild(labelServiceType);
       div.appendChild(labelDate);
-      //div.appendChild(labelTime);
 
       div.appendChild(deleteButton);
 
@@ -362,17 +370,3 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error(error);
   }
 });
-
-/*const { UserAppointment, WaitingList } = require("../models/Schemas");
-
-// Example: Fetch all user appointments
-exports.getUserAppointments = async (req, res) => {
-  try {
-    const userId = req.user.id;
-    const appointments = await UserAppointment.find({ userId });
-    res.status(200).json({ success: true, appointments });
-  } catch (error) {
-    console.error("Error fetching user appointments:", error);
-    res.status(500).json({ success: false, message: "Failed to fetch appointments." });
-  }
-};*/
