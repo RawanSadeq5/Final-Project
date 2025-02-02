@@ -348,4 +348,31 @@ document.addEventListener("DOMContentLoaded", async () => {
   } catch (error) {
     console.error("Error fetching appointments:", error);
   }
+
+  /** ---------------------------
+   *   Navigation Links
+   *  ----------------------------*/
+  const aboutLink = document.getElementById("about-link");
+  if (aboutLink) {
+    aboutLink.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.location.href = "about.html";
+    });
+  }
+
+  const contactLink = document.getElementById("contact-link");
+  if (contactLink) {
+    contactLink.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.location.href = "contactUs.html";
+    });
+  }
+
+  const homeLink = document.getElementById("home-link");
+  if (homeLink) {
+    homeLink.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.location.href = "home.html";
+    });
+  }
 });
