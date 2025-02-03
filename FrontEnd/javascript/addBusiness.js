@@ -7,7 +7,7 @@
  *              - Collecting and validating user inputs before form submission
  *              - Sending business registration data to the backend API
  *              - Redirecting users to their business management page upon successful registration
- * Dependencies: Requires an API at "http://localhost:3000/api/add-business" for business registration.
+ * Dependencies: Requires an API at "https://final-project-mrap.onrender.com/api/add-business" for business registration.
  *               Works with addBusiness.html.
  **/
 
@@ -222,10 +222,13 @@ const submitTest = async () => {
   }
 
   try {
-    const response = await fetch("http://localhost:3000/api/add-business", {
-      method: "POST",
-      body: formData,
-    });
+    const response = await fetch(
+      "https://final-project-mrap.onrender.com/api/add-business",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
 
     const result = await response.json();
     console.log(result.business);

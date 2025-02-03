@@ -5,7 +5,6 @@ const multer = require("../config/multerConfig");
 const {
   getBusinessDetails,
   updateBusinessDetails,
-  getAppointments,
   addAvailableAppointment,
   addHotAppointment,
   updateProfileImage,
