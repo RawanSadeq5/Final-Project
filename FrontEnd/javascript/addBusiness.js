@@ -285,7 +285,7 @@ nextBtn.addEventListener("click", async (event) => {
       currentStep++;
       updateSteps();
     } else {
-      alert("Please complete all required fields before moving forward.");
+      alert("יש למלא את כל השדות לפני שממשיכים!");
     }
   } else {
     if (validateStep()) {
@@ -300,7 +300,7 @@ nextBtn.addEventListener("click", async (event) => {
         alert("An error occurred while submitting the form.");
       }
     } else {
-      alert("Please complete all required fields before submitting.");
+      alert("יש למלא את כל השדות לפני שממשיכים!");
     }
   }
 });
