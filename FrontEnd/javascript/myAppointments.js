@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     const appointmentsResult = await fetch(
-      `http://localhost:3000/api/appointments`,
+      `https://final-project-mrap.onrender.com/api/appointments`,
       {
         method: "GET",
         headers: {
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const appointmentsData = await appointmentsResult.json();
 
     const waitingListResult = await fetch(
-      `http://localhost:3000/api/appointments/waiting-list`,
+      `https://final-project-mrap.onrender.com/api/appointments/waiting-list`,
       {
         method: "GET",
         headers: {
@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Dummy POST request to update status
         try {
           const response = await fetch(
-            "http://localhost:3000/api/appointments/update-status",
+            "https://final-project-mrap.onrender.com/api/appointments/update-status",
             {
               method: "POST",
               headers: {
@@ -269,7 +269,7 @@ document.addEventListener("DOMContentLoaded", async () => {
               // Make DELETE request to remove from waiting list
               // Adjust the endpoint if yours differs, e.g. /api/waiting-list/:id
               const response = await fetch(
-                `http://localhost:3000/api/appointments/waiting-list/${idToDelete}`,
+                `https://final-project-mrap.onrender.com/api/appointments/waiting-list/${idToDelete}`,
                 {
                   method: "DELETE",
                   headers: {
@@ -333,7 +333,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
               try {
                 const response = await fetch(
-                  `http://localhost:3000/api/appointments/${appointmentId}`,
+                  `https://final-project-mrap.onrender.com/api/appointments/${appointmentId}`,
                   {
                     method: "DELETE",
                     headers: {

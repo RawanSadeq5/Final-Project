@@ -54,17 +54,20 @@ createAccountButton.addEventListener("click", async function (event) {
 
   try {
     // Send signup request to the server
-    const response = await fetch("http://localhost:3000/api/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        fullName,
-        emailAddress,
-        password,
-      }),
-    });
+    const response = await fetch(
+      "https://final-project-mrap.onrender.com/api/signup",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fullName,
+          emailAddress,
+          password,
+        }),
+      }
+    );
 
     // Check if the response from the server was OK
     if (!response.ok) {

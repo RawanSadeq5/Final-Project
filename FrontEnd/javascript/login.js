@@ -4,7 +4,7 @@
  *              It handles login form submission, token storage, and user redirection upon successful authentication.
  *              Additionally, it provides client-side navigation for key pages.
  *
- * Dependencies: Works with login.html and Requires a backend API endpoint at "http://localhost:3000/api/login".
+ * Dependencies: Works with login.html and Requires a backend API endpoint at "https://final-project-mrap.onrender.com/api/login".
  **/
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -18,11 +18,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const password = document.getElementById("password").value;
 
       try {
-        const response = await fetch("http://localhost:3000/api/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, password }),
-        });
+        const response = await fetch(
+          "https://final-project-mrap.onrender.com/api/login",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password }),
+          }
+        );
 
         const data = await response.json();
         console.log(data);

@@ -6,7 +6,7 @@
  *              - Enabling and saving business details edits
  *              - Fetching available services and populating dropdown lists
  *              - Adding new regular and hot appointments
- * Dependencies: Requires a backend API at "http://localhost:3000/api/business/{businessId}"
+ * Dependencies: Requires a backend API at "https://final-project-mrap.onrender.com/api/business/{businessId}"
  *               and related appointment endpoints. Works with business.html.
  */
 
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Fetch business details
   try {
     const response = await fetch(
-      `http://localhost:3000/api/business/${businessId}`
+      `https://final-project-mrap.onrender.com/api/business/${businessId}`
     );
 
     const data = await response.json();
@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/api/business/${businessId}/profile-image`,
+        `https://final-project-mrap.onrender.com/api/business/${businessId}/profile-image`,
         {
           method: "POST",
           body: formData,
@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/api/business/${businessId}`,
+        `https://final-project-mrap.onrender.com/api/business/${businessId}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   // Fetch services from the server
-  fetch(`http://localhost:3000/api/business/${businessId}`)
+  fetch(`https://final-project-mrap.onrender.com/api/business/${businessId}`)
     .then((response) => response.json())
     .then((services) => {
       const serviceDropdown = document.getElementById("service");
@@ -244,13 +244,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log(data);
 
     // Post the data to the server
-    fetch(`http://localhost:3000/api/business/${businessId}/appointments`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
+    fetch(
+      `https://final-project-mrap.onrender.com/api/business/${businessId}/appointments`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    )
       .then((response) => {
         if (!response.ok) throw new Error("Failed to add appointment");
         return response.json();
@@ -295,13 +298,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log(data);
 
     // Post the data to the server
-    fetch(`http://localhost:3000/api/business/${businessId}/hot-appointments`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
+    fetch(
+      `https://final-project-mrap.onrender.com/api/business/${businessId}/hot-appointments`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    )
       .then((response) => {
         if (!response.ok) throw new Error("Failed to add appointment");
         return response.json();
@@ -321,7 +327,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     const response = await fetch(
-      `http://localhost:3000/api/business/appointments/${businessId}`
+      `https://final-project-mrap.onrender.com/api/business/appointments/${businessId}`
     );
     const data = await response.json();
     console.log("API response:", data);

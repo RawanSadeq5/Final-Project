@@ -8,7 +8,7 @@
  * Dependencies:
  * - Works with the appointment booking UI in the HTML frontend.
  * - Requires backend API endpoints for fetching business details, available dates, times, and appointment booking.
- * - Uses Fetch API to interact with the backend at "http://localhost:3000/api/business".
+ * - Uses Fetch API to interact with the backend at "https://final-project-mrap.onrender.com/api/business".
  **/
 
 document.addEventListener("DOMContentLoaded", async function () {
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   try {
     const response = await fetch(
-      `http://localhost:3000/api/business/${businessId}/details`
+      `https://final-project-mrap.onrender.com/api/business/${businessId}/details`
     );
     const data = await response.json();
 
@@ -173,7 +173,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     try {
       console.log(`Fetching available dates for ${year}-${month + 1}`);
       const response = await fetch(
-        `http://localhost:3000/api/business/serviceDates/${businessId}/${selectedServiceName}`
+        `https://final-project-mrap.onrender.com/api/business/serviceDates/${businessId}/${selectedServiceName}`
       );
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -325,7 +325,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/api/business/${businessId}/waiting-list`,
+        `https://final-project-mrap.onrender.com/api/business/${businessId}/waiting-list`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -400,7 +400,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/api/business/serviceTimes/${businessId}/${selectedServiceName}/${date}`
+        `https://final-project-mrap.onrender.com/api/business/serviceTimes/${businessId}/${selectedServiceName}/${date}`
       );
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -456,7 +456,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/api/business/book/${selectedAppointmentId}`,
+        `https://final-project-mrap.onrender.com/api/business/book/${selectedAppointmentId}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

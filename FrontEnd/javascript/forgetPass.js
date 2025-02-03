@@ -3,7 +3,7 @@
  * Description: This script handles the password reset functionality for the NexTor appointment booking system.
  *              It includes navigation between different pages, form validation, sending password reset requests
  *              to the backend, and displaying a success modal upon successful password change.
- * Dependencies: Requires a backend API at "http://localhost:3000/api/forgotPassword" for handling password reset requests.
+ * Dependencies: Requires a backend API at "https://final-project-mrap.onrender.com/api/forgotPassword" for handling password reset requests.
  *               Works with forgetPass.html.
  **/
 
@@ -58,13 +58,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/api/forgotPassword", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ emailAddress, password }),
-      });
+      const response = await fetch(
+        "https://final-project-mrap.onrender.com/api/forgotPassword",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ emailAddress, password }),
+        }
+      );
 
       const data = await response.json();
 

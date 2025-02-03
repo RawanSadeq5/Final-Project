@@ -7,7 +7,7 @@
  *              - Fetching and displaying hot appointment deals dynamically
  *              - Managing appointment booking interactions, including payment redirection
  *              - Closing the appointment details container when dismissed
- * Dependencies: Requires a backend API at "http://localhost:3000/api" for fetching businesses and hot appointments.
+ * Dependencies: Requires a backend API at "https://final-project-mrap.onrender.com/api" for fetching businesses and hot appointments.
  *               Works with home.html.
  **/
 
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/api/appointments/hot/${appointmentId}`,
+        `https://final-project-mrap.onrender.com/api/appointments/hot/${appointmentId}`,
         {
           method: "POST",
           headers: {
@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (area) queryParams.append("area", area);
 
         const response = await fetch(
-          `http://localhost:3000/api/search?${queryParams.toString()}`
+          `https://final-project-mrap.onrender.com/api/search?${queryParams.toString()}`
         );
         const result = await response.json();
         console.log(result.businesses);
@@ -176,7 +176,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
   try {
-    const response = await fetch("http://localhost:3000/api/appointments/hot");
+    const response = await fetch(
+      "https://final-project-mrap.onrender.com/api/appointments/hot"
+    );
     const result = await response.json();
 
     if (!result.success || result.hotAppointments.length === 0) {
